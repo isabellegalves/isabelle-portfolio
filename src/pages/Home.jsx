@@ -617,7 +617,6 @@ function ContactSection({ onContactClick }) {
 export default function Home({ onContactClick }) {
   return (
     <main>
-      <style>{GLOBAL_STYLES}</style>
       <Hero onContactClick={onContactClick} />
       <Work />
       <Capabilities />
