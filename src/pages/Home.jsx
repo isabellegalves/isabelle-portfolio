@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react"
 import { Link } from "react-router-dom"
-import { motion, useInView, animate } from "framer-motion"
+import { motion, useInView } from "framer-motion"
 import { T } from "../tokens"
 import { cases } from "../data/cases"
 
@@ -36,12 +36,20 @@ function Counter({ to, suffix = "", duration = 1.4 }) {
   useEffect(() => {
     if (inView && !started.current) {
       started.current = true
-      const controls = animate(0, to, {
-        duration,
-        ease: "easeOut",
-        onUpdate: (v) => setVal(Math.round(v)),
-      })
-      return () => controls.stop()
+      const steps = 60
+      const interval = (duration * 1000) / steps
+      let current = 0
+      const timer = setInterval(() => {
+        current += 1
+        const progress = current / steps
+        const eased = 1 - Math.pow(1 - progress, 3)
+        setVal(Math.round(eased * to))
+        if (current >= steps) {
+          setVal(to)
+          clearInterval(timer)
+        }
+      }, interval)
+      return () => clearInterval(timer)
     }
   }, [inView, to, duration])
 
@@ -52,6 +60,29 @@ function Counter({ to, suffix = "", duration = 1.4 }) {
     }}>
       {val}{suffix}
     </span>
+  )
+}
+
+// ─── CONTACT BUTTON ──────────────────────────────────────────────────────────
+
+function ContactButton({ children, onClick }) {
+  const [hovered, setHovered] = useState(false)
+  return (
+    <button
+      onClick={onClick}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      style={{
+        fontFamily: "system-ui, sans-serif", fontSize: 12, fontWeight: 700,
+        letterSpacing: "0.05em", textTransform: "uppercase",
+        color: hovered ? "#FFFFFF" : "#0A0A0A",
+        background: hovered ? "linear-gradient(90deg, #6C1FF3, #DA37F4)" : "#FFFFFF",
+        border: "none", padding: "15px 34px", borderRadius: 32,
+        cursor: "pointer", transition: "background 0.3s, color 0.3s",
+      }}
+    >
+      {children}
+    </button>
   )
 }
 
@@ -602,7 +633,7 @@ function ContactSection({ onContactClick }) {
         }}>
           Good work starts with a good conversation.
         </h2>
-        <GradientButton onClick={onContactClick}>Get in touch</GradientButton>
+        <ContactButton onClick={onContactClick}>Get in touch</ContactButton>
       </FadeUp>
     </section>
   )
