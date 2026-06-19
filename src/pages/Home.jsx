@@ -62,29 +62,6 @@ function Counter({ to, suffix = "", duration = 1.4 }) {
   )
 }
 
-// ─── CONTACT BUTTON ──────────────────────────────────────────────────────────
-
-function ContactButton({ children, onClick }) {
-  const [hovered, setHovered] = useState(false)
-  return (
-    <button
-      onClick={onClick}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-      style={{
-        fontFamily: "system-ui, sans-serif", fontSize: 12, fontWeight: 700,
-        letterSpacing: "0.05em", textTransform: "uppercase",
-        color: hovered ? "#FFFFFF" : "#0A0A0A",
-        background: hovered ? "linear-gradient(90deg, #6C1FF3, #DA37F4)" : "#FFFFFF",
-        border: "none", padding: "15px 34px", borderRadius: 32,
-        cursor: "pointer", transition: "background 0.3s, color 0.3s",
-      }}
-    >
-      {children}
-    </button>
-  )
-}
-
 // ─── HERO LINE ───────────────────────────────────────────────────────────────
 
 function HeroLine({ children, delay = 0, serif = false, light = false, size }) {
@@ -111,25 +88,61 @@ function HeroLine({ children, delay = 0, serif = false, light = false, size }) {
   )
 }
 
-// ─── GRADIENT BUTTON ─────────────────────────────────────────────────────────
+const GRAD = "linear-gradient(90deg, #6C1FF3, #DA37F4)"
 
-function GradientButton({ children, onClick }) {
+// Botão com borda sólida → gradiente no hover (texto e borda)
+function OutlineButton({ children, onClick, borderColor = "#0A0A0A", padding = "13px 26px", borderRadius = 26, as: Tag = "button", href }) {
   const [hovered, setHovered] = useState(false)
-  return (
-    <button
-      onClick={onClick}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-      style={{
-        fontFamily: "system-ui, sans-serif", fontSize: 12, fontWeight: 700,
-        letterSpacing: "0.05em", textTransform: "uppercase",
-        color: T.white,
-        background: hovered ? "linear-gradient(90deg, #6C1FF3, #DA37F4)" : T.ink,
-        border: "none", padding: "13px 26px", borderRadius: 26,
-        cursor: "pointer", transition: "background 0.3s",
-      }}
-    >
+  const gradStyle = hovered ? {
+    background: GRAD,
+    WebkitBackgroundClip: "text",
+    WebkitTextFillColor: "transparent",
+    backgroundClip: "text",
+    borderColor: "transparent",
+  } : {
+    color: borderColor === "#FFFFFF" ? "#FFFFFF" : "#0A0A0A",
+    WebkitTextFillColor: "unset",
+    background: "none",
+    borderColor,
+  }
+
+  const sharedStyle = {
+    fontFamily: "system-ui, sans-serif", fontSize: 12, fontWeight: 700,
+    letterSpacing: "0.05em", textTransform: "uppercase",
+    border: `1.5px solid ${borderColor}`, padding, borderRadius,
+    cursor: "pointer", position: "relative",
+    display: "inline-block", textDecoration: "none",
+    transition: "border-color 0.25s",
+    background: "transparent",
+    ...gradStyle,
+  }
+
+  const inner = (
+    <>
+      {hovered && (
+        <span style={{
+          position: "absolute", inset: -1.5, borderRadius,
+          background: GRAD,
+          WebkitMask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
+          WebkitMaskComposite: "xor",
+          maskComposite: "exclude",
+          pointerEvents: "none",
+        }} />
+      )}
       {children}
+    </>
+  )
+
+  if (Tag === "a") {
+    return (
+      <a href={href} onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)} style={sharedStyle}>
+        {inner}
+      </a>
+    )
+  }
+  return (
+    <button onClick={onClick} onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)} style={sharedStyle}>
+      {inner}
     </button>
   )
 }
@@ -137,8 +150,6 @@ function GradientButton({ children, onClick }) {
 // ─── HERO ────────────────────────────────────────────────────────────────────
 
 function Hero({ onContactClick }) {
-  const [viewHovered, setViewHovered] = useState(false)
-
   return (
     <section
       aria-labelledby="hero-heading"
@@ -147,7 +158,7 @@ function Hero({ onContactClick }) {
         justifyContent: "center", background: T.white, overflow: "hidden",
       }}
     >
-      <div style={{ maxWidth: 1280, margin: "0 auto", padding: "100px 48px 60px", width: "100%" }}>
+      <div style={{ maxWidth: 1280, margin: "0 auto", padding: "150px 48px 60px", width: "100%" }}>
         <div className="hero-grid" style={{
           display: "grid", gridTemplateColumns: "1fr 1fr",
           gap: 64, alignItems: "center", minHeight: "60vh",
@@ -193,38 +204,8 @@ function Hero({ onContactClick }) {
                 Product Designer with 10 years of experience working at the intersection of business strategy, user research and interface craft. I've helped companies like Condé Nast, Bradesco and Sodexo build products that serve both users and business goals.
               </p>
               <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
-                <GradientButton onClick={onContactClick}>Get in touch</GradientButton>
-
-                {/* View work — gradient border on hover */}
-                <div style={{ position: "relative", display: "inline-block" }}>
-                  {viewHovered && (
-                    <span style={{
-                      position: "absolute", inset: 0, borderRadius: 26,
-                      background: "linear-gradient(90deg, #6C1FF3, #DA37F4)",
-                      padding: "1.5px",
-                      WebkitMask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
-                      WebkitMaskComposite: "xor",
-                      maskComposite: "exclude",
-                      pointerEvents: "none",
-                    }} />
-                  )}
-                  <motion.a
-                    href="#work"
-                    onMouseEnter={() => setViewHovered(true)}
-                    onMouseLeave={() => setViewHovered(false)}
-                    style={{
-                      fontFamily: "system-ui, sans-serif", fontSize: 12, fontWeight: 700,
-                      letterSpacing: "0.05em", textTransform: "uppercase",
-                      color: T.ink,
-                      border: viewHovered ? "1.5px solid transparent" : "1.5px solid #CCCCCC",
-                      padding: "12px 26px", borderRadius: 26, textDecoration: "none",
-                      display: "inline-block", position: "relative",
-                      transition: "border-color 0.2s",
-                    }}
-                  >
-                    View work
-                  </motion.a>
-                </div>
+                <OutlineButton onClick={onContactClick}>Get in touch</OutlineButton>
+                <OutlineButton as="a" href="#work" borderColor="#CCCCCC">View work</OutlineButton>
               </div>
             </motion.div>
           </div>
@@ -327,7 +308,7 @@ function CaseCard({ c, index }) {
             </div>
           </div>
 
-          <div style={{ fontFamily: "Georgia, serif", fontSize: 12, fontStyle: "italic", color: T.mid, marginBottom: 8 }}>
+          <div style={{ fontFamily: "system-ui, sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", color: "#666666", marginBottom: 16, marginTop: 16 }}>
             {c.company}
           </div>
 
@@ -594,21 +575,7 @@ function About() {
               ))}
             </div>
             <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
-              <motion.a
-                href="https://www.linkedin.com/in/isabellegalves/"
-                target="_blank"
-                rel="noopener noreferrer"
-                whileHover={{ background: T.ink, color: T.white }}
-                style={{
-                  fontFamily: "system-ui, sans-serif", fontSize: 11, fontWeight: 700,
-                  letterSpacing: "0.05em", textTransform: "uppercase",
-                  color: T.ink, border: `1.5px solid ${T.ink}`,
-                  padding: "9px 18px", borderRadius: 20, textDecoration: "none",
-                  display: "inline-block",
-                }}
-              >
-                LinkedIn
-              </motion.a>
+              <OutlineButton as="a" href="https://www.linkedin.com/in/isabellegalves/" padding="9px 18px" borderRadius={20}>LinkedIn</OutlineButton>
             </div>
           </FadeUp>
         </div>
@@ -632,7 +599,7 @@ function ContactSection({ onContactClick }) {
         }}>
           Good work starts with a good conversation.
         </h2>
-        <ContactButton onClick={onContactClick}>Get in touch</ContactButton>
+        <OutlineButton onClick={onContactClick} borderColor="#FFFFFF" padding="15px 34px" borderRadius={32}>Get in touch</OutlineButton>
       </FadeUp>
     </section>
   )

@@ -2,13 +2,44 @@ import { useState, useEffect } from "react"
 import { Link, useLocation } from "react-router-dom"
 import { T } from "../tokens"
 
+const GRAD = "linear-gradient(90deg, #6C1FF3, #DA37F4)"
+
+function NavLink({ to, children }) {
+  const [hovered, setHovered] = useState(false)
+  return (
+    <Link
+      to={to}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      style={{
+        fontFamily: "system-ui, -apple-system, sans-serif",
+        fontSize: 14, fontWeight: 500, letterSpacing: "0.01em",
+        textDecoration: "none",
+        padding: "6px 14px", borderRadius: 20,
+        transition: "color 0.2s",
+        ...(hovered ? {
+          background: GRAD,
+          WebkitBackgroundClip: "text",
+          WebkitTextFillColor: "transparent",
+          backgroundClip: "text",
+        } : {
+          color: "#4A4A4A",
+          WebkitTextFillColor: "unset",
+          background: "none",
+        }),
+      }}
+    >
+      {children}
+    </Link>
+  )
+}
+
 export default function Nav({ onContactClick }) {
   const [scrollY, setScrollY] = useState(0)
+  const [contactHovered, setContactHovered] = useState(false)
   const location = useLocation()
   const isHome = location.pathname === "/"
   const solid = scrollY > 60 || !isHome
-  // Background is always white/light, so always use black logo
-  const useDarkLogo = true
 
   useEffect(() => {
     const fn = () => setScrollY(window.scrollY)
@@ -38,31 +69,50 @@ export default function Nav({ onContactClick }) {
           style={{ display: "flex", alignItems: "center", textDecoration: "none" }}
         >
           <img
-            src={useDarkLogo ? "/images/logo-black.svg" : "/images/logo-white.svg"}
+            src="/images/logo-black.svg"
             alt="Isabelle Alves"
-            style={{ height: 45, width: "auto", display: "block", transition: "opacity 0.3s" }}
+            style={{ height: 28, width: "auto", display: "block", transition: "opacity 0.3s" }}
           />
         </Link>
 
         <div style={{ display: "flex", gap: 6, alignItems: "center" }}>
-          <Link to="/#work" style={navLinkStyle(useDarkLogo)}>Work</Link>
-          <Link to="/#about" style={navLinkStyle(useDarkLogo)}>About</Link>
+          <NavLink to="/#work">Work</NavLink>
+          <NavLink to="/#about">About</NavLink>
           <button
             onClick={onContactClick}
-            onMouseEnter={e => {
-              e.currentTarget.style.background = "linear-gradient(90deg, #6C1FF3, #DA37F4)"
-            }}
-            onMouseLeave={e => {
-              e.currentTarget.style.background = T.ink
-            }}
+            onMouseEnter={() => setContactHovered(true)}
+            onMouseLeave={() => setContactHovered(false)}
             style={{
               fontFamily: "system-ui, -apple-system, sans-serif",
               fontSize: 14, fontWeight: 600,
-              color: T.white, background: T.ink,
-              border: "none", padding: "9px 20px", borderRadius: 24,
-              cursor: "pointer", transition: "background 0.3s",
+              background: "transparent",
+              border: "1.5px solid #FFFFFF",
+              padding: "9px 20px", borderRadius: 24,
+              cursor: "pointer",
+              position: "relative",
+              transition: "border-color 0.3s",
+              ...(contactHovered ? {
+                borderColor: "transparent",
+                background: GRAD,
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
+              } : {
+                color: "#FFFFFF",
+                WebkitTextFillColor: "unset",
+              }),
             }}
           >
+            {contactHovered && (
+              <span style={{
+                position: "absolute", inset: -1.5, borderRadius: 24,
+                background: GRAD,
+                WebkitMask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
+                WebkitMaskComposite: "xor",
+                maskComposite: "exclude",
+                pointerEvents: "none",
+              }} />
+            )}
             Contact
           </button>
         </div>
@@ -70,12 +120,3 @@ export default function Nav({ onContactClick }) {
     </nav>
   )
 }
-
-const navLinkStyle = (solid) => ({
-  fontFamily: "system-ui, -apple-system, sans-serif",
-  fontSize: 14, fontWeight: 500, letterSpacing: "0.01em",
-  color: solid ? "#4A4A4A" : "rgba(255,255,255,0.85)",
-  textDecoration: "none",
-  padding: "6px 14px", borderRadius: 20,
-  transition: "color 0.2s, background 0.2s",
-})
