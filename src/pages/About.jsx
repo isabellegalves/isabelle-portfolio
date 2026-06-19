@@ -4,15 +4,16 @@ import { T } from "../tokens"
 
 const spring = { duration: 0.9, ease: [0.16, 1, 0.3, 1] }
 const GRAD = "linear-gradient(90deg, #6C1FF3, #DA37F4)"
+const PURPLE = "#6C1FF3"
 
 // ─── GRAD BTN ────────────────────────────────────────────────────────────────
-// Wrapper div simula gradient border no hover.
-// variant="outline"      → borda preta  (#0A0A0A)
-// variant="outline-gray" → borda escura (#555555, contraste 7:1 WCAG AA)
-// Hover: borda vira gradiente + texto vira gradiente via background-clip
+// variant="outline"      → borda preta + texto preto; hover: contorno roxo + texto roxo
+// variant="outline-gray" → borda #555 + texto preto;  hover: contorno roxo + texto roxo
+// Regra: bg sempre branco, nunca muda. So borda e texto mudam para roxo.
 function GradBtn({ children, href, variant = "outline", target, rel }) {
   const [hovered, setHovered] = useState(false)
   const borderColor = variant === "outline-gray" ? "#555555" : "#0A0A0A"
+  const hoverBorder = PURPLE
 
   return (
     <a
@@ -25,8 +26,8 @@ function GradBtn({ children, href, variant = "outline", target, rel }) {
         display: "inline-block",
         borderRadius: 20,
         padding: "1.5px",
-        background: hovered ? GRAD : borderColor,
-        transition: "background 0.25s",
+        background: hovered ? hoverBorder : borderColor,
+        transition: "background 0.2s",
         textDecoration: "none",
         cursor: "pointer",
       }}
@@ -37,19 +38,8 @@ function GradBtn({ children, href, variant = "outline", target, rel }) {
         letterSpacing: "0.05em", textTransform: "uppercase",
         padding: "9px 18px", borderRadius: "18.5px",
         background: "#FFFFFF",
-        // hover: gradient text via background-clip
-        ...(hovered ? {
-          backgroundImage: GRAD,
-          WebkitBackgroundClip: "text",
-          WebkitTextFillColor: "transparent",
-          backgroundClip: "text",
-          color: "transparent",
-        } : {
-          color: "#0A0A0A",
-          WebkitTextFillColor: "unset",
-          backgroundImage: "none",
-        }),
-        transition: "all 0.25s",
+        color: hovered ? PURPLE : "#0A0A0A",
+        transition: "color 0.2s",
       }}>
         {children}
       </span>
@@ -83,10 +73,9 @@ const RULE = { height: "0.5px", background: T.rule, margin: "48px 0" }
 const SI = "https://cdn.simpleicons.org"
 const GB = "https://raw.githubusercontent.com/gilbarbara/logos/main/logos"
 
-// Toolbox: removidos Procreate, Lovable, Zeroheight, Hotjar, Salesforce, Claude Code
-// Claude Design usa agora o SVG oficial da Anthropic/Claude (icone de folha)
+// Toolbox: Storybook removido. Figma bg preto. Claude usa icone oficial via URL.
 const TOOLS = [
-  { name: "Figma",            bg: "#1ABCFE", type: "si", slug: "figma",            ic: "fff" },
+  { name: "Figma",            bg: "#0A0A0A", type: "si", slug: "figma",            ic: "fff" },
   { name: "Framer",           bg: "#0055FF", type: "si", slug: "framer",           ic: "fff" },
   { name: "Adobe Illustrator",bg: "#FF7C00", type: "gb", file: "adobe-illustrator.svg" },
   { name: "Adobe Photoshop",  bg: "#001E36", type: "gb", file: "adobe-photoshop.svg" },
@@ -94,36 +83,34 @@ const TOOLS = [
   { name: "Confluence",       bg: "#172B4D", type: "si", slug: "confluence",       ic: "fff" },
   { name: "Notion",           bg: "#F5F5F5", type: "si", slug: "notion",           ic: "000" },
   { name: "Miro",             bg: "#FFD02F", type: "si", slug: "miro",             ic: "000" },
-  { name: "Storybook",        bg: "#FF4785", type: "si", slug: "storybook",        ic: "fff" },
   { name: "Google Analytics", bg: "#E37400", type: "si", slug: "googleanalytics",  ic: "fff" },
   { name: "Maze",             bg: "#6240C8", type: "si", slug: "maze",             ic: "fff" },
   { name: "Vercel",           bg: "#111111", type: "si", slug: "vercel",           ic: "fff" },
   { name: "GitHub",           bg: "#24292E", type: "si", slug: "github",           ic: "fff" },
-  // Claude: SVG oficial inline (folha/flor da Anthropic)
   {
     name: "Claude",
     bg: "#D97757",
-    type: "inl",
-    svg: `<svg viewBox="0 0 46 46" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M28.276 9.5C26.549 9.5 24.87 10.184 23.634 11.412L11.412 23.634C9.879 25.158 9.5 27.42 10.448 29.354C11.396 31.288 13.381 32.5 15.551 32.5H17.725C19.452 32.5 21.131 31.816 22.367 30.588L34.589 18.366C36.122 16.842 36.501 14.58 35.553 12.646C34.605 10.712 32.62 9.5 30.45 9.5H28.276Z" fill="white"/>
-      <path d="M15.551 36.5C13.381 36.5 11.396 35.288 10.448 33.354C9.5 31.42 9.879 29.158 11.412 27.634L13.5 25.546V29.354C13.5 30.458 14.395 31.354 15.499 31.354H19.307L17.219 33.442C16.5 34.16 15.55 34.562 14.554 34.562" fill="white" opacity="0.7"/>
-    </svg>`,
+    type: "url",
+    src: "https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/claude-ai-icon.svg",
   },
 ]
 
 function ToolIcon({ tool }) {
   const [failed, setFailed] = useState(false)
 
-  if (tool.type === "inl") {
-    return (
-      <span
-        style={{ display: "block", width: 28, height: 28 }}
-        dangerouslySetInnerHTML={{ __html: tool.svg }}
-      />
-    )
-  }
   if (failed) {
     return <span style={{ fontSize: 10, fontWeight: 800, color: "#fff" }}>{tool.name.slice(0, 2)}</span>
+  }
+  if (tool.type === "url") {
+    return (
+      <img
+        src={tool.src}
+        alt={tool.name}
+        width={28} height={28}
+        onError={() => setFailed(true)}
+        style={{ objectFit: "contain", display: "block", filter: "brightness(0) invert(1)" }}
+      />
+    )
   }
   const src = tool.type === "si"
     ? `${SI}/${tool.slug}/${tool.ic}`
@@ -132,8 +119,7 @@ function ToolIcon({ tool }) {
     <img
       src={src}
       alt={tool.name}
-      width={26}
-      height={26}
+      width={26} height={26}
       onError={() => setFailed(true)}
       style={{ objectFit: "contain", display: "block" }}
     />
@@ -276,10 +262,7 @@ function CertRow({ cert, last }) {
           {cert.issuer}
         </div>
       </div>
-      <div style={{
-        fontFamily: "Georgia, serif", fontStyle: "italic",
-        fontSize: 12, color: "#AAAAAA", whiteSpace: "nowrap", marginLeft: 12,
-      }}>
+      <div style={{ fontFamily: "Georgia, serif", fontStyle: "italic", fontSize: 12, color: "#AAAAAA", whiteSpace: "nowrap", marginLeft: 12 }}>
         {cert.date}
       </div>
     </div>
@@ -295,10 +278,7 @@ export default function About() {
 
         {/* 1 — HELLO */}
         <FadeUp>
-          <div style={{
-            display: "grid", gridTemplateColumns: "220px 1fr",
-            gap: 64, alignItems: "flex-start", marginBottom: 64,
-          }}>
+          <div style={{ display: "grid", gridTemplateColumns: "220px 1fr", gap: 64, alignItems: "flex-start", marginBottom: 64 }}>
             <div>
               <div style={{
                 width: 200, height: 250, borderRadius: 20,
@@ -310,10 +290,7 @@ export default function About() {
                   <circle cx="12" cy="8" r="4" />
                   <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" />
                 </svg>
-                <span style={{
-                  fontFamily: "system-ui, sans-serif", fontSize: 10,
-                  color: "#CCCCCC", letterSpacing: "0.05em", textTransform: "uppercase",
-                }}>
+                <span style={{ fontFamily: "system-ui, sans-serif", fontSize: 10, color: "#CCCCCC", letterSpacing: "0.05em", textTransform: "uppercase" }}>
                   Your photo
                 </span>
               </div>
@@ -338,13 +315,12 @@ export default function About() {
               </p>
               <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
                 <GradBtn href="https://www.linkedin.com/in/isabellegalves/" target="_blank" rel="noopener noreferrer">LinkedIn</GradBtn>
-                <GradBtn href="mailto:isabellegalves@gmail.com" variant="outline-gray">Email me</GradBtn>
               </div>
             </div>
           </div>
         </FadeUp>
 
-        {/* 2 — ACCESSIBILITY / VALORES */}
+        {/* 2 — VALORES */}
         <FadeUp delay={0.1}>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 2 }}>
             {[
@@ -356,12 +332,8 @@ export default function About() {
                 background: T.offwhite, padding: "28px 32px",
                 borderRadius: i === 0 ? "14px 0 0 14px" : i === 2 ? "0 14px 14px 0" : 0,
               }}>
-                <div style={{ fontFamily: "system-ui, sans-serif", fontSize: 14, fontWeight: 700, color: T.ink, marginBottom: 10 }}>
-                  {v.title}
-                </div>
-                <div style={{ fontFamily: "system-ui, sans-serif", fontSize: 14, color: T.mid, lineHeight: 1.75 }}>
-                  {v.body}
-                </div>
+                <div style={{ fontFamily: "system-ui, sans-serif", fontSize: 14, fontWeight: 700, color: T.ink, marginBottom: 10 }}>{v.title}</div>
+                <div style={{ fontFamily: "system-ui, sans-serif", fontSize: 14, color: T.mid, lineHeight: 1.75 }}>{v.body}</div>
               </div>
             ))}
           </div>
@@ -376,24 +348,15 @@ export default function About() {
               <span style={LABEL}>Education</span>
               <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
                 <div>
-                  <div style={{ fontFamily: "system-ui, sans-serif", fontSize: 15, fontWeight: 600, color: T.ink }}>
-                    Post Graduate in UX/UI
-                  </div>
-                  <div style={{ fontFamily: "system-ui, sans-serif", fontSize: 13, color: "#888", marginTop: 4 }}>
-                    Laureate University · Uniritter
-                  </div>
+                  <div style={{ fontFamily: "system-ui, sans-serif", fontSize: 15, fontWeight: 600, color: T.ink }}>Post Graduate in UX/UI</div>
+                  <div style={{ fontFamily: "system-ui, sans-serif", fontSize: 13, color: "#888", marginTop: 4 }}>Laureate University · Uniritter</div>
                 </div>
                 <div>
-                  <div style={{ fontFamily: "system-ui, sans-serif", fontSize: 15, fontWeight: 600, color: T.ink }}>
-                    Advertising &amp; Publicity
-                  </div>
-                  <div style={{ fontFamily: "system-ui, sans-serif", fontSize: 13, color: "#888", marginTop: 4 }}>
-                    Laureate University · Uniritter
-                  </div>
+                  <div style={{ fontFamily: "system-ui, sans-serif", fontSize: 15, fontWeight: 600, color: T.ink }}>Advertising &amp; Publicity</div>
+                  <div style={{ fontFamily: "system-ui, sans-serif", fontSize: 13, color: "#888", marginTop: 4 }}>Laureate University · Uniritter</div>
                 </div>
               </div>
             </div>
-
             <div>
               <span style={LABEL}>Languages</span>
               <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
@@ -402,16 +365,9 @@ export default function About() {
                   { lang: "Portuguese", level: "Fluent" },
                   { lang: "Spanish", level: "Intermediate" },
                 ].map(l => (
-                  <div key={l.lang} style={{
-                    display: "flex", justifyContent: "space-between", alignItems: "center",
-                    paddingBottom: 14, borderBottom: `0.5px solid ${T.rule}`,
-                  }}>
-                    <span style={{ fontFamily: "system-ui, sans-serif", fontSize: 15, fontWeight: 500, color: T.ink }}>
-                      {l.lang}
-                    </span>
-                    <span style={{ fontFamily: "Georgia, serif", fontStyle: "italic", fontSize: 13, color: "#888" }}>
-                      {l.level}
-                    </span>
+                  <div key={l.lang} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", paddingBottom: 14, borderBottom: `0.5px solid ${T.rule}` }}>
+                    <span style={{ fontFamily: "system-ui, sans-serif", fontSize: 15, fontWeight: 500, color: T.ink }}>{l.lang}</span>
+                    <span style={{ fontFamily: "Georgia, serif", fontStyle: "italic", fontSize: 13, color: "#888" }}>{l.level}</span>
                   </div>
                 ))}
               </div>
@@ -434,8 +390,7 @@ export default function About() {
                     width: 44, height: 44, borderRadius: 10,
                     background: e.bg, border: `1px solid ${T.rule}`,
                     display: "flex", alignItems: "center", justifyContent: "center",
-                    fontFamily: "system-ui, sans-serif", fontSize: 11,
-                    fontWeight: 800, color: e.color, flexShrink: 0,
+                    fontFamily: "system-ui, sans-serif", fontSize: 11, fontWeight: 800, color: e.color, flexShrink: 0,
                   }}>
                     {e.abbr}
                   </div>
@@ -446,16 +401,10 @@ export default function About() {
                 <div style={{ flex: 1, paddingBottom: i < EXPERIENCE.length - 1 ? 32 : 0 }}>
                   <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 16, marginBottom: 12 }}>
                     <div>
-                      <div style={{ fontFamily: "system-ui, sans-serif", fontSize: 15, fontWeight: 700, color: T.ink }}>
-                        {e.role}
-                      </div>
-                      <div style={{ fontFamily: "system-ui, sans-serif", fontSize: 13, color: "#888", marginTop: 3 }}>
-                        {e.company}
-                      </div>
+                      <div style={{ fontFamily: "system-ui, sans-serif", fontSize: 15, fontWeight: 700, color: T.ink }}>{e.role}</div>
+                      <div style={{ fontFamily: "system-ui, sans-serif", fontSize: 13, color: "#888", marginTop: 3 }}>{e.company}</div>
                     </div>
-                    <div style={{ fontFamily: "Georgia, serif", fontStyle: "italic", fontSize: 13, color: "#AAAAAA", whiteSpace: "nowrap", marginTop: 2 }}>
-                      {e.period}
-                    </div>
+                    <div style={{ fontFamily: "Georgia, serif", fontStyle: "italic", fontSize: 13, color: "#AAAAAA", whiteSpace: "nowrap", marginTop: 2 }}>{e.period}</div>
                   </div>
                   <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
                     {e.tags.map(t => <span key={t} style={TAG_STYLE}>{t}</span>)}
@@ -471,18 +420,12 @@ export default function About() {
         {/* 5 — CERTIFICATIONS + AWARDS em duas colunas */}
         <FadeUp>
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 80, alignItems: "start" }}>
-
-            {/* Certifications */}
             <div>
               <span style={LABEL}>Certifications</span>
               <div style={{ display: "flex", flexDirection: "column" }}>
-                {CERTS.map((c, i) => (
-                  <CertRow key={i} cert={c} last={i === CERTS.length - 1} />
-                ))}
+                {CERTS.map((c, i) => <CertRow key={i} cert={c} last={i === CERTS.length - 1} />)}
               </div>
             </div>
-
-            {/* Awards */}
             <div>
               <span style={LABEL}>Awards</span>
               <div style={{ display: "flex", flexDirection: "column" }}>
@@ -493,21 +436,14 @@ export default function About() {
                     borderBottom: i < AWARDS.length - 1 ? `0.5px solid ${T.rule}` : "none",
                   }}>
                     <div>
-                      <div style={{ fontFamily: "system-ui, sans-serif", fontSize: 14, fontWeight: 700, color: T.ink, marginBottom: 3 }}>
-                        {a.title}
-                      </div>
-                      <div style={{ fontFamily: "system-ui, sans-serif", fontSize: 12, color: "#888" }}>
-                        {a.issuer} · {a.category}
-                      </div>
+                      <div style={{ fontFamily: "system-ui, sans-serif", fontSize: 14, fontWeight: 700, color: T.ink, marginBottom: 3 }}>{a.title}</div>
+                      <div style={{ fontFamily: "system-ui, sans-serif", fontSize: 12, color: "#888" }}>{a.issuer} · {a.category}</div>
                     </div>
-                    <div style={{ fontFamily: "Georgia, serif", fontStyle: "italic", fontSize: 12, color: "#AAAAAA", whiteSpace: "nowrap", marginLeft: 16, marginTop: 2 }}>
-                      {a.date}
-                    </div>
+                    <div style={{ fontFamily: "Georgia, serif", fontStyle: "italic", fontSize: 12, color: "#AAAAAA", whiteSpace: "nowrap", marginLeft: 16, marginTop: 2 }}>{a.date}</div>
                   </div>
                 ))}
               </div>
             </div>
-
           </div>
         </FadeUp>
 

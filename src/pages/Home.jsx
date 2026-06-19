@@ -81,25 +81,24 @@ function HeroLine({ children, delay = 0, serif = false, light = false, size }) {
 }
 
 const GRAD = "linear-gradient(90deg, #6C1FF3, #DA37F4)"
+const PURPLE = "#6C1FF3"
 
 // ─── BTN ─────────────────────────────────────────────────────────────────────
-// variant="solid"        → bg preto + texto branco; hover: gradiente bg
-// variant="solid-white"  → bg branco + texto preto; hover: gradiente bg + texto branco (para fundos escuros)
-// variant="outline"      → borda preta + texto preto; hover: borda gradiente + texto gradiente
-// variant="outline-gray" → borda cinza (#888, not #CCC for contrast) + texto preto; hover: borda gradiente + texto gradiente
+// solid        → bg preto + texto branco;  hover: bg gradiente + texto branco
+// solid-white  → bg branco + texto preto;  hover: bg gradiente + texto branco  (fundo escuro)
+// outline      → borda preta + texto preto; hover: borda roxa + texto roxo + bg branco
+// outline-gray → borda #555 + texto preto;  hover: borda roxa + texto roxo + bg branco
 
 function Btn({ children, onClick, href, as: Tag = "button",
   variant = "outline",
   padding = "13px 26px", borderRadius = 26,
 }) {
   const [hovered, setHovered] = useState(false)
-
   const events = {
     onMouseEnter: () => setHovered(true),
     onMouseLeave: () => setHovered(false),
   }
 
-  // ── solid (dark bg) ──────────────────────────────────────────────────────
   if (variant === "solid") {
     const style = {
       fontFamily: "system-ui, sans-serif", fontSize: 12, fontWeight: 700,
@@ -107,15 +106,13 @@ function Btn({ children, onClick, href, as: Tag = "button",
       padding, borderRadius, cursor: "pointer",
       display: "inline-block", textDecoration: "none",
       background: hovered ? GRAD : "#0A0A0A",
-      color: "#FFFFFF",
-      border: "none",
-      transition: "background 0.25s",
+      color: "#FFFFFF", border: "none",
+      transition: "background 0.2s",
     }
     if (Tag === "a") return <a href={href} {...events} style={style}>{children}</a>
     return <button onClick={onClick} {...events} style={style}>{children}</button>
   }
 
-  // ── solid-white (for use on dark/ink backgrounds) ─────────────────────────
   if (variant === "solid-white") {
     const style = {
       fontFamily: "system-ui, sans-serif", fontSize: 12, fontWeight: 700,
@@ -124,49 +121,29 @@ function Btn({ children, onClick, href, as: Tag = "button",
       display: "inline-block", textDecoration: "none",
       background: hovered ? GRAD : "#FFFFFF",
       color: hovered ? "#FFFFFF" : "#0A0A0A",
-      border: "none",
-      transition: "background 0.25s, color 0.25s",
+      border: "none", transition: "background 0.2s, color 0.2s",
     }
     if (Tag === "a") return <a href={href} {...events} style={style}>{children}</a>
     return <button onClick={onClick} {...events} style={style}>{children}</button>
   }
 
-  // ── outline / outline-gray ────────────────────────────────────────────────
-  // Uses a 1.5px wrapper div to simulate a gradient border on hover.
-  // Default border color: preta (#0A0A0A) for "outline", dark-gray (#555) for "outline-gray"
-  // #555 on white = 7.0:1 contrast ratio (WCAG AA passes, vs #CCC which is only 1.6:1)
+  // outline / outline-gray — wrapper 1.5px simula border, hover = roxo solido
   const defaultBorder = variant === "outline-gray" ? "#555555" : "#0A0A0A"
-
   const wrapperStyle = {
-    display: "inline-block",
-    borderRadius,
-    padding: 1.5,
-    background: hovered ? GRAD : defaultBorder,
-    transition: "background 0.25s",
-    cursor: "pointer",
-    textDecoration: "none",
+    display: "inline-block", borderRadius, padding: "1.5px",
+    background: hovered ? PURPLE : defaultBorder,
+    transition: "background 0.2s", cursor: "pointer", textDecoration: "none",
   }
-
   const innerStyle = {
     display: "block",
     fontFamily: "system-ui, sans-serif", fontSize: 12, fontWeight: 700,
     letterSpacing: "0.05em", textTransform: "uppercase",
     padding, borderRadius: borderRadius - 1.5,
     background: "#FFFFFF",
-    ...(hovered ? {
-      backgroundImage: GRAD,
-      WebkitBackgroundClip: "text",
-      WebkitTextFillColor: "transparent",
-      backgroundClip: "text",
-    } : {
-      color: "#0A0A0A",
-      WebkitTextFillColor: "unset",
-    }),
-    transition: "color 0.25s",
+    color: hovered ? PURPLE : "#0A0A0A",
+    transition: "color 0.2s",
   }
-
   const content = <span style={innerStyle}>{children}</span>
-
   if (Tag === "a") return <a href={href} {...events} style={wrapperStyle}>{content}</a>
   return <button onClick={onClick} {...events} style={{ ...wrapperStyle, border: "none" }}>{content}</button>
 }
