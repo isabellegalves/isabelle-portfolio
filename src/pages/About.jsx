@@ -289,16 +289,17 @@ export default function About() {
                 Hello, I'm Isabelle.
               </h1>
               <p style={{ fontFamily: "system-ui, sans-serif", fontSize: 16, lineHeight: 1.85, color: "#4A4A4A", marginBottom: 16 }}>
-                I'm a Senior Product Designer with 10 years of experience at the intersection of business, research and interface craft. My background in Advertising sharpens how I think about positioning and business goals. My postgrad in UX keeps me grounded in real user needs.
+                I started in Advertising, then moved into UX because I wanted to get closer to how products actually worked. Ten years later, I work at the intersection of both, translating business goals into interfaces that make sense to real people. I've embedded in product teams across fintech, media, retail and HR tech, working in English and Portuguese with cross-functional teams across Brazil, the US and Europe.
               </p>
               <p style={{ fontFamily: "system-ui, sans-serif", fontSize: 16, lineHeight: 1.85, color: "#4A4A4A", marginBottom: 16 }}>
-                I believe good design is more than aesthetics. It must be accessible, functional and deliver a seamless experience for everyone. Empathy is at the core of my process — I research and listen before I draw a single pixel.
+                I believe good design must be accessible from the start, not retrofitted at the end. Inclusion is a design decision, not a compliance checkbox. Most of the products I've worked on have served millions of users, and that scale makes getting it right feel genuinely important.
               </p>
               <p style={{ fontFamily: "system-ui, sans-serif", fontSize: 16, lineHeight: 1.85, color: "#4A4A4A", marginBottom: 32 }}>
-                Art is how I connect with people. By illustrating, drawing and creating interfaces, I express myself and tell visual stories. My goal is always that every user feels represented.
+                Outside of product work, I draw, illustrate and make things with my hands. It keeps my visual thinking sharp and reminds me why clarity matters, in a screen and everywhere else.
               </p>
               <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
                 <GradBtn href="https://www.linkedin.com/in/isabellegalves/" target="_blank" rel="noopener noreferrer">LinkedIn</GradBtn>
+                <GradBtn href="/#work">View my work</GradBtn>
               </div>
             </div>
           </div>
@@ -308,9 +309,9 @@ export default function About() {
         <FadeUp delay={0.1}>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 2 }}>
             {[
-              { title: "Accessibility first", body: "Good design must work for everyone. I build inclusive experiences that leave no user behind, from day one." },
-              { title: "Art as connection", body: "I illustrate, draw and design interfaces to tell visual stories and connect with people on a human level." },
-              { title: "Empathy in practice", body: "I've contributed to social causes and accessible digital products, because design has the power to change lives." },
+              { title: "Systems thinker", body: "I don't design screens. I design systems. Every component, pattern and decision should work together, scale predictably and make the next designer's job easier." },
+              { title: "Research-led", body: "I've conducted 50+ user interviews across products. Research is not a phase I do before design. It is how I make design decisions throughout." },
+              { title: "Internationally experienced", body: "I've worked embedded in product teams in Brazil, the US and Europe, in English and Portuguese, navigating different markets and stakeholder cultures." },
             ].map((v, i) => (
               <div key={i} style={{
                 background: T.offwhite, padding: "28px 32px",

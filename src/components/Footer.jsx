@@ -39,6 +39,12 @@ export default function Footer() {
             >
               LinkedIn
             </a>
+            <a
+              href="mailto:isabellegalves@gmail.com"
+              style={linkStyle}
+            >
+              Email
+            </a>
             <Link to="/#work" style={linkStyle}>Work</Link>
             <Link to="/about" style={linkStyle}>About</Link>
           </div>

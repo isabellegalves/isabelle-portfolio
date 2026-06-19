@@ -74,6 +74,40 @@ function MetricCounter({ value, label }) {
   )
 }
 
+const GRAD = "linear-gradient(90deg, #6C1FF3, #DA37F4)"
+const PURPLE = "#6C1FF3"
+
+function CtaBtn({ children, href, variant = "solid" }) {
+  const [hovered, setHovered] = useState(false)
+  if (variant === "solid") {
+    return (
+      <a href={href} onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)} style={{
+        fontFamily: "system-ui, sans-serif", fontSize: 12, fontWeight: 700,
+        letterSpacing: "0.05em", textTransform: "uppercase",
+        padding: "13px 26px", borderRadius: 26, cursor: "pointer",
+        display: "inline-block", textDecoration: "none",
+        background: hovered ? GRAD : "#0A0A0A", color: "#FFFFFF",
+        transition: "background 0.2s",
+      }}>{children}</a>
+    )
+  }
+  return (
+    <a href={href} onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)} style={{
+      display: "inline-block", borderRadius: 26, padding: "1.5px",
+      background: hovered ? PURPLE : "#0A0A0A",
+      transition: "background 0.2s", textDecoration: "none",
+    }}>
+      <span style={{
+        display: "block", fontFamily: "system-ui, sans-serif", fontSize: 12, fontWeight: 700,
+        letterSpacing: "0.05em", textTransform: "uppercase",
+        padding: "13px 26px", borderRadius: "24.5px",
+        background: "#FFFFFF", color: hovered ? PURPLE : "#0A0A0A",
+        transition: "color 0.2s",
+      }}>{children}</span>
+    </a>
+  )
+}
+
 const P = { padding: "64px 80px", maxWidth: 1280, margin: "0 auto" }
 
 const LABEL_BASE = {
@@ -317,6 +351,24 @@ export default function CaseStudy({ onContactClick }) {
             <span style={{ fontFamily: "system-ui, sans-serif", fontSize: 12, fontWeight: 600, letterSpacing: "0.06em", textTransform: "uppercase", color: "#888888" }}>
               {c.company} · {c.year.replace(" to present", "").replace(" to ", " – ")}
             </span>
+          </div>
+        </FadeUp>
+      </section>
+
+      {/* CTA */}
+      <div style={{ height: "0.5px", background: T.rule }} />
+      <section style={{ ...P, textAlign: "center", padding: "80px 80px" }}>
+        <FadeUp>
+          <h2 style={{
+            fontFamily: "Georgia, serif", fontStyle: "italic", fontWeight: 400,
+            fontSize: "clamp(22px, 3vw, 36px)", letterSpacing: "-0.03em",
+            color: T.ink, marginBottom: 32,
+          }}>
+            Liked this project? Let's talk.
+          </h2>
+          <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
+            <CtaBtn variant="solid" href="/contact">Get in touch</CtaBtn>
+            <CtaBtn variant="outline" href="/#work">View all work</CtaBtn>
           </div>
         </FadeUp>
       </section>

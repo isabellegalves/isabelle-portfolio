@@ -202,7 +202,7 @@ function Hero({ onContactClick }) {
                 fontFamily: "system-ui, sans-serif", fontSize: 16, lineHeight: 1.7,
                 color: T.mid, marginBottom: 28, maxWidth: 480,
               }}>
-                A decade of product design across fintech, media and retail — helping companies like Conde Nast, Bradesco and Sodexo build products that serve both users and business goals.
+                A decade of product design across fintech, media and retail, helping companies like Conde Nast, Bradesco and Sodexo build products that serve both users and business goals.
               </p>
               <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
                 <Btn variant="solid" as="a" href="#work">View work</Btn>
@@ -226,8 +226,8 @@ function Hero({ onContactClick }) {
           {[
             { n: 30, suffix: "%", label: "Reduction in dev time at Bradesco" },
             { n: 50, suffix: "+", label: "Users interviewed across projects" },
-            { n: 40, suffix: "%", label: "Faster delivery with Design Systems" },
-            { n: 20, suffix: "%", label: "Increase in usability at Sodexo" },
+            { n: 40, suffix: "%", label: "Faster component delivery at Conde Nast" },
+            { n: 25, suffix: "%", label: "Increase in usability at Sodexo" },
           ].map((s, i) => (
             <div key={i} style={{
               flex: "1 1 160px", paddingRight: 28, marginRight: 28,
@@ -345,12 +345,14 @@ function CaseCard({ c, index }) {
               </span>
             </div>
           ) : (
-            <div style={{
-              marginTop: 24, paddingTop: 20, borderTop: `1px solid ${T.rule}`,
-              fontFamily: "system-ui, sans-serif", fontSize: 13, fontWeight: 600,
-              color: "#AAAAAA",
-            }}>
-              Coming soon
+            <div style={{ marginTop: 24, paddingTop: 20, borderTop: `1px solid ${T.rule}` }}>
+              <div style={{
+                fontFamily: "system-ui, sans-serif", fontSize: 13, color: "#888888",
+                lineHeight: 1.5, marginBottom: 14,
+              }}>
+                This project is under NDA. Reach out to learn more.
+              </div>
+              <Btn variant="outline" as="a" href="mailto:isabellegalves@gmail.com" padding="9px 18px" borderRadius={20}>Get in touch</Btn>
             </div>
           )}
         </div>
@@ -423,9 +425,9 @@ function Capabilities() {
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: "-80px" })
   const items = [
-    { n: "01", title: "Business meets user", body: "A background in Advertising and a postgrad in UX means I naturally think from both sides. I ask what the user needs and what the business gains, at the same time. That combination is rarer than it sounds." },
-    { n: "02", title: "End-to-end, for real", body: "From research and discovery workshops to design systems and final handoff. I don't just deliver screens. I help shape the product from the question to the answer, working closely with POs, developers and stakeholders." },
-    { n: "03", title: "Design with purpose", body: "Accessibility and inclusion are not checkboxes. They are part of how I think from the start. Good design should work for everyone, and I take that seriously, whether I am designing a banking app or a wellness platform." },
+    { n: "01", title: "Business meets user", body: "A background in Advertising and a postgrad in UX means I naturally think from both sides. I ask what the user needs and what the business gains, at the same time. Most design problems are actually alignment problems in disguise." },
+    { n: "02", title: "End-to-end, for real", body: "From research and discovery workshops to design systems and final handoff. I don't just deliver screens. I help shape the product from the question to the answer, working closely with POs, developers and stakeholders across sprints, not just at the beginning." },
+    { n: "03", title: "Design with purpose", body: "Accessibility and inclusion are not checkboxes. They are part of how I think from the start. Good design should work for everyone. That means testing with real users, building with semantic structure and never treating access as an afterthought." },
   ]
   return (
     <section ref={ref} aria-labelledby="capabilities-heading" style={{ padding: "120px 0", background: T.offwhite }}>
@@ -460,8 +462,6 @@ const COMPANIES = [
   { name: "Sodexo", abbr: "Sdx", bg: "#5C2D91", color: "#fff", logo: "https://logo.clearbit.com/sodexo.com" },
   { name: "Banco VR", abbr: "VR", bg: "#F7F7F5", color: "#0A0A0A", logo: null },
   { name: "Piccadilly", abbr: "Pic", bg: "#F7F7F5", color: "#0A0A0A", logo: "https://logo.clearbit.com/piccadilly.com.br" },
-  { name: "Claro", abbr: "C", bg: "#E3001B", color: "#fff", logo: "https://logo.clearbit.com/claro.com.br" },
-  { name: "ACT Digital", abbr: "ACT", bg: "#F7F7F5", color: "#0A0A0A", logo: null },
 ]
 
 function CompanyBadge({ c }) {
@@ -559,13 +559,13 @@ function About() {
           </FadeUp>
           <FadeUp delay={0.2}>
             <p style={{ fontFamily: "system-ui, sans-serif", fontSize: 15, lineHeight: 1.8, color: T.mid, marginBottom: 20 }}>
-              I'm a Product Designer at the intersection of business, research and interface craft. My background in Advertising sharpens how I think about positioning and business goals. My postgrad in UX keeps me grounded in real user needs.
+              I'm a Senior Product Designer with 10 years of experience across fintech, media and retail. My background in Advertising sharpens how I think about positioning and business goals. My postgrad in UX keeps me grounded in real user needs.
             </p>
             <p style={{ fontFamily: "system-ui, sans-serif", fontSize: 15, lineHeight: 1.8, color: T.mid, marginBottom: 36 }}>
               I've led discovery sessions, built design systems from scratch, conducted research with 50+ users and shipped products used by millions. I work well in cross-functional teams, in English and Portuguese, and I care deeply about accessibility and inclusive design.
             </p>
             <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginBottom: 32 }}>
-              {["Figma", "UX Research", "Design Systems", "Prototyping", "Usability Testing", "Accessibility", "Hotjar", "Maze", "Miro", "Jira", "Webflow"].map(s => (
+              {["Design Systems", "UX Research", "Interaction Design", "Usability Testing", "Accessibility", "Prototyping"].map(s => (
                 <span key={s} style={{
                   fontFamily: "system-ui, sans-serif", fontSize: 11, fontWeight: 500,
                   letterSpacing: "0.04em", textTransform: "uppercase",
