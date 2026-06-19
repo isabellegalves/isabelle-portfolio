@@ -91,7 +91,7 @@ function HeroLine({ children, delay = 0, serif = false, light = false, size }) {
 const GRAD = "linear-gradient(90deg, #6C1FF3, #DA37F4)"
 
 // variant="solid"  → bg sólido, hover vira gradiente de bg (texto branco)
-// variant="outline"→ borda sólida, hover vira gradiente de texto+borda
+// variant="outline"→ borda gradiente, texto gradiente, bg branco
 function Btn({ children, onClick, href, as: Tag = "button",
   variant = "outline",
   bg = "#0A0A0A", borderColor = "#0A0A0A",
@@ -101,10 +101,17 @@ function Btn({ children, onClick, href, as: Tag = "button",
 
   let style
   if (variant === "solid") {
-    style = {
-      background: hovered ? GRAD : bg,
+    style = hovered ? {
+      background: GRAD,
       color: "#FFFFFF",
       WebkitTextFillColor: "unset",
+      border: `1.5px solid transparent`,
+      transition: "background 0.25s",
+    } : {
+      background: bg,
+      color: "#FFFFFF",
+      WebkitTextFillColor: "unset",
+      border: `1.5px solid ${borderColor}`,
       transition: "background 0.25s",
     }
   } else {
@@ -113,13 +120,13 @@ function Btn({ children, onClick, href, as: Tag = "button",
       WebkitBackgroundClip: "text",
       WebkitTextFillColor: "transparent",
       backgroundClip: "text",
-      borderColor: "transparent",
+      border: "1.5px solid transparent",
       transition: "border-color 0.25s",
     } : {
       background: "transparent",
       color: borderColor === "#FFFFFF" ? "#FFFFFF" : "#0A0A0A",
       WebkitTextFillColor: "unset",
-      borderColor,
+      border: `1.5px solid ${borderColor}`,
       transition: "border-color 0.25s",
     }
   }
@@ -127,7 +134,6 @@ function Btn({ children, onClick, href, as: Tag = "button",
   const sharedStyle = {
     fontFamily: "system-ui, sans-serif", fontSize: 12, fontWeight: 700,
     letterSpacing: "0.05em", textTransform: "uppercase",
-    border: `1.5px solid ${borderColor}`,
     padding, borderRadius,
     cursor: "pointer", position: "relative",
     display: "inline-block", textDecoration: "none",
@@ -136,7 +142,7 @@ function Btn({ children, onClick, href, as: Tag = "button",
 
   const inner = (
     <>
-      {variant === "outline" && hovered && (
+      {hovered && (
         <span style={{
           position: "absolute", inset: -1.5, borderRadius,
           background: GRAD,
@@ -217,7 +223,7 @@ function Hero({ onContactClick }) {
               </p>
               <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
                 <Btn variant="solid" bg="#0A0A0A" as="a" href="#work">View work</Btn>
-                <Btn variant="outline" borderColor="#CCCCCC" onClick={onContactClick}>Get in touch</Btn>
+                <Btn variant="outline" borderColor="#0A0A0A" onClick={onContactClick}>Get in touch</Btn>
               </div>
             </motion.div>
           </div>
@@ -394,64 +400,6 @@ function Work() {
 
 // ─── CAPABILITIES ────────────────────────────────────────────────────────────
 
-function CapCard({ item, i }) {
-  const [hovered, setHovered] = useState(false)
-  return (
-    <FadeUp delay={i * 0.15}>
-      <div
-        onMouseEnter={() => setHovered(true)}
-        onMouseLeave={() => setHovered(false)}
-        style={{
-          background: T.white,
-          padding: "44px 40px",
-          height: "100%",
-          borderRadius: i === 0 ? "14px 0 0 14px" : i === 2 ? "0 14px 14px 0" : 0,
-          position: "relative",
-          overflow: "hidden",
-          transform: hovered ? "translateY(-6px)" : "translateY(0)",
-          boxShadow: hovered ? "0 20px 48px rgba(0,0,0,0.08)" : "none",
-          transition: "transform 0.35s cubic-bezier(0.16,1,0.3,1), box-shadow 0.35s cubic-bezier(0.16,1,0.3,1)",
-        }}
-      >
-        <span style={{
-          position: "absolute", top: 0, left: 0, right: 0, height: 3,
-          background: "linear-gradient(90deg, #6C1FF3, #DA37F4)",
-          opacity: hovered ? 1 : 0,
-          transition: "opacity 0.3s ease",
-          borderRadius: i === 0 ? "14px 0 0 0" : i === 2 ? "0 14px 0 0" : 0,
-        }} />
-
-        <div style={{
-          fontFamily: "Georgia, serif", fontSize: 28, fontStyle: "italic",
-          marginBottom: 20,
-          transition: "color 0.3s",
-          ...(hovered ? {
-            background: "linear-gradient(90deg, #6C1FF3, #DA37F4)",
-            WebkitBackgroundClip: "text",
-            WebkitTextFillColor: "transparent",
-            backgroundClip: "text",
-          } : { color: "#CCCCCC" }),
-        }}>
-          {item.n}
-        </div>
-
-        <h3 style={{
-          fontFamily: "system-ui, sans-serif", fontSize: 18, fontWeight: 700,
-          letterSpacing: "-0.02em", marginBottom: 14, color: T.ink,
-        }}>
-          {item.title}
-        </h3>
-        <p style={{
-          fontFamily: "system-ui, sans-serif", fontSize: 14,
-          color: T.mid, lineHeight: 1.75, margin: 0,
-        }}>
-          {item.body}
-        </p>
-      </div>
-    </FadeUp>
-  )
-}
-
 function Capabilities() {
   const items = [
     { n: "01", title: "Business meets user", body: "A background in Advertising and a postgrad in UX means I naturally think from both sides. I ask what the user needs and what the business gains, at the same time. That combination is rarer than it sounds." },
@@ -471,14 +419,125 @@ function Capabilities() {
           </h2>
         </FadeUp>
         <div className="caps-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 2 }}>
-          {items.map((item, i) => <CapCard key={i} item={item} i={i} />)}
+          {items.map((item, i) => (
+            <FadeUp key={i} delay={i * 0.12}>
+              <div style={{
+                background: T.white, padding: "44px 40px", height: "100%",
+                borderRadius: i === 0 ? "14px 0 0 14px" : i === 2 ? "0 14px 14px 0" : 0,
+              }}>
+                <div style={{
+                  fontFamily: "Georgia, serif", fontSize: 28, fontStyle: "italic",
+                  color: "#CCCCCC", marginBottom: 20,
+                }}>{item.n}</div>
+                <h3 style={{
+                  fontFamily: "system-ui, sans-serif", fontSize: 18, fontWeight: 700,
+                  letterSpacing: "-0.02em", marginBottom: 14,
+                }}>
+                  {item.title}
+                </h3>
+                <p style={{
+                  fontFamily: "system-ui, sans-serif", fontSize: 14,
+                  color: T.mid, lineHeight: 1.75, margin: 0,
+                }}>{item.body}</p>
+              </div>
+            </FadeUp>
+          ))}
         </div>
       </div>
     </section>
   )
 }
 
-// ─── MY TOOLS ────────────────────────────────────────────────────────────────
+// ─── COMPANIES ───────────────────────────────────────────────────────────────
+// My Tools code preserved below for future use on another page
+
+const COMPANIES = [
+  { name: "Bradesco", abbr: "B", bg: "#CC092F", color: "#fff", logo: "https://logo.clearbit.com/bradesco.com.br" },
+  { name: "Bradesco Seguros", abbr: "BS", bg: "#CC092F", color: "#fff", logo: "https://logo.clearbit.com/bradescoseguros.com.br" },
+  { name: "Editora Globo", abbr: "EG", bg: "#0A0A0A", color: "#fff", logo: "https://logo.clearbit.com/editoraglobo.com.br" },
+  { name: "Vogue Brasil", abbr: "V", bg: "#0A0A0A", color: "#fff", logo: "https://logo.clearbit.com/vogue.globo.com" },
+  { name: "O Globo", abbr: "OG", bg: "#003DA5", color: "#fff", logo: "https://logo.clearbit.com/oglobo.globo.com" },
+  { name: "Sodexo", abbr: "Sdx", bg: "#5C2D91", color: "#fff", logo: "https://logo.clearbit.com/sodexo.com" },
+  { name: "Banco VR", abbr: "VR", bg: "#F7F7F5", color: "#0A0A0A", logo: null },
+  { name: "Piccadilly", abbr: "Pic", bg: "#F7F7F5", color: "#0A0A0A", logo: "https://logo.clearbit.com/piccadilly.com.br" },
+  { name: "Claro", abbr: "C", bg: "#E3001B", color: "#fff", logo: "https://logo.clearbit.com/claro.com.br" },
+  { name: "ACT Digital", abbr: "ACT", bg: "#F7F7F5", color: "#0A0A0A", logo: null },
+]
+
+function CompanyBadge({ c }) {
+  const [hovered, setHovered] = useState(false)
+  const [imgFailed, setImgFailed] = useState(false)
+  return (
+    <div
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      style={{
+        display: "flex", alignItems: "center", gap: 12,
+        padding: "10px 20px 10px 10px",
+        border: `1px solid ${hovered ? "#0A0A0A" : "#E8E8E6"}`,
+        borderRadius: 999, background: "#fff", whiteSpace: "nowrap",
+        cursor: "default",
+        transform: hovered ? "translateY(-3px)" : "translateY(0)",
+        transition: "border-color 0.2s, transform 0.2s",
+      }}
+    >
+      <div style={{
+        width: 38, height: 38, borderRadius: "50%", background: c.bg,
+        display: "flex", alignItems: "center", justifyContent: "center",
+        flexShrink: 0, overflow: "hidden", border: "1px solid rgba(0,0,0,0.06)",
+      }}>
+        {c.logo && !imgFailed
+          ? <img src={c.logo} width={24} height={24} style={{ objectFit: "contain", filter: hovered ? "none" : "grayscale(100%)", opacity: hovered ? 1 : 0.6, transition: "filter 0.3s, opacity 0.3s" }} onError={() => setImgFailed(true)} alt={c.name} />
+          : <span style={{ fontSize: 11, fontWeight: 800, color: c.color }}>{c.abbr}</span>
+        }
+      </div>
+      <span style={{ fontFamily: "system-ui, sans-serif", fontSize: 13, fontWeight: 600, color: "#0A0A0A" }}>
+        {c.name}
+      </span>
+    </div>
+  )
+}
+
+function CompaniesMarquee() {
+  const loop = [...COMPANIES, ...COMPANIES]
+  return (
+    <section aria-label="Companies" style={{ padding: "80px 0", background: T.offwhite, overflow: "hidden" }}>
+      <style>{`
+        @keyframes companies-scroll {
+          from { transform: translateX(0); }
+          to { transform: translateX(-50%); }
+        }
+      `}</style>
+      <div style={{ maxWidth: 1280, margin: "0 auto 40px", padding: "0 48px" }}>
+        <h2 style={{
+          fontFamily: "system-ui, sans-serif",
+          fontSize: "clamp(26px, 3vw, 36px)", fontWeight: 800,
+          letterSpacing: "-0.04em", color: T.ink, marginBottom: 8,
+        }}>
+          Companies I've worked with
+        </h2>
+        <p style={{ fontFamily: "Georgia, serif", fontStyle: "italic", fontSize: 15, color: T.light }}>
+          10 years across fintech, media, retail and HR tech
+        </p>
+      </div>
+      <div style={{
+        overflow: "hidden",
+        WebkitMaskImage: "linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent)",
+        maskImage: "linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent)",
+      }}>
+        <div style={{
+          display: "flex", width: "max-content", gap: 12,
+          animation: "companies-scroll 36s linear infinite",
+          willChange: "transform",
+        }}>
+          {loop.map((c, i) => <CompanyBadge key={`${c.name}-${i}`} c={c} />)}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+// ─── MY TOOLS (preserved for future page) ────────────────────────────────────
 
 const SI = "https://cdn.simpleicons.org"
 const GB = "https://raw.githubusercontent.com/gilbarbara/logos/main/logos"
@@ -624,7 +683,7 @@ function About() {
             </div>
             <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
               <Btn variant="outline" as="a" href="https://www.linkedin.com/in/isabellegalves/" borderColor="#0A0A0A" padding="9px 18px" borderRadius={20}>LinkedIn</Btn>
-              <Btn variant="outline" as="a" href="/resume.pdf" borderColor="#0A0A0A" padding="9px 18px" borderRadius={20}>Resume</Btn>
+              <Btn variant="outline" as="a" href="/about" borderColor="#0A0A0A" padding="9px 18px" borderRadius={20}>About</Btn>
             </div>
           </FadeUp>
         </div>
@@ -662,8 +721,8 @@ export default function Home({ onContactClick }) {
       <Hero onContactClick={onContactClick} />
       <Work />
       <Capabilities />
-      <MyTools />
       <About />
+      <CompaniesMarquee />
       <ContactSection onContactClick={onContactClick} />
     </main>
   )

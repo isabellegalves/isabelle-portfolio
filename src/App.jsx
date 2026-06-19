@@ -6,6 +6,7 @@ import Footer from "./components/Footer"
 import ContactModal from "./components/ContactModal"
 import Home from "./pages/Home"
 import CaseStudy from "./pages/CaseStudy"
+import About from "./pages/About"
 
 const pageVariants = {
   initial: { opacity: 0, y: 16 },
@@ -100,6 +101,11 @@ export default function App() {
             <Route path="/work/:slug" element={
               <AnimatedPage>
                 <CaseStudy onContactClick={() => setModalOpen(true)} />
+              </AnimatedPage>
+            } />
+            <Route path="/about" element={
+              <AnimatedPage>
+                <About />
               </AnimatedPage>
             } />
             <Route path="*" element={
