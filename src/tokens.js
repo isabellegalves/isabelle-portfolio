@@ -1,3 +1,5 @@
+import { useState, useEffect } from "react"
+
 export const T = {
   white: "#FFFFFF",
   offwhite: "#F7F7F5",
@@ -8,8 +10,8 @@ export const T = {
 }
 
 export function usePrefersReducedMotion() {
-  const [reduced, setReduced] = React.useState(false)
-  React.useEffect(() => {
+  const [reduced, setReduced] = useState(false)
+  useEffect(() => {
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)")
     setReduced(mq.matches)
     const fn = (e) => setReduced(e.matches)

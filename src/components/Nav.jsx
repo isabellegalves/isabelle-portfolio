@@ -2,7 +2,7 @@ import { useState, useEffect } from "react"
 import { Link, useLocation, useNavigate } from "react-router-dom"
 import { T } from "../tokens"
 
-const ACCENT = "#CB1AFD"
+const GRAD = "linear-gradient(90deg, #6C1FF3, #DA37F4)"
 
 function NavLink({ to, children, onClick }) {
   const [hovered, setHovered] = useState(false)
@@ -17,7 +17,16 @@ function NavLink({ to, children, onClick }) {
         fontSize: 14, fontWeight: 500, letterSpacing: "0.01em",
         textDecoration: "none",
         padding: "6px 14px", borderRadius: 20,
-        color: hovered ? ACCENT : "#4A4A4A",
+        // gradient text on hover via background-clip trick
+        ...(hovered ? {
+          backgroundImage: GRAD,
+          WebkitBackgroundClip: "text",
+          WebkitTextFillColor: "transparent",
+          backgroundClip: "text",
+        } : {
+          color: "#4A4A4A",
+          WebkitTextFillColor: "unset",
+        }),
         transition: "color 0.2s",
       }}
     >
@@ -92,9 +101,10 @@ export default function Nav({ onContactClick }) {
               fontSize: 14, fontWeight: 600,
               padding: "9px 20px", borderRadius: 24,
               cursor: "pointer", border: "none",
-              background: contactHovered ? ACCENT : "#0A0A0A",
+              // solid bg: preto → gradiente no hover (texto sempre branco = contraste garantido)
+              background: contactHovered ? GRAD : "#0A0A0A",
               color: "#FFFFFF",
-              transition: "background 0.2s",
+              transition: "background 0.25s",
             }}
           >
             Contact

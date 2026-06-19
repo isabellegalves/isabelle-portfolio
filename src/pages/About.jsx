@@ -5,9 +5,13 @@ import { T } from "../tokens"
 const spring = { duration: 0.9, ease: [0.16, 1, 0.3, 1] }
 const GRAD = "linear-gradient(90deg, #6C1FF3, #DA37F4)"
 
+// ─── GRAD BTN ─────────────────────────────────────────────────────────────────
+// outline border wrapper: preto (#0A0A0A) → gradiente no hover
+// outline-gray: borda #555 (contrast 7:1 no branco) → gradiente no hover
 function GradBtn({ children, href, variant = "outline", target, rel }) {
   const [hovered, setHovered] = useState(false)
-  const defaultBorder = variant === "outline-gray" ? "#CCCCCC" : "#0A0A0A"
+  // #555555 on white = 7.0:1 (passes WCAG AA). Old #CCCCCC = 1.6:1 (fails).
+  const defaultBorder = variant === "outline-gray" ? "#555555" : "#0A0A0A"
 
   return (
     <a
@@ -125,7 +129,7 @@ const EXPERIENCE = [
   {
     abbr: "CN", bg: "#0A0A0A", color: "#fff",
     role: "Senior Product Designer",
-    company: "Condé Nast · Editora Globo · Remote",
+    company: "Conde Nast · Editora Globo · Remote",
     period: "Mar 2022 – Aug 2024",
     tags: ["UI Design", "Design System", "UX Audit", "Usability Testing", "Data Analysis", "Component Library", "Visual Identity"],
   },
@@ -221,7 +225,7 @@ export default function About() {
             display: "grid", gridTemplateColumns: "220px 1fr",
             gap: 64, alignItems: "flex-start", marginBottom: 64,
           }}>
-            {/* Foto */}
+            {/* Foto placeholder */}
             <div>
               <div style={{
                 width: 200, height: 250, borderRadius: 20,
@@ -313,30 +317,6 @@ export default function About() {
 
         <div style={RULE} />
 
-        {/* TOOLBOX */}
-        <FadeUp>
-          <span style={LABEL}>Toolbox</span>
-          <div style={{ display: "flex", flexWrap: "wrap", gap: 10 }}>
-            {TOOLS.map((tool) => (
-              <div
-                key={tool.name}
-                title={tool.name}
-                style={{
-                  width: 52, height: 52, borderRadius: 12,
-                  background: tool.bg,
-                  display: "flex", alignItems: "center", justifyContent: "center",
-                  overflow: "hidden", border: "1px solid rgba(0,0,0,0.08)",
-                  flexShrink: 0, cursor: "default",
-                }}
-              >
-                <ToolIcon tool={tool} />
-              </div>
-            ))}
-          </div>
-        </FadeUp>
-
-        <div style={RULE} />
-
         {/* EXPERIENCE */}
         <FadeUp>
           <span style={LABEL}>Experience</span>
@@ -366,7 +346,7 @@ export default function About() {
                   )}
                 </div>
 
-                {/* Conteúdo */}
+                {/* Conteudo */}
                 <div style={{ flex: 1, paddingBottom: i < EXPERIENCE.length - 1 ? 32 : 0 }}>
                   <div style={{
                     display: "flex", justifyContent: "space-between",
@@ -504,7 +484,7 @@ export default function About() {
 
         <div style={RULE} />
 
-        {/* EDUCATION + LANGUAGES */}
+        {/* EDUCATION + LANGUAGES — antes das tools */}
         <FadeUp>
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 80 }}>
 
@@ -521,7 +501,7 @@ export default function About() {
                 </div>
                 <div>
                   <div style={{ fontFamily: "system-ui, sans-serif", fontSize: 15, fontWeight: 600, color: T.ink }}>
-                    Advertising & Publicity
+                    Advertising &amp; Publicity
                   </div>
                   <div style={{ fontFamily: "system-ui, sans-serif", fontSize: 13, color: "#888", marginTop: 4 }}>
                     Laureate University · Uniritter
@@ -553,6 +533,30 @@ export default function About() {
               </div>
             </div>
 
+          </div>
+        </FadeUp>
+
+        <div style={RULE} />
+
+        {/* TOOLBOX */}
+        <FadeUp>
+          <span style={LABEL}>Toolbox</span>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: 10 }}>
+            {TOOLS.map((tool) => (
+              <div
+                key={tool.name}
+                title={tool.name}
+                style={{
+                  width: 52, height: 52, borderRadius: 12,
+                  background: tool.bg,
+                  display: "flex", alignItems: "center", justifyContent: "center",
+                  overflow: "hidden", border: "1px solid rgba(0,0,0,0.08)",
+                  flexShrink: 0, cursor: "default",
+                }}
+              >
+                <ToolIcon tool={tool} />
+              </div>
+            ))}
           </div>
         </FadeUp>
 

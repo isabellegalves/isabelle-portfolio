@@ -6,8 +6,6 @@ import { cases } from "../data/cases"
 
 const spring = { duration: 0.9, ease: [0.16, 1, 0.3, 1] }
 
-
-
 // ─── FADE UP ─────────────────────────────────────────────────────────────────
 
 function FadeUp({ children, delay = 0 }) {
@@ -29,7 +27,6 @@ function FadeUp({ children, delay = 0 }) {
 
 function Counter({ to, suffix = "", duration = 1.4 }) {
   const ref = useRef(null)
-
   const inView = useInView(ref, { once: false, margin: "-40px" })
   const [val, setVal] = useState(0)
 
@@ -85,33 +82,32 @@ function HeroLine({ children, delay = 0, serif = false, light = false, size }) {
 
 const GRAD = "linear-gradient(90deg, #6C1FF3, #DA37F4)"
 
-// Regras:
-// solid        → bg preto + texto branco → hover: bg gradiente, sem border
-// outline      → bg branco + border preta + texto preto → hover: bg branco + border gradiente + texto gradiente
-// outline-gray → bg branco + border cinza + texto preto → hover: bg branco + border gradiente + texto gradiente
+// ─── BTN ─────────────────────────────────────────────────────────────────────
+// variant="solid"        → bg preto + texto branco; hover: gradiente bg
+// variant="solid-white"  → bg branco + texto preto; hover: gradiente bg + texto branco (para fundos escuros)
+// variant="outline"      → borda preta + texto preto; hover: borda gradiente + texto gradiente
+// variant="outline-gray" → borda cinza (#888, not #CCC for contrast) + texto preto; hover: borda gradiente + texto gradiente
+
 function Btn({ children, onClick, href, as: Tag = "button",
   variant = "outline",
-  bg = "#0A0A0A",
   padding = "13px 26px", borderRadius = 26,
 }) {
   const [hovered, setHovered] = useState(false)
-  const isOutline = variant === "outline" || variant === "outline-gray"
-  const defaultBorder = variant === "outline-gray" ? "#CCCCCC" : "#0A0A0A"
 
   const events = {
     onMouseEnter: () => setHovered(true),
     onMouseLeave: () => setHovered(false),
   }
 
+  // ── solid (dark bg) ──────────────────────────────────────────────────────
   if (variant === "solid") {
     const style = {
       fontFamily: "system-ui, sans-serif", fontSize: 12, fontWeight: 700,
       letterSpacing: "0.05em", textTransform: "uppercase",
       padding, borderRadius, cursor: "pointer",
       display: "inline-block", textDecoration: "none",
-      background: hovered ? GRAD : bg,
+      background: hovered ? GRAD : "#0A0A0A",
       color: "#FFFFFF",
-      WebkitTextFillColor: "unset",
       border: "none",
       transition: "background 0.25s",
     }
@@ -119,7 +115,28 @@ function Btn({ children, onClick, href, as: Tag = "button",
     return <button onClick={onClick} {...events} style={style}>{children}</button>
   }
 
-  // outline / outline-gray: usa padding wrapper para simular border gradiente
+  // ── solid-white (for use on dark/ink backgrounds) ─────────────────────────
+  if (variant === "solid-white") {
+    const style = {
+      fontFamily: "system-ui, sans-serif", fontSize: 12, fontWeight: 700,
+      letterSpacing: "0.05em", textTransform: "uppercase",
+      padding, borderRadius, cursor: "pointer",
+      display: "inline-block", textDecoration: "none",
+      background: hovered ? GRAD : "#FFFFFF",
+      color: hovered ? "#FFFFFF" : "#0A0A0A",
+      border: "none",
+      transition: "background 0.25s, color 0.25s",
+    }
+    if (Tag === "a") return <a href={href} {...events} style={style}>{children}</a>
+    return <button onClick={onClick} {...events} style={style}>{children}</button>
+  }
+
+  // ── outline / outline-gray ────────────────────────────────────────────────
+  // Uses a 1.5px wrapper div to simulate a gradient border on hover.
+  // Default border color: preta (#0A0A0A) for "outline", dark-gray (#555) for "outline-gray"
+  // #555 on white = 7.0:1 contrast ratio (WCAG AA passes, vs #CCC which is only 1.6:1)
+  const defaultBorder = variant === "outline-gray" ? "#555555" : "#0A0A0A"
+
   const wrapperStyle = {
     display: "inline-block",
     borderRadius,
@@ -208,11 +225,12 @@ function Hero({ onContactClick }) {
                 fontFamily: "system-ui, sans-serif", fontSize: 16, lineHeight: 1.7,
                 color: T.mid, marginBottom: 28, maxWidth: 480,
               }}>
-                Product Designer with 10 years of experience working at the intersection of business strategy, user research and interface craft. I've helped companies like Condé Nast, Bradesco and Sodexo build products that serve both users and business goals.
+                Product Designer with 10 years of experience working at the intersection of business strategy, user research and interface craft. I've helped companies like Conde Nast, Bradesco and Sodexo build products that serve both users and business goals.
               </p>
               <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
-                <Btn variant="solid" bg="#0A0A0A" as="a" href="#work">View work</Btn>
-                <Btn variant="outline" borderColor="#CCCCCC" onClick={onContactClick}>Get in touch</Btn>
+                <Btn variant="solid" as="a" href="#work">View work</Btn>
+                {/* outline-gray: visible dark border (#555) on white bg, gradient on hover */}
+                <Btn variant="outline-gray" onClick={onContactClick}>Get in touch</Btn>
               </div>
             </motion.div>
           </div>
@@ -331,7 +349,7 @@ function CaseCard({ c, index }) {
             {c.title}
           </h3>
 
-          {/* Read case study button */}
+          {/* Read case study — texto + seta, sem fundo, gradiente no hover */}
           {!c.comingSoon ? (
             <div style={{ marginTop: 24, paddingTop: 20, borderTop: `1px solid ${T.rule}` }}>
               <span style={{
@@ -339,7 +357,7 @@ function CaseCard({ c, index }) {
                 fontFamily: "system-ui, sans-serif", fontSize: 12, fontWeight: 700,
                 letterSpacing: "0.05em", textTransform: "uppercase",
                 ...(hovered ? {
-                  background: "linear-gradient(90deg, #6C1FF3, #DA37F4)",
+                  background: GRAD,
                   WebkitBackgroundClip: "text",
                   WebkitTextFillColor: "transparent",
                   backgroundClip: "text",
@@ -438,7 +456,6 @@ function Capabilities() {
 }
 
 // ─── COMPANIES ───────────────────────────────────────────────────────────────
-// My Tools code preserved below for future use on another page
 
 const COMPANIES = [
   { name: "Bradesco", abbr: "B", bg: "#CC092F", color: "#fff", logo: "https://logo.clearbit.com/bradesco.com.br" },
@@ -526,115 +543,6 @@ function CompaniesMarquee() {
   )
 }
 
-// ─── MY TOOLS (hidden — preserved for future use) ────────────────────────────
-/*
-const SI = "https://cdn.simpleicons.org"
-const GB = "https://raw.githubusercontent.com/gilbarbara/logos/main/logos"
-
-const TOOLS = [
-  { name:"Figma",           type:"si", slug:"figma",               bg:"#1ABCFE", ic:"fff" },
-  { name:"FigJam",          type:"inl", svg:`<svg viewBox="0 0 48 48"><rect width="48" height="48" rx="24" fill="#F24E1E"/><text x="24" y="31" font-family="system-ui" font-weight="900" font-size="16" fill="white" text-anchor="middle">FJ</text></svg>`, bg:"#F24E1E" },
-  { name:"Photoshop",       type:"gb",  file:"adobe-photoshop.svg",    bg:"#001E36" },
-  { name:"Illustrator",     type:"gb",  file:"adobe-illustrator.svg",  bg:"#FF7C00" },
-  { name:"Procreate",       type:"inl", svg:`<svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="11" fill="none" stroke="white" stroke-width="3"/><circle cx="24" cy="24" r="4.5" fill="white"/><line x1="24" y1="13" x2="24" y2="8" stroke="white" stroke-width="2.5" stroke-linecap="round"/><line x1="24" y1="35" x2="24" y2="40" stroke="white" stroke-width="2.5" stroke-linecap="round"/><line x1="13" y1="24" x2="8" y2="24" stroke="white" stroke-width="2.5" stroke-linecap="round"/><line x1="35" y1="24" x2="40" y2="24" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg>`, bg:"#1A1A1A" },
-  { name:"Framer",          type:"si",  slug:"framer",               bg:"#0055FF", ic:"fff" },
-  { name:"Confluence",      type:"si",  slug:"confluence",           bg:"#172B4D", ic:"fff" },
-  { name:"Notion",          type:"si",  slug:"notion",               bg:"#F5F5F5", ic:"000" },
-  { name:"Jira",            type:"si",  slug:"jira",                 bg:"#0052CC", ic:"fff" },
-  { name:"Miro",            type:"si",  slug:"miro",                 bg:"#FFD02F", ic:"000" },
-  { name:"Maze",            type:"si",  slug:"maze",                 bg:"#6240C8", ic:"fff" },
-  { name:"UserTesting",     type:"inl", svg:`<svg viewBox="0 0 48 48"><circle cx="24" cy="17" r="8" fill="white"/><path d="M6 42 Q6 30 24 30 Q42 30 42 42" fill="white"/></svg>`, bg:"#F5604C" },
-  { name:"Hotjar",          type:"si",  slug:"hotjar",               bg:"#FF3C00", ic:"fff" },
-  { name:"Google Analytics",type:"si",  slug:"googleanalytics",      bg:"#E37400", ic:"fff" },
-  { name:"Zeroheight",      type:"gb",  file:"zeroheight.svg",       bg:"#200060" },
-  { name:"Storybook",       type:"si",  slug:"storybook",            bg:"#FF4785", ic:"fff" },
-  { name:"Claude",          type:"si",  slug:"claude",               bg:"#D97757", ic:"fff" },
-  { name:"Claude Design",   type:"si",  slug:"anthropic",            bg:"#1A1A1A", ic:"fff" },
-  { name:"Lovable",         type:"inl", svg:`<svg viewBox="0 0 48 48"><path d="M24 37 L9 22 C4 16 9 8 16 8 C20.5 8 23 12 24 15 C25 12 27.5 8 32 8 C39 8 44 16 39 22 Z" fill="white"/></svg>`, bg:"#FF3D68" },
-  { name:"Vercel",          type:"si",  slug:"vercel",               bg:"#111111", ic:"fff" },
-  { name:"Salesforce",      type:"gb",  file:"salesforce.svg",       bg:"#00A1E0" },
-]
-
-function ToolIcon({ tool }) {
-  if (tool.type === "si") return <img src={`${SI}/${tool.slug}/${tool.ic}`} alt={tool.name} width={20} height={20} loading="lazy" style={{ display:"block", width:20, height:20, objectFit:"contain" }} />
-  if (tool.type === "gb") return <img src={`${GB}/${tool.file}`} alt={tool.name} width={24} height={24} loading="lazy" style={{ display:"block", width:24, height:24, objectFit:"contain" }} />
-  return <span style={{ display:"block", width:26, height:26 }} dangerouslySetInnerHTML={{ __html: tool.svg }} />
-}
-
-function ToolBadge({ tool }) {
-  return (
-    <div style={{
-      display:"flex", alignItems:"center", gap:10,
-      padding:"8px 16px 8px 8px",
-      border:"1px solid rgba(0,0,0,0.1)", borderRadius:999,
-      background:"#fff", whiteSpace:"nowrap",
-      transition:"transform 0.2s, border-color 0.2s",
-      cursor:"default",
-    }}
-      onMouseEnter={e => { e.currentTarget.style.transform = "translateY(-3px)"; e.currentTarget.style.borderColor = "rgba(0,0,0,0.25)" }}
-      onMouseLeave={e => { e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.borderColor = "rgba(0,0,0,0.1)" }}
-    >
-      <span style={{
-        width:38, height:38, borderRadius:"50%", background:tool.bg,
-        display:"flex", alignItems:"center", justifyContent:"center",
-        flexShrink:0, overflow:"hidden",
-      }}>
-        <ToolIcon tool={tool} />
-      </span>
-      <span style={{ fontSize:13, fontWeight:500, color:T.ink, fontFamily:"system-ui,sans-serif", letterSpacing:"-0.01em" }}>
-        {tool.name}
-      </span>
-    </div>
-  )
-}
-
-function MarqueeRow({ items, reverse = false, duration = "34s" }) {
-  const loop = [...items, ...items]
-  return (
-    <div style={{
-      overflow:"hidden",
-      WebkitMaskImage:"linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent)",
-      maskImage:"linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent)",
-    }}>
-      <div style={{
-        display:"flex", width:"max-content", gap:12,
-        animation:`tools-scroll ${duration} linear infinite`,
-        animationDirection: reverse ? "reverse" : "normal",
-        willChange:"transform",
-      }}>
-        {loop.map((tool, i) => <ToolBadge key={`${tool.name}-${i}`} tool={tool} />)}
-      </div>
-    </div>
-  )
-}
-
-function MyTools() {
-  const half = Math.ceil(TOOLS.length / 2)
-  return (
-    <section aria-labelledby="tools-heading" style={{ padding:"100px 0", background:"#EBEBEB", overflow:"hidden" }}>
-      <style>{`
-        @keyframes tools-scroll {
-          from { transform: translateX(0); }
-          to   { transform: translateX(-50%); }
-        }
-      `}</style>
-      <div style={{ maxWidth:1280, margin:"0 auto 52px", padding:"0 48px" }}>
-        <h2 id="tools-heading" style={{
-          fontFamily:"system-ui, sans-serif",
-          fontSize:"clamp(26px, 3vw, 36px)", fontWeight:800,
-          letterSpacing:"-0.04em", color:T.ink,
-        }}>
-          My tools
-        </h2>
-      </div>
-      <MarqueeRow items={TOOLS.slice(0, half)} duration="38s" />
-      <div style={{ height:12 }} />
-      <MarqueeRow items={TOOLS.slice(half)} duration="46s" reverse />
-    </section>
-  )
-}
-*/
-
 // ─── ABOUT ───────────────────────────────────────────────────────────────────
 
 function About() {
@@ -672,8 +580,8 @@ function About() {
               ))}
             </div>
             <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
-              <Btn variant="outline" as="a" href="https://www.linkedin.com/in/isabellegalves/" borderColor="#0A0A0A" padding="9px 18px" borderRadius={20}>LinkedIn</Btn>
-              <Btn variant="outline" as="a" href="/about" borderColor="#0A0A0A" padding="9px 18px" borderRadius={20}>About</Btn>
+              <Btn variant="outline" as="a" href="https://www.linkedin.com/in/isabellegalves/" padding="9px 18px" borderRadius={20}>LinkedIn</Btn>
+              <Btn variant="outline" as="a" href="/about" padding="9px 18px" borderRadius={20}>About</Btn>
             </div>
           </FadeUp>
         </div>
@@ -697,7 +605,8 @@ function ContactSection({ onContactClick }) {
         }}>
           Good work starts with a good conversation.
         </h2>
-        <Btn variant="solid" bg="#0A0A0A" borderColor="#FFFFFF" onClick={onContactClick} padding="15px 34px" borderRadius={32}>Get in touch</Btn>
+        {/* solid-white: bg branco + texto preto em fundo escuro; hover → gradiente + texto branco */}
+        <Btn variant="solid-white" onClick={onContactClick} padding="15px 34px" borderRadius={32}>Get in touch</Btn>
       </FadeUp>
     </section>
   )
