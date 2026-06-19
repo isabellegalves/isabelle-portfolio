@@ -3,9 +3,9 @@ import { motion, useInView } from "framer-motion"
 import { T } from "../tokens"
 
 const spring = { duration: 0.9, ease: [0.16, 1, 0.3, 1] }
-const GRAD = "linear-gradient(90deg, #6C1FF3, #DA37F4)"
+const ACCENT = "#CB1AFD"
 
-function GradBtn({ children, href, variant = "outline", target, rel }) {
+function AccentBtn({ children, href, variant = "outline", target, rel }) {
   const [hovered, setHovered] = useState(false)
   const defaultBorder = variant === "outline-gray" ? "#CCCCCC" : "#0A0A0A"
 
@@ -18,32 +18,17 @@ function GradBtn({ children, href, variant = "outline", target, rel }) {
       onMouseLeave={() => setHovered(false)}
       style={{
         display: "inline-block",
-        borderRadius: 20,
-        padding: 1.5,
-        background: hovered ? GRAD : defaultBorder,
-        transition: "background 0.25s",
-        textDecoration: "none",
-      }}
-    >
-      <span style={{
-        display: "block",
         fontFamily: "system-ui, sans-serif", fontSize: 11, fontWeight: 700,
         letterSpacing: "0.05em", textTransform: "uppercase",
-        padding: "9px 18px", borderRadius: 18.5,
+        padding: "9px 18px", borderRadius: 20,
         background: "#FFFFFF",
-        ...(hovered ? {
-          backgroundImage: GRAD,
-          WebkitBackgroundClip: "text",
-          WebkitTextFillColor: "transparent",
-          backgroundClip: "text",
-        } : {
-          color: "#0A0A0A",
-          WebkitTextFillColor: "unset",
-        }),
-        transition: "color 0.25s",
-      }}>
-        {children}
-      </span>
+        color: hovered ? ACCENT : "#0A0A0A",
+        border: `1.5px solid ${hovered ? ACCENT : defaultBorder}`,
+        textDecoration: "none",
+        transition: "color 0.2s, border-color 0.2s",
+      }}
+    >
+      {children}
     </a>
   )
 }
@@ -233,8 +218,8 @@ export default function About() {
               </p>
 
               <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
-                <GradBtn href="https://www.linkedin.com/in/isabellegalves/" target="_blank" rel="noopener noreferrer">LinkedIn</GradBtn>
-                <GradBtn href="mailto:isabellegalves@gmail.com" variant="outline-gray">Email me</GradBtn>
+                <AccentBtn href="https://www.linkedin.com/in/isabellegalves/" target="_blank" rel="noopener noreferrer">LinkedIn</AccentBtn>
+                <AccentBtn href="mailto:isabellegalves@gmail.com" variant="outline-gray">Email me</AccentBtn>
               </div>
             </div>
           </div>

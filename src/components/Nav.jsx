@@ -2,7 +2,7 @@ import { useState, useEffect } from "react"
 import { Link, useLocation, useNavigate } from "react-router-dom"
 import { T } from "../tokens"
 
-const GRAD = "linear-gradient(90deg, #6C1FF3, #DA37F4)"
+const ACCENT = "#CB1AFD"
 
 function NavLink({ to, children, onClick }) {
   const [hovered, setHovered] = useState(false)
@@ -17,17 +17,8 @@ function NavLink({ to, children, onClick }) {
         fontSize: 14, fontWeight: 500, letterSpacing: "0.01em",
         textDecoration: "none",
         padding: "6px 14px", borderRadius: 20,
+        color: hovered ? ACCENT : "#4A4A4A",
         transition: "color 0.2s",
-        ...(hovered ? {
-          background: GRAD,
-          WebkitBackgroundClip: "text",
-          WebkitTextFillColor: "transparent",
-          backgroundClip: "text",
-        } : {
-          color: "#4A4A4A",
-          WebkitTextFillColor: "unset",
-          background: "none",
-        }),
       }}
     >
       {children}
@@ -85,7 +76,7 @@ export default function Nav({ onContactClick }) {
           <img
             src="/images/logo-black.svg"
             alt="Isabelle Alves"
-            style={{ height: 28, width: "auto", display: "block", transition: "opacity 0.3s" }}
+            style={{ height: 28, width: "auto", display: "block" }}
           />
         </Link>
 
@@ -100,33 +91,12 @@ export default function Nav({ onContactClick }) {
               fontFamily: "system-ui, -apple-system, sans-serif",
               fontSize: 14, fontWeight: 600,
               padding: "9px 20px", borderRadius: 24,
-              cursor: "pointer",
-              position: "relative",
-              transition: "background 0.3s, border-color 0.3s",
-              ...(contactHovered ? {
-                background: "#FFFFFF",
-                border: "1.5px solid transparent",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                backgroundClip: "text",
-              } : {
-                background: "#0A0A0A",
-                border: "1.5px solid #0A0A0A",
-                color: "#FFFFFF",
-                WebkitTextFillColor: "unset",
-              }),
+              cursor: "pointer", border: "none",
+              background: contactHovered ? ACCENT : "#0A0A0A",
+              color: "#FFFFFF",
+              transition: "background 0.2s",
             }}
           >
-            {contactHovered && (
-              <span style={{
-                position: "absolute", inset: -1.5, borderRadius: 24,
-                background: GRAD,
-                WebkitMask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
-                WebkitMaskComposite: "xor",
-                maskComposite: "exclude",
-                pointerEvents: "none",
-              }} />
-            )}
             Contact
           </button>
         </div>
