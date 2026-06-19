@@ -3,6 +3,7 @@ import { useParams, Link, Navigate } from "react-router-dom"
 import { motion, useInView, animate } from "framer-motion"
 import { T } from "../tokens"
 import { getCaseBySlug, getNextCase } from "../data/cases"
+import PasswordGate from "../components/PasswordGate"
 
 const spring = { duration: 0.8, ease: [0.16, 1, 0.3, 1] }
 
@@ -99,10 +100,15 @@ export default function CaseStudy({ onContactClick }) {
   const c = getCaseBySlug(slug)
   const next = getNextCase(slug)
   const [nextHovered, setNextHovered] = useState(false)
+  const [unlocked, setUnlocked] = useState(() => {
+    if (!c?.passwordHash) return true
+    return sessionStorage.getItem("unlocked_" + c.passwordHash) === "1"
+  })
 
   useEffect(() => { window.scrollTo(0, 0) }, [slug])
 
   if (!c) return <Navigate to="/" replace />
+  if (c.passwordHash && !unlocked) return <PasswordGate caseTitle={c.title} passwordHash={c.passwordHash} onUnlock={() => setUnlocked(true)} />
 
   return (
     <main>

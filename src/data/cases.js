@@ -15,6 +15,7 @@ export const cases = [
       { n: "5%", label: "Conversion rate lift" },
       { n: "25+", label: "Research panel users" },
     ],
+    passwordHash: "aWdhbHZlcw==",
     bg: "#FCEEF0",
     image: "/images/bradesco.png",
     overview: {

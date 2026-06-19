@@ -187,9 +187,9 @@ function Hero({ onContactClick }) {
           {/* Text */}
           <div>
             <h1 id="hero-heading" style={{ margin: 0 }}>
-              <HeroLine delay={0.2}>I design with purpose.</HeroLine>
-              <HeroLine delay={0.4} serif>Every pixel has a reason.</HeroLine>
-              <HeroLine delay={0.6} light size="20px">Ten years of making the complex feel effortless.</HeroLine>
+              <HeroLine delay={0.2}>I turn complexity</HeroLine>
+              <HeroLine delay={0.4} serif>into clarity.</HeroLine>
+              <HeroLine delay={0.6} light size="20px">Making the complex feel effortless.</HeroLine>
             </h1>
 
             <motion.div
@@ -202,7 +202,7 @@ function Hero({ onContactClick }) {
                 fontFamily: "system-ui, sans-serif", fontSize: 16, lineHeight: 1.7,
                 color: T.mid, marginBottom: 28, maxWidth: 480,
               }}>
-                Product Designer with 10 years of experience working at the intersection of business strategy, user research and interface craft. I've helped companies like Conde Nast, Bradesco and Sodexo build products that serve both users and business goals.
+                A decade of product design across fintech, media and retail — helping companies like Conde Nast, Bradesco and Sodexo build products that serve both users and business goals.
               </p>
               <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
                 <Btn variant="solid" as="a" href="#work">View work</Btn>
@@ -384,14 +384,51 @@ function Work() {
 
 // ─── CAPABILITIES ────────────────────────────────────────────────────────────
 
+function CapabilityCard({ item, index, inView }) {
+  const [hovered, setHovered] = useState(false)
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 40 }}
+      animate={inView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 0.1 + index * 0.15 }}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      style={{
+        background: T.white, padding: "44px 40px", height: "100%",
+        borderRadius: index === 0 ? "14px 0 0 14px" : index === 2 ? "0 14px 14px 0" : 0,
+        transform: hovered ? "translateY(-6px)" : "translateY(0)",
+        boxShadow: hovered ? "0 16px 40px rgba(0,0,0,0.08)" : "none",
+        transition: "transform 0.3s ease, box-shadow 0.3s ease",
+      }}
+    >
+      <div style={{
+        fontFamily: "Georgia, serif", fontSize: 28, fontStyle: "italic",
+        color: "#CCCCCC", marginBottom: 20,
+      }}>{item.n}</div>
+      <h3 style={{
+        fontFamily: "system-ui, sans-serif", fontSize: 18, fontWeight: 700,
+        letterSpacing: "-0.02em", marginBottom: 14,
+      }}>
+        {item.title}
+      </h3>
+      <p style={{
+        fontFamily: "system-ui, sans-serif", fontSize: 14,
+        color: T.mid, lineHeight: 1.75, margin: 0,
+      }}>{item.body}</p>
+    </motion.div>
+  )
+}
+
 function Capabilities() {
+  const ref = useRef(null)
+  const inView = useInView(ref, { once: true, margin: "-80px" })
   const items = [
     { n: "01", title: "Business meets user", body: "A background in Advertising and a postgrad in UX means I naturally think from both sides. I ask what the user needs and what the business gains, at the same time. That combination is rarer than it sounds." },
     { n: "02", title: "End-to-end, for real", body: "From research and discovery workshops to design systems and final handoff. I don't just deliver screens. I help shape the product from the question to the answer, working closely with POs, developers and stakeholders." },
     { n: "03", title: "Design with purpose", body: "Accessibility and inclusion are not checkboxes. They are part of how I think from the start. Good design should work for everyone, and I take that seriously, whether I am designing a banking app or a wellness platform." },
   ]
   return (
-    <section aria-labelledby="capabilities-heading" style={{ padding: "120px 0", background: T.offwhite }}>
+    <section ref={ref} aria-labelledby="capabilities-heading" style={{ padding: "120px 0", background: T.offwhite }}>
       <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 48px" }}>
         <FadeUp>
           <h2 id="capabilities-heading" style={{
@@ -404,27 +441,7 @@ function Capabilities() {
         </FadeUp>
         <div className="caps-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 2 }}>
           {items.map((item, i) => (
-            <FadeUp key={i} delay={i * 0.12}>
-              <div style={{
-                background: T.white, padding: "44px 40px", height: "100%",
-                borderRadius: i === 0 ? "14px 0 0 14px" : i === 2 ? "0 14px 14px 0" : 0,
-              }}>
-                <div style={{
-                  fontFamily: "Georgia, serif", fontSize: 28, fontStyle: "italic",
-                  color: "#CCCCCC", marginBottom: 20,
-                }}>{item.n}</div>
-                <h3 style={{
-                  fontFamily: "system-ui, sans-serif", fontSize: 18, fontWeight: 700,
-                  letterSpacing: "-0.02em", marginBottom: 14,
-                }}>
-                  {item.title}
-                </h3>
-                <p style={{
-                  fontFamily: "system-ui, sans-serif", fontSize: 14,
-                  color: T.mid, lineHeight: 1.75, margin: 0,
-                }}>{item.body}</p>
-              </div>
-            </FadeUp>
+            <CapabilityCard key={i} item={item} index={i} inView={inView} />
           ))}
         </div>
       </div>

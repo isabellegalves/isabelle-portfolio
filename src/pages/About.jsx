@@ -87,12 +87,7 @@ const TOOLS = [
   { name: "Maze",             bg: "#6240C8", type: "si", slug: "maze",             ic: "fff" },
   { name: "Vercel",           bg: "#111111", type: "si", slug: "vercel",           ic: "fff" },
   { name: "GitHub",           bg: "#24292E", type: "si", slug: "github",           ic: "fff" },
-  {
-    name: "Claude",
-    bg: "#D97757",
-    type: "url",
-    src: "https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/claude-ai-icon.svg",
-  },
+  { name: "Claude", bg: "#D97757", type: "si", slug: "anthropic", ic: "fff" },
 ]
 
 function ToolIcon({ tool }) {
@@ -100,17 +95,6 @@ function ToolIcon({ tool }) {
 
   if (failed) {
     return <span style={{ fontSize: 10, fontWeight: 800, color: "#fff" }}>{tool.name.slice(0, 2)}</span>
-  }
-  if (tool.type === "url") {
-    return (
-      <img
-        src={tool.src}
-        alt={tool.name}
-        width={28} height={28}
-        onError={() => setFailed(true)}
-        style={{ objectFit: "contain", display: "block", filter: "brightness(0) invert(1)" }}
-      />
-    )
   }
   const src = tool.type === "si"
     ? `${SI}/${tool.slug}/${tool.ic}`
