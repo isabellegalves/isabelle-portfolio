@@ -1,6 +1,6 @@
-import { useEffect, useRef } from "react"
+import { useEffect, useRef, useState } from "react"
 import { useParams, Link, Navigate } from "react-router-dom"
-import { motion, useInView } from "framer-motion"
+import { motion, useInView, animate } from "framer-motion"
 import { T } from "../tokens"
 import { getCaseBySlug, getNextCase } from "../data/cases"
 
@@ -20,12 +20,65 @@ function FadeUp({ children, delay = 0 }) {
   )
 }
 
+// Animated metric counter
+function MetricCounter({ value, label }) {
+  const ref = useRef(null)
+  const inView = useInView(ref, { once: true, margin: "-40px" })
+  const started = useRef(false)
+
+  // Parse numeric part and suffix (e.g. "30%" → 30, "%")
+  const match = String(value).match(/^(\d+)(.*)$/)
+  const numericTo = match ? parseInt(match[1]) : 0
+  const suffix = match ? match[2] : ""
+  const isNumeric = match !== null
+
+  const [display, setDisplay] = useState(isNumeric ? `0${suffix}` : value)
+
+  useEffect(() => {
+    if (!isNumeric || !inView || started.current) return
+    started.current = true
+    const controls = animate(0, numericTo, {
+      duration: 1.6,
+      ease: "easeOut",
+      onUpdate: (v) => setDisplay(`${Math.round(v)}${suffix}`),
+    })
+    return () => controls.stop()
+  }, [inView, isNumeric, numericTo, suffix])
+
+  return (
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+      style={{
+        background: T.offwhite, borderRadius: 14,
+        padding: "28px 24px", textAlign: "center",
+      }}
+    >
+      <div style={{
+        fontFamily: "Georgia, serif", fontSize: 40, fontStyle: "italic",
+        color: T.ink, letterSpacing: "-0.03em", lineHeight: 1, marginBottom: 8,
+      }}>
+        {display}
+      </div>
+      <div style={{
+        fontFamily: "system-ui, sans-serif", fontSize: 12, fontWeight: 500,
+        letterSpacing: "0.03em", textTransform: "uppercase", color: "#555555",
+      }}>
+        {label}
+      </div>
+    </motion.div>
+  )
+}
+
 const P = { padding: "64px 80px", maxWidth: 1280, margin: "0 auto" }
 
-const LABEL = {
+const LABEL_BASE = {
   fontFamily: "system-ui, sans-serif", fontSize: 11, fontWeight: 700,
   letterSpacing: "0.1em", textTransform: "uppercase",
-  color: "#666666", marginBottom: 20, display: "block",
+  marginBottom: 20, display: "block",
 }
 
 const BODY = {
@@ -33,12 +86,19 @@ const BODY = {
   lineHeight: 1.85, color: "#333333", marginBottom: 16,
 }
 
-const DIVIDER = { height: "0.5px", background: T.rule, maxWidth: 1280, margin: "0 auto", padding: "0 80px" }
+function SweepLabel({ children }) {
+  return (
+    <span style={LABEL_BASE}>
+      {children}
+    </span>
+  )
+}
 
 export default function CaseStudy({ onContactClick }) {
   const { slug } = useParams()
   const c = getCaseBySlug(slug)
   const next = getNextCase(slug)
+  const [nextHovered, setNextHovered] = useState(false)
 
   useEffect(() => { window.scrollTo(0, 0) }, [slug])
 
@@ -46,10 +106,10 @@ export default function CaseStudy({ onContactClick }) {
 
   return (
     <main>
+
       {/* HERO */}
       <section style={{ paddingTop: 100, background: T.white }}>
         <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 80px" }}>
-
           <motion.div
             initial={{ opacity: 0, x: -12 }}
             animate={{ opacity: 1, x: 0 }}
@@ -89,9 +149,10 @@ export default function CaseStudy({ onContactClick }) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
             style={{
-              fontFamily: "system-ui, -apple-system, sans-serif",
-              fontSize: "clamp(28px, 4.5vw, 58px)", fontWeight: 800,
-              letterSpacing: "-0.04em", color: T.ink, lineHeight: 1.1,
+              fontFamily: "Georgia, serif",
+              fontSize: "clamp(28px, 4.5vw, 58px)", fontWeight: 400,
+              fontStyle: "italic",
+              letterSpacing: "-0.03em", color: T.ink, lineHeight: 1.1,
               maxWidth: 800, marginBottom: 24,
             }}
           >
@@ -139,7 +200,7 @@ export default function CaseStudy({ onContactClick }) {
       <div style={{ height: "0.5px", background: T.rule }} />
       <section style={P}>
         <FadeUp>
-          <span style={LABEL}>Overview</span>
+          <SweepLabel>Overview</SweepLabel>
           <div className="overview-grid" style={{ display: "grid", gridTemplateColumns: "1fr 2.5fr", gap: 72, alignItems: "start" }}>
             <div style={{ display: "flex", flexDirection: "column", gap: 28 }}>
               {[
@@ -175,11 +236,9 @@ export default function CaseStudy({ onContactClick }) {
       <div style={{ height: "0.5px", background: T.rule }} />
       <section style={P}>
         <FadeUp>
-          <span style={LABEL}>The Problem</span>
+          <SweepLabel>The Problem</SweepLabel>
           <p style={BODY}>{c.problem.body}</p>
-          <div style={{
-            background: T.ink, borderRadius: 16, padding: "36px 48px", marginTop: 28,
-          }}>
+          <div style={{ background: T.ink, borderRadius: 16, padding: "36px 48px", marginTop: 28 }}>
             <p style={{
               fontFamily: "Georgia, serif",
               fontSize: "clamp(18px, 2.2vw, 26px)",
@@ -195,35 +254,25 @@ export default function CaseStudy({ onContactClick }) {
       {/* PROCESS */}
       <div style={{ height: "0.5px", background: T.rule }} />
       <section style={P}>
-        <FadeUp><span style={LABEL}>Process</span></FadeUp>
+        <FadeUp><SweepLabel>Process</SweepLabel></FadeUp>
         {c.process.map((phase, i) => (
           <FadeUp key={i} delay={i * 0.08}>
             <div style={{ marginBottom: 64 }}>
               <div style={{ display: "flex", alignItems: "baseline", gap: 18, marginBottom: 18 }}>
-                <span style={{
-                  fontFamily: "Georgia, serif", fontSize: 24, fontStyle: "italic",
-                  color: "#CCCCCC", flexShrink: 0,
-                }}>
+                <span style={{ fontFamily: "Georgia, serif", fontSize: 24, fontStyle: "italic", color: "#CCCCCC", flexShrink: 0 }}>
                   {phase.n}
                 </span>
-                <h3 style={{
-                  fontFamily: "system-ui, sans-serif", fontSize: 22, fontWeight: 700,
-                  letterSpacing: "-0.025em", color: T.ink, margin: 0,
-                }}>
+                <h3 style={{ fontFamily: "system-ui, sans-serif", fontSize: 22, fontWeight: 700, letterSpacing: "-0.025em", color: T.ink, margin: 0 }}>
                   {phase.title}
                 </h3>
               </div>
               <p style={BODY}>{phase.body}</p>
               <div style={{
-                width: "100%", height: 300,
-                background: T.offwhite, borderRadius: 14,
+                width: "100%", height: 300, background: T.offwhite, borderRadius: 14,
                 display: "flex", alignItems: "center", justifyContent: "center",
                 border: `1px dashed ${T.rule}`, marginTop: 28,
               }}>
-                <span style={{
-                  fontFamily: "system-ui, sans-serif", fontSize: 11, fontWeight: 600,
-                  letterSpacing: "0.06em", textTransform: "uppercase", color: "#AAAAAA",
-                }}>
+                <span style={{ fontFamily: "system-ui, sans-serif", fontSize: 11, fontWeight: 600, letterSpacing: "0.06em", textTransform: "uppercase", color: "#AAAAAA" }}>
                   Add your process image here
                 </span>
               </div>
@@ -236,37 +285,10 @@ export default function CaseStudy({ onContactClick }) {
       <div style={{ height: "0.5px", background: T.rule }} />
       <section style={P}>
         <FadeUp>
-          <span style={LABEL}>Impact</span>
-          <div style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))",
-            gap: 12, marginTop: 8,
-          }}>
+          <SweepLabel>Impact</SweepLabel>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))", gap: 12, marginTop: 8 }}>
             {c.metrics.map((m, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: i * 0.08 }}
-                style={{
-                  background: T.offwhite, borderRadius: 14,
-                  padding: "28px 24px", textAlign: "center",
-                }}
-              >
-                <div style={{
-                  fontFamily: "Georgia, serif", fontSize: 40, fontStyle: "italic",
-                  color: T.ink, letterSpacing: "-0.03em", lineHeight: 1, marginBottom: 8,
-                }}>
-                  {m.n}
-                </div>
-                <div style={{
-                  fontFamily: "system-ui, sans-serif", fontSize: 12, fontWeight: 500,
-                  letterSpacing: "0.03em", textTransform: "uppercase", color: "#555555",
-                }}>
-                  {m.label}
-                </div>
-              </motion.div>
+              <MetricCounter key={i} value={m.n} label={m.label} />
             ))}
           </div>
         </FadeUp>
@@ -276,7 +298,7 @@ export default function CaseStudy({ onContactClick }) {
       <div style={{ height: "0.5px", background: T.rule }} />
       <section style={P}>
         <FadeUp>
-          <span style={LABEL}>Key takeaway</span>
+          <SweepLabel>Key takeaway</SweepLabel>
           <div style={{ background: T.offwhite, borderRadius: 16, padding: "44px 52px" }}>
             <p style={{
               fontFamily: "Georgia, serif",
@@ -286,10 +308,7 @@ export default function CaseStudy({ onContactClick }) {
             }}>
               {c.takeaway}
             </p>
-            <span style={{
-              fontFamily: "system-ui, sans-serif", fontSize: 12, fontWeight: 600,
-              letterSpacing: "0.06em", textTransform: "uppercase", color: "#888888",
-            }}>
+            <span style={{ fontFamily: "system-ui, sans-serif", fontSize: 12, fontWeight: 600, letterSpacing: "0.06em", textTransform: "uppercase", color: "#888888" }}>
               {c.company} · {c.year.replace(" to present", "").replace(" to ", " – ")}
             </span>
           </div>
@@ -298,20 +317,22 @@ export default function CaseStudy({ onContactClick }) {
 
       {/* NEXT CASE */}
       {next && (
-        <Link to={`/work/${next.slug}`} style={{ textDecoration: "none", display: "block" }}>
-          <motion.div
-            whileHover={{ backgroundColor: "#111111" }}
-            transition={{ duration: 0.3 }}
-            style={{
-              background: T.ink, padding: "64px 80px",
-              display: "flex", alignItems: "center", justifyContent: "space-between",
-            }}
-          >
+        <Link
+          to={`/work/${next.slug}`}
+          style={{ textDecoration: "none", display: "block" }}
+          onMouseEnter={() => setNextHovered(true)}
+          onMouseLeave={() => setNextHovered(false)}
+        >
+          <div style={{
+            background: T.ink, padding: "64px 80px",
+            display: "flex", alignItems: "center", justifyContent: "space-between",
+            transition: "background 0.3s",
+          }}>
             <div>
               <div style={{
                 fontFamily: "system-ui, sans-serif", fontSize: 11, fontWeight: 600,
                 letterSpacing: "0.08em", textTransform: "uppercase",
-                color: "#777777", marginBottom: 10,
+                marginBottom: 10,
               }}>
                 Next case study
               </div>
@@ -322,22 +343,19 @@ export default function CaseStudy({ onContactClick }) {
               }}>
                 {next.company}
               </div>
-              <div style={{
-                fontFamily: "Georgia, serif", fontSize: 15, fontStyle: "italic",
-                color: "#888888",
-              }}>
+              <div style={{ fontFamily: "Georgia, serif", fontSize: 15, fontStyle: "italic", color: "#888888" }}>
                 {next.title.length > 65 ? next.title.slice(0, 65) + "..." : next.title}
               </div>
             </div>
             <motion.span
-              whileHover={{ x: 8 }}
+              animate={{ x: nextHovered ? 8 : 0 }}
               transition={{ duration: 0.3 }}
-              style={{ fontSize: 32, color: "#777777" }}
               aria-hidden="true"
+              style={{ fontSize: 32 }}
             >
               →
             </motion.span>
-          </motion.div>
+          </div>
         </Link>
       )}
     </main>

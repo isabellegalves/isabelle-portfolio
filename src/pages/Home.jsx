@@ -1,12 +1,20 @@
 import { useState, useEffect, useRef } from "react"
 import { Link } from "react-router-dom"
-import { motion, useInView, useScroll, useTransform, animate } from "framer-motion"
+import { motion, useInView, animate } from "framer-motion"
 import { T } from "../tokens"
 import { cases } from "../data/cases"
 
-// ─── VARIANTS ────────────────────────────────────────────────────────────────
-
 const spring = { duration: 0.9, ease: [0.16, 1, 0.3, 1] }
+
+// Gradient applied ONLY on hover to clickable elements
+const HOVER_GRAD = {
+  background: "linear-gradient(90deg, #6C1FF3, #DA37F4)",
+  WebkitBackgroundClip: "text",
+  WebkitTextFillColor: "transparent",
+  backgroundClip: "text",
+}
+
+// ─── FADE UP ─────────────────────────────────────────────────────────────────
 
 function FadeUp({ children, delay = 0 }) {
   const ref = useRef(null)
@@ -53,42 +61,37 @@ function Counter({ to, suffix = "", duration = 1.4 }) {
   )
 }
 
-// ─── TEXT REVEAL ─────────────────────────────────────────────────────────────
+// ─── HERO LINE ───────────────────────────────────────────────────────────────
 
-function TextReveal({ children, delay = 0, serif = false, light = false }) {
-  const ref = useRef(null)
-  const inView = useInView(ref, { once: true, margin: "-40px" })
-
-  const baseStyle = {
-    display: "block",
-    fontSize: "clamp(40px, 5.5vw, 72px)",
-    lineHeight: 0.93,
-    letterSpacing: serif ? "-0.03em" : "-0.04em",
-    fontWeight: serif ? 400 : (light ? 400 : 800),
-    fontFamily: serif ? "Georgia, serif" : "system-ui, -apple-system, sans-serif",
-    fontStyle: serif ? "italic" : "normal",
-    marginBottom: 6,
-    backgroundClip: "text",
-    WebkitBackgroundClip: "text",
-    WebkitTextFillColor: "transparent",
-    backgroundSize: "200% 100%",
-    backgroundPosition: inView ? "0% 0%" : "100% 0%",
-    transition: `background-position 1.1s cubic-bezier(0.16,1,0.3,1) ${delay}s`,
-    backgroundImage: light
-      ? "linear-gradient(90deg, #4A4A4A 50%, #D0D0D0 50%)"
-      : "linear-gradient(90deg, #0A0A0A 50%, #D0D0D0 50%)",
-  }
-
+function HeroLine({ children, delay = 0, serif = false, light = false, size }) {
   return (
-    <motion.span ref={ref} style={baseStyle}>
+    <motion.span
+      initial={{ opacity: 0, y: 32 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay }}
+      style={{
+        display: "block",
+        fontSize: size || (light ? "20px" : "clamp(40px, 5.5vw, 72px)"),
+        lineHeight: light ? 1.4 : 0.93,
+        letterSpacing: serif ? "-0.03em" : "-0.04em",
+        fontWeight: serif ? 400 : (light ? 400 : 800),
+        fontFamily: serif ? "Georgia, serif" : "system-ui, -apple-system, sans-serif",
+        fontStyle: serif ? "italic" : "normal",
+        color: light ? "#6B6B6B" : "#0A0A0A",
+        marginBottom: light ? 0 : 6,
+        marginTop: light ? 14 : 0,
+      }}
+    >
       {children}
     </motion.span>
   )
 }
 
-// ─── HERO ─────────────────────────────────────────────────────────────────────
+// ─── HERO ────────────────────────────────────────────────────────────────────
 
 function Hero({ onContactClick }) {
+  const [viewHovered, setViewHovered] = useState(false)
+
   return (
     <section
       aria-labelledby="hero-heading"
@@ -98,12 +101,10 @@ function Hero({ onContactClick }) {
       }}
     >
       <div style={{ maxWidth: 1280, margin: "0 auto", padding: "100px 48px 60px", width: "100%" }}>
-
         <div className="hero-grid" style={{
           display: "grid", gridTemplateColumns: "1fr 1fr",
           gap: 64, alignItems: "center", minHeight: "60vh",
         }}>
-
           {/* Floating phones */}
           <motion.div
             className="hero-phones"
@@ -114,19 +115,19 @@ function Hero({ onContactClick }) {
           >
             <motion.img
               src="/images/hero-phones.png"
-              alt="Mobile app screenshots — Piccadilly and Gym app"
+              alt="Mobile app screenshots"
               animate={{ y: [0, -14, 0] }}
               transition={{ duration: 4.5, ease: "easeInOut", repeat: Infinity }}
-              style={{ width: "100%", maxWidth: 540, height: "auto", display: "block" }}
+              style={{ width: "100%", maxWidth: 540, height: "auto", display: "block", mixBlendMode: "multiply" }}
             />
           </motion.div>
 
           {/* Text */}
           <div>
             <h1 id="hero-heading" style={{ margin: 0 }}>
-              <TextReveal delay={0.2}>I design with purpose.</TextReveal>
-              <TextReveal delay={0.5} serif>Every pixel has a reason.</TextReveal>
-              <TextReveal delay={0.8} light>Ten years of making the complex feel effortless.</TextReveal>
+              <HeroLine delay={0.2}>I design with purpose.</HeroLine>
+              <HeroLine delay={0.4} serif>Every pixel has a reason.</HeroLine>
+              <HeroLine delay={0.6} light size="20px">Ten years of making the complex feel effortless.</HeroLine>
             </h1>
 
             <motion.div
@@ -156,25 +157,43 @@ function Hero({ onContactClick }) {
                 >
                   Get in touch
                 </motion.button>
-                <motion.a
-                  href="#work"
-                  whileHover={{ borderColor: T.ink }}
-                  style={{
-                    fontFamily: "system-ui, sans-serif", fontSize: 12, fontWeight: 700,
-                    letterSpacing: "0.05em", textTransform: "uppercase",
-                    color: T.ink, border: "1.5px solid #CCCCCC",
-                    padding: "12px 26px", borderRadius: 26, textDecoration: "none",
-                    display: "inline-block",
-                  }}
-                >
-                  View work
-                </motion.a>
+
+                {/* View work — gradient border on hover */}
+                <div style={{ position: "relative", display: "inline-block" }}>
+                  {viewHovered && (
+                    <span style={{
+                      position: "absolute", inset: 0, borderRadius: 26,
+                      background: "linear-gradient(90deg, #6C1FF3, #DA37F4)",
+                      padding: "1.5px",
+                      WebkitMask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
+                      WebkitMaskComposite: "xor",
+                      maskComposite: "exclude",
+                      pointerEvents: "none",
+                    }} />
+                  )}
+                  <motion.a
+                    href="#work"
+                    onMouseEnter={() => setViewHovered(true)}
+                    onMouseLeave={() => setViewHovered(false)}
+                    style={{
+                      fontFamily: "system-ui, sans-serif", fontSize: 12, fontWeight: 700,
+                      letterSpacing: "0.05em", textTransform: "uppercase",
+                      color: T.ink,
+                      border: viewHovered ? "1.5px solid transparent" : "1.5px solid #CCCCCC",
+                      padding: "12px 26px", borderRadius: 26, textDecoration: "none",
+                      display: "inline-block", position: "relative",
+                      transition: "border-color 0.2s",
+                    }}
+                  >
+                    View work
+                  </motion.a>
+                </div>
               </div>
             </motion.div>
           </div>
         </div>
 
-        {/* Metrics with counters */}
+        {/* Metrics */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -207,7 +226,7 @@ function Hero({ onContactClick }) {
   )
 }
 
-// ─── CASE CARD ────────────────────────────────────────────────────────────────
+// ─── CASE CARD ───────────────────────────────────────────────────────────────
 
 function CaseCard({ c, index }) {
   const ref = useRef(null)
@@ -237,23 +256,14 @@ function CaseCard({ c, index }) {
         style={{ textDecoration: "none", display: "flex", flexDirection: "column", flex: 1 }}
         onClick={c.comingSoon ? (e) => e.preventDefault() : undefined}
       >
-        {/* Image — full cover, no bg bleeding */}
-        <div style={{
-          height: 280, overflow: "hidden",
-          position: "relative", flexShrink: 0,
-          background: c.bg,
-        }}>
+        <div style={{ height: 280, overflow: "hidden", position: "relative", flexShrink: 0, background: c.bg }}>
           <motion.img
             src={c.image}
             alt={`${c.company} project screenshot`}
             loading="lazy"
             animate={{ scale: hovered ? 1.04 : 1, y: hovered ? -8 : 0 }}
             transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-            style={{
-              width: "100%", height: "100%",
-              objectFit: "contain",
-              objectPosition: "center",
-            }}
+            style={{ width: "100%", height: "100%", objectFit: "contain", objectPosition: "center" }}
           />
           {c.comingSoon && (
             <span style={{
@@ -267,7 +277,6 @@ function CaseCard({ c, index }) {
           )}
         </div>
 
-        {/* Body */}
         <div style={{ padding: "28px 32px 32px", background: T.white, flex: 1, display: "flex", flexDirection: "column" }}>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 14 }}>
             <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
@@ -281,52 +290,55 @@ function CaseCard({ c, index }) {
             </div>
           </div>
 
-          <div style={{
-            fontFamily: "Georgia, serif", fontSize: 12, fontStyle: "italic",
-            color: T.mid, marginBottom: 8,
-          }}>
+          <div style={{ fontFamily: "Georgia, serif", fontSize: 12, fontStyle: "italic", color: T.mid, marginBottom: 8 }}>
             {c.company}
           </div>
 
           <h3
             id={`case-title-${c.id}`}
             style={{
-              fontFamily: "system-ui, -apple-system, sans-serif",
-              fontSize: "clamp(17px, 1.7vw, 21px)", fontWeight: 700,
-              letterSpacing: "-0.025em", color: T.ink, lineHeight: 1.3, flex: 1,
+              fontFamily: "Georgia, serif",
+              fontSize: "clamp(18px, 1.8vw, 23px)", fontWeight: 400,
+              fontStyle: "italic",
+              letterSpacing: "-0.02em", color: T.ink, lineHeight: 1.3, flex: 1,
             }}
           >
             {c.title}
           </h3>
 
-          <motion.div
-            animate={{ color: hovered ? T.ink : "#AAAAAA" }}
-            transition={{ duration: 0.25 }}
-            style={{
-              marginTop: 24, display: "flex", alignItems: "center", gap: 6,
+          {/* Read case study button */}
+          {!c.comingSoon ? (
+            <div style={{ marginTop: 24, paddingTop: 20, borderTop: `1px solid ${T.rule}` }}>
+              <span style={{
+                display: "inline-block",
+                fontFamily: "system-ui, sans-serif", fontSize: 12, fontWeight: 700,
+                letterSpacing: "0.05em", textTransform: "uppercase",
+                color: T.white,
+                background: hovered
+                  ? "linear-gradient(90deg, #6C1FF3, #DA37F4)"
+                  : T.ink,
+                padding: "11px 20px", borderRadius: 22,
+                transition: "background 0.3s",
+              }}>
+                Read case study →
+              </span>
+            </div>
+          ) : (
+            <div style={{
+              marginTop: 24, paddingTop: 20, borderTop: `1px solid ${T.rule}`,
               fontFamily: "system-ui, sans-serif", fontSize: 13, fontWeight: 600,
-              letterSpacing: "0.02em", paddingTop: 20,
-              borderTop: `1px solid ${T.rule}`,
-            }}
-          >
-            {c.comingSoon ? "Coming soon" : "Read case study"}
-            {!c.comingSoon && (
-              <motion.span
-                animate={{ x: hovered ? 5 : 0 }}
-                transition={{ duration: 0.25 }}
-                aria-hidden="true"
-              >
-                →
-              </motion.span>
-            )}
-          </motion.div>
+              color: "#AAAAAA",
+            }}>
+              Coming soon
+            </div>
+          )}
         </div>
       </Link>
     </motion.article>
   )
 }
 
-// ─── WORK ─────────────────────────────────────────────────────────────────────
+// ─── WORK ────────────────────────────────────────────────────────────────────
 
 function Work() {
   return (
@@ -349,7 +361,7 @@ function Work() {
   )
 }
 
-// ─── CAPABILITIES ─────────────────────────────────────────────────────────────
+// ─── CAPABILITIES ────────────────────────────────────────────────────────────
 
 function Capabilities() {
   const items = [
@@ -382,8 +394,10 @@ function Capabilities() {
                 }}>{item.n}</div>
                 <h3 style={{
                   fontFamily: "system-ui, sans-serif", fontSize: 18, fontWeight: 700,
-                  letterSpacing: "-0.02em", color: T.ink, marginBottom: 14,
-                }}>{item.title}</h3>
+                  letterSpacing: "-0.02em", marginBottom: 14,
+                }}>
+                  {item.title}
+                </h3>
                 <p style={{
                   fontFamily: "system-ui, sans-serif", fontSize: 14,
                   color: T.mid, lineHeight: 1.75, margin: 0,
@@ -397,7 +411,115 @@ function Capabilities() {
   )
 }
 
-// ─── ABOUT ────────────────────────────────────────────────────────────────────
+// ─── MY TOOLS ────────────────────────────────────────────────────────────────
+
+const SI = "https://cdn.simpleicons.org"
+const GB = "https://raw.githubusercontent.com/gilbarbara/logos/main/logos"
+
+const TOOLS = [
+  { name:"Figma",           type:"si", slug:"figma",               bg:"#1ABCFE", ic:"fff" },
+  { name:"FigJam",          type:"inl", svg:`<svg viewBox="0 0 48 48"><rect width="48" height="48" rx="24" fill="#F24E1E"/><text x="24" y="31" font-family="system-ui" font-weight="900" font-size="16" fill="white" text-anchor="middle">FJ</text></svg>`, bg:"#F24E1E" },
+  { name:"Photoshop",       type:"gb",  file:"adobe-photoshop.svg",    bg:"#001E36" },
+  { name:"Illustrator",     type:"gb",  file:"adobe-illustrator.svg",  bg:"#FF7C00" },
+  { name:"Procreate",       type:"inl", svg:`<svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="11" fill="none" stroke="white" stroke-width="3"/><circle cx="24" cy="24" r="4.5" fill="white"/><line x1="24" y1="13" x2="24" y2="8" stroke="white" stroke-width="2.5" stroke-linecap="round"/><line x1="24" y1="35" x2="24" y2="40" stroke="white" stroke-width="2.5" stroke-linecap="round"/><line x1="13" y1="24" x2="8" y2="24" stroke="white" stroke-width="2.5" stroke-linecap="round"/><line x1="35" y1="24" x2="40" y2="24" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg>`, bg:"#1A1A1A" },
+  { name:"Framer",          type:"si",  slug:"framer",               bg:"#0055FF", ic:"fff" },
+  { name:"Confluence",      type:"si",  slug:"confluence",           bg:"#172B4D", ic:"fff" },
+  { name:"Notion",          type:"si",  slug:"notion",               bg:"#F5F5F5", ic:"000" },
+  { name:"Jira",            type:"si",  slug:"jira",                 bg:"#0052CC", ic:"fff" },
+  { name:"Miro",            type:"si",  slug:"miro",                 bg:"#FFD02F", ic:"000" },
+  { name:"Maze",            type:"si",  slug:"maze",                 bg:"#6240C8", ic:"fff" },
+  { name:"UserTesting",     type:"inl", svg:`<svg viewBox="0 0 48 48"><circle cx="24" cy="17" r="8" fill="white"/><path d="M6 42 Q6 30 24 30 Q42 30 42 42" fill="white"/></svg>`, bg:"#F5604C" },
+  { name:"Hotjar",          type:"si",  slug:"hotjar",               bg:"#FF3C00", ic:"fff" },
+  { name:"Google Analytics",type:"si",  slug:"googleanalytics",      bg:"#E37400", ic:"fff" },
+  { name:"Zeroheight",      type:"gb",  file:"zeroheight.svg",       bg:"#200060" },
+  { name:"Storybook",       type:"si",  slug:"storybook",            bg:"#FF4785", ic:"fff" },
+  { name:"Claude",          type:"si",  slug:"claude",               bg:"#D97757", ic:"fff" },
+  { name:"Claude Design",   type:"si",  slug:"anthropic",            bg:"#1A1A1A", ic:"fff" },
+  { name:"Lovable",         type:"inl", svg:`<svg viewBox="0 0 48 48"><path d="M24 37 L9 22 C4 16 9 8 16 8 C20.5 8 23 12 24 15 C25 12 27.5 8 32 8 C39 8 44 16 39 22 Z" fill="white"/></svg>`, bg:"#FF3D68" },
+  { name:"Vercel",          type:"si",  slug:"vercel",               bg:"#111111", ic:"fff" },
+  { name:"Salesforce",      type:"gb",  file:"salesforce.svg",       bg:"#00A1E0" },
+]
+
+function ToolIcon({ tool }) {
+  if (tool.type === "si") return <img src={`${SI}/${tool.slug}/${tool.ic}`} alt={tool.name} width={20} height={20} loading="lazy" style={{ display:"block", width:20, height:20, objectFit:"contain" }} />
+  if (tool.type === "gb") return <img src={`${GB}/${tool.file}`} alt={tool.name} width={24} height={24} loading="lazy" style={{ display:"block", width:24, height:24, objectFit:"contain" }} />
+  return <span style={{ display:"block", width:26, height:26 }} dangerouslySetInnerHTML={{ __html: tool.svg }} />
+}
+
+function ToolBadge({ tool }) {
+  return (
+    <div style={{
+      display:"flex", alignItems:"center", gap:10,
+      padding:"8px 16px 8px 8px",
+      border:"1px solid rgba(0,0,0,0.1)", borderRadius:999,
+      background:"#fff", whiteSpace:"nowrap",
+      transition:"transform 0.2s, border-color 0.2s",
+      cursor:"default",
+    }}
+      onMouseEnter={e => { e.currentTarget.style.transform = "translateY(-3px)"; e.currentTarget.style.borderColor = "rgba(0,0,0,0.25)" }}
+      onMouseLeave={e => { e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.borderColor = "rgba(0,0,0,0.1)" }}
+    >
+      <span style={{
+        width:38, height:38, borderRadius:"50%", background:tool.bg,
+        display:"flex", alignItems:"center", justifyContent:"center",
+        flexShrink:0, overflow:"hidden",
+      }}>
+        <ToolIcon tool={tool} />
+      </span>
+      <span style={{ fontSize:13, fontWeight:500, color:T.ink, fontFamily:"system-ui,sans-serif", letterSpacing:"-0.01em" }}>
+        {tool.name}
+      </span>
+    </div>
+  )
+}
+
+function MarqueeRow({ items, reverse = false, duration = "34s" }) {
+  const loop = [...items, ...items]
+  return (
+    <div style={{
+      overflow:"hidden",
+      WebkitMaskImage:"linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent)",
+      maskImage:"linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent)",
+    }}>
+      <div style={{
+        display:"flex", width:"max-content", gap:12,
+        animation:`tools-scroll ${duration} linear infinite`,
+        animationDirection: reverse ? "reverse" : "normal",
+        willChange:"transform",
+      }}>
+        {loop.map((tool, i) => <ToolBadge key={`${tool.name}-${i}`} tool={tool} />)}
+      </div>
+    </div>
+  )
+}
+
+function MyTools() {
+  const half = Math.ceil(TOOLS.length / 2)
+  return (
+    <section aria-labelledby="tools-heading" style={{ padding:"100px 0", background:"#EBEBEB", overflow:"hidden" }}>
+      <style>{`
+        @keyframes tools-scroll {
+          from { transform: translateX(0); }
+          to   { transform: translateX(-50%); }
+        }
+      `}</style>
+      <div style={{ maxWidth:1280, margin:"0 auto 52px", padding:"0 48px" }}>
+        <h2 id="tools-heading" style={{
+          fontFamily:"system-ui, sans-serif",
+          fontSize:"clamp(26px, 3vw, 36px)", fontWeight:800,
+          letterSpacing:"-0.04em", color:T.ink,
+        }}>
+          My tools
+        </h2>
+      </div>
+      <MarqueeRow items={TOOLS.slice(0, half)} duration="38s" />
+      <div style={{ height:12 }} />
+      <MarqueeRow items={TOOLS.slice(half)} duration="46s" reverse />
+    </section>
+  )
+}
+
+// ─── ABOUT ───────────────────────────────────────────────────────────────────
 
 function About() {
   return (
@@ -419,10 +541,10 @@ function About() {
           </FadeUp>
           <FadeUp delay={0.2}>
             <p style={{ fontFamily: "system-ui, sans-serif", fontSize: 15, lineHeight: 1.8, color: T.mid, marginBottom: 20 }}>
-              I'm a Product Designer who works at the intersection of business, research and craft. My background in Advertising gives me a strong sense of positioning, communication and business goals. My postgrad in UX keeps me grounded in real user needs.
+              I'm a Product Designer at the intersection of business, research and interface craft. My background in Advertising sharpens how I think about positioning and business goals. My postgrad in UX keeps me grounded in real user needs.
             </p>
             <p style={{ fontFamily: "system-ui, sans-serif", fontSize: 15, lineHeight: 1.8, color: T.mid, marginBottom: 36 }}>
-              Over 10 years I've worked across fintech, media, retail, HR tech and health. I've led discovery sessions, built design systems from scratch, conducted research with 50+ users and shipped products used by millions. I work well in cross-functional teams, in English and Portuguese, and I care deeply about accessibility and inclusive design.
+              I've led discovery sessions, built design systems from scratch, conducted research with 50+ users and shipped products used by millions. I work well in cross-functional teams, in English and Portuguese, and I care deeply about accessibility and inclusive design.
             </p>
             <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginBottom: 32 }}>
               {["Figma", "UX Research", "Design Systems", "Prototyping", "Usability Testing", "Accessibility", "Hotjar", "Maze", "Miro", "Jira", "Webflow"].map(s => (
@@ -434,23 +556,21 @@ function About() {
               ))}
             </div>
             <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
-              {[
-                { label: "LinkedIn", href: "https://www.linkedin.com/in/isabellegalves/" },
-                { label: "Resume", href: "/resume.pdf" },
-              ].map(l => (
-                <motion.a key={l.label} href={l.href}
-                  target={l.href.startsWith("http") ? "_blank" : undefined}
-                  rel={l.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                  whileHover={{ background: T.ink, color: T.white }}
-                  style={{
-                    fontFamily: "system-ui, sans-serif", fontSize: 11, fontWeight: 700,
-                    letterSpacing: "0.05em", textTransform: "uppercase",
-                    color: T.ink, border: `1.5px solid ${T.ink}`,
-                    padding: "9px 18px", borderRadius: 20, textDecoration: "none",
-                    display: "inline-block",
-                  }}
-                >{l.label}</motion.a>
-              ))}
+              <motion.a
+                href="https://www.linkedin.com/in/isabellegalves/"
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ background: T.ink, color: T.white }}
+                style={{
+                  fontFamily: "system-ui, sans-serif", fontSize: 11, fontWeight: 700,
+                  letterSpacing: "0.05em", textTransform: "uppercase",
+                  color: T.ink, border: `1.5px solid ${T.ink}`,
+                  padding: "9px 18px", borderRadius: 20, textDecoration: "none",
+                  display: "inline-block",
+                }}
+              >
+                LinkedIn
+              </motion.a>
             </div>
           </FadeUp>
         </div>
@@ -469,10 +589,9 @@ function ContactSection({ onContactClick }) {
           fontFamily: "Georgia, serif",
           fontSize: "clamp(36px, 6vw, 76px)",
           fontStyle: "italic", fontWeight: 400,
-          letterSpacing: "-0.04em", color: T.white,
-          lineHeight: 1, marginBottom: 44,
+          letterSpacing: "-0.04em", lineHeight: 1, marginBottom: 44,
         }}>
-          Good work starts<br />with a good conversation.
+          Good work starts with a good conversation.
         </h2>
         <motion.button
           onClick={onContactClick}
@@ -493,14 +612,16 @@ function ContactSection({ onContactClick }) {
   )
 }
 
-// ─── HOME ─────────────────────────────────────────────────────────────────────
+// ─── HOME ────────────────────────────────────────────────────────────────────
 
 export default function Home({ onContactClick }) {
   return (
     <main>
+      <style>{GLOBAL_STYLES}</style>
       <Hero onContactClick={onContactClick} />
       <Work />
       <Capabilities />
+      <MyTools />
       <About />
       <ContactSection onContactClick={onContactClick} />
     </main>

@@ -94,9 +94,14 @@ export default function ContactModal({ onClose }) {
             href="https://www.linkedin.com/in/isabellegalves/"
             target="_blank"
             rel="noopener noreferrer"
-            style={actionBtnStyle(false)}
+            aria-label="Open LinkedIn profile"
+            style={iconBtnStyle}
           >
-            Open
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+              <polyline points="15 3 21 3 21 9"/>
+              <line x1="10" y1="14" x2="21" y2="3"/>
+            </svg>
           </a>
         </div>
 
@@ -111,9 +116,12 @@ export default function ContactModal({ onClose }) {
           <button
             onClick={() => copy("+5521970958098", setCopiedPhone)}
             aria-label={copiedPhone ? "Phone number copied" : "Copy phone number"}
-            style={copyBtnStyle(copiedPhone)}
+            style={iconBtnStyle}
           >
-            {copiedPhone ? "Copied!" : "Copy"}
+            {copiedPhone
+              ? <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2D7D46" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              : <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            }
           </button>
         </div>
 
@@ -128,9 +136,12 @@ export default function ContactModal({ onClose }) {
           <button
             onClick={() => copy("isabellegalves@gmail.com", setCopiedEmail)}
             aria-label={copiedEmail ? "Email copied" : "Copy email"}
-            style={copyBtnStyle(copiedEmail)}
+            style={iconBtnStyle}
           >
-            {copiedEmail ? "Copied!" : "Copy"}
+            {copiedEmail
+              ? <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2D7D46" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              : <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            }
           </button>
         </div>
       </div>
@@ -147,19 +158,11 @@ const labelStyle = {
   letterSpacing: "0.08em", textTransform: "uppercase", color: "#888888",
   marginBottom: 4,
 }
-const actionBtnStyle = () => ({
-  fontFamily: "system-ui, sans-serif", fontSize: 11, fontWeight: 600,
-  letterSpacing: "0.04em", textTransform: "uppercase",
-  color: "#0A0A0A", background: "#F7F7F5",
-  border: "none", padding: "6px 12px", borderRadius: 8,
-  cursor: "pointer", marginLeft: 16, textDecoration: "none",
-  whiteSpace: "nowrap", display: "inline-block",
-})
-const copyBtnStyle = (copied) => ({
-  fontFamily: "system-ui, sans-serif", fontSize: 11, fontWeight: 600,
-  letterSpacing: "0.04em", textTransform: "uppercase",
-  color: copied ? "#2D7D46" : "#888888",
-  background: copied ? "#EDF7F1" : "#F7F7F5",
-  border: "none", padding: "6px 12px", borderRadius: 8,
-  cursor: "pointer", transition: "all 0.2s", whiteSpace: "nowrap", marginLeft: 16,
-})
+const iconBtnStyle = {
+  width: 34, height: 34,
+  display: "flex", alignItems: "center", justifyContent: "center",
+  background: "#F7F7F5", border: "none", borderRadius: 8,
+  cursor: "pointer", color: "#0A0A0A", flexShrink: 0,
+  marginLeft: 16, textDecoration: "none",
+  transition: "background 0.15s",
+}

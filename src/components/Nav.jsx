@@ -19,7 +19,7 @@ export default function Nav({ onContactClick }) {
       aria-label="Main navigation"
       style={{
         position: "fixed", top: 0, left: 0, right: 0, zIndex: 100,
-        height: 64,
+        height: 72,
         background: solid ? "rgba(255,255,255,0.93)" : "transparent",
         backdropFilter: solid ? "blur(12px)" : "none",
         borderBottom: solid ? `1px solid ${T.rule}` : "none",
@@ -33,25 +33,25 @@ export default function Nav({ onContactClick }) {
         <Link
           to="/"
           aria-label="Isabelle Alves, home"
-          style={{
-            fontFamily: "system-ui, -apple-system, sans-serif",
-            fontSize: 15, fontWeight: 700, letterSpacing: "-0.02em",
-            color: T.ink, textDecoration: "none",
-          }}
+          style={{ display: "flex", alignItems: "center", textDecoration: "none" }}
         >
-          Isabelle Alves
+          <img
+            src={solid ? "/images/logo-black.svg" : "/images/logo-white.svg"}
+            alt="Isabelle Alves"
+            style={{ height: 22, width: "auto", display: "block", transition: "opacity 0.3s" }}
+          />
         </Link>
 
-        <div style={{ display: "flex", gap: 4, alignItems: "center" }}>
-          <Link to="/#work" style={navLinkStyle}>Work</Link>
-          <Link to="/#about" style={navLinkStyle}>About</Link>
+        <div style={{ display: "flex", gap: 6, alignItems: "center" }}>
+          <Link to="/#work" style={navLinkStyle(solid)}>Work</Link>
+          <Link to="/#about" style={navLinkStyle(solid)}>About</Link>
           <button
             onClick={onContactClick}
             style={{
               fontFamily: "system-ui, -apple-system, sans-serif",
-              fontSize: 13, fontWeight: 600,
+              fontSize: 14, fontWeight: 600,
               color: T.white, background: T.ink,
-              border: "none", padding: "7px 16px", borderRadius: 20,
+              border: "none", padding: "9px 20px", borderRadius: 24,
               cursor: "pointer", transition: "opacity 0.2s",
             }}
             onMouseEnter={e => e.currentTarget.style.opacity = "0.75"}
@@ -65,10 +65,11 @@ export default function Nav({ onContactClick }) {
   )
 }
 
-const navLinkStyle = {
+const navLinkStyle = (solid) => ({
   fontFamily: "system-ui, -apple-system, sans-serif",
-  fontSize: 13, fontWeight: 500, letterSpacing: "0.01em",
-  color: "#4A4A4A", textDecoration: "none",
+  fontSize: 14, fontWeight: 500, letterSpacing: "0.01em",
+  color: solid ? "#4A4A4A" : "rgba(255,255,255,0.85)",
+  textDecoration: "none",
   padding: "6px 14px", borderRadius: 20,
   transition: "color 0.2s, background 0.2s",
-}
+})
