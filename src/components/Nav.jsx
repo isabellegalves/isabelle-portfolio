@@ -7,6 +7,8 @@ export default function Nav({ onContactClick }) {
   const location = useLocation()
   const isHome = location.pathname === "/"
   const solid = scrollY > 60 || !isHome
+  // Background is always white/light, so always use black logo
+  const useDarkLogo = true
 
   useEffect(() => {
     const fn = () => setScrollY(window.scrollY)
@@ -36,26 +38,30 @@ export default function Nav({ onContactClick }) {
           style={{ display: "flex", alignItems: "center", textDecoration: "none" }}
         >
           <img
-            src={solid ? "/images/logo-black.svg" : "/images/logo-white.svg"}
+            src={useDarkLogo ? "/images/logo-black.svg" : "/images/logo-white.svg"}
             alt="Isabelle Alves"
-            style={{ height: 32, width: "auto", display: "block", transition: "opacity 0.3s" }}
+            style={{ height: 45, width: "auto", display: "block", transition: "opacity 0.3s" }}
           />
         </Link>
 
         <div style={{ display: "flex", gap: 6, alignItems: "center" }}>
-          <Link to="/#work" style={navLinkStyle(solid)}>Work</Link>
-          <Link to="/#about" style={navLinkStyle(solid)}>About</Link>
+          <Link to="/#work" style={navLinkStyle(useDarkLogo)}>Work</Link>
+          <Link to="/#about" style={navLinkStyle(useDarkLogo)}>About</Link>
           <button
             onClick={onContactClick}
+            onMouseEnter={e => {
+              e.currentTarget.style.background = "linear-gradient(90deg, #6C1FF3, #DA37F4)"
+            }}
+            onMouseLeave={e => {
+              e.currentTarget.style.background = T.ink
+            }}
             style={{
               fontFamily: "system-ui, -apple-system, sans-serif",
               fontSize: 14, fontWeight: 600,
               color: T.white, background: T.ink,
               border: "none", padding: "9px 20px", borderRadius: 24,
-              cursor: "pointer", transition: "opacity 0.2s",
+              cursor: "pointer", transition: "background 0.3s",
             }}
-            onMouseEnter={e => e.currentTarget.style.opacity = "0.75"}
-            onMouseLeave={e => e.currentTarget.style.opacity = "1"}
           >
             Contact
           </button>

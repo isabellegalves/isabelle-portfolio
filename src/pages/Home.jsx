@@ -81,6 +81,29 @@ function HeroLine({ children, delay = 0, serif = false, light = false, size }) {
   )
 }
 
+// ─── GRADIENT BUTTON ─────────────────────────────────────────────────────────
+
+function GradientButton({ children, onClick }) {
+  const [hovered, setHovered] = useState(false)
+  return (
+    <button
+      onClick={onClick}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      style={{
+        fontFamily: "system-ui, sans-serif", fontSize: 12, fontWeight: 700,
+        letterSpacing: "0.05em", textTransform: "uppercase",
+        color: T.white,
+        background: hovered ? "linear-gradient(90deg, #6C1FF3, #DA37F4)" : T.ink,
+        border: "none", padding: "13px 26px", borderRadius: 26,
+        cursor: "pointer", transition: "background 0.3s",
+      }}
+    >
+      {children}
+    </button>
+  )
+}
+
 // ─── HERO ────────────────────────────────────────────────────────────────────
 
 function Hero({ onContactClick }) {
@@ -112,7 +135,10 @@ function Hero({ onContactClick }) {
               alt="Mobile app screenshots"
               animate={{ y: [0, -14, 0] }}
               transition={{ duration: 4.5, ease: "easeInOut", repeat: Infinity }}
-              style={{ width: "100%", maxWidth: 540, height: "auto", display: "block", mixBlendMode: "multiply" }}
+              style={{
+                width: "85%", maxWidth: 420, height: "auto", display: "block",
+                mixBlendMode: "multiply",
+              }}
             />
           </motion.div>
 
@@ -137,20 +163,7 @@ function Hero({ onContactClick }) {
                 Product Designer with 10 years of experience working at the intersection of business strategy, user research and interface craft. I've helped companies like Condé Nast, Bradesco and Sodexo build products that serve both users and business goals.
               </p>
               <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
-                <motion.button
-                  onClick={onContactClick}
-                  whileHover={{ opacity: 0.75 }}
-                  whileTap={{ scale: 0.97 }}
-                  style={{
-                    fontFamily: "system-ui, sans-serif", fontSize: 12, fontWeight: 700,
-                    letterSpacing: "0.05em", textTransform: "uppercase",
-                    color: T.white, background: T.ink,
-                    border: "none", padding: "13px 26px", borderRadius: 26,
-                    cursor: "pointer",
-                  }}
-                >
-                  Get in touch
-                </motion.button>
+                <GradientButton onClick={onContactClick}>Get in touch</GradientButton>
 
                 {/* View work — gradient border on hover */}
                 <div style={{ position: "relative", display: "inline-block" }}>
@@ -307,12 +320,13 @@ function CaseCard({ c, index }) {
                 display: "inline-block",
                 fontFamily: "system-ui, sans-serif", fontSize: 12, fontWeight: 700,
                 letterSpacing: "0.05em", textTransform: "uppercase",
-                color: T.white,
-                background: hovered
-                  ? "linear-gradient(90deg, #6C1FF3, #DA37F4)"
-                  : T.ink,
-                padding: "11px 20px", borderRadius: 22,
-                transition: "background 0.3s",
+                ...(hovered ? {
+                  background: "linear-gradient(90deg, #6C1FF3, #DA37F4)",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  backgroundClip: "text",
+                } : { color: T.ink }),
+                transition: "all 0.25s",
               }}>
                 Read case study →
               </span>
@@ -581,27 +595,14 @@ function ContactSection({ onContactClick }) {
       <FadeUp>
         <h2 id="contact-heading" style={{
           fontFamily: "Georgia, serif",
-          fontSize: "clamp(36px, 6vw, 76px)",
+          fontSize: "clamp(28px, 4vw, 52px)",
           fontStyle: "italic", fontWeight: 400,
-          letterSpacing: "-0.04em", lineHeight: 1, marginBottom: 44,
-          color: T.white,
+          letterSpacing: "-0.04em", lineHeight: 1.1, marginBottom: 44,
+          color: "#FFFFFF",
         }}>
           Good work starts with a good conversation.
         </h2>
-        <motion.button
-          onClick={onContactClick}
-          whileHover={{ opacity: 0.85 }}
-          whileTap={{ scale: 0.97 }}
-          style={{
-            fontFamily: "system-ui, sans-serif", fontSize: 12, fontWeight: 700,
-            letterSpacing: "0.06em", textTransform: "uppercase",
-            color: T.ink, background: T.white,
-            border: "none", padding: "15px 34px", borderRadius: 32,
-            cursor: "pointer",
-          }}
-        >
-          Get in touch
-        </motion.button>
+        <GradientButton onClick={onContactClick}>Get in touch</GradientButton>
       </FadeUp>
     </section>
   )
