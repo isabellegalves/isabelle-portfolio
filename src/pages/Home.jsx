@@ -136,7 +136,7 @@ function Hero({ onContactClick }) {
               animate={{ y: [0, -14, 0] }}
               transition={{ duration: 4.5, ease: "easeInOut", repeat: Infinity }}
               style={{
-                width: "85%", maxWidth: 420, height: "auto", display: "block",
+                width: "75%", maxWidth: "380px", height: "auto", display: "block",
                 mixBlendMode: "multiply",
               }}
             />
