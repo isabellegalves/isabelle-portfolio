@@ -38,7 +38,7 @@ export default function Nav({ onContactClick }) {
           <img
             src={solid ? "/images/logo-black.svg" : "/images/logo-white.svg"}
             alt="Isabelle Alves"
-            style={{ height: 22, width: "auto", display: "block", transition: "opacity 0.3s" }}
+            style={{ height: 32, width: "auto", display: "block", transition: "opacity 0.3s" }}
           />
         </Link>
 

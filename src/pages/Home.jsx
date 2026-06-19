@@ -6,13 +6,7 @@ import { cases } from "../data/cases"
 
 const spring = { duration: 0.9, ease: [0.16, 1, 0.3, 1] }
 
-// Gradient applied ONLY on hover to clickable elements
-const HOVER_GRAD = {
-  background: "linear-gradient(90deg, #6C1FF3, #DA37F4)",
-  WebkitBackgroundClip: "text",
-  WebkitTextFillColor: "transparent",
-  backgroundClip: "text",
-}
+
 
 // ─── FADE UP ─────────────────────────────────────────────────────────────────
 
@@ -590,6 +584,7 @@ function ContactSection({ onContactClick }) {
           fontSize: "clamp(36px, 6vw, 76px)",
           fontStyle: "italic", fontWeight: 400,
           letterSpacing: "-0.04em", lineHeight: 1, marginBottom: 44,
+          color: T.white,
         }}>
           Good work starts with a good conversation.
         </h2>
