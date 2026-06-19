@@ -1,45 +1,88 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import { Link } from "react-router-dom"
-import { motion, useInView } from "framer-motion"
-import { useRef } from "react"
+import { motion, useInView, useScroll, useTransform, animate } from "framer-motion"
 import { T } from "../tokens"
 import { cases } from "../data/cases"
 
-// ─── ANIMATION VARIANTS ──────────────────────────────────────────────────────
+// ─── VARIANTS ────────────────────────────────────────────────────────────────
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 32 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } },
-}
+const spring = { duration: 0.9, ease: [0.16, 1, 0.3, 1] }
 
-const stagger = (delay = 0) => ({
-  hidden: { opacity: 0, y: 40 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.9, ease: [0.16, 1, 0.3, 1], delay } },
-})
-
-const phoneVariant = (delay, rotate, ty) => ({
-  hidden: { opacity: 0, y: 60, rotate: 0 },
-  show: {
-    opacity: 1, y: ty, rotate,
-    transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1], delay },
-  },
-})
-
-// ─── FADE UP WRAPPER ─────────────────────────────────────────────────────────
-
-function FadeUpSection({ children, delay = 0 }) {
+function FadeUp({ children, delay = 0 }) {
   const ref = useRef(null)
-  const inView = useInView(ref, { once: true, margin: "-80px" })
+  const inView = useInView(ref, { once: true, margin: "-60px" })
   return (
     <motion.div
       ref={ref}
-      variants={fadeUp}
-      initial="hidden"
-      animate={inView ? "show" : "hidden"}
-      transition={{ delay }}
+      initial={{ opacity: 0, y: 32 }}
+      animate={inView ? { opacity: 1, y: 0 } : {}}
+      transition={{ ...spring, delay }}
     >
       {children}
     </motion.div>
+  )
+}
+
+// ─── COUNTER ─────────────────────────────────────────────────────────────────
+
+function Counter({ to, suffix = "", duration = 1.4 }) {
+  const ref = useRef(null)
+  const inView = useInView(ref, { once: true, margin: "-40px" })
+  const [val, setVal] = useState(0)
+  const started = useRef(false)
+
+  useEffect(() => {
+    if (inView && !started.current) {
+      started.current = true
+      const controls = animate(0, to, {
+        duration,
+        ease: "easeOut",
+        onUpdate: (v) => setVal(Math.round(v)),
+      })
+      return () => controls.stop()
+    }
+  }, [inView, to, duration])
+
+  return (
+    <span ref={ref} style={{
+      fontFamily: "Georgia, serif", fontSize: 32, fontStyle: "italic",
+      color: T.ink, letterSpacing: "-0.03em", lineHeight: 1,
+    }}>
+      {val}{suffix}
+    </span>
+  )
+}
+
+// ─── TEXT REVEAL ─────────────────────────────────────────────────────────────
+
+function TextReveal({ children, delay = 0, serif = false, light = false }) {
+  const ref = useRef(null)
+  const inView = useInView(ref, { once: true, margin: "-40px" })
+
+  const baseStyle = {
+    display: "block",
+    fontSize: "clamp(40px, 5.5vw, 72px)",
+    lineHeight: 0.93,
+    letterSpacing: serif ? "-0.03em" : "-0.04em",
+    fontWeight: serif ? 400 : (light ? 400 : 800),
+    fontFamily: serif ? "Georgia, serif" : "system-ui, -apple-system, sans-serif",
+    fontStyle: serif ? "italic" : "normal",
+    marginBottom: 6,
+    backgroundClip: "text",
+    WebkitBackgroundClip: "text",
+    WebkitTextFillColor: "transparent",
+    backgroundSize: "200% 100%",
+    backgroundPosition: inView ? "0% 0%" : "100% 0%",
+    transition: `background-position 1.1s cubic-bezier(0.16,1,0.3,1) ${delay}s`,
+    backgroundImage: light
+      ? "linear-gradient(90deg, #4A4A4A 50%, #D0D0D0 50%)"
+      : "linear-gradient(90deg, #0A0A0A 50%, #D0D0D0 50%)",
+  }
+
+  return (
+    <motion.span ref={ref} style={baseStyle}>
+      {children}
+    </motion.span>
   )
 }
 
@@ -55,101 +98,43 @@ function Hero({ onContactClick }) {
       }}
     >
       <div style={{ maxWidth: 1280, margin: "0 auto", padding: "100px 48px 60px", width: "100%" }}>
-        <div style={{
-          display: "grid",
-          gridTemplateColumns: "1fr 1fr",
-          gap: 64,
-          alignItems: "center",
-          minHeight: "60vh",
-        }}
-          className="hero-grid"
-        >
-          {/* Phones */}
-          <div
+
+        <div className="hero-grid" style={{
+          display: "grid", gridTemplateColumns: "1fr 1fr",
+          gap: 64, alignItems: "center", minHeight: "60vh",
+        }}>
+
+          {/* Floating phones */}
+          <motion.div
             className="hero-phones"
-            style={{ position: "relative", height: 540 }}
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
+            style={{ display: "flex", alignItems: "center", justifyContent: "center" }}
           >
-            <motion.div
-              variants={phoneVariant(0.2, -6, -8)}
-              initial="hidden"
-              animate="show"
-              style={{
-                position: "absolute", left: "5%", top: "5%", width: "52%",
-                zIndex: 1, filter: "drop-shadow(0 24px 48px rgba(0,0,0,0.18))",
-              }}
-            >
-              <img
-                src="/images/hero-piccadilly.png"
-                alt="Piccadilly mobile app"
-                style={{ width: "100%", height: "auto", display: "block" }}
-              />
-            </motion.div>
-            <motion.div
-              variants={phoneVariant(0.45, 4, 8)}
-              initial="hidden"
-              animate="show"
-              style={{
-                position: "absolute", right: "2%", bottom: "3%", width: "54%",
-                zIndex: 2, filter: "drop-shadow(0 32px 56px rgba(0,0,0,0.22))",
-              }}
-            >
-              <img
-                src="/images/hero-gym.png"
-                alt="Gym app mobile"
-                style={{ width: "100%", height: "auto", display: "block" }}
-              />
-            </motion.div>
-          </div>
+            <motion.img
+              src="/images/hero-phones.png"
+              alt="Mobile app screenshots — Piccadilly and Gym app"
+              animate={{ y: [0, -14, 0] }}
+              transition={{ duration: 4.5, ease: "easeInOut", repeat: Infinity }}
+              style={{ width: "100%", maxWidth: 540, height: "auto", display: "block" }}
+            />
+          </motion.div>
 
           {/* Text */}
           <div>
             <h1 id="hero-heading" style={{ margin: 0 }}>
-              <motion.span
-                variants={stagger(0.3)}
-                initial="hidden"
-                animate="show"
-                style={{
-                  display: "block",
-                  fontFamily: "system-ui, -apple-system, sans-serif",
-                  fontSize: "clamp(40px, 5.5vw, 76px)",
-                  lineHeight: 0.93, letterSpacing: "-0.04em",
-                  fontWeight: 800, color: T.ink, marginBottom: 6,
-                }}
-              >
-                I design with purpose.
-              </motion.span>
-              <motion.span
-                variants={stagger(0.45)}
-                initial="hidden"
-                animate="show"
-                style={{
-                  display: "block",
-                  fontFamily: "Georgia, serif",
-                  fontSize: "clamp(40px, 5.5vw, 76px)",
-                  lineHeight: 0.93, letterSpacing: "-0.03em",
-                  fontWeight: 400, fontStyle: "italic",
-                  color: T.ink, marginBottom: 6,
-                }}
-              >
-                Every pixel has a reason.
-              </motion.span>
-              <motion.span
-                variants={stagger(0.6)}
-                initial="hidden"
-                animate="show"
-                style={{
-                  display: "block",
-                  fontFamily: "system-ui, -apple-system, sans-serif",
-                  fontSize: "clamp(20px, 2.8vw, 36px)",
-                  lineHeight: 1.2, letterSpacing: "-0.02em",
-                  fontWeight: 400, color: T.mid, marginTop: 10,
-                }}
-              >
-                Ten years of making the complex feel effortless.
-              </motion.span>
+              <TextReveal delay={0.2}>I design with purpose.</TextReveal>
+              <TextReveal delay={0.5} serif>Every pixel has a reason.</TextReveal>
+              <TextReveal delay={0.8} light>Ten years of making the complex feel effortless.</TextReveal>
             </h1>
 
-            <motion.div variants={stagger(0.75)} initial="hidden" animate="show" style={{ marginTop: 40 }}>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ ...spring, delay: 1.1 }}
+              style={{ marginTop: 36 }}
+            >
               <p style={{
                 fontFamily: "system-ui, sans-serif", fontSize: 16, lineHeight: 1.7,
                 color: T.mid, marginBottom: 28, maxWidth: 480,
@@ -157,60 +142,63 @@ function Hero({ onContactClick }) {
                 Product Designer with 10 years of experience working at the intersection of business strategy, user research and interface craft. I've helped companies like Condé Nast, Bradesco and Sodexo build products that serve both users and business goals.
               </p>
               <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
-                <button
+                <motion.button
                   onClick={onContactClick}
-                  aria-label="Open contact options"
+                  whileHover={{ opacity: 0.75 }}
+                  whileTap={{ scale: 0.97 }}
                   style={{
                     fontFamily: "system-ui, sans-serif", fontSize: 12, fontWeight: 700,
                     letterSpacing: "0.05em", textTransform: "uppercase",
                     color: T.white, background: T.ink,
                     border: "none", padding: "13px 26px", borderRadius: 26,
-                    cursor: "pointer", transition: "opacity 0.2s",
+                    cursor: "pointer",
                   }}
-                  onMouseEnter={e => e.currentTarget.style.opacity = "0.75"}
-                  onMouseLeave={e => e.currentTarget.style.opacity = "1"}
                 >
                   Get in touch
-                </button>
-                <a href="#work" style={{
-                  fontFamily: "system-ui, sans-serif", fontSize: 12, fontWeight: 700,
-                  letterSpacing: "0.05em", textTransform: "uppercase",
-                  color: T.ink, border: "1.5px solid #CCCCCC",
-                  padding: "12px 26px", borderRadius: 26, textDecoration: "none",
-                  transition: "border-color 0.2s", display: "inline-block",
-                }}
-                  onMouseEnter={e => e.currentTarget.style.borderColor = T.ink}
-                  onMouseLeave={e => e.currentTarget.style.borderColor = "#CCCCCC"}
+                </motion.button>
+                <motion.a
+                  href="#work"
+                  whileHover={{ borderColor: T.ink }}
+                  style={{
+                    fontFamily: "system-ui, sans-serif", fontSize: 12, fontWeight: 700,
+                    letterSpacing: "0.05em", textTransform: "uppercase",
+                    color: T.ink, border: "1.5px solid #CCCCCC",
+                    padding: "12px 26px", borderRadius: 26, textDecoration: "none",
+                    display: "inline-block",
+                  }}
                 >
                   View work
-                </a>
+                </motion.a>
               </div>
             </motion.div>
           </div>
         </div>
 
-        {/* Metrics */}
+        {/* Metrics with counters */}
         <motion.div
-          variants={stagger(1.0)}
-          initial="hidden"
-          animate="show"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ ...spring, delay: 1.3 }}
           style={{
             marginTop: 72, paddingTop: 32, borderTop: `1px solid ${T.rule}`,
             display: "flex", flexWrap: "wrap", gap: 0,
           }}
         >
           {[
-            { n: "30%", label: "Reduction in dev time at Bradesco" },
-            { n: "50+", label: "Users interviewed across projects" },
-            { n: "40%", label: "Faster delivery with Design Systems" },
-            { n: "4", label: "Products launched at Sodexo" },
+            { n: 30, suffix: "%", label: "Reduction in dev time at Bradesco" },
+            { n: 50, suffix: "+", label: "Users interviewed across projects" },
+            { n: 40, suffix: "%", label: "Faster delivery with Design Systems" },
+            { n: 4,  suffix: "",  label: "Products launched at Sodexo" },
           ].map((s, i) => (
             <div key={i} style={{
               flex: "1 1 160px", paddingRight: 28, marginRight: 28,
               borderRight: i < 3 ? `1px solid ${T.rule}` : "none",
             }}>
-              <div style={{ fontFamily: "Georgia, serif", fontSize: 32, fontStyle: "italic", color: T.ink, letterSpacing: "-0.03em", lineHeight: 1 }}>{s.n}</div>
-              <div style={{ fontFamily: "system-ui, sans-serif", fontSize: 11, color: T.mid, marginTop: 6, letterSpacing: "0.04em", textTransform: "uppercase" }}>{s.label}</div>
+              <Counter to={s.n} suffix={s.suffix} duration={1.2 + i * 0.1} />
+              <div style={{
+                fontFamily: "system-ui, sans-serif", fontSize: 11,
+                color: T.mid, marginTop: 6, letterSpacing: "0.04em", textTransform: "uppercase",
+              }}>{s.label}</div>
             </div>
           ))}
         </motion.div>
@@ -230,43 +218,48 @@ function CaseCard({ c, index }) {
     <motion.article
       ref={ref}
       initial={{ opacity: 0, y: 48 }}
-      animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 48 }}
-      transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: (index % 2) * 0.1 }}
+      animate={inView ? { opacity: 1, y: 0 } : {}}
+      transition={{ ...spring, delay: (index % 2) * 0.1 }}
       aria-labelledby={`case-title-${c.id}`}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       style={{
         border: `1px solid ${T.rule}`, borderRadius: 16, overflow: "hidden",
         display: "flex", flexDirection: "column",
+        transition: "box-shadow 0.35s ease, transform 0.35s ease",
         boxShadow: hovered ? "0 16px 48px rgba(0,0,0,0.09)" : "none",
-        transition: "box-shadow 0.35s ease",
+        transform: hovered ? "translateY(-4px)" : "translateY(0)",
+        cursor: "pointer",
       }}
     >
       <Link
         to={c.comingSoon ? "#" : `/work/${c.slug}`}
         style={{ textDecoration: "none", display: "flex", flexDirection: "column", flex: 1 }}
-        aria-label={`Read case study: ${c.title}`}
         onClick={c.comingSoon ? (e) => e.preventDefault() : undefined}
       >
-        {/* Image */}
+        {/* Image — full cover, no bg bleeding */}
         <div style={{
-          height: 260, background: c.bg,
-          display: "flex", alignItems: "center", justifyContent: "center",
-          overflow: "hidden", position: "relative", flexShrink: 0,
+          height: 280, overflow: "hidden",
+          position: "relative", flexShrink: 0,
+          background: c.bg,
         }}>
           <motion.img
             src={c.image}
             alt={`${c.company} project screenshot`}
             loading="lazy"
-            animate={{ scale: hovered ? 1.03 : 1 }}
+            animate={{ scale: hovered ? 1.04 : 1, y: hovered ? -8 : 0 }}
             transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-            style={{ maxWidth: "88%", maxHeight: "92%", objectFit: "contain" }}
+            style={{
+              width: "100%", height: "100%",
+              objectFit: "contain",
+              objectPosition: "center",
+            }}
           />
           {c.comingSoon && (
             <span style={{
               position: "absolute", top: 14, right: 14,
               fontSize: 9, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase",
-              color: T.mid, background: "rgba(255,255,255,0.9)",
+              color: "#4A4A4A", background: "rgba(255,255,255,0.92)",
               padding: "4px 10px", borderRadius: 10,
             }}>
               Case study coming soon
@@ -275,9 +268,9 @@ function CaseCard({ c, index }) {
         </div>
 
         {/* Body */}
-        <div style={{ padding: "26px 28px 28px", background: T.white, flex: 1, display: "flex", flexDirection: "column" }}>
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 12 }}>
-            <div style={{ display: "flex", gap: 5, flexWrap: "wrap" }}>
+        <div style={{ padding: "28px 32px 32px", background: T.white, flex: 1, display: "flex", flexDirection: "column" }}>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 14 }}>
+            <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
               {c.tags.map(t => (
                 <span key={t} style={{
                   fontFamily: "system-ui, sans-serif", fontSize: 10, fontWeight: 600,
@@ -286,44 +279,34 @@ function CaseCard({ c, index }) {
                 }}>{t}</span>
               ))}
             </div>
-            <span style={{ fontFamily: "Georgia, serif", fontSize: 11, fontStyle: "italic", color: T.light, whiteSpace: "nowrap", marginLeft: 10 }}>
-              {c.year}
-            </span>
           </div>
 
-          <div style={{ fontFamily: "Georgia, serif", fontSize: 11, fontStyle: "italic", color: T.light, marginBottom: 7 }}>
-            {c.id} / {c.company}
+          <div style={{
+            fontFamily: "Georgia, serif", fontSize: 12, fontStyle: "italic",
+            color: T.mid, marginBottom: 8,
+          }}>
+            {c.company}
           </div>
 
           <h3
             id={`case-title-${c.id}`}
             style={{
               fontFamily: "system-ui, -apple-system, sans-serif",
-              fontSize: "clamp(16px, 1.6vw, 20px)", fontWeight: 700,
-              letterSpacing: "-0.02em", color: T.ink, lineHeight: 1.3, flex: 1,
+              fontSize: "clamp(17px, 1.7vw, 21px)", fontWeight: 700,
+              letterSpacing: "-0.025em", color: T.ink, lineHeight: 1.3, flex: 1,
             }}
           >
             {c.title}
           </h3>
 
-          <div style={{ marginTop: 16, display: "flex", gap: 16, flexWrap: "wrap" }}>
-            {c.metrics.slice(0, 3).map(m => (
-              <span key={m.n} style={{
-                fontFamily: "system-ui, sans-serif", fontSize: 11, color: T.mid,
-                fontWeight: 500, display: "flex", alignItems: "center", gap: 5,
-              }}>
-                <span aria-hidden="true" style={{ width: 3, height: 3, borderRadius: "50%", background: "#CCCCCC", display: "inline-block" }} />
-                {m.n} {m.label}
-              </span>
-            ))}
-          </div>
-
           <motion.div
-            animate={{ color: hovered ? T.ink : T.light }}
+            animate={{ color: hovered ? T.ink : "#AAAAAA" }}
             transition={{ duration: 0.25 }}
             style={{
-              marginTop: 18, display: "flex", alignItems: "center", gap: 5,
-              fontFamily: "system-ui, sans-serif", fontSize: 11, fontWeight: 600, letterSpacing: "0.03em",
+              marginTop: 24, display: "flex", alignItems: "center", gap: 6,
+              fontFamily: "system-ui, sans-serif", fontSize: 13, fontWeight: 600,
+              letterSpacing: "0.02em", paddingTop: 20,
+              borderTop: `1px solid ${T.rule}`,
             }}
           >
             {c.comingSoon ? "Coming soon" : "Read case study"}
@@ -343,22 +326,22 @@ function CaseCard({ c, index }) {
   )
 }
 
-// ─── WORK SECTION ─────────────────────────────────────────────────────────────
+// ─── WORK ─────────────────────────────────────────────────────────────────────
 
 function Work() {
   return (
     <section id="work" aria-labelledby="work-heading" style={{ padding: "120px 0", background: T.white }}>
       <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 48px" }}>
-        <FadeUpSection>
+        <FadeUp>
           <h2 id="work-heading" style={{
             fontFamily: "system-ui, sans-serif",
-            fontSize: "clamp(24px, 3vw, 34px)", fontWeight: 800,
+            fontSize: "clamp(26px, 3vw, 36px)", fontWeight: 800,
             letterSpacing: "-0.04em", color: T.ink, marginBottom: 52,
           }}>
             Selected work
           </h2>
-        </FadeUpSection>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 16 }} className="work-grid">
+        </FadeUp>
+        <div className="work-grid" style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 16 }}>
           {cases.map((c, i) => <CaseCard key={c.id} c={c} index={i} />)}
         </div>
       </div>
@@ -370,44 +353,43 @@ function Work() {
 
 function Capabilities() {
   const items = [
-    {
-      n: "01", title: "Business meets user",
-      body: "A background in Advertising and a postgrad in UX means I naturally think from both sides. I ask what the user needs and what the business gains, at the same time. That combination is rarer than it sounds.",
-    },
-    {
-      n: "02", title: "End-to-end, for real",
-      body: "From research and discovery workshops to design systems and final handoff. I don't just deliver screens. I help shape the product from the question to the answer, working closely with POs, developers and stakeholders.",
-    },
-    {
-      n: "03", title: "Design with purpose",
-      body: "Accessibility and inclusion are not checkboxes. They are part of how I think from the start. Good design should work for everyone, and I take that seriously, whether I am designing a banking app or a wellness platform.",
-    },
+    { n: "01", title: "Business meets user", body: "A background in Advertising and a postgrad in UX means I naturally think from both sides. I ask what the user needs and what the business gains, at the same time. That combination is rarer than it sounds." },
+    { n: "02", title: "End-to-end, for real", body: "From research and discovery workshops to design systems and final handoff. I don't just deliver screens. I help shape the product from the question to the answer, working closely with POs, developers and stakeholders." },
+    { n: "03", title: "Design with purpose", body: "Accessibility and inclusion are not checkboxes. They are part of how I think from the start. Good design should work for everyone, and I take that seriously, whether I am designing a banking app or a wellness platform." },
   ]
-
   return (
     <section aria-labelledby="capabilities-heading" style={{ padding: "120px 0", background: T.offwhite }}>
       <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 48px" }}>
-        <FadeUpSection>
+        <FadeUp>
           <h2 id="capabilities-heading" style={{
             fontFamily: "system-ui, sans-serif",
-            fontSize: "clamp(24px, 3vw, 34px)", fontWeight: 800,
+            fontSize: "clamp(26px, 3vw, 36px)", fontWeight: 800,
             letterSpacing: "-0.04em", color: T.ink, marginBottom: 52,
           }}>
             How I work
           </h2>
-        </FadeUpSection>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 2 }} className="caps-grid">
+        </FadeUp>
+        <div className="caps-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 2 }}>
           {items.map((item, i) => (
-            <FadeUpSection key={i} delay={i * 0.12}>
+            <FadeUp key={i} delay={i * 0.12}>
               <div style={{
-                background: T.white, padding: "40px 36px", height: "100%",
+                background: T.white, padding: "44px 40px", height: "100%",
                 borderRadius: i === 0 ? "14px 0 0 14px" : i === 2 ? "0 14px 14px 0" : 0,
               }}>
-                <div style={{ fontFamily: "Georgia, serif", fontSize: 26, fontStyle: "italic", color: T.rule, marginBottom: 20 }}>{item.n}</div>
-                <h3 style={{ fontFamily: "system-ui, sans-serif", fontSize: 17, fontWeight: 700, letterSpacing: "-0.02em", color: T.ink, marginBottom: 12 }}>{item.title}</h3>
-                <p style={{ fontFamily: "system-ui, sans-serif", fontSize: 14, color: T.mid, lineHeight: 1.75, margin: 0 }}>{item.body}</p>
+                <div style={{
+                  fontFamily: "Georgia, serif", fontSize: 28, fontStyle: "italic",
+                  color: "#CCCCCC", marginBottom: 20,
+                }}>{item.n}</div>
+                <h3 style={{
+                  fontFamily: "system-ui, sans-serif", fontSize: 18, fontWeight: 700,
+                  letterSpacing: "-0.02em", color: T.ink, marginBottom: 14,
+                }}>{item.title}</h3>
+                <p style={{
+                  fontFamily: "system-ui, sans-serif", fontSize: 14,
+                  color: T.mid, lineHeight: 1.75, margin: 0,
+                }}>{item.body}</p>
               </div>
-            </FadeUpSection>
+            </FadeUp>
           ))}
         </div>
       </div>
@@ -421,11 +403,11 @@ function About() {
   return (
     <section id="about" aria-labelledby="about-heading" style={{ padding: "120px 0", background: T.white }}>
       <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 48px" }}>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: 72, alignItems: "start" }}>
-          <FadeUpSection>
+        <div className="about-grid" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: 72, alignItems: "start" }}>
+          <FadeUp>
             <h2 id="about-heading" style={{
               fontFamily: "system-ui, sans-serif",
-              fontSize: "clamp(24px, 3.2vw, 40px)", fontWeight: 800,
+              fontSize: "clamp(26px, 3.2vw, 42px)", fontWeight: 800,
               letterSpacing: "-0.04em", color: T.ink, lineHeight: 1.1, margin: 0,
             }}>
               Senior Product Designer.
@@ -434,10 +416,10 @@ function About() {
                 Ten years of work that matters.
               </span>
             </h2>
-          </FadeUpSection>
-          <FadeUpSection delay={0.2}>
+          </FadeUp>
+          <FadeUp delay={0.2}>
             <p style={{ fontFamily: "system-ui, sans-serif", fontSize: 15, lineHeight: 1.8, color: T.mid, marginBottom: 20 }}>
-              I'm a Product Designer who works at the intersection of business, research and craft. My background in Advertising gives me a strong sense of positioning, communication and business goals. My postgrad in UX keeps me grounded in real user needs. Together, they shape how I approach every project.
+              I'm a Product Designer who works at the intersection of business, research and craft. My background in Advertising gives me a strong sense of positioning, communication and business goals. My postgrad in UX keeps me grounded in real user needs.
             </p>
             <p style={{ fontFamily: "system-ui, sans-serif", fontSize: 15, lineHeight: 1.8, color: T.mid, marginBottom: 36 }}>
               Over 10 years I've worked across fintech, media, retail, HR tech and health. I've led discovery sessions, built design systems from scratch, conducted research with 50+ users and shipped products used by millions. I work well in cross-functional teams, in English and Portuguese, and I care deeply about accessibility and inclusive design.
@@ -456,34 +438,33 @@ function About() {
                 { label: "LinkedIn", href: "https://www.linkedin.com/in/isabellegalves/" },
                 { label: "Resume", href: "/resume.pdf" },
               ].map(l => (
-                <a key={l.label} href={l.href}
+                <motion.a key={l.label} href={l.href}
                   target={l.href.startsWith("http") ? "_blank" : undefined}
                   rel={l.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                  whileHover={{ background: T.ink, color: T.white }}
                   style={{
                     fontFamily: "system-ui, sans-serif", fontSize: 11, fontWeight: 700,
                     letterSpacing: "0.05em", textTransform: "uppercase",
                     color: T.ink, border: `1.5px solid ${T.ink}`,
                     padding: "9px 18px", borderRadius: 20, textDecoration: "none",
-                    transition: "background 0.2s, color 0.2s",
+                    display: "inline-block",
                   }}
-                  onMouseEnter={e => { e.currentTarget.style.background = T.ink; e.currentTarget.style.color = T.white }}
-                  onMouseLeave={e => { e.currentTarget.style.background = "transparent"; e.currentTarget.style.color = T.ink }}
-                >{l.label}</a>
+                >{l.label}</motion.a>
               ))}
             </div>
-          </FadeUpSection>
+          </FadeUp>
         </div>
       </div>
     </section>
   )
 }
 
-// ─── CONTACT SECTION ─────────────────────────────────────────────────────────
+// ─── CONTACT ─────────────────────────────────────────────────────────────────
 
 function ContactSection({ onContactClick }) {
   return (
     <section id="contact" aria-labelledby="contact-heading" style={{ padding: "120px 48px", background: T.ink, textAlign: "center" }}>
-      <FadeUpSection>
+      <FadeUp>
         <h2 id="contact-heading" style={{
           fontFamily: "Georgia, serif",
           fontSize: "clamp(36px, 6vw, 76px)",
@@ -493,27 +474,26 @@ function ContactSection({ onContactClick }) {
         }}>
           Good work starts<br />with a good conversation.
         </h2>
-        <button
+        <motion.button
           onClick={onContactClick}
-          aria-label="Open contact options"
+          whileHover={{ opacity: 0.85 }}
+          whileTap={{ scale: 0.97 }}
           style={{
             fontFamily: "system-ui, sans-serif", fontSize: 12, fontWeight: 700,
             letterSpacing: "0.06em", textTransform: "uppercase",
             color: T.ink, background: T.white,
             border: "none", padding: "15px 34px", borderRadius: 32,
-            cursor: "pointer", transition: "opacity 0.2s",
+            cursor: "pointer",
           }}
-          onMouseEnter={e => e.currentTarget.style.opacity = "0.85"}
-          onMouseLeave={e => e.currentTarget.style.opacity = "1"}
         >
           Get in touch
-        </button>
-      </FadeUpSection>
+        </motion.button>
+      </FadeUp>
     </section>
   )
 }
 
-// ─── HOME PAGE ────────────────────────────────────────────────────────────────
+// ─── HOME ─────────────────────────────────────────────────────────────────────
 
 export default function Home({ onContactClick }) {
   return (
