@@ -7,21 +7,7 @@ const GRAD = "linear-gradient(90deg, #6C1FF3, #DA37F4)"
 
 function GradBtn({ children, href, variant = "outline", target, rel }) {
   const [hovered, setHovered] = useState(false)
-  const isGray = variant === "outline-gray"
-  const borderColor = isGray ? T.rule : "#0A0A0A"
-
-  const style = hovered ? {
-    background: GRAD,
-    WebkitBackgroundClip: "text",
-    WebkitTextFillColor: "transparent",
-    backgroundClip: "text",
-    border: "1.5px solid transparent",
-  } : {
-    background: "transparent",
-    color: "#0A0A0A",
-    WebkitTextFillColor: "unset",
-    border: `1.5px solid ${borderColor}`,
-  }
+  const defaultBorder = variant === "outline-gray" ? "#CCCCCC" : "#0A0A0A"
 
   return (
     <a
@@ -31,25 +17,33 @@ function GradBtn({ children, href, variant = "outline", target, rel }) {
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       style={{
-        fontFamily: "system-ui, sans-serif", fontSize: 11, fontWeight: 700,
-        letterSpacing: "0.05em", textTransform: "uppercase",
-        padding: "9px 18px", borderRadius: 20, textDecoration: "none",
-        cursor: "pointer", position: "relative", display: "inline-block",
-        transition: "border-color 0.25s",
-        ...style,
+        display: "inline-block",
+        borderRadius: 20,
+        padding: 1.5,
+        background: hovered ? GRAD : defaultBorder,
+        transition: "background 0.25s",
+        textDecoration: "none",
       }}
     >
-      {hovered && (
-        <span style={{
-          position: "absolute", inset: -1.5, borderRadius: 20,
-          background: GRAD,
-          WebkitMask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
-          WebkitMaskComposite: "xor",
-          maskComposite: "exclude",
-          pointerEvents: "none",
-        }} />
-      )}
-      {children}
+      <span style={{
+        display: "block",
+        fontFamily: "system-ui, sans-serif", fontSize: 11, fontWeight: 700,
+        letterSpacing: "0.05em", textTransform: "uppercase",
+        padding: "9px 18px", borderRadius: 18.5,
+        background: "#FFFFFF",
+        ...(hovered ? {
+          backgroundImage: GRAD,
+          WebkitBackgroundClip: "text",
+          WebkitTextFillColor: "transparent",
+          backgroundClip: "text",
+        } : {
+          color: "#0A0A0A",
+          WebkitTextFillColor: "unset",
+        }),
+        transition: "color 0.25s",
+      }}>
+        {children}
+      </span>
     </a>
   )
 }

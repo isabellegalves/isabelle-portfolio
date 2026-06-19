@@ -85,83 +85,73 @@ function HeroLine({ children, delay = 0, serif = false, light = false, size }) {
 
 const GRAD = "linear-gradient(90deg, #6C1FF3, #DA37F4)"
 
-// Regras de botão:
-// variant="solid"        → bg preto, border preta, texto branco → hover: bg gradiente, sem border, texto branco
-// variant="outline"      → bg branco, border preta, texto preto → hover: bg branco, texto gradiente, border gradiente
-// variant="outline-gray" → bg branco, border cinza, texto preto → hover: bg branco, texto gradiente, border gradiente
+// Regras:
+// solid        → bg preto + texto branco → hover: bg gradiente, sem border
+// outline      → bg branco + border preta + texto preto → hover: bg branco + border gradiente + texto gradiente
+// outline-gray → bg branco + border cinza + texto preto → hover: bg branco + border gradiente + texto gradiente
 function Btn({ children, onClick, href, as: Tag = "button",
   variant = "outline",
   bg = "#0A0A0A",
   padding = "13px 26px", borderRadius = 26,
 }) {
   const [hovered, setHovered] = useState(false)
-
   const isOutline = variant === "outline" || variant === "outline-gray"
-  const borderColor = variant === "outline-gray" ? T.rule : (variant === "outline" ? "#0A0A0A" : "#0A0A0A")
-
-  let style
-  if (variant === "solid") {
-    style = hovered ? {
-      background: GRAD,
-      color: "#FFFFFF",
-      WebkitTextFillColor: "unset",
-      border: "1.5px solid transparent",
-      transition: "background 0.25s",
-    } : {
-      background: bg,
-      color: "#FFFFFF",
-      WebkitTextFillColor: "unset",
-      border: `1.5px solid ${bg}`,
-      transition: "background 0.25s",
-    }
-  } else {
-    style = hovered ? {
-      background: GRAD,
-      WebkitBackgroundClip: "text",
-      WebkitTextFillColor: "transparent",
-      backgroundClip: "text",
-      border: "1.5px solid transparent",
-    } : {
-      background: "transparent",
-      color: "#0A0A0A",
-      WebkitTextFillColor: "unset",
-      border: `1.5px solid ${borderColor}`,
-    }
-  }
-
-  const sharedStyle = {
-    fontFamily: "system-ui, sans-serif", fontSize: 12, fontWeight: 700,
-    letterSpacing: "0.05em", textTransform: "uppercase",
-    padding, borderRadius,
-    cursor: "pointer", position: "relative",
-    display: "inline-block", textDecoration: "none",
-    transition: "background 0.25s, border-color 0.25s",
-    ...style,
-  }
-
-  const inner = (
-    <>
-      {isOutline && hovered && (
-        <span style={{
-          position: "absolute", inset: -1.5, borderRadius,
-          background: GRAD,
-          WebkitMask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
-          WebkitMaskComposite: "xor",
-          maskComposite: "exclude",
-          pointerEvents: "none",
-        }} />
-      )}
-      {children}
-    </>
-  )
+  const defaultBorder = variant === "outline-gray" ? "#CCCCCC" : "#0A0A0A"
 
   const events = {
     onMouseEnter: () => setHovered(true),
     onMouseLeave: () => setHovered(false),
   }
 
-  if (Tag === "a") return <a href={href} {...events} style={sharedStyle}>{inner}</a>
-  return <button onClick={onClick} {...events} style={sharedStyle}>{inner}</button>
+  if (variant === "solid") {
+    const style = {
+      fontFamily: "system-ui, sans-serif", fontSize: 12, fontWeight: 700,
+      letterSpacing: "0.05em", textTransform: "uppercase",
+      padding, borderRadius, cursor: "pointer",
+      display: "inline-block", textDecoration: "none",
+      background: hovered ? GRAD : bg,
+      color: "#FFFFFF",
+      WebkitTextFillColor: "unset",
+      border: "none",
+      transition: "background 0.25s",
+    }
+    if (Tag === "a") return <a href={href} {...events} style={style}>{children}</a>
+    return <button onClick={onClick} {...events} style={style}>{children}</button>
+  }
+
+  // outline / outline-gray: usa padding wrapper para simular border gradiente
+  const wrapperStyle = {
+    display: "inline-block",
+    borderRadius,
+    padding: 1.5,
+    background: hovered ? GRAD : defaultBorder,
+    transition: "background 0.25s",
+    cursor: "pointer",
+    textDecoration: "none",
+  }
+
+  const innerStyle = {
+    display: "block",
+    fontFamily: "system-ui, sans-serif", fontSize: 12, fontWeight: 700,
+    letterSpacing: "0.05em", textTransform: "uppercase",
+    padding, borderRadius: borderRadius - 1.5,
+    background: "#FFFFFF",
+    ...(hovered ? {
+      backgroundImage: GRAD,
+      WebkitBackgroundClip: "text",
+      WebkitTextFillColor: "transparent",
+      backgroundClip: "text",
+    } : {
+      color: "#0A0A0A",
+      WebkitTextFillColor: "unset",
+    }),
+    transition: "color 0.25s",
+  }
+
+  const content = <span style={innerStyle}>{children}</span>
+
+  if (Tag === "a") return <a href={href} {...events} style={wrapperStyle}>{content}</a>
+  return <button onClick={onClick} {...events} style={{ ...wrapperStyle, border: "none" }}>{content}</button>
 }
 
 // ─── HERO ────────────────────────────────────────────────────────────────────
@@ -221,8 +211,8 @@ function Hero({ onContactClick }) {
                 Product Designer with 10 years of experience working at the intersection of business strategy, user research and interface craft. I've helped companies like Condé Nast, Bradesco and Sodexo build products that serve both users and business goals.
               </p>
               <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
-                <Btn variant="solid" as="a" href="#work">View work</Btn>
-                <Btn variant="outline-gray" onClick={onContactClick}>Get in touch</Btn>
+                <Btn variant="solid" bg="#0A0A0A" as="a" href="#work">View work</Btn>
+                <Btn variant="outline" borderColor="#CCCCCC" onClick={onContactClick}>Get in touch</Btn>
               </div>
             </motion.div>
           </div>
@@ -682,8 +672,8 @@ function About() {
               ))}
             </div>
             <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
-              <Btn variant="outline" as="a" href="https://www.linkedin.com/in/isabellegalves/" padding="9px 18px" borderRadius={20}>LinkedIn</Btn>
-              <Btn variant="outline" as="a" href="/about" padding="9px 18px" borderRadius={20}>About</Btn>
+              <Btn variant="outline" as="a" href="https://www.linkedin.com/in/isabellegalves/" borderColor="#0A0A0A" padding="9px 18px" borderRadius={20}>LinkedIn</Btn>
+              <Btn variant="outline" as="a" href="/about" borderColor="#0A0A0A" padding="9px 18px" borderRadius={20}>About</Btn>
             </div>
           </FadeUp>
         </div>
@@ -707,7 +697,7 @@ function ContactSection({ onContactClick }) {
         }}>
           Good work starts with a good conversation.
         </h2>
-        <Btn variant="solid" onClick={onContactClick} padding="15px 34px" borderRadius={32}>Get in touch</Btn>
+        <Btn variant="solid" bg="#0A0A0A" borderColor="#FFFFFF" onClick={onContactClick} padding="15px 34px" borderRadius={32}>Get in touch</Btn>
       </FadeUp>
     </section>
   )
