@@ -3,9 +3,47 @@ import { Link, useLocation, useNavigate } from "react-router-dom"
 import { T } from "../tokens"
 
 const GRAD = "linear-gradient(90deg, #6C1FF3, #DA37F4)"
+const PURPLE = "#6C1FF3"
+
+// Sublinhado handwritten SVG — ondulado orgânico
+function HandUnderline({ active }) {
+  return (
+    <svg
+      viewBox="0 0 70 8"
+      width="100%"
+      height="8"
+      style={{
+        position: "absolute",
+        bottom: -4,
+        left: 0,
+        right: 0,
+        overflow: "visible",
+        opacity: active ? 1 : 0,
+        transition: "opacity 0.2s ease",
+      }}
+      aria-hidden="true"
+    >
+      <path
+        d="M 1 5 C 8 2, 18 7, 28 4 C 38 1, 50 7, 60 4 C 65 2, 68 5, 70 4"
+        stroke={PURPLE}
+        strokeWidth="2"
+        fill="none"
+        strokeLinecap="round"
+      />
+    </svg>
+  )
+}
 
 function NavLink({ to, children, onClick }) {
   const [hovered, setHovered] = useState(false)
+  const location = useLocation()
+  const isActive =
+    to === "/about"
+      ? location.pathname === "/about"
+      : location.pathname === "/" || location.pathname.startsWith("/work")
+
+  const showUnderline = hovered || isActive
+
   return (
     <Link
       to={to}
@@ -14,23 +52,20 @@ function NavLink({ to, children, onClick }) {
       onMouseLeave={() => setHovered(false)}
       style={{
         fontFamily: "system-ui, -apple-system, sans-serif",
-        fontSize: 14, fontWeight: 500, letterSpacing: "0.01em",
+        fontSize: 14,
+        fontWeight: 500,
+        letterSpacing: "0.01em",
         textDecoration: "none",
-        padding: "6px 14px", borderRadius: 20,
-        // gradient text on hover via background-clip trick
-        ...(hovered ? {
-          backgroundImage: GRAD,
-          WebkitBackgroundClip: "text",
-          WebkitTextFillColor: "transparent",
-          backgroundClip: "text",
-        } : {
-          color: "#4A4A4A",
-          WebkitTextFillColor: "unset",
-        }),
+        padding: "6px 14px",
+        borderRadius: 20,
+        color: showUnderline ? PURPLE : "#4A4A4A",
+        position: "relative",
+        display: "inline-block",
         transition: "color 0.2s",
       }}
     >
       {children}
+      <HandUnderline active={showUnderline} />
     </Link>
   )
 }
@@ -90,7 +125,7 @@ export default function Nav({ onContactClick }) {
         </Link>
 
         <div style={{ display: "flex", gap: 6, alignItems: "center" }}>
-          <NavLink to="/#work" onClick={handleWorkClick}>Work</NavLink>
+          <NavLink to="/" onClick={handleWorkClick}>Work</NavLink>
           <NavLink to="/about">About</NavLink>
           <button
             onClick={onContactClick}
@@ -101,7 +136,6 @@ export default function Nav({ onContactClick }) {
               fontSize: 14, fontWeight: 600,
               padding: "9px 20px", borderRadius: 24,
               cursor: "pointer", border: "none",
-              // solid bg: preto → gradiente no hover (texto sempre branco = contraste garantido)
               background: contactHovered ? GRAD : "#0A0A0A",
               color: "#FFFFFF",
               transition: "background 0.25s",

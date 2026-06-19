@@ -83,6 +83,31 @@ function HeroLine({ children, delay = 0, serif = false, light = false, size }) {
 const GRAD = "linear-gradient(90deg, #6C1FF3, #DA37F4)"
 const PURPLE = "#6C1FF3"
 
+// Sublinhado handwritten sob headings de section
+function HandUnderlineHeading({ children, id, style = {} }) {
+  return (
+    <div style={{ display: "inline-block", position: "relative", marginBottom: 52 }}>
+      <h2 id={id} style={{
+        fontFamily: "system-ui, sans-serif",
+        fontSize: "clamp(26px, 3vw, 36px)", fontWeight: 800,
+        letterSpacing: "-0.04em", color: T.ink, margin: 0,
+        ...style,
+      }}>
+        {children}
+      </h2>
+      <svg viewBox="0 0 220 10" width="100%" height="10"
+        style={{ position: "absolute", bottom: -8, left: 0, overflow: "visible" }}
+        aria-hidden="true"
+      >
+        <path
+          d="M 1 6 C 15 2, 35 9, 58 5 C 78 2, 100 8, 125 5 C 148 2, 170 8, 192 5 C 202 3, 210 7, 218 5"
+          stroke={PURPLE} strokeWidth="2.2" fill="none" strokeLinecap="round"
+        />
+      </svg>
+    </div>
+  )
+}
+
 // ─── BTN ─────────────────────────────────────────────────────────────────────
 // solid        → bg preto + texto branco;  hover: bg gradiente + texto branco
 // solid-white  → bg branco + texto preto;  hover: bg gradiente + texto branco  (fundo escuro)
@@ -202,7 +227,7 @@ function Hero({ onContactClick }) {
                 fontFamily: "system-ui, sans-serif", fontSize: 16, lineHeight: 1.7,
                 color: T.mid, marginBottom: 28, maxWidth: 480,
               }}>
-                A decade of product design across fintech, media and retail, helping companies like Conde Nast, Bradesco and Sodexo build products that serve both users and business goals.
+                A decade of product design across fintech, media and retail — helping companies like Conde Nast, Bradesco and Sodexo build products that serve both users and business goals.
               </p>
               <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
                 <Btn variant="solid" as="a" href="#work">View work</Btn>
@@ -226,8 +251,8 @@ function Hero({ onContactClick }) {
           {[
             { n: 30, suffix: "%", label: "Reduction in dev time at Bradesco" },
             { n: 50, suffix: "+", label: "Users interviewed across projects" },
-            { n: 40, suffix: "%", label: "Faster component delivery at Conde Nast" },
-            { n: 25, suffix: "%", label: "Increase in usability at Sodexo" },
+            { n: 40, suffix: "%", label: "Faster delivery with Design Systems" },
+            { n: 20, suffix: "%", label: "Increase in usability at Sodexo" },
           ].map((s, i) => (
             <div key={i} style={{
               flex: "1 1 160px", paddingRight: 28, marginRight: 28,
@@ -345,14 +370,12 @@ function CaseCard({ c, index }) {
               </span>
             </div>
           ) : (
-            <div style={{ marginTop: 24, paddingTop: 20, borderTop: `1px solid ${T.rule}` }}>
-              <div style={{
-                fontFamily: "system-ui, sans-serif", fontSize: 13, color: "#888888",
-                lineHeight: 1.5, marginBottom: 14,
-              }}>
-                This project is under NDA. Reach out to learn more.
-              </div>
-              <Btn variant="outline" as="a" href="mailto:isabellegalves@gmail.com" padding="9px 18px" borderRadius={20}>Get in touch</Btn>
+            <div style={{
+              marginTop: 24, paddingTop: 20, borderTop: `1px solid ${T.rule}`,
+              fontFamily: "system-ui, sans-serif", fontSize: 13, fontWeight: 600,
+              color: "#AAAAAA",
+            }}>
+              Coming soon
             </div>
           )}
         </div>
@@ -368,13 +391,7 @@ function Work() {
     <section id="work" aria-labelledby="work-heading" style={{ padding: "90px 0", background: T.white }}>
       <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 48px" }}>
         <FadeUp>
-          <h2 id="work-heading" style={{
-            fontFamily: "system-ui, sans-serif",
-            fontSize: "clamp(26px, 3vw, 36px)", fontWeight: 800,
-            letterSpacing: "-0.04em", color: T.ink, marginBottom: 52,
-          }}>
-            Selected work
-          </h2>
+          <HandUnderlineHeading id="work-heading">Selected work</HandUnderlineHeading>
         </FadeUp>
         <div className="work-grid" style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 16 }}>
           {cases.map((c, i) => <CaseCard key={c.id} c={c} index={i} />)}
@@ -386,8 +403,36 @@ function Work() {
 
 // ─── CAPABILITIES ────────────────────────────────────────────────────────────
 
+function Capabilities() {
+  const items = [
+    { n: "01", title: "Business meets user", body: "A background in Advertising and a postgrad in UX means I naturally think from both sides. I ask what the user needs and what the business gains, at the same time. That combination is rarer than it sounds." },
+    { n: "02", title: "End-to-end, for real", body: "From research and discovery workshops to design systems and final handoff. I don't just deliver screens. I help shape the product from the question to the answer, working closely with POs, developers and stakeholders." },
+    { n: "03", title: "Design with purpose", body: "Accessibility and inclusion are not checkboxes. They are part of how I think from the start. Good design should work for everyone, and I take that seriously, whether I am designing a banking app or a wellness platform." },
+  ]
+
+  const ref = useRef(null)
+  const inView = useInView(ref, { once: true, margin: "-80px" })
+
+  return (
+    <section aria-labelledby="capabilities-heading" style={{ padding: "120px 0", background: T.offwhite }}>
+      <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 48px" }}>
+        <FadeUp>
+          <HandUnderlineHeading id="capabilities-heading">How I work</HandUnderlineHeading>
+        </FadeUp>
+        <div ref={ref} className="caps-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 2 }}>
+          {items.map((item, i) => (
+            <CapabilityCard key={i} item={item} index={i} inView={inView} />
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
 function CapabilityCard({ item, index, inView }) {
   const [hovered, setHovered] = useState(false)
+  const br = index === 0 ? "14px 0 0 14px" : index === 2 ? "0 14px 14px 0" : 0
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 40 }}
@@ -397,19 +442,27 @@ function CapabilityCard({ item, index, inView }) {
       onMouseLeave={() => setHovered(false)}
       style={{
         background: T.white, padding: "44px 40px", height: "100%",
-        borderRadius: index === 0 ? "14px 0 0 14px" : index === 2 ? "0 14px 14px 0" : 0,
+        borderRadius: br,
         transform: hovered ? "translateY(-6px)" : "translateY(0)",
         boxShadow: hovered ? "0 16px 40px rgba(0,0,0,0.08)" : "none",
-        transition: "transform 0.3s ease, box-shadow 0.3s ease",
+        transition: "transform 0.35s ease, box-shadow 0.35s ease",
       }}
     >
-      <div style={{
-        fontFamily: "Georgia, serif", fontSize: 28, fontStyle: "italic",
-        color: "#CCCCCC", marginBottom: 20,
-      }}>{item.n}</div>
+      <motion.div
+        initial={{ opacity: 0, x: -10 }}
+        animate={inView ? { opacity: 1, x: 0 } : {}}
+        transition={{ duration: 0.5, delay: 0.2 + index * 0.15 }}
+        style={{
+          fontFamily: "Georgia, serif", fontSize: 28, fontStyle: "italic",
+          color: hovered ? "#BBBBBB" : "#CCCCCC", marginBottom: 20,
+          transition: "color 0.3s",
+        }}
+      >
+        {item.n}
+      </motion.div>
       <h3 style={{
         fontFamily: "system-ui, sans-serif", fontSize: 18, fontWeight: 700,
-        letterSpacing: "-0.02em", marginBottom: 14,
+        letterSpacing: "-0.02em", marginBottom: 14, color: T.ink,
       }}>
         {item.title}
       </h3>
@@ -418,36 +471,6 @@ function CapabilityCard({ item, index, inView }) {
         color: T.mid, lineHeight: 1.75, margin: 0,
       }}>{item.body}</p>
     </motion.div>
-  )
-}
-
-function Capabilities() {
-  const ref = useRef(null)
-  const inView = useInView(ref, { once: true, margin: "-80px" })
-  const items = [
-    { n: "01", title: "Business meets user", body: "A background in Advertising and a postgrad in UX means I naturally think from both sides. I ask what the user needs and what the business gains, at the same time. Most design problems are actually alignment problems in disguise." },
-    { n: "02", title: "End-to-end, for real", body: "From research and discovery workshops to design systems and final handoff. I don't just deliver screens. I help shape the product from the question to the answer, working closely with POs, developers and stakeholders across sprints, not just at the beginning." },
-    { n: "03", title: "Design with purpose", body: "Accessibility and inclusion are not checkboxes. They are part of how I think from the start. Good design should work for everyone. That means testing with real users, building with semantic structure and never treating access as an afterthought." },
-  ]
-  return (
-    <section ref={ref} aria-labelledby="capabilities-heading" style={{ padding: "120px 0", background: T.offwhite }}>
-      <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 48px" }}>
-        <FadeUp>
-          <h2 id="capabilities-heading" style={{
-            fontFamily: "system-ui, sans-serif",
-            fontSize: "clamp(26px, 3vw, 36px)", fontWeight: 800,
-            letterSpacing: "-0.04em", color: T.ink, marginBottom: 52,
-          }}>
-            How I work
-          </h2>
-        </FadeUp>
-        <div className="caps-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 2 }}>
-          {items.map((item, i) => (
-            <CapabilityCard key={i} item={item} index={i} inView={inView} />
-          ))}
-        </div>
-      </div>
-    </section>
   )
 }
 
@@ -462,6 +485,8 @@ const COMPANIES = [
   { name: "Sodexo", abbr: "Sdx", bg: "#5C2D91", color: "#fff", logo: "https://logo.clearbit.com/sodexo.com" },
   { name: "Banco VR", abbr: "VR", bg: "#F7F7F5", color: "#0A0A0A", logo: null },
   { name: "Piccadilly", abbr: "Pic", bg: "#F7F7F5", color: "#0A0A0A", logo: "https://logo.clearbit.com/piccadilly.com.br" },
+  { name: "Claro", abbr: "C", bg: "#E3001B", color: "#fff", logo: "https://logo.clearbit.com/claro.com.br" },
+  { name: "ACT Digital", abbr: "ACT", bg: "#F7F7F5", color: "#0A0A0A", logo: null },
 ]
 
 function CompanyBadge({ c }) {
@@ -509,13 +534,7 @@ function CompaniesMarquee() {
         }
       `}</style>
       <div style={{ maxWidth: 1280, margin: "0 auto 40px", padding: "0 48px" }}>
-        <h2 style={{
-          fontFamily: "system-ui, sans-serif",
-          fontSize: "clamp(26px, 3vw, 36px)", fontWeight: 800,
-          letterSpacing: "-0.04em", color: T.ink, marginBottom: 8,
-        }}>
-          Companies I've worked with
-        </h2>
+        <HandUnderlineHeading style={{ marginBottom: 8 }}>Companies I've worked with</HandUnderlineHeading>
         <p style={{ fontFamily: "Georgia, serif", fontStyle: "italic", fontSize: 15, color: T.light }}>
           10 years across fintech, media, retail and HR tech
         </p>
@@ -559,13 +578,13 @@ function About() {
           </FadeUp>
           <FadeUp delay={0.2}>
             <p style={{ fontFamily: "system-ui, sans-serif", fontSize: 15, lineHeight: 1.8, color: T.mid, marginBottom: 20 }}>
-              I'm a Senior Product Designer with 10 years of experience across fintech, media and retail. My background in Advertising sharpens how I think about positioning and business goals. My postgrad in UX keeps me grounded in real user needs.
+              I'm a Product Designer at the intersection of business, research and interface craft. My background in Advertising sharpens how I think about positioning and business goals. My postgrad in UX keeps me grounded in real user needs.
             </p>
             <p style={{ fontFamily: "system-ui, sans-serif", fontSize: 15, lineHeight: 1.8, color: T.mid, marginBottom: 36 }}>
               I've led discovery sessions, built design systems from scratch, conducted research with 50+ users and shipped products used by millions. I work well in cross-functional teams, in English and Portuguese, and I care deeply about accessibility and inclusive design.
             </p>
             <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginBottom: 32 }}>
-              {["Design Systems", "UX Research", "Interaction Design", "Usability Testing", "Accessibility", "Prototyping"].map(s => (
+              {["Figma", "UX Research", "Design Systems", "Prototyping", "Usability Testing", "Accessibility", "Hotjar", "Maze", "Miro", "Jira", "Webflow"].map(s => (
                 <span key={s} style={{
                   fontFamily: "system-ui, sans-serif", fontSize: 11, fontWeight: 500,
                   letterSpacing: "0.04em", textTransform: "uppercase",
