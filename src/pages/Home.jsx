@@ -29,29 +29,28 @@ function FadeUp({ children, delay = 0 }) {
 
 function Counter({ to, suffix = "", duration = 1.4 }) {
   const ref = useRef(null)
-  const inView = useInView(ref, { once: true, margin: "-40px" })
+
+  const inView = useInView(ref, { once: false, margin: "-40px" })
   const [val, setVal] = useState(0)
-  const started = useRef(false)
 
   useEffect(() => {
-    if (inView && !started.current) {
-      started.current = true
-      const steps = 60
-      const interval = (duration * 1000) / steps
-      let current = 0
-      const timer = setInterval(() => {
-        current += 1
-        const progress = current / steps
-        const eased = 1 - Math.pow(1 - progress, 3)
-        setVal(Math.round(eased * to))
-        if (current >= steps) {
-          setVal(to)
-          clearInterval(timer)
-        }
-      }, interval)
-      return () => clearInterval(timer)
-    }
-  }, [inView, to, duration])
+    if (!inView) return
+    const steps = 60
+    const interval = (duration * 1000) / steps
+    let current = 0
+    setVal(0)
+    const timer = setInterval(() => {
+      current += 1
+      const progress = current / steps
+      const eased = 1 - Math.pow(1 - progress, 3)
+      setVal(Math.round(eased * to))
+      if (current >= steps) {
+        setVal(to)
+        clearInterval(timer)
+      }
+    }, interval)
+    return () => clearInterval(timer)
+  }, [inView])
 
   return (
     <span ref={ref} style={{
