@@ -116,18 +116,18 @@ function Btn({ children, onClick, href, as: Tag = "button",
     }
   } else {
     style = hovered ? {
-      background: GRAD,
+      background: "#FFFFFF",
       WebkitBackgroundClip: "text",
       WebkitTextFillColor: "transparent",
       backgroundClip: "text",
       border: "1.5px solid transparent",
-      transition: "border-color 0.25s",
+      transition: "border-color 0.25s, background 0.25s",
     } : {
       background: "transparent",
       color: borderColor === "#FFFFFF" ? "#FFFFFF" : "#0A0A0A",
       WebkitTextFillColor: "unset",
       border: `1.5px solid ${borderColor}`,
-      transition: "border-color 0.25s",
+      transition: "border-color 0.25s, background 0.25s",
     }
   }
 
@@ -142,7 +142,7 @@ function Btn({ children, onClick, href, as: Tag = "button",
 
   const inner = (
     <>
-      {hovered && (
+      {variant === "outline" && hovered && (
         <span style={{
           position: "absolute", inset: -1.5, borderRadius,
           background: GRAD,
@@ -501,7 +501,7 @@ function CompanyBadge({ c }) {
 function CompaniesMarquee() {
   const loop = [...COMPANIES, ...COMPANIES]
   return (
-    <section aria-label="Companies" style={{ padding: "80px 0", background: T.offwhite, overflow: "hidden" }}>
+    <section aria-label="Companies" style={{ padding: "80px 0", background: "#F7F7F5", overflow: "hidden" }}>
       <style>{`
         @keyframes companies-scroll {
           from { transform: translateX(0); }
@@ -537,8 +537,8 @@ function CompaniesMarquee() {
   )
 }
 
-// ─── MY TOOLS (preserved for future page) ────────────────────────────────────
-
+// ─── MY TOOLS (hidden — preserved for future use) ────────────────────────────
+/*
 const SI = "https://cdn.simpleicons.org"
 const GB = "https://raw.githubusercontent.com/gilbarbara/logos/main/logos"
 
@@ -644,6 +644,7 @@ function MyTools() {
     </section>
   )
 }
+*/
 
 // ─── ABOUT ───────────────────────────────────────────────────────────────────
 
