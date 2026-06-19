@@ -3,9 +3,9 @@ import { motion, useInView } from "framer-motion"
 import { T } from "../tokens"
 
 const spring = { duration: 0.9, ease: [0.16, 1, 0.3, 1] }
-const ACCENT = "#CB1AFD"
+const GRAD = "linear-gradient(90deg, #6C1FF3, #DA37F4)"
 
-function AccentBtn({ children, href, variant = "outline", target, rel }) {
+function GradBtn({ children, href, variant = "outline", target, rel }) {
   const [hovered, setHovered] = useState(false)
   const defaultBorder = variant === "outline-gray" ? "#CCCCCC" : "#0A0A0A"
 
@@ -18,17 +18,32 @@ function AccentBtn({ children, href, variant = "outline", target, rel }) {
       onMouseLeave={() => setHovered(false)}
       style={{
         display: "inline-block",
-        fontFamily: "system-ui, sans-serif", fontSize: 11, fontWeight: 700,
-        letterSpacing: "0.05em", textTransform: "uppercase",
-        padding: "9px 18px", borderRadius: 20,
-        background: "#FFFFFF",
-        color: hovered ? ACCENT : "#0A0A0A",
-        border: `1.5px solid ${hovered ? ACCENT : defaultBorder}`,
+        borderRadius: 20,
+        padding: 1.5,
+        background: hovered ? GRAD : defaultBorder,
+        transition: "background 0.25s",
         textDecoration: "none",
-        transition: "color 0.2s, border-color 0.2s",
       }}
     >
-      {children}
+      <span style={{
+        display: "block",
+        fontFamily: "system-ui, sans-serif", fontSize: 11, fontWeight: 700,
+        letterSpacing: "0.05em", textTransform: "uppercase",
+        padding: "9px 18px", borderRadius: 18.5,
+        background: "#FFFFFF",
+        ...(hovered ? {
+          backgroundImage: GRAD,
+          WebkitBackgroundClip: "text",
+          WebkitTextFillColor: "transparent",
+          backgroundClip: "text",
+        } : {
+          color: "#0A0A0A",
+          WebkitTextFillColor: "unset",
+        }),
+        transition: "color 0.25s",
+      }}>
+        {children}
+      </span>
     </a>
   )
 }
@@ -64,24 +79,25 @@ const TOOLS = [
   { name: "Framer",           bg: "#0055FF", src: `${SI}/framer/fff` },
   { name: "Adobe Illustrator",bg: "#FF7C00", src: `${GB}/adobe-illustrator.svg` },
   { name: "Adobe Photoshop",  bg: "#001E36", src: `${GB}/adobe-photoshop.svg` },
-  { name: "Procreate",        bg: "#1A1A1A", abbr: "Pr" },
   { name: "Jira",             bg: "#0052CC", src: `${SI}/jira/fff` },
   { name: "Notion",           bg: "#F5F5F5", src: `${SI}/notion/000` },
-  { name: "Lovable",          bg: "#FF3D68", abbr: "Lo" },
-  { name: "Storybook",        bg: "#FF4785", src: `${SI}/storybook/fff` },
-  { name: "Zeroheight",       bg: "#200060", abbr: "Zh" },
   { name: "Hotjar",           bg: "#FF3C00", src: `${SI}/hotjar/fff` },
   { name: "Google Analytics", bg: "#E37400", src: `${SI}/googleanalytics/fff` },
-  { name: "Salesforce",       bg: "#00A1E0", src: `${GB}/salesforce.svg` },
   { name: "Vercel",           bg: "#111111", src: `${SI}/vercel/fff` },
   { name: "GitHub",           bg: "#24292E", src: `${SI}/github/fff` },
   { name: "Maze",             bg: "#6240C8", src: `${SI}/maze/fff` },
-  { name: "Claude Code",      bg: "#D97757", src: `${SI}/anthropic/fff` },
-  { name: "Claude Design",    bg: "#1A1A1A", src: `${SI}/anthropic/fff` },
+  { name: "Claude",           bg: "#D97757", star: true },
 ]
 
 function ToolIcon({ tool }) {
   const [failed, setFailed] = useState(false)
+  if (tool.star) {
+    return (
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="white">
+        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+      </svg>
+    )
+  }
   if (tool.abbr || failed) {
     return (
       <span style={{ fontSize: 10, fontWeight: 800, color: "#fff" }}>{tool.abbr || tool.name.slice(0, 2)}</span>
@@ -218,8 +234,8 @@ export default function About() {
               </p>
 
               <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
-                <AccentBtn href="https://www.linkedin.com/in/isabellegalves/" target="_blank" rel="noopener noreferrer">LinkedIn</AccentBtn>
-                <AccentBtn href="mailto:isabellegalves@gmail.com" variant="outline-gray">Email me</AccentBtn>
+                <GradBtn href="https://www.linkedin.com/in/isabellegalves/" target="_blank" rel="noopener noreferrer">LinkedIn</GradBtn>
+                <GradBtn href="mailto:isabellegalves@gmail.com" variant="outline-gray">Email me</GradBtn>
               </div>
             </div>
           </div>
@@ -321,15 +337,11 @@ export default function About() {
                     <div>
                       <div style={{
                         fontFamily: "system-ui, sans-serif", fontSize: 15,
-                        fontWeight: 700, color: T.ink,
+                        color: T.ink, lineHeight: 1.4,
                       }}>
-                        {e.role}
-                      </div>
-                      <div style={{
-                        fontFamily: "system-ui, sans-serif", fontSize: 13,
-                        color: "#888", marginTop: 3,
-                      }}>
-                        {e.company}
+                        <span style={{ fontWeight: 700 }}>{e.company}</span>
+                        <span style={{ color: "#CCCCCC", margin: "0 8px" }}>|</span>
+                        <span style={{ fontWeight: 400, color: "#4A4A4A" }}>{e.role}</span>
                       </div>
                     </div>
                     <div style={{

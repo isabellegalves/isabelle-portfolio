@@ -83,17 +83,19 @@ function HeroLine({ children, delay = 0, serif = false, light = false, size }) {
   )
 }
 
-const ACCENT = "#CB1AFD"
+const GRAD = "linear-gradient(90deg, #6C1FF3, #DA37F4)"
 
-// solid        → bg preto, texto branco → hover: bg #CB1AFD
-// outline      → bg branco, border preta, texto preto → hover: border #CB1AFD, texto #CB1AFD
-// outline-gray → bg branco, border cinza, texto preto → hover: border #CB1AFD, texto #CB1AFD
+// Regras:
+// solid        → bg preto + texto branco → hover: bg gradiente, sem border
+// outline      → bg branco + border preta + texto preto → hover: bg branco + border gradiente + texto gradiente
+// outline-gray → bg branco + border cinza + texto preto → hover: bg branco + border gradiente + texto gradiente
 function Btn({ children, onClick, href, as: Tag = "button",
   variant = "outline",
   bg = "#0A0A0A",
   padding = "13px 26px", borderRadius = 26,
 }) {
   const [hovered, setHovered] = useState(false)
+  const isOutline = variant === "outline" || variant === "outline-gray"
   const defaultBorder = variant === "outline-gray" ? "#CCCCCC" : "#0A0A0A"
 
   const events = {
@@ -101,33 +103,55 @@ function Btn({ children, onClick, href, as: Tag = "button",
     onMouseLeave: () => setHovered(false),
   }
 
-  let style
   if (variant === "solid") {
-    style = {
-      background: hovered ? ACCENT : bg,
+    const style = {
+      fontFamily: "system-ui, sans-serif", fontSize: 12, fontWeight: 700,
+      letterSpacing: "0.05em", textTransform: "uppercase",
+      padding, borderRadius, cursor: "pointer",
+      display: "inline-block", textDecoration: "none",
+      background: hovered ? GRAD : bg,
       color: "#FFFFFF",
+      WebkitTextFillColor: "unset",
       border: "none",
-      transition: "background 0.2s",
+      transition: "background 0.25s",
     }
-  } else {
-    style = {
-      background: "#FFFFFF",
-      color: hovered ? ACCENT : "#0A0A0A",
-      border: `1.5px solid ${hovered ? ACCENT : defaultBorder}`,
-      transition: "color 0.2s, border-color 0.2s",
-    }
+    if (Tag === "a") return <a href={href} {...events} style={style}>{children}</a>
+    return <button onClick={onClick} {...events} style={style}>{children}</button>
   }
 
-  const sharedStyle = {
+  // outline / outline-gray: usa padding wrapper para simular border gradiente
+  const wrapperStyle = {
+    display: "inline-block",
+    borderRadius,
+    padding: 1.5,
+    background: hovered ? GRAD : defaultBorder,
+    transition: "background 0.25s",
+    cursor: "pointer",
+    textDecoration: "none",
+  }
+
+  const innerStyle = {
+    display: "block",
     fontFamily: "system-ui, sans-serif", fontSize: 12, fontWeight: 700,
     letterSpacing: "0.05em", textTransform: "uppercase",
-    padding, borderRadius, cursor: "pointer",
-    display: "inline-block", textDecoration: "none",
-    ...style,
+    padding, borderRadius: borderRadius - 1.5,
+    background: "#FFFFFF",
+    ...(hovered ? {
+      backgroundImage: GRAD,
+      WebkitBackgroundClip: "text",
+      WebkitTextFillColor: "transparent",
+      backgroundClip: "text",
+    } : {
+      color: "#0A0A0A",
+      WebkitTextFillColor: "unset",
+    }),
+    transition: "color 0.25s",
   }
 
-  if (Tag === "a") return <a href={href} {...events} style={sharedStyle}>{children}</a>
-  return <button onClick={onClick} {...events} style={sharedStyle}>{children}</button>
+  const content = <span style={innerStyle}>{children}</span>
+
+  if (Tag === "a") return <a href={href} {...events} style={wrapperStyle}>{content}</a>
+  return <button onClick={onClick} {...events} style={{ ...wrapperStyle, border: "none" }}>{content}</button>
 }
 
 // ─── HERO ────────────────────────────────────────────────────────────────────
@@ -208,7 +232,7 @@ function Hero({ onContactClick }) {
             { n: 30, suffix: "%", label: "Reduction in dev time at Bradesco" },
             { n: 50, suffix: "+", label: "Users interviewed across projects" },
             { n: 40, suffix: "%", label: "Faster delivery with Design Systems" },
-            { n: 4,  suffix: "",  label: "Products launched at Sodexo" },
+            { n: 20, suffix: "%", label: "Increase in usability at Sodexo" },
           ].map((s, i) => (
             <div key={i} style={{
               flex: "1 1 160px", paddingRight: 28, marginRight: 28,
@@ -314,8 +338,13 @@ function CaseCard({ c, index }) {
                 display: "inline-block",
                 fontFamily: "system-ui, sans-serif", fontSize: 12, fontWeight: 700,
                 letterSpacing: "0.05em", textTransform: "uppercase",
-                color: hovered ? "#CB1AFD" : T.ink,
-                transition: "color 0.2s",
+                ...(hovered ? {
+                  background: "linear-gradient(90deg, #6C1FF3, #DA37F4)",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  backgroundClip: "text",
+                } : { color: T.ink }),
+                transition: "all 0.25s",
               }}>
                 Read case study →
               </span>

@@ -11,7 +11,7 @@ export default function Footer() {
       <img
         src="/images/logo-white.svg"
         alt="Isabelle Alves"
-        style={{ height: 36, width: "auto", display: "block", opacity: 0.7 }}
+        style={{ height: 28, width: "auto", display: "block", opacity: 0.7 }}
       />
       <span style={{ fontFamily: "system-ui, sans-serif", fontSize: 11, color: "#555", letterSpacing: "0.04em" }}>
         2026
