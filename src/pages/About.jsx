@@ -169,6 +169,45 @@ const TAG_STYLE = {
 
 const P = { maxWidth: 1280, margin: "0 auto", padding: "0 80px" }
 
+function CertRow({ cert, last }) {
+  const [imgFailed, setImgFailed] = useState(false)
+  return (
+    <div style={{
+      display: "flex", alignItems: "center", gap: 20,
+      padding: "20px 0",
+      borderBottom: last ? "none" : `0.5px solid ${T.rule}`,
+    }}>
+      <div style={{
+        width: 44, height: 44, borderRadius: 10, flexShrink: 0,
+        background: cert.logoBg, border: `1px solid ${T.rule}`,
+        display: "flex", alignItems: "center", justifyContent: "center",
+        overflow: "hidden",
+      }}>
+        {!imgFailed
+          ? <img src={cert.logo} alt={cert.issuer} width={28} height={28}
+              style={{ objectFit: "contain", display: "block" }}
+              onError={() => setImgFailed(true)} />
+          : <span style={{ fontFamily: "system-ui, sans-serif", fontSize: 10, fontWeight: 800, color: T.mid }}>{cert.abbr}</span>
+        }
+      </div>
+      <div style={{ flex: 1 }}>
+        <div style={{ fontFamily: "system-ui, sans-serif", fontSize: 15, fontWeight: 700, color: T.ink, marginBottom: 3 }}>
+          {cert.name}
+        </div>
+        <div style={{ fontFamily: "system-ui, sans-serif", fontSize: 13, color: "#888" }}>
+          {cert.issuer}
+        </div>
+      </div>
+      <div style={{
+        fontFamily: "Georgia, serif", fontStyle: "italic",
+        fontSize: 13, color: "#AAAAAA", whiteSpace: "nowrap", marginLeft: 16,
+      }}>
+        {cert.date}
+      </div>
+    </div>
+  )
+}
+
 export default function About() {
   useEffect(() => { window.scrollTo(0, 0) }, [])
 
@@ -367,6 +406,104 @@ export default function About() {
 
         <div style={RULE} />
 
+        {/* CERTIFICATIONS */}
+        <FadeUp>
+          <span style={LABEL}>Certifications</span>
+          <div style={{ display: "flex", flexDirection: "column" }}>
+            {[
+              {
+                name: "AI for Designers",
+                issuer: "IxDF — The Interaction Design Foundation",
+                date: "Aug 2025",
+                logo: "https://logo.clearbit.com/interaction-design.org",
+                logoBg: "#ffffff",
+                abbr: "IxDF",
+              },
+              {
+                name: "Generative AI — Elevate your Software Development Career",
+                issuer: "IBM",
+                date: "Jul 2025",
+                logo: "https://raw.githubusercontent.com/gilbarbara/logos/main/logos/ibm.svg",
+                logoBg: "#ffffff",
+                abbr: "IBM",
+              },
+              {
+                name: "Fundamentals of UI/UX Design",
+                issuer: "Microsoft",
+                date: "Jun 2025",
+                logo: "https://raw.githubusercontent.com/gilbarbara/logos/main/logos/microsoft.svg",
+                logoBg: "#ffffff",
+                abbr: "MS",
+              },
+              {
+                name: "Google UX Design",
+                issuer: "Google",
+                date: "Jun 2025",
+                logo: "https://raw.githubusercontent.com/gilbarbara/logos/main/logos/google.svg",
+                logoBg: "#ffffff",
+                abbr: "G",
+              },
+            ].map((c, i, arr) => (
+              <CertRow key={i} cert={c} last={i === arr.length - 1} />
+            ))}
+          </div>
+        </FadeUp>
+
+        <div style={RULE} />
+
+        {/* AWARDS */}
+        <FadeUp>
+          <span style={LABEL}>Awards</span>
+          <div style={{ display: "flex", flexDirection: "column" }}>
+            {[
+              {
+                title: "SET | Awarded Campaign — Advertising",
+                issuer: "PUC-RS",
+                date: "Dec 2017",
+                category: "1st Place · Advertising Campaign",
+              },
+              {
+                title: "Rymsza Advertising Creativity Award",
+                issuer: "UNIRITTER",
+                date: "Nov 2017",
+                category: "1st Place · Creative Direction",
+              },
+              {
+                title: "SET | Awarded Campaign — Alternative Media",
+                issuer: "PUC-RS",
+                date: "Nov 2015",
+                category: "1st Place · Alternative Media",
+              },
+            ].map((a, i, arr) => (
+              <div key={i} style={{
+                display: "flex", justifyContent: "space-between", alignItems: "flex-start",
+                padding: "24px 0",
+                borderBottom: i < arr.length - 1 ? `0.5px solid ${T.rule}` : "none",
+              }}>
+                <div>
+                  <div style={{
+                    fontFamily: "system-ui, sans-serif", fontSize: 15,
+                    fontWeight: 700, color: T.ink, marginBottom: 4,
+                  }}>
+                    {a.title}
+                  </div>
+                  <div style={{ fontFamily: "system-ui, sans-serif", fontSize: 13, color: "#888" }}>
+                    {a.issuer} · {a.category}
+                  </div>
+                </div>
+                <div style={{
+                  fontFamily: "Georgia, serif", fontStyle: "italic",
+                  fontSize: 13, color: "#AAAAAA", whiteSpace: "nowrap", marginLeft: 24, marginTop: 2,
+                }}>
+                  {a.date}
+                </div>
+              </div>
+            ))}
+          </div>
+        </FadeUp>
+
+        <div style={RULE} />
+
         {/* EDUCATION + LANGUAGES */}
         <FadeUp>
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 80 }}>
@@ -416,62 +553,6 @@ export default function About() {
               </div>
             </div>
 
-          </div>
-        </FadeUp>
-
-        <div style={RULE} />
-
-        {/* AWARDS */}
-        <FadeUp>
-          <span style={LABEL}>Awards</span>
-          <div style={{ display: "flex", flexDirection: "column" }}>
-            {[
-              {
-                title: "SET | Awarded Campaign — Advertising",
-                issuer: "PUC-RS",
-                date: "Dec 2017",
-                category: "1st Place · Advertising Campaign",
-              },
-              {
-                title: "Rymsza Advertising Creativity Award",
-                issuer: "UNIRITTER",
-                date: "Nov 2017",
-                category: "1st Place · Creative Direction",
-              },
-              {
-                title: "SET | Awarded Campaign — Alternative Media",
-                issuer: "PUC-RS",
-                date: "Nov 2015",
-                category: "1st Place · Alternative Media",
-              },
-            ].map((a, i, arr) => (
-              <div key={i} style={{
-                display: "flex", justifyContent: "space-between", alignItems: "flex-start",
-                padding: "24px 0",
-                borderBottom: i < arr.length - 1 ? `0.5px solid ${T.rule}` : "none",
-              }}>
-                <div>
-                  <div style={{
-                    fontFamily: "system-ui, sans-serif", fontSize: 15,
-                    fontWeight: 700, color: T.ink, marginBottom: 4,
-                  }}>
-                    {a.title}
-                  </div>
-                  <div style={{
-                    fontFamily: "system-ui, sans-serif", fontSize: 13,
-                    color: "#888",
-                  }}>
-                    {a.issuer} · {a.category}
-                  </div>
-                </div>
-                <div style={{
-                  fontFamily: "Georgia, serif", fontStyle: "italic",
-                  fontSize: 13, color: "#AAAAAA", whiteSpace: "nowrap", marginLeft: 24, marginTop: 2,
-                }}>
-                  {a.date}
-                </div>
-              </div>
-            ))}
           </div>
         </FadeUp>
 
