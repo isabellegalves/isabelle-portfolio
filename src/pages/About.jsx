@@ -3,11 +3,12 @@ import { motion, useInView } from "framer-motion"
 import { T } from "../tokens"
 
 const spring = { duration: 0.9, ease: [0.16, 1, 0.3, 1] }
-const ACCENT = "#CB1AFD"
+const GRAD = "linear-gradient(90deg, #6C1FF3, #DA37F4)"
 
-function AccentBtn({ children, href, variant = "outline", target, rel }) {
+function GradBtn({ children, href, variant = "outline", target, rel }) {
   const [hovered, setHovered] = useState(false)
   const defaultBorder = variant === "outline-gray" ? "#CCCCCC" : "#0A0A0A"
+
   return (
     <a
       href={href}
@@ -17,17 +18,32 @@ function AccentBtn({ children, href, variant = "outline", target, rel }) {
       onMouseLeave={() => setHovered(false)}
       style={{
         display: "inline-block",
-        fontFamily: "system-ui, sans-serif", fontSize: 11, fontWeight: 700,
-        letterSpacing: "0.05em", textTransform: "uppercase",
-        padding: "9px 18px", borderRadius: 20,
-        background: "#FFFFFF",
-        color: hovered ? ACCENT : "#0A0A0A",
-        border: `1.5px solid ${hovered ? ACCENT : defaultBorder}`,
+        borderRadius: 20,
+        padding: 1.5,
+        background: hovered ? GRAD : defaultBorder,
+        transition: "background 0.25s",
         textDecoration: "none",
-        transition: "color 0.2s, border-color 0.2s",
       }}
     >
-      {children}
+      <span style={{
+        display: "block",
+        fontFamily: "system-ui, sans-serif", fontSize: 11, fontWeight: 700,
+        letterSpacing: "0.05em", textTransform: "uppercase",
+        padding: "9px 18px", borderRadius: 18.5,
+        background: "#FFFFFF",
+        ...(hovered ? {
+          backgroundImage: GRAD,
+          WebkitBackgroundClip: "text",
+          WebkitTextFillColor: "transparent",
+          backgroundClip: "text",
+        } : {
+          color: "#0A0A0A",
+          WebkitTextFillColor: "unset",
+        }),
+        transition: "color 0.25s",
+      }}>
+        {children}
+      </span>
     </a>
   )
 }
@@ -59,36 +75,42 @@ const SI = "https://cdn.simpleicons.org"
 const GB = "https://raw.githubusercontent.com/gilbarbara/logos/main/logos"
 
 const TOOLS = [
-  { name: "Figma",            bg: "#000000", src: `${SI}/figma/fff` },
+  { name: "Figma",            bg: "#1ABCFE", src: `${SI}/figma/fff` },
   { name: "Framer",           bg: "#0055FF", src: `${SI}/framer/fff` },
   { name: "Adobe Illustrator",bg: "#FF7C00", src: `${GB}/adobe-illustrator.svg` },
   { name: "Adobe Photoshop",  bg: "#001E36", src: `${GB}/adobe-photoshop.svg` },
+  { name: "Procreate",        bg: "#1A1A1A", abbr: "Pr" },
   { name: "Jira",             bg: "#0052CC", src: `${SI}/jira/fff` },
   { name: "Notion",           bg: "#F5F5F5", src: `${SI}/notion/000` },
+  { name: "Lovable",          bg: "#FF3D68", abbr: "Lo" },
+  { name: "Storybook",        bg: "#FF4785", src: `${SI}/storybook/fff` },
+  { name: "Zeroheight",       bg: "#200060", abbr: "Zh" },
   { name: "Hotjar",           bg: "#FF3C00", src: `${SI}/hotjar/fff` },
   { name: "Google Analytics", bg: "#E37400", src: `${SI}/googleanalytics/fff` },
+  { name: "Salesforce",       bg: "#00A1E0", src: `${GB}/salesforce.svg` },
   { name: "Vercel",           bg: "#111111", src: `${SI}/vercel/fff` },
   { name: "GitHub",           bg: "#24292E", src: `${SI}/github/fff` },
   { name: "Maze",             bg: "#6240C8", src: `${SI}/maze/fff` },
-  { name: "Claude",           bg: "#D97757", star: true },
+  { name: "Claude Code",      bg: "#D97757", src: `${SI}/anthropic/fff` },
+  { name: "Claude Design",    bg: "#1A1A1A", src: `${SI}/anthropic/fff` },
 ]
 
 function ToolIcon({ tool }) {
   const [failed, setFailed] = useState(false)
-  if (tool.star) {
+  if (tool.abbr || failed) {
     return (
-      <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="white" viewBox="0 0 16 16">
-        <path d="m3.127 10.604 3.135-1.76.053-.153-.053-.085H6.11l-.525-.032-1.791-.048-1.554-.065-1.505-.08-.38-.081L0 7.832l.036-.234.32-.214.455.04 1.009.069 1.513.105 1.097.064 1.626.17h.259l.036-.105-.089-.065-.068-.064-1.566-1.062-1.695-1.121-.887-.646-.48-.327-.243-.306-.104-.67.435-.48.585.04.15.04.593.456 1.267.981 1.654 1.218.242.202.097-.068.012-.049-.109-.181-.9-1.626-.96-1.655-.428-.686-.113-.411a2 2 0 0 1-.068-.484l.496-.674L4.446 0l.662.089.279.242.411.94.666 1.48 1.033 2.014.302.597.162.553.06.17h.105v-.097l.085-1.134.157-1.392.154-1.792.052-.504.25-.605.497-.327.387.186.319.456-.045.294-.19 1.23-.37 1.93-.243 1.29h.142l.161-.16.654-.868 1.097-1.372.484-.545.565-.601.363-.287h.686l.505.751-.226.775-.707.895-.585.759-.839 1.13-.524.904.048.072.125-.012 1.897-.403 1.024-.186 1.223-.21.553.258.06.263-.218.536-1.307.323-1.533.307-2.284.54-.028.02.032.04 1.029.098.44.024h1.077l2.005.15.525.346.315.424-.053.323-.807.411-3.631-.863-.872-.218h-.12v.073l.726.71 1.331 1.202 1.667 1.55.084.383-.214.302-.226-.032-1.464-1.101-.565-.497-1.28-1.077h-.084v.113l.295.432 1.557 2.34.08.718-.112.234-.404.141-.444-.08-.911-1.28-.94-1.44-.759-1.291-.093.053-.448 4.821-.21.246-.484.186-.403-.307-.214-.496.214-.98.258-1.28.21-1.016.19-1.263.112-.42-.008-.028-.092.012-.953 1.307-1.448 1.957-1.146 1.227-.274.109-.477-.247.045-.44.266-.39 1.586-2.018.956-1.25.617-.723-.004-.105h-.036l-4.212 2.736-.75.096-.324-.302.04-.496.154-.162 1.267-.871z"/>
-      </svg>
+      <span style={{ fontSize: 10, fontWeight: 800, color: "#fff" }}>{tool.abbr || tool.name.slice(0, 2)}</span>
     )
   }
-  if (tool.abbr || failed) {
-    return <span style={{ fontSize: 10, fontWeight: 800, color: "#fff" }}>{tool.abbr || tool.name.slice(0, 2)}</span>
-  }
   return (
-    <img src={tool.src} alt={tool.name} width={28} height={28}
+    <img
+      src={tool.src}
+      alt={tool.name}
+      width={28}
+      height={28}
       onError={() => setFailed(true)}
-      style={{ objectFit: "contain", display: "block" }} />
+      style={{ objectFit: "contain", display: "block" }}
+    />
   )
 }
 
@@ -160,10 +182,12 @@ export default function About() {
             display: "grid", gridTemplateColumns: "220px 1fr",
             gap: 64, alignItems: "flex-start", marginBottom: 64,
           }}>
+            {/* Foto */}
             <div>
               <div style={{
                 width: 200, height: 250, borderRadius: 20,
-                background: T.offwhite, border: `1px dashed ${T.rule}`,
+                background: T.offwhite,
+                border: `1px dashed ${T.rule}`,
                 display: "flex", flexDirection: "column",
                 alignItems: "center", justifyContent: "center", gap: 10,
               }}>
@@ -180,6 +204,7 @@ export default function About() {
               </div>
             </div>
 
+            {/* Texto */}
             <div>
               <h1 style={{
                 fontFamily: "Georgia, serif", fontStyle: "italic", fontWeight: 400,
@@ -188,19 +213,28 @@ export default function About() {
               }}>
                 Hello, I'm Isabelle.
               </h1>
-              <p style={{ fontFamily: "system-ui, sans-serif", fontSize: 16, lineHeight: 1.85, color: "#4A4A4A", marginBottom: 16 }}>
-                I'm a Senior Product Designer with 10 years of experience helping companies like Bradesco, Condé Nast and Sodexo turn complex problems into products that actually work for people.
+              <p style={{
+                fontFamily: "system-ui, sans-serif", fontSize: 16,
+                lineHeight: 1.85, color: "#4A4A4A", marginBottom: 16,
+              }}>
+                I'm a Senior Product Designer with 10 years of experience at the intersection of business, research and interface craft. My background in Advertising sharpens how I think about positioning and business goals. My postgrad in UX keeps me grounded in real user needs.
               </p>
-              <p style={{ fontFamily: "system-ui, sans-serif", fontSize: 16, lineHeight: 1.85, color: "#4A4A4A", marginBottom: 16 }}>
-                My background in Advertising taught me to think about business goals before I open Figma. My postgrad in UX taught me to listen before I draw. Together, they make me the kind of designer who fits between stakeholders and developers without losing sight of the user.
+              <p style={{
+                fontFamily: "system-ui, sans-serif", fontSize: 16,
+                lineHeight: 1.85, color: "#4A4A4A", marginBottom: 16,
+              }}>
+                I believe good design is more than aesthetics. It must be accessible, functional and deliver a seamless experience for everyone. Empathy is at the core of my process — I research and listen before I draw a single pixel.
               </p>
-              <p style={{ fontFamily: "system-ui, sans-serif", fontSize: 16, lineHeight: 1.85, color: "#4A4A4A", marginBottom: 32 }}>
-                Outside of screens, I illustrate and draw. Art is how I stay connected to the human side of design, and why accessibility and representation are never afterthoughts in my work.
+              <p style={{
+                fontFamily: "system-ui, sans-serif", fontSize: 16,
+                lineHeight: 1.85, color: "#4A4A4A", marginBottom: 32,
+              }}>
+                Art is how I connect with people. By illustrating, drawing and creating interfaces, I express myself and tell visual stories. My goal is always that every user feels represented.
               </p>
 
               <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
-                <AccentBtn href="https://www.linkedin.com/in/isabellegalves/" target="_blank" rel="noopener noreferrer">LinkedIn</AccentBtn>
-                <AccentBtn href="mailto:isabellegalves@gmail.com" variant="outline-gray">Email me</AccentBtn>
+                <GradBtn href="https://www.linkedin.com/in/isabellegalves/" target="_blank" rel="noopener noreferrer">LinkedIn</GradBtn>
+                <GradBtn href="mailto:isabellegalves@gmail.com" variant="outline-gray">Email me</GradBtn>
               </div>
             </div>
           </div>
@@ -208,7 +242,10 @@ export default function About() {
 
         {/* VALORES */}
         <FadeUp delay={0.1}>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 2 }}>
+          <div style={{
+            display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 2,
+            marginBottom: 0,
+          }}>
             {[
               { title: "Accessibility first", body: "Good design must work for everyone. I build inclusive experiences that leave no user behind, from day one." },
               { title: "Art as connection", body: "I illustrate, draw and design interfaces to tell visual stories and connect with people on a human level." },
@@ -218,53 +255,20 @@ export default function About() {
                 background: T.offwhite, padding: "28px 32px",
                 borderRadius: i === 0 ? "14px 0 0 14px" : i === 2 ? "0 14px 14px 0" : 0,
               }}>
-                <div style={{ fontFamily: "system-ui, sans-serif", fontSize: 14, fontWeight: 700, color: T.ink, marginBottom: 10 }}>
+                <div style={{
+                  fontFamily: "system-ui, sans-serif", fontSize: 14, fontWeight: 700,
+                  color: T.ink, marginBottom: 10,
+                }}>
                   {v.title}
                 </div>
-                <div style={{ fontFamily: "system-ui, sans-serif", fontSize: 14, color: T.mid, lineHeight: 1.75 }}>
+                <div style={{
+                  fontFamily: "system-ui, sans-serif", fontSize: 14,
+                  color: T.mid, lineHeight: 1.75,
+                }}>
                   {v.body}
                 </div>
               </div>
             ))}
-          </div>
-        </FadeUp>
-
-        <div style={RULE} />
-
-        {/* EDUCATION + LANGUAGES */}
-        <FadeUp>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 80 }}>
-            <div>
-              <span style={LABEL}>Education</span>
-              <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
-                <div>
-                  <div style={{ fontFamily: "system-ui, sans-serif", fontSize: 15, fontWeight: 600, color: T.ink }}>Post Graduate in UX/UI</div>
-                  <div style={{ fontFamily: "system-ui, sans-serif", fontSize: 13, color: "#888", marginTop: 4 }}>Laureate University · Uniritter</div>
-                </div>
-                <div>
-                  <div style={{ fontFamily: "system-ui, sans-serif", fontSize: 15, fontWeight: 600, color: T.ink }}>Advertising & Publicity</div>
-                  <div style={{ fontFamily: "system-ui, sans-serif", fontSize: 13, color: "#888", marginTop: 4 }}>Laureate University · Uniritter</div>
-                </div>
-              </div>
-            </div>
-            <div>
-              <span style={LABEL}>Languages</span>
-              <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
-                {[
-                  { lang: "English", level: "Fluent" },
-                  { lang: "Portuguese", level: "Fluent" },
-                  { lang: "Spanish", level: "Intermediate" },
-                ].map(l => (
-                  <div key={l.lang} style={{
-                    display: "flex", justifyContent: "space-between", alignItems: "center",
-                    paddingBottom: 14, borderBottom: `0.5px solid ${T.rule}`,
-                  }}>
-                    <span style={{ fontFamily: "system-ui, sans-serif", fontSize: 15, fontWeight: 500, color: T.ink }}>{l.lang}</span>
-                    <span style={{ fontFamily: "Georgia, serif", fontStyle: "italic", fontSize: 13, color: "#888" }}>{l.level}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
           </div>
         </FadeUp>
 
@@ -275,13 +279,17 @@ export default function About() {
           <span style={LABEL}>Toolbox</span>
           <div style={{ display: "flex", flexWrap: "wrap", gap: 10 }}>
             {TOOLS.map((tool) => (
-              <div key={tool.name} title={tool.name} style={{
-                width: 52, height: 52, borderRadius: 12,
-                background: tool.bg,
-                display: "flex", alignItems: "center", justifyContent: "center",
-                overflow: "hidden", border: "1px solid rgba(0,0,0,0.08)",
-                flexShrink: 0, cursor: "default",
-              }}>
+              <div
+                key={tool.name}
+                title={tool.name}
+                style={{
+                  width: 52, height: 52, borderRadius: 12,
+                  background: tool.bg,
+                  display: "flex", alignItems: "center", justifyContent: "center",
+                  overflow: "hidden", border: "1px solid rgba(0,0,0,0.08)",
+                  flexShrink: 0, cursor: "default",
+                }}
+              >
                 <ToolIcon tool={tool} />
               </div>
             ))}
@@ -300,6 +308,7 @@ export default function About() {
             <FadeUp key={i} delay={i * 0.07}>
               <div style={{ display: "flex", gap: 20, alignItems: "flex-start" }}>
 
+                {/* Logo + linha vertical */}
                 <div style={{ display: "flex", flexDirection: "column", alignItems: "center", flexShrink: 0 }}>
                   <div style={{
                     width: 44, height: 44, borderRadius: 10,
@@ -311,19 +320,32 @@ export default function About() {
                     {e.abbr}
                   </div>
                   {i < EXPERIENCE.length - 1 && (
-                    <div style={{ width: 1, flex: 1, minHeight: 36, background: T.rule, marginTop: 4 }} />
+                    <div style={{
+                      width: 1, flex: 1, minHeight: 36,
+                      background: T.rule, marginTop: 4,
+                    }} />
                   )}
                 </div>
 
+                {/* Conteúdo */}
                 <div style={{ flex: 1, paddingBottom: i < EXPERIENCE.length - 1 ? 32 : 0 }}>
                   <div style={{
                     display: "flex", justifyContent: "space-between",
                     alignItems: "flex-start", gap: 16, marginBottom: 12,
                   }}>
-                    <div style={{ fontFamily: "system-ui, sans-serif", fontSize: 15, color: T.ink, lineHeight: 1.4 }}>
-                      <span style={{ fontWeight: 700 }}>{e.company}</span>
-                      <span style={{ color: "#CCCCCC", margin: "0 8px" }}>|</span>
-                      <span style={{ fontWeight: 400, color: "#4A4A4A" }}>{e.role}</span>
+                    <div>
+                      <div style={{
+                        fontFamily: "system-ui, sans-serif", fontSize: 15,
+                        fontWeight: 700, color: T.ink,
+                      }}>
+                        {e.role}
+                      </div>
+                      <div style={{
+                        fontFamily: "system-ui, sans-serif", fontSize: 13,
+                        color: "#888", marginTop: 3,
+                      }}>
+                        {e.company}
+                      </div>
                     </div>
                     <div style={{
                       fontFamily: "Georgia, serif", fontStyle: "italic",
@@ -342,6 +364,116 @@ export default function About() {
             </FadeUp>
           ))}
         </div>
+
+        <div style={RULE} />
+
+        {/* EDUCATION + LANGUAGES */}
+        <FadeUp>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 80 }}>
+
+            <div>
+              <span style={LABEL}>Education</span>
+              <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
+                <div>
+                  <div style={{ fontFamily: "system-ui, sans-serif", fontSize: 15, fontWeight: 600, color: T.ink }}>
+                    Post Graduate in UX/UI
+                  </div>
+                  <div style={{ fontFamily: "system-ui, sans-serif", fontSize: 13, color: "#888", marginTop: 4 }}>
+                    Laureate University · Uniritter
+                  </div>
+                </div>
+                <div>
+                  <div style={{ fontFamily: "system-ui, sans-serif", fontSize: 15, fontWeight: 600, color: T.ink }}>
+                    Advertising & Publicity
+                  </div>
+                  <div style={{ fontFamily: "system-ui, sans-serif", fontSize: 13, color: "#888", marginTop: 4 }}>
+                    Laureate University · Uniritter
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <span style={LABEL}>Languages</span>
+              <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
+                {[
+                  { lang: "English", level: "Fluent" },
+                  { lang: "Portuguese", level: "Fluent" },
+                  { lang: "Spanish", level: "Intermediate" },
+                ].map(l => (
+                  <div key={l.lang} style={{
+                    display: "flex", justifyContent: "space-between", alignItems: "center",
+                    paddingBottom: 14, borderBottom: `0.5px solid ${T.rule}`,
+                  }}>
+                    <span style={{ fontFamily: "system-ui, sans-serif", fontSize: 15, fontWeight: 500, color: T.ink }}>
+                      {l.lang}
+                    </span>
+                    <span style={{ fontFamily: "Georgia, serif", fontStyle: "italic", fontSize: 13, color: "#888" }}>
+                      {l.level}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+          </div>
+        </FadeUp>
+
+        <div style={RULE} />
+
+        {/* AWARDS */}
+        <FadeUp>
+          <span style={LABEL}>Awards</span>
+          <div style={{ display: "flex", flexDirection: "column" }}>
+            {[
+              {
+                title: "SET | Awarded Campaign — Advertising",
+                issuer: "PUC-RS",
+                date: "Dec 2017",
+                category: "1st Place · Advertising Campaign",
+              },
+              {
+                title: "Rymsza Advertising Creativity Award",
+                issuer: "UNIRITTER",
+                date: "Nov 2017",
+                category: "1st Place · Creative Direction",
+              },
+              {
+                title: "SET | Awarded Campaign — Alternative Media",
+                issuer: "PUC-RS",
+                date: "Nov 2015",
+                category: "1st Place · Alternative Media",
+              },
+            ].map((a, i, arr) => (
+              <div key={i} style={{
+                display: "flex", justifyContent: "space-between", alignItems: "flex-start",
+                padding: "24px 0",
+                borderBottom: i < arr.length - 1 ? `0.5px solid ${T.rule}` : "none",
+              }}>
+                <div>
+                  <div style={{
+                    fontFamily: "system-ui, sans-serif", fontSize: 15,
+                    fontWeight: 700, color: T.ink, marginBottom: 4,
+                  }}>
+                    {a.title}
+                  </div>
+                  <div style={{
+                    fontFamily: "system-ui, sans-serif", fontSize: 13,
+                    color: "#888",
+                  }}>
+                    {a.issuer} · {a.category}
+                  </div>
+                </div>
+                <div style={{
+                  fontFamily: "Georgia, serif", fontStyle: "italic",
+                  fontSize: 13, color: "#AAAAAA", whiteSpace: "nowrap", marginLeft: 24, marginTop: 2,
+                }}>
+                  {a.date}
+                </div>
+              </div>
+            ))}
+          </div>
+        </FadeUp>
 
       </div>
     </main>
