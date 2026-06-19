@@ -394,6 +394,64 @@ function Work() {
 
 // ─── CAPABILITIES ────────────────────────────────────────────────────────────
 
+function CapCard({ item, i }) {
+  const [hovered, setHovered] = useState(false)
+  return (
+    <FadeUp delay={i * 0.15}>
+      <div
+        onMouseEnter={() => setHovered(true)}
+        onMouseLeave={() => setHovered(false)}
+        style={{
+          background: T.white,
+          padding: "44px 40px",
+          height: "100%",
+          borderRadius: i === 0 ? "14px 0 0 14px" : i === 2 ? "0 14px 14px 0" : 0,
+          position: "relative",
+          overflow: "hidden",
+          transform: hovered ? "translateY(-6px)" : "translateY(0)",
+          boxShadow: hovered ? "0 20px 48px rgba(0,0,0,0.08)" : "none",
+          transition: "transform 0.35s cubic-bezier(0.16,1,0.3,1), box-shadow 0.35s cubic-bezier(0.16,1,0.3,1)",
+        }}
+      >
+        <span style={{
+          position: "absolute", top: 0, left: 0, right: 0, height: 3,
+          background: "linear-gradient(90deg, #6C1FF3, #DA37F4)",
+          opacity: hovered ? 1 : 0,
+          transition: "opacity 0.3s ease",
+          borderRadius: i === 0 ? "14px 0 0 0" : i === 2 ? "0 14px 0 0" : 0,
+        }} />
+
+        <div style={{
+          fontFamily: "Georgia, serif", fontSize: 28, fontStyle: "italic",
+          marginBottom: 20,
+          transition: "color 0.3s",
+          ...(hovered ? {
+            background: "linear-gradient(90deg, #6C1FF3, #DA37F4)",
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+            backgroundClip: "text",
+          } : { color: "#CCCCCC" }),
+        }}>
+          {item.n}
+        </div>
+
+        <h3 style={{
+          fontFamily: "system-ui, sans-serif", fontSize: 18, fontWeight: 700,
+          letterSpacing: "-0.02em", marginBottom: 14, color: T.ink,
+        }}>
+          {item.title}
+        </h3>
+        <p style={{
+          fontFamily: "system-ui, sans-serif", fontSize: 14,
+          color: T.mid, lineHeight: 1.75, margin: 0,
+        }}>
+          {item.body}
+        </p>
+      </div>
+    </FadeUp>
+  )
+}
+
 function Capabilities() {
   const items = [
     { n: "01", title: "Business meets user", body: "A background in Advertising and a postgrad in UX means I naturally think from both sides. I ask what the user needs and what the business gains, at the same time. That combination is rarer than it sounds." },
@@ -413,29 +471,7 @@ function Capabilities() {
           </h2>
         </FadeUp>
         <div className="caps-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 2 }}>
-          {items.map((item, i) => (
-            <FadeUp key={i} delay={i * 0.12}>
-              <div style={{
-                background: T.white, padding: "44px 40px", height: "100%",
-                borderRadius: i === 0 ? "14px 0 0 14px" : i === 2 ? "0 14px 14px 0" : 0,
-              }}>
-                <div style={{
-                  fontFamily: "Georgia, serif", fontSize: 28, fontStyle: "italic",
-                  color: "#CCCCCC", marginBottom: 20,
-                }}>{item.n}</div>
-                <h3 style={{
-                  fontFamily: "system-ui, sans-serif", fontSize: 18, fontWeight: 700,
-                  letterSpacing: "-0.02em", marginBottom: 14,
-                }}>
-                  {item.title}
-                </h3>
-                <p style={{
-                  fontFamily: "system-ui, sans-serif", fontSize: 14,
-                  color: T.mid, lineHeight: 1.75, margin: 0,
-                }}>{item.body}</p>
-              </div>
-            </FadeUp>
-          ))}
+          {items.map((item, i) => <CapCard key={i} item={item} i={i} />)}
         </div>
       </div>
     </section>
