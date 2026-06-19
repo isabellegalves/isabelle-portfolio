@@ -34,23 +34,18 @@ function Counter({ to, suffix = "", duration = 1.4 }) {
   const [val, setVal] = useState(0)
 
   useEffect(() => {
-    if (!inView) return
-    const steps = 60
-    const interval = (duration * 1000) / steps
+    if (!inView) { setVal(0); return }
     let current = 0
-    setVal(0)
+    const steps = 60
+    const increment = to / steps
+    const interval = (duration * 1000) / steps
     const timer = setInterval(() => {
-      current += 1
-      const progress = current / steps
-      const eased = 1 - Math.pow(1 - progress, 3)
-      setVal(Math.round(eased * to))
-      if (current >= steps) {
-        setVal(to)
-        clearInterval(timer)
-      }
+      current += increment
+      if (current >= to) { current = to; clearInterval(timer) }
+      setVal(Math.round(current))
     }, interval)
     return () => clearInterval(timer)
-  }, [inView])
+  }, [inView, to, duration])
 
   return (
     <span ref={ref} style={{
@@ -223,7 +218,7 @@ function Hero({ onContactClick }) {
               </p>
               <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
                 <Btn variant="solid" bg="#0A0A0A" as="a" href="#work">View work</Btn>
-                <Btn variant="outline" borderColor="#0A0A0A" onClick={onContactClick}>Get in touch</Btn>
+                <Btn variant="outline" borderColor="#CCCCCC" onClick={onContactClick}>Get in touch</Btn>
               </div>
             </motion.div>
           </div>
