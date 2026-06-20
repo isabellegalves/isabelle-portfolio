@@ -118,7 +118,7 @@ export default function Nav({ onContactClick }) {
           style={{ display: "flex", alignItems: "center", textDecoration: "none" }}
         >
           <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-            <img src="/images/logo-black.svg" alt="" aria-hidden="true" style={{ height: 28, width: "auto", display: "block" }} />
+            <img src="/images/icon-black.svg" alt="" aria-hidden="true" style={{ height: 28, width: "auto", display: "block" }} />
             <span style={{ fontFamily: "'Caveat', cursive", fontSize: 26, fontWeight: 700, color: "#0A0A0A", letterSpacing: "0.02em", lineHeight: 1 }}>Isabelle Alves</span>
           </div>
         </Link>

@@ -16,8 +16,8 @@ export default function Footer() {
         {/* Left: logo + tagline */}
         <div>
           <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 16 }}>
-            <img src="/images/logo-white.svg" alt="" aria-hidden="true" style={{ height: 32, width: "auto", display: "block", opacity: 0.9 }} />
-            <span style={{ fontFamily: "'Caveat', cursive", fontSize: 28, fontWeight: 700, color: "#FFFFFF", letterSpacing: "0.02em", lineHeight: 1, opacity: 0.9 }}>Isabelle Alves</span>
+            <img src="/images/icon-white.svg" alt="" aria-hidden="true" style={{ height: 28, width: "auto", display: "block", opacity: 0.9 }} />
+            <span style={{ fontFamily: "'Caveat', cursive", fontSize: 26, fontWeight: 700, color: "#FFFFFF", letterSpacing: "0.02em", lineHeight: 1, opacity: 0.9 }}>Isabelle Alves</span>
           </div>
           <span style={{
             fontFamily: "Georgia, serif", fontStyle: "italic",
