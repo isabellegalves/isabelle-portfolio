@@ -211,7 +211,7 @@ export const cases = [
     ],
     bg: "#F0EEEE",
     image: "/images/gymapp.png",
-    comingSoon: true,
+    comingSoon: false,
     overview: {
       role: "Product Designer",
       scope: "Web Platform, Mobile App, User Flows",
@@ -313,7 +313,7 @@ export const cases = [
     ],
     bg: "#EEF2F8",
     image: "/images/oglobo.png",
-    comingSoon: true,
+    comingSoon: false,
     overview: {
       role: "Senior Product Designer",
       scope: "Subscription UX, Conversion Optimization, Competitive Benchmark",
