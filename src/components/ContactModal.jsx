@@ -73,32 +73,32 @@ export default function ContactModal({ onClose }) {
             Get in touch
           </h2>
           <motion.svg
-            width="100" height="48" viewBox="0 0 100 48" overflow="visible" aria-hidden="true"
+            width="110" height="56" viewBox="0 0 110 56" overflow="visible" aria-hidden="true"
             style={{ marginRight: 40 }}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.4, duration: 0.4 }}
+            initial={{ opacity: 0 }} animate={{ opacity: 1 }}
+            transition={{ duration: 0.3 }}
           >
-            <text x="4" y="22" style={{ fontFamily: "'Caveat', cursive", fontSize: "25px", fontWeight: 500, fill: "#6C1FF3" }}>
+            <motion.text x="4" y="22"
+              style={{ fontFamily: "'Caveat', cursive", fontSize: "25px", fontWeight: 500, fill: "#6C1FF3" }}
+              initial={{ opacity: 0 }} animate={{ opacity: 1 }}
+              transition={{ delay: 0.1, duration: 0.4 }}
+            >
               say hello!
-            </text>
-            <motion.path
-              d="M 22 28 C 16 34, 10 40, 8 46"
+            </motion.text>
+            <motion.path d="M 22 30 C 16 38, 10 44, 8 52"
               stroke="#6C1FF3" strokeWidth="1.5" fill="none" strokeLinecap="round"
               initial={{ pathLength: 0 }} animate={{ pathLength: 1 }}
-              transition={{ delay: 0.8, duration: 0.5, ease: "easeOut" }}
+              transition={{ delay: 0.5, duration: 0.5, ease: "easeOut" }}
             />
-            <motion.path
-              d="M 8 46 L 2 40"
+            <motion.path d="M 8 52 L 2 46"
               stroke="#6C1FF3" strokeWidth="1.5" fill="none" strokeLinecap="round"
               initial={{ pathLength: 0 }} animate={{ pathLength: 1 }}
-              transition={{ delay: 1.3, duration: 0.2, ease: "easeOut" }}
+              transition={{ delay: 1.0, duration: 0.2, ease: "easeOut" }}
             />
-            <motion.path
-              d="M 8 46 L 14 42"
+            <motion.path d="M 8 52 L 14 48"
               stroke="#6C1FF3" strokeWidth="1.5" fill="none" strokeLinecap="round"
               initial={{ pathLength: 0 }} animate={{ pathLength: 1 }}
-              transition={{ delay: 1.5, duration: 0.2, ease: "easeOut" }}
+              transition={{ delay: 1.2, duration: 0.2, ease: "easeOut" }}
             />
           </motion.svg>
         </div>
