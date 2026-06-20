@@ -47,7 +47,41 @@ function GradBtn({ children, href, variant = "outline", target, rel }) {
   )
 }
 
-function FadeUp({ children, delay = 0 }) {
+// Botao handwritten secundario — Caveat roxo, sublinhado no hover, seta hand
+function HandBtn({ children, href, target, rel }) {
+  const [hovered, setHovered] = useState(false)
+  const textLen = String(children).length
+  const svgW = Math.max(60, textLen * 10)
+  return (
+    <a
+      href={href} target={target} rel={rel}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      style={{ display: "inline-flex", alignItems: "center", gap: 8, textDecoration: "none", cursor: "pointer" }}
+    >
+      <span style={{ position: "relative", display: "inline-block" }}>
+        <span style={{ fontFamily: "'Caveat', cursive", fontSize: 20, fontWeight: 500, color: "#6C1FF3", letterSpacing: "0.02em" }}>
+          {children}
+        </span>
+        <svg viewBox={`0 0 ${svgW} 8`} height="8" aria-hidden="true" style={{
+          position: "absolute", left: 0, bottom: -4, width: "100%", overflow: "visible",
+          opacity: hovered ? 1 : 0, transition: "opacity 0.2s",
+        }}>
+          <path d={`M 1 5 C ${svgW*0.15} 2, ${svgW*0.35} 7, ${svgW*0.55} 4 C ${svgW*0.72} 1, ${svgW*0.88} 6, ${svgW-2} 4`}
+            stroke="#6C1FF3" strokeWidth="2.2" fill="none" strokeLinecap="round"/>
+        </svg>
+      </span>
+      <svg width="20" height="14" viewBox="0 0 20 14" fill="none" strokeLinecap="round" strokeLinejoin="round"
+        style={{ transition: "transform 0.25s cubic-bezier(0.34,1.56,0.64,1)", transform: hovered ? "translateX(4px)" : "translateX(0)" }}
+        aria-hidden="true"
+      >
+        <path d="M 2 7 C 5 6, 9 7, 13 7" stroke="#6C1FF3" strokeWidth="1.5"/>
+        <path d="M 10 3 C 12 5, 13 6, 13 7" stroke="#6C1FF3" strokeWidth="1.5"/>
+        <path d="M 13 7 C 12 8, 11 10, 10 11" stroke="#6C1FF3" strokeWidth="1.5"/>
+      </svg>
+    </a>
+  )
+}
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: "-60px" })
   return (
@@ -326,7 +360,7 @@ export default function About() {
                 Art is how I connect with people. By illustrating, drawing and creating interfaces, I express myself and tell visual stories. My goal is always that every user feels represented.
               </p>
               <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
-                <GradBtn href="https://www.linkedin.com/in/isabellegalves/" target="_blank" rel="noopener noreferrer">LinkedIn</GradBtn>
+                <HandBtn href="https://www.linkedin.com/in/isabellegalves/" target="_blank" rel="noopener noreferrer">LinkedIn</HandBtn>
               </div>
             </div>
           </div>

@@ -213,7 +213,30 @@ function Hero({ onContactClick }) {
           <div>
             <h1 id="hero-heading" style={{ margin: 0 }}>
               <HeroLine delay={0.2}>I turn complexity</HeroLine>
-              <HeroLine delay={0.4} serif>into clarity.</HeroLine>
+              <span style={{ display: "block", position: "relative", marginBottom: 6 }}>
+                <HeroLine delay={0.4} serif>into clarity.</HeroLine>
+                <motion.svg
+                  initial={{ opacity: 0, pathLength: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 1.2, duration: 0.6 }}
+                  viewBox="0 0 280 12"
+                  width="280"
+                  height="12"
+                  style={{ position: "absolute", bottom: -4, left: 0, overflow: "visible" }}
+                  aria-hidden="true"
+                >
+                  <motion.path
+                    d="M 2 7 C 20 3, 45 10, 75 6 C 105 2, 135 9, 168 6 C 198 3, 228 9, 255 6 C 265 4, 272 8, 278 6"
+                    stroke="#6C1FF3"
+                    strokeWidth="2.4"
+                    fill="none"
+                    strokeLinecap="round"
+                    initial={{ pathLength: 0 }}
+                    animate={{ pathLength: 1 }}
+                    transition={{ delay: 1.2, duration: 0.8, ease: "easeOut" }}
+                  />
+                </motion.svg>
+              </span>
               <HeroLine delay={0.6} light size="20px">Making the complex feel effortless.</HeroLine>
             </h1>
 
@@ -351,22 +374,39 @@ function CaseCard({ c, index }) {
             {c.title}
           </h3>
 
-          {/* Read case study — texto + seta, sem fundo, gradiente no hover */}
+          {/* Read case study — handwritten Caveat roxo, sublinhado no hover, seta hand */}
           {!c.comingSoon ? (
             <div style={{ marginTop: 24, paddingTop: 20, borderTop: `1px solid ${T.rule}` }}>
               <span style={{
-                display: "inline-block",
-                fontFamily: "system-ui, sans-serif", fontSize: 12, fontWeight: 700,
-                letterSpacing: "0.05em", textTransform: "uppercase",
-                ...(hovered ? {
-                  background: GRAD,
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
-                  backgroundClip: "text",
-                } : { color: T.ink }),
-                transition: "all 0.25s",
+                display: "inline-flex", alignItems: "center", gap: 8,
+                background: "none", border: "none", padding: 0, cursor: "pointer",
               }}>
-                Read case study →
+                <span style={{ position: "relative", display: "inline-block" }}>
+                  <span style={{
+                    fontFamily: "'Caveat', cursive", fontSize: 20, fontWeight: 500,
+                    color: "#6C1FF3", letterSpacing: "0.02em",
+                  }}>
+                    Read case study
+                  </span>
+                  <svg viewBox="0 0 130 8" height="8" aria-hidden="true" style={{
+                    position: "absolute", left: 0, bottom: -4, width: "100%",
+                    overflow: "visible",
+                    opacity: hovered ? 1 : 0, transition: "opacity 0.2s",
+                  }}>
+                    <path d="M 1 5 C 12 2, 28 7, 45 4 C 62 1, 80 7, 100 4 C 112 2, 122 6, 128 4"
+                      stroke="#6C1FF3" strokeWidth="2.2" fill="none" strokeLinecap="round"/>
+                  </svg>
+                </span>
+                <svg
+                  width="20" height="14" viewBox="0 0 20 14" fill="none"
+                  strokeLinecap="round" strokeLinejoin="round"
+                  style={{ transition: "transform 0.25s cubic-bezier(0.34,1.56,0.64,1)", transform: hovered ? "translateX(4px)" : "translateX(0)" }}
+                  aria-hidden="true"
+                >
+                  <path d="M 2 7 C 5 6, 9 7, 13 7" stroke="#6C1FF3" strokeWidth="1.5"/>
+                  <path d="M 10 3 C 12 5, 13 6, 13 7" stroke="#6C1FF3" strokeWidth="1.5"/>
+                  <path d="M 13 7 C 12 8, 11 10, 10 11" stroke="#6C1FF3" strokeWidth="1.5"/>
+                </svg>
               </span>
             </div>
           ) : (
@@ -453,9 +493,8 @@ function CapabilityCard({ item, index, inView }) {
         animate={inView ? { opacity: 1, x: 0 } : {}}
         transition={{ duration: 0.5, delay: 0.2 + index * 0.15 }}
         style={{
-          fontFamily: "Georgia, serif", fontSize: 28, fontStyle: "italic",
-          color: hovered ? "#BBBBBB" : "#CCCCCC", marginBottom: 20,
-          transition: "color 0.3s",
+          fontFamily: "'Caveat', cursive", fontSize: 32, fontWeight: 500,
+          color: "#6C1FF3", marginBottom: 20,
         }}
       >
         {item.n}
