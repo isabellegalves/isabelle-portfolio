@@ -200,11 +200,12 @@ export const cases = [
   {
     id: "05",
     slug: "gym-app",
-    company: "Gym and Wellness App",
+    company: "Allphome",
     year: "2021",
     title: "Behavioral design for habit formation. Making the right action feel effortless.",
     summary: "How focusing on the post-workout feedback loop, not just the booking flow, created an app architecture designed for retention from the ground up.",
     tags: ["Health Tech", "Behavioral Design", "Web"],
+    passwordHash: "aWdhbHZlcw==",
     metrics: [
       { n: "1", label: "Retention-focused architecture" },
       { n: "3", label: "Core habit loops designed" },
