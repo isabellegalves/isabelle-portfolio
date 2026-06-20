@@ -268,7 +268,7 @@ function CertRow({ cert, last }) {
       borderBottom: last ? "none" : `0.5px solid ${T.rule}`,
     }}>
       <div style={{
-        width: 40, height: 40, borderRadius: 10, flexShrink: 0,
+        width: 44, height: 44, borderRadius: 10, flexShrink: 0,
         background: cert.logoBg, border: `1px solid ${T.rule}`,
         display: "flex", alignItems: "center", justifyContent: "center",
         overflow: "hidden",
