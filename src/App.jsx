@@ -66,10 +66,7 @@ export default function App() {
         }
 
         @media (prefers-reduced-motion: reduce) {
-          *, *::before, *::after {
-            animation-duration: 0.01ms !important;
-            transition-duration: 0.01ms !important;
-          }
+          body { scroll-behavior: auto; }
         }
       `}</style>
 

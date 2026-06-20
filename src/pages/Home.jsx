@@ -63,6 +63,7 @@ function HeroLine({ children, delay = 0, serif = false, light = false, size }) {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay }}
       style={{
+        willChange: "opacity, transform",
         display: "block",
         fontSize: size || (light ? "20px" : "clamp(40px, 5.5vw, 72px)"),
         lineHeight: light ? 1.4 : 0.93,

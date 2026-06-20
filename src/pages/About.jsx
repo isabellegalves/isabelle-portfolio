@@ -82,6 +82,8 @@ function HandBtn({ children, href, target, rel }) {
     </a>
   )
 }
+
+function FadeUp({ children, delay = 0 }) {
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: "-60px" })
   return (
