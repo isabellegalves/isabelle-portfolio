@@ -233,7 +233,7 @@ const CERTS = [
     name: "Google UX Design",
     issuer: "Google",
     date: "Jun 2025",
-    logo: "https://raw.githubusercontent.com/gilbarbara/logos/main/logos/google.svg",
+    logo: "https://raw.githubusercontent.com/gilbarbara/logos/main/logos/google-icon.svg",
     logoBg: "#ffffff", abbr: "G",
   },
 ]
@@ -436,13 +436,13 @@ export default function About() {
                 <div style={{ display: "flex", flexDirection: "column", alignItems: "center", flexShrink: 0 }}>
                   <div style={{
                     width: 44, height: 44, borderRadius: 10,
-                    background: "#FFFFFF", border: `1px solid ${T.rule}`,
-                    display: "flex", alignItems: "center", justifyContent: "center",
-                    flexShrink: 0,
+                    background: e.logo ? "transparent" : e.bg,
+                    border: e.logo ? "none" : `1px solid ${T.rule}`,
+                    flexShrink: 0, overflow: "hidden",
                   }}>
                     {e.logo
-                      ? <img src={e.logo} alt={e.company} style={{ width: "100%", height: "100%", objectFit: "contain", display: "block", padding: 6 }} />
-                      : <span style={{ fontFamily: "system-ui, sans-serif", fontSize: 11, fontWeight: 800, color: e.color }}>{e.abbr}</span>
+                      ? <img src={e.logo} alt={e.company} style={{ width: 44, height: 44, objectFit: "cover", display: "block", borderRadius: 10 }} />
+                      : <span style={{ display: "flex", alignItems: "center", justifyContent: "center", width: "100%", height: "100%", fontFamily: "system-ui, sans-serif", fontSize: 11, fontWeight: 800, color: e.color }}>{e.abbr}</span>
                     }
                   </div>
                   {i < EXPERIENCE.length - 1 && (
