@@ -241,7 +241,9 @@ function Hero({ onContactClick }) {
               <HeroLine delay={0.6} light size="20px">Making the complex feel effortless.</HeroLine>
             </h1>
 
-            <div style={{ marginTop: 36 }}>
+            <div
+              style={{ marginTop: 36, opacity: 1 }}
+            >
               <p style={{
                 fontFamily: "system-ui, sans-serif", fontSize: 16, lineHeight: 1.7,
                 color: T.mid, marginBottom: 28, maxWidth: 480,
@@ -250,7 +252,6 @@ function Hero({ onContactClick }) {
               </p>
               <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
                 <Btn variant="solid" as="a" href="#work">View work</Btn>
-                {/* outline-gray: visible dark border (#555) on white bg, gradient on hover */}
                 <Btn variant="outline-gray" onClick={onContactClick}>Get in touch</Btn>
               </div>
             </div>
@@ -260,8 +261,9 @@ function Hero({ onContactClick }) {
         {/* Metrics */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ ...spring, delay: 1.3 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ ...spring, delay: 0.2 }}
           style={{
             marginTop: 120, paddingTop: 32, borderTop: `1px solid ${T.rule}`,
             display: "flex", flexWrap: "wrap", gap: 0,
