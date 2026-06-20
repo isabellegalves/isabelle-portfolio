@@ -216,6 +216,16 @@ export default function CaseStudy({ onContactClick }) {
       {/* OVERVIEW */}
       <div style={{ height: "0.5px", background: T.rule }} />
       <section style={P}>
+        <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 16 }}>
+          <svg width="200" height="64" viewBox="0 0 200 64" overflow="visible" aria-hidden="true">
+            <text x="0" y="22" style={{ fontFamily: "'Caveat', cursive", fontSize: "25px", fontWeight: 500, fill: "#6C1FF3" }}>
+              the challenge
+            </text>
+            <path d="M 140 28 C 132 38, 128 48, 134 58" stroke="#6C1FF3" strokeWidth="1.5" fill="none" strokeLinecap="round"/>
+            <path d="M 134 58 L 127 52" stroke="#6C1FF3" strokeWidth="1.5" fill="none" strokeLinecap="round"/>
+            <path d="M 134 58 L 140 54" stroke="#6C1FF3" strokeWidth="1.5" fill="none" strokeLinecap="round"/>
+          </svg>
+        </div>
         <FadeUp>
           <SweepLabel>Overview</SweepLabel>
           <div className="overview-grid" style={{ display: "grid", gridTemplateColumns: "1fr 2.5fr", gap: 72, alignItems: "start" }}>
@@ -285,7 +295,18 @@ export default function CaseStudy({ onContactClick }) {
         <FadeUp><SweepLabel>Process</SweepLabel></FadeUp>
         {c.process.map((phase, i) => (
           <FadeUp key={i} delay={i * 0.08}>
-            <div style={{ marginBottom: 64 }}>
+            <div style={{ marginBottom: 64, position: "relative" }}>
+              {i === 1 && (
+                <svg width="120" height="52" viewBox="0 0 120 52" overflow="visible" aria-hidden="true"
+                  style={{ position: "absolute", top: -40, right: 0 }}>
+                  <text x="0" y="20" style={{ fontFamily: "'Caveat', cursive", fontSize: "25px", fontWeight: 500, fill: "#6C1FF3" }}>
+                    key step!
+                  </text>
+                  <path d="M 76 26 C 66 34, 54 40, 42 48" stroke="#6C1FF3" strokeWidth="1.5" fill="none" strokeLinecap="round"/>
+                  <path d="M 42 48 L 40 40" stroke="#6C1FF3" strokeWidth="1.5" fill="none" strokeLinecap="round"/>
+                  <path d="M 42 48 L 50 48" stroke="#6C1FF3" strokeWidth="1.5" fill="none" strokeLinecap="round"/>
+                </svg>
+              )}
               <div style={{ display: "flex", alignItems: "baseline", gap: 18, marginBottom: 18 }}>
                 <span style={{
                   fontFamily: "'Caveat', cursive", fontSize: 28, fontWeight: 500,
@@ -325,6 +346,16 @@ export default function CaseStudy({ onContactClick }) {
       <section style={P}>
         <FadeUp>
           <SweepLabel>Impact</SweepLabel>
+          <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 16 }}>
+            <svg width="130" height="64" viewBox="0 0 130 64" overflow="visible" aria-hidden="true">
+              <text x="0" y="22" style={{ fontFamily: "'Caveat', cursive", fontSize: "25px", fontWeight: 500, fill: "#6C1FF3" }}>
+                the proof
+              </text>
+              <path d="M 90 28 C 82 38, 78 48, 84 58" stroke="#6C1FF3" strokeWidth="1.5" fill="none" strokeLinecap="round"/>
+              <path d="M 84 58 L 77 52" stroke="#6C1FF3" strokeWidth="1.5" fill="none" strokeLinecap="round"/>
+              <path d="M 84 58 L 90 54" stroke="#6C1FF3" strokeWidth="1.5" fill="none" strokeLinecap="round"/>
+            </svg>
+          </div>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))", gap: 12, marginTop: 8 }}>
             {c.metrics.map((m, i) => (
               <MetricCounter key={i} value={m.n} label={m.label} />
@@ -338,6 +369,16 @@ export default function CaseStudy({ onContactClick }) {
       <section style={P}>
         <FadeUp>
           <SweepLabel>Key takeaway</SweepLabel>
+          <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 16 }}>
+            <svg width="200" height="64" viewBox="0 0 200 64" overflow="visible" aria-hidden="true">
+              <path d="M 18 6 C 10 18, 6 30, 12 42" stroke="#6C1FF3" strokeWidth="1.5" fill="none" strokeLinecap="round"/>
+              <path d="M 12 42 L 6 36" stroke="#6C1FF3" strokeWidth="1.5" fill="none" strokeLinecap="round"/>
+              <path d="M 12 42 L 18 38" stroke="#6C1FF3" strokeWidth="1.5" fill="none" strokeLinecap="round"/>
+              <text x="30" y="22" style={{ fontFamily: "'Caveat', cursive", fontSize: "25px", fontWeight: 500, fill: "#6C1FF3" }}>
+                lessons learned
+              </text>
+            </svg>
+          </div>
           <div style={{ background: T.offwhite, borderRadius: 16, padding: "44px 52px" }}>
             <p style={{
               fontFamily: "Georgia, serif",
