@@ -151,11 +151,11 @@ export default function AllphomeCase() {
       `}</style>
 
       {/* ── BANNER ── */}
-      <div style={{ ...wrap, paddingTop: "3rem", marginBottom: 0 }}>
+      <div style={{ width: "100%", background: C.surface, minHeight: 320, display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden" }}>
         <img
           src="/images/allphome.gif"
           alt="Allphome prototype walkthrough"
-          style={{ width: "100%", borderRadius: 16, aspectRatio: "16/7", objectFit: "cover", display: "block", marginBottom: "3rem" }}
+          style={{ width: "100%", maxHeight: 560, objectFit: "cover", display: "block" }}
         />
       </div>
 
