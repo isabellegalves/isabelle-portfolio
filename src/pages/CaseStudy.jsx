@@ -371,7 +371,7 @@ export default function CaseStudy({ onContactClick }) {
               <div style={{
                 fontFamily: "system-ui, sans-serif", fontSize: 11, fontWeight: 600,
                 letterSpacing: "0.08em", textTransform: "uppercase",
-                marginBottom: 10,
+                marginBottom: 10, color: "#888888",
               }}>
                 Next case study
               </div>
@@ -390,7 +390,7 @@ export default function CaseStudy({ onContactClick }) {
               animate={{ x: nextHovered ? 8 : 0 }}
               transition={{ duration: 0.3 }}
               aria-hidden="true"
-              style={{ fontSize: 32 }}
+              style={{ fontSize: 32, color: "#FFFFFF" }}
             >
               →
             </motion.span>
