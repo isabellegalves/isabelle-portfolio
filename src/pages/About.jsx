@@ -154,7 +154,7 @@ function ToolIcon({ tool }) {
 
 const EXPERIENCE = [
   {
-    abbr: "B", bg: "#CC092F", color: "#fff",
+    logo: "/images/logo-empresa-bradesco.svg", bg: "#F7F7F5",
     role: "Senior Product Designer",
     company: "Bradesco · via Frito · Remote",
     period: "Aug 2024 – Present",
@@ -168,28 +168,28 @@ const EXPERIENCE = [
     tags: ["UI Design", "Design System", "UX Audit", "Usability Testing", "Data Analysis", "Component Library", "Visual Identity"],
   },
   {
-    abbr: "MJV", bg: "#E8E8E6", color: "#4A4A4A",
+    logo: "/images/logo-empresa-mjv.svg", bg: "#F7F7F5",
     role: "User Researcher & UI/UX Designer",
     company: "MJV Technology · Bradesco Seguros",
     period: "Jun 2021 – Mar 2022",
     tags: ["UX Research", "User Interviews", "Prototyping", "Journey Mapping", "Discovery", "Research Scripts"],
   },
   {
-    abbr: "Sdx", bg: "#5C2D91", color: "#fff",
+    logo: "/images/logo-empresa-sodexo.svg", bg: "#F7F7F5",
     role: "UI/UX Product Designer",
     company: "Sodexo LATAM · Remote",
     period: "Aug 2020 – Jun 2021",
     tags: ["UI Design", "Mobile", "Dashboard", "Usability Testing", "Agile", "Prototyping"],
   },
   {
-    abbr: "Pic", bg: "#F7F7F5", color: "#0A0A0A",
+    logo: "/images/logo-empresa-piccadilly.svg", bg: "#F7F7F5",
     role: "UI/UX Product Designer",
     company: "Piccadilly",
     period: "May 2019 – Aug 2020",
     tags: ["UI Design", "Mobile App", "UX Strategy", "Omnichannel", "Design System"],
   },
   {
-    abbr: "S2P", bg: "#E8E8E6", color: "#4A4A4A",
+    logo: "/images/logo-empresa-s2p.svg", bg: "#F7F7F5",
     role: "UI/UX Designer & Design Lead",
     company: "Safe2Pay",
     period: "Aug 2015 – May 2019",
@@ -438,9 +438,12 @@ export default function About() {
                     width: 44, height: 44, borderRadius: 10,
                     background: e.bg, border: `1px solid ${T.rule}`,
                     display: "flex", alignItems: "center", justifyContent: "center",
-                    fontFamily: "system-ui, sans-serif", fontSize: 11, fontWeight: 800, color: e.color, flexShrink: 0,
+                    flexShrink: 0, overflow: "hidden",
                   }}>
-                    {e.abbr}
+                    {e.logo
+                      ? <img src={e.logo} alt={e.company} width={32} height={32} style={{ objectFit: "contain", display: "block" }} />
+                      : <span style={{ fontFamily: "system-ui, sans-serif", fontSize: 11, fontWeight: 800, color: e.color }}>{e.abbr}</span>
+                    }
                   </div>
                   {i < EXPERIENCE.length - 1 && (
                     <div style={{ width: 1, flex: 1, minHeight: 36, background: T.rule, marginTop: 4 }} />
