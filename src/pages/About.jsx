@@ -323,21 +323,21 @@ export default function About() {
               </div>
 
               {/* Seta handwritten + This is me! */}
-              <div style={{ position: "absolute", bottom: -70, left: -10, pointerEvents: "none" }}>
-                <svg viewBox="0 0 160 90" width="160" height="90" overflow="visible" aria-hidden="true">
+              <div style={{ position: "absolute", bottom: -90, left: -10, pointerEvents: "none" }}>
+                <svg viewBox="0 0 160 110" width="160" height="110" overflow="visible" aria-hidden="true">
                   <defs>
                     <style>{"@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400&display=swap')"}</style>
                   </defs>
-                  {/* seta: nasce embaixo do texto, curva C subindo, ponta aponta para a foto */}
+                  {/* seta: nasce perto do texto, curva subindo, ponta aponta para a foto */}
                   <path
-                    d="M 72 82 C 60 60, 58 38, 80 16 C 90 6, 108 2, 118 0"
+                    d="M 72 96 C 60 74, 58 52, 80 28 C 90 18, 108 12, 118 10"
                     stroke="#6C1FF3" strokeWidth="1.5" fill="none" strokeLinecap="round"
                   />
-                  {/* ponta — dois traços curtos em V */}
-                  <path d="M 118 0 L 106 -2" stroke="#6C1FF3" strokeWidth="1.5" fill="none" strokeLinecap="round"/>
-                  <path d="M 118 0 L 112 12" stroke="#6C1FF3" strokeWidth="1.5" fill="none" strokeLinecap="round"/>
-                  {/* texto handwritten */}
-                  <text x="0" y="88" style={{ fontFamily: "'Caveat', cursive", fontSize: "18px", fontWeight: 400, fill: "#6C1FF3", letterSpacing: "0.04em" }}>
+                  {/* ponta */}
+                  <path d="M 118 10 L 106 8" stroke="#6C1FF3" strokeWidth="1.5" fill="none" strokeLinecap="round"/>
+                  <path d="M 118 10 L 112 22" stroke="#6C1FF3" strokeWidth="1.5" fill="none" strokeLinecap="round"/>
+                  {/* texto handwritten — bem abaixo da cauda da seta */}
+                  <text x="0" y="110" style={{ fontFamily: "'Caveat', cursive", fontSize: "18px", fontWeight: 400, fill: "#6C1FF3", letterSpacing: "0.04em" }}>
                     This is me!
                   </text>
                 </svg>
