@@ -7,6 +7,7 @@ import ContactModal from "./components/ContactModal"
 import Home from "./pages/Home"
 import CaseStudy from "./pages/CaseStudy"
 import About from "./pages/About"
+import AllphomeCase from "./pages/AllphomeCase"
 
 const pageVariants = {
   initial: { opacity: 0, y: 16 },
@@ -93,6 +94,11 @@ export default function App() {
             <Route path="/" element={
               <AnimatedPage>
                 <Home onContactClick={() => setModalOpen(true)} />
+              </AnimatedPage>
+            } />
+            <Route path="/work/gym-app" element={
+              <AnimatedPage>
+                <AllphomeCase />
               </AnimatedPage>
             } />
             <Route path="/work/:slug" element={
