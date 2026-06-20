@@ -197,20 +197,108 @@ export default function PiccadillyCase() {
             I created high-fidelity interfaces and UI components maintaining Piccadilly's visual identity across web and mobile. The choice of high-contrast black on white was deliberate, serving a mature audience that values legibility over decoration. All components were built for reuse and documented as part of a lightweight design system.
           </Phase>
 
-          {/* Design system — imagens reais do Figma */}
-          <div style={{ display: "flex", flexDirection: "column", gap: 16, marginBottom: "1.5rem" }}>
+          {/* Design system — componentes HTML reais */}
+          <div style={{ display: "flex", flexDirection: "column", gap: 20, marginBottom: "1.5rem" }}>
+
+            {/* COLORS */}
+            {[
+              {
+                label: "Main colors",
+                swatches: [
+                  { color: "#FFFFFF", hex: "#FFFFFF", light: true },
+                  { color: "#000000", hex: "#000000" },
+                  { color: "#CBADA5", hex: "#CBADA5" },
+                ]
+              },
+              {
+                label: "Grays",
+                swatches: [
+                  { color: "#1F1F1F", hex: "#1F1F1F" },
+                  { color: "#5C5C5C", hex: "#5C5C5C" },
+                  { color: "#858585", hex: "#858585" },
+                  { color: "#ADADAD", hex: "#ADADAD" },
+                  { color: "#D6D6D6", hex: "#D6D6D6" },
+                  { color: "#EBEBEB", hex: "#EBEBEB" },
+                  { color: "#F5F5F5", hex: "#F5F5F5", light: true },
+                ]
+              },
+              {
+                label: "Stats",
+                swatches: [
+                  { color: "#EB5757", hex: "#EB5757" },
+                  { color: "#219653", hex: "#219653" },
+                ]
+              },
+            ].map(group => (
+              <div key={group.label}>
+                <div style={{ fontSize: 10, fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", color: C.mid, borderBottom: `0.5px solid ${C.border}`, paddingBottom: 6, marginBottom: 10, fontFamily: "system-ui, sans-serif" }}>{group.label}</div>
+                <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
+                  {group.swatches.map((s, i) => (
+                    <div key={i} style={{ display: "flex", flexDirection: "column", gap: 4 }}>
+                      <div style={{ width: 40, height: 40, borderRadius: 6, background: s.color, border: s.light ? `0.5px solid ${C.border}` : "none", flexShrink: 0 }} />
+                      <span style={{ fontSize: 8, fontFamily: "monospace", color: C.mid }}>{s.hex}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+
+            {/* BUTTONS — with icon */}
             <div>
-              <div style={{ fontSize: 10, fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", color: C.mid, borderBottom: `0.5px solid ${C.border}`, paddingBottom: 6, marginBottom: 10, fontFamily: "system-ui, sans-serif" }}>Colors</div>
-              <img src="/images/piccadilly-colors.png" alt="Piccadilly color system" style={{ maxWidth: "100%", display: "block", borderRadius: 8 }} />
+              <div style={{ fontSize: 10, fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", color: C.mid, borderBottom: `0.5px solid ${C.border}`, paddingBottom: 6, marginBottom: 10, fontFamily: "system-ui, sans-serif" }}>Buttons — with icon</div>
+              <div style={{ display: "flex", flexWrap: "wrap", gap: 20, alignItems: "flex-end" }}>
+                {[
+                  { label: "Primary",   bg: "#000",    color: "#fff",    border: "none"              },
+                  { label: "Secondary", bg: "#fff",    color: "#000",    border: "1.5px solid #000"  },
+                  { label: "Tertiary",  bg: "#fff",    color: "#000",    border: "1px solid #ADADAD" },
+                  { label: "Inactive",  bg: "#F5F5F5", color: "#ADADAD", border: "none"              },
+                ].map(btn => (
+                  <div key={btn.label} style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+                    <span style={{ fontSize: 10, color: C.mid, fontFamily: "system-ui, sans-serif" }}>{btn.label}</span>
+                    <div style={{ background: btn.bg, color: btn.color, border: btn.border, borderRadius: 10, padding: "10px 20px", fontSize: 11, fontWeight: 700, letterSpacing: "0.02em", display: "inline-flex", alignItems: "center", gap: 5, cursor: "default", fontFamily: "system-ui, sans-serif" }}>
+                      <span style={{ fontSize: 10, opacity: 0.6 }}>‹</span> Label <span style={{ fontSize: 10, opacity: 0.6 }}>›</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
+
+            {/* BUTTONS — without icon */}
             <div>
-              <div style={{ fontSize: 10, fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", color: C.mid, borderBottom: `0.5px solid ${C.border}`, paddingBottom: 6, marginBottom: 10, fontFamily: "system-ui, sans-serif" }}>Buttons and tabs</div>
-              <img src="/images/piccadilly-buttons.png" alt="Piccadilly button components" style={{ maxWidth: "100%", display: "block", borderRadius: 8 }} />
+              <div style={{ fontSize: 10, fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", color: C.mid, borderBottom: `0.5px solid ${C.border}`, paddingBottom: 6, marginBottom: 10, fontFamily: "system-ui, sans-serif" }}>Buttons — without icon</div>
+              <div style={{ display: "flex", flexWrap: "wrap", gap: 20, alignItems: "flex-end" }}>
+                {[
+                  { label: "Primary",   bg: "#000",    color: "#fff",    border: "none"              },
+                  { label: "Secondary", bg: "#fff",    color: "#000",    border: "1.5px solid #000"  },
+                  { label: "Tertiary",  bg: "#fff",    color: "#000",    border: "1px solid #ADADAD" },
+                  { label: "Inactive",  bg: "#F5F5F5", color: "#ADADAD", border: "none"              },
+                ].map(btn => (
+                  <div key={btn.label} style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+                    <span style={{ fontSize: 10, color: C.mid, fontFamily: "system-ui, sans-serif" }}>{btn.label}</span>
+                    <div style={{ background: btn.bg, color: btn.color, border: btn.border, borderRadius: 10, padding: "10px 20px", fontSize: 11, fontWeight: 700, letterSpacing: "0.02em", cursor: "default", fontFamily: "system-ui, sans-serif" }}>
+                      Label
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
+
+            {/* ORDER STATUS */}
             <div>
-              <div style={{ fontSize: 10, fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", color: C.mid, borderBottom: `0.5px solid ${C.border}`, paddingBottom: 6, marginBottom: 10, fontFamily: "system-ui, sans-serif" }}>Icons</div>
-              <img src="/images/piccadilly-icons.png" alt="Piccadilly icon set" style={{ maxWidth: "100%", display: "block", borderRadius: 8 }} />
+              <div style={{ fontSize: 10, fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", color: C.mid, borderBottom: `0.5px solid ${C.border}`, paddingBottom: 6, marginBottom: 10, fontFamily: "system-ui, sans-serif" }}>Order status</div>
+              <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
+                {[
+                  { label: "Order received",   bg: "#F0F0F0", color: "#555555" },
+                  { label: "Awaiting payment", bg: "#F0F0F0", color: "#555555" },
+                  { label: "Payment approved", bg: "#FFE5CC", color: "#CC5500" },
+                  { label: "On the way",       bg: "#FFE5CC", color: "#CC5500" },
+                  { label: "Delivered",        bg: "#CCEDD8", color: "#1A7A3A" },
+                ].map(s => (
+                  <span key={s.label} style={{ background: s.bg, color: s.color, borderRadius: 20, padding: "4px 12px", fontSize: 10, fontWeight: 500, fontFamily: "system-ui, sans-serif" }}>{s.label}</span>
+                ))}
+              </div>
             </div>
+
           </div>
 
           <Ann>↑ high-contrast black on white as a deliberate accessibility choice for a mature audience that values legibility over decoration</Ann>

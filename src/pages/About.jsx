@@ -356,7 +356,7 @@ export default function About() {
                 I'm a Senior Product Designer with 10 years of experience at the intersection of business, research and interface craft. My background in Advertising sharpens how I think about positioning and business goals. My postgrad in UX keeps me grounded in real user needs.
               </p>
               <p style={{ fontFamily: "system-ui, sans-serif", fontSize: 16, lineHeight: 1.85, color: "#4A4A4A", marginBottom: 16 }}>
-                I believe good design is more than aesthetics. It must be accessible, functional and deliver a seamless experience for everyone. Empathy is at the core of my process — I research and listen before I draw a single pixel.
+                I believe good design is more than aesthetics. It must be accessible, functional and deliver a seamless experience for everyone. Empathy is at the core of my process. I research and listen before I draw a single pixel.
               </p>
               <p style={{ fontFamily: "system-ui, sans-serif", fontSize: 16, lineHeight: 1.85, color: "#4A4A4A", marginBottom: 32 }}>
                 Art is how I connect with people. By illustrating, drawing and creating interfaces, I express myself and tell visual stories. My goal is always that every user feels represented.

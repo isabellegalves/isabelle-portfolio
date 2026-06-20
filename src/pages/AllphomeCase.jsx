@@ -269,10 +269,10 @@ export default function AllphomeCase() {
           <Phase n="03" title="User Research and Behavioral Mapping">
             Conducted research with approximately 200 active members from Allphome's existing gym community. Two findings reshaped the entire product strategy.
           </Phase>
-          <Callout label="STRATEGIC PIVOT 1 — THE KIDS AREA">
+          <Callout label="STRATEGIC PIVOT 1: THE KIDS AREA">
             Stakeholders believed a dedicated Kids section would be a key differentiator. Research revealed that the majority of members did not have children, meaning the feature would add significant development effort while reaching a small fraction of the audience. The investment was redirected toward features that would benefit the entire member base.
           </Callout>
-          <Callout label="STRATEGIC PIVOT 2 — THE REAL RETENTION DRIVER">
+          <Callout label="STRATEGIC PIVOT 2: THE REAL RETENTION DRIVER">
             Members who actively tracked their workouts were significantly more likely to return the following week. The inflection point was not the booking experience. It was the post-workout feedback loop. This shifted the design strategy from task completion to motivation and habit formation.
           </Callout>
           <div className="a-persona" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12, margin: "1.5rem 0" }}>

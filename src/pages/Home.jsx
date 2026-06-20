@@ -248,7 +248,7 @@ function Hero({ onContactClick }) {
                 fontFamily: "system-ui, sans-serif", fontSize: 16, lineHeight: 1.7,
                 color: T.mid, marginBottom: 28, maxWidth: 480,
               }}>
-                A decade of product design across fintech, media and retail — helping companies like Conde Nast, Bradesco and Sodexo build products that serve both users and business goals.
+                A decade of product design across fintech, media and retail, helping companies like Conde Nast, Bradesco and Sodexo build products that serve both users and business goals.
               </p>
               <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
                 <Btn variant="solid" as="a" href="#work">View work</Btn>
