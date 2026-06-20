@@ -269,18 +269,36 @@ function Hero({ onContactClick }) {
             position: "relative",
           }}
         >
-          <svg
-            width="160" height="52" viewBox="0 0 160 52"
-            style={{ position: "absolute", top: -48, left: 0, overflow: "visible" }}
+          <motion.svg
+            width="180" height="64" viewBox="0 0 180 64"
+            style={{ position: "absolute", top: -52, left: 0, overflow: "visible" }}
             aria-hidden="true"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
           >
-            <text x="0" y="20" style={{ fontFamily: "'Caveat', cursive", fontSize: "18px", fontWeight: 500, fill: "#6C1FF3" }}>
+            <text x="0" y="22" style={{ fontFamily: "'Caveat', cursive", fontSize: "25px", fontWeight: 500, fill: "#6C1FF3" }}>
               real numbers
             </text>
-            <path d="M 95 24 C 108 28, 120 34, 130 38" stroke="#6C1FF3" strokeWidth="1.5" fill="none" strokeLinecap="round"/>
-            <path d="M 130 38 L 122 32" stroke="#6C1FF3" strokeWidth="1.5" fill="none" strokeLinecap="round"/>
-            <path d="M 130 38 L 126 46" stroke="#6C1FF3" strokeWidth="1.5" fill="none" strokeLinecap="round"/>
-          </svg>
+            <motion.path
+              d="M 148 28 C 140 38, 136 48, 142 58"
+              stroke="#6C1FF3" strokeWidth="1.5" fill="none" strokeLinecap="round"
+              initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} viewport={{ once: true }}
+              transition={{ delay: 0.3, duration: 0.6, ease: "easeOut" }}
+            />
+            <motion.path
+              d="M 142 58 L 135 52"
+              stroke="#6C1FF3" strokeWidth="1.5" fill="none" strokeLinecap="round"
+              initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} viewport={{ once: true }}
+              transition={{ delay: 0.9, duration: 0.2, ease: "easeOut" }}
+            />
+            <motion.path
+              d="M 142 58 L 148 54"
+              stroke="#6C1FF3" strokeWidth="1.5" fill="none" strokeLinecap="round"
+              initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} viewport={{ once: true }}
+              transition={{ delay: 1.1, duration: 0.2, ease: "easeOut" }}
+            />
+          </motion.svg>
 
           <div style={{ display: "flex", flexWrap: "wrap", gap: 0 }}>
             {[
@@ -489,14 +507,32 @@ function Capabilities() {
                 />
               </svg>
             </div>
-            <svg width="110" height="52" viewBox="0 0 110 52" overflow="visible" aria-hidden="true">
-              <text x="0" y="16" style={{ fontFamily: "'Caveat', cursive", fontSize: "18px", fontWeight: 500, fill: "#6C1FF3" }}>
+            <motion.svg
+              width="110" height="52" viewBox="0 0 110 52" overflow="visible" aria-hidden="true"
+              initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}
+            >
+              <text x="0" y="16" style={{ fontFamily: "'Caveat', cursive", fontSize: "25px", fontWeight: 500, fill: "#6C1FF3" }}>
                 my process
               </text>
-              <path d="M 20 20 C 14 30, 10 40, 16 50" stroke="#6C1FF3" strokeWidth="1.5" fill="none" strokeLinecap="round"/>
-              <path d="M 16 50 L 10 44" stroke="#6C1FF3" strokeWidth="1.5" fill="none" strokeLinecap="round"/>
-              <path d="M 16 50 L 22 46" stroke="#6C1FF3" strokeWidth="1.5" fill="none" strokeLinecap="round"/>
-            </svg>
+              <motion.path
+                d="M 20 20 C 14 30, 10 40, 16 50"
+                stroke="#6C1FF3" strokeWidth="1.5" fill="none" strokeLinecap="round"
+                initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} viewport={{ once: true }}
+                transition={{ delay: 0.3, duration: 0.6, ease: "easeOut" }}
+              />
+              <motion.path
+                d="M 16 50 L 10 44"
+                stroke="#6C1FF3" strokeWidth="1.5" fill="none" strokeLinecap="round"
+                initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} viewport={{ once: true }}
+                transition={{ delay: 0.9, duration: 0.2, ease: "easeOut" }}
+              />
+              <motion.path
+                d="M 16 50 L 22 46"
+                stroke="#6C1FF3" strokeWidth="1.5" fill="none" strokeLinecap="round"
+                initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} viewport={{ once: true }}
+                transition={{ delay: 1.1, duration: 0.2, ease: "easeOut" }}
+              />
+            </motion.svg>
           </div>
         </FadeUp>
         <div ref={ref} className="caps-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 2 }}>
@@ -698,14 +734,32 @@ function ContactSection({ onContactClick }) {
           Good work starts with a good conversation.
         </h2>
         <div style={{ display: "inline-flex", alignItems: "center", gap: 0 }}>
-          <svg width="120" height="56" viewBox="0 0 120 56" overflow="visible" aria-hidden="true">
-            <text x="0" y="20" style={{ fontFamily: "'Caveat', cursive", fontSize: "18px", fontWeight: 500, fill: "#ffffff" }}>
+          <motion.svg
+            width="120" height="56" viewBox="0 0 120 56" overflow="visible" aria-hidden="true"
+            initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}
+          >
+            <text x="0" y="20" style={{ fontFamily: "'Caveat', cursive", fontSize: "25px", fontWeight: 500, fill: "#ffffff" }}>
               let's talk!
             </text>
-            <path d="M 50 26 C 62 26, 76 30, 88 36" stroke="#ffffff" strokeWidth="1.5" fill="none" strokeLinecap="round"/>
-            <path d="M 88 36 L 82 30" stroke="#ffffff" strokeWidth="1.5" fill="none" strokeLinecap="round"/>
-            <path d="M 88 36 L 84 43" stroke="#ffffff" strokeWidth="1.5" fill="none" strokeLinecap="round"/>
-          </svg>
+            <motion.path
+              d="M 50 26 C 62 26, 76 30, 88 36"
+              stroke="#ffffff" strokeWidth="1.5" fill="none" strokeLinecap="round"
+              initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} viewport={{ once: true }}
+              transition={{ delay: 0.3, duration: 0.6, ease: "easeOut" }}
+            />
+            <motion.path
+              d="M 88 36 L 82 30"
+              stroke="#ffffff" strokeWidth="1.5" fill="none" strokeLinecap="round"
+              initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} viewport={{ once: true }}
+              transition={{ delay: 0.9, duration: 0.2, ease: "easeOut" }}
+            />
+            <motion.path
+              d="M 88 36 L 84 43"
+              stroke="#ffffff" strokeWidth="1.5" fill="none" strokeLinecap="round"
+              initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} viewport={{ once: true }}
+              transition={{ delay: 1.1, duration: 0.2, ease: "easeOut" }}
+            />
+          </motion.svg>
           <Btn variant="solid-white" onClick={onContactClick} padding="15px 34px" borderRadius={32}>Get in touch</Btn>
         </div>
       </FadeUp>
