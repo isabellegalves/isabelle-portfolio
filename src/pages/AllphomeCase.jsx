@@ -22,7 +22,7 @@ function Ann({ children }) {
   const up = children.startsWith("↑")
   const text = children.replace(/^[↑↓] ?/, "")
   return (
-    <div style={{ fontFamily: "'Caveat', cursive", fontSize: "1.2rem", fontWeight: 600, color: C.accent, marginBottom: "1.25rem", display: "inline-flex", alignItems: "center", gap: 6 }}>
+    <div style={{ fontFamily: "'Caveat', cursive", fontSize: "20px", fontWeight: 600, color: C.accent, marginBottom: "1.25rem", display: "inline-flex", alignItems: "center", gap: 6 }}>
       <span style={{ display: "inline-block", animation: "bob 0.9s ease-in-out infinite alternate" }}>{up ? "↑" : "↓"}</span>
       {text}
     </div>
@@ -35,7 +35,7 @@ function Phase({ n, title, children }) {
     <div style={{ marginBottom: "1.75rem" }}>
       <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: "0.6rem" }}>
         <div style={{ width: 32, height: 3, background: C.accent, flexShrink: 0 }} />
-        <span style={{ fontFamily: "'Caveat', cursive", fontSize: 18, fontWeight: 600, color: C.accent }}>{n}</span>
+        <span style={{ fontFamily: "'Caveat', cursive", fontSize: "20px", fontWeight: 600, color: C.accent }}>{n}</span>
       </div>
       <h3 style={{ fontFamily: "Georgia, serif", fontStyle: "italic", fontWeight: 400, fontSize: "1.9rem", color: C.text, marginBottom: "0.9rem", lineHeight: 1.2 }}>{title}</h3>
       {children && <p style={{ fontSize: 15, lineHeight: 1.8, color: C.mid, maxWidth: 600, fontFamily: "system-ui, sans-serif" }}>{children}</p>}
@@ -76,7 +76,7 @@ function Persona({ name, age, role, company, tags, quote, goals, pains, highligh
   return (
     <div style={{ background: C.bg, border: highlight ? `1.5px solid ${C.accent}` : `0.5px solid ${C.border}`, borderRadius: 12, overflow: "hidden", fontFamily: "system-ui, sans-serif", position: "relative" }}>
       {badge && (
-        <div style={{ position: "absolute", top: 10, right: 10, background: C.accentLight, color: C.accent, fontFamily: "'Caveat', cursive", fontSize: 13, fontWeight: 600, padding: "3px 8px", borderRadius: 20 }}>{badge}</div>
+        <div style={{ position: "absolute", top: 10, right: 10, background: C.accentLight, color: C.accent, fontFamily: "'Caveat', cursive", fontSize: "20px", fontWeight: 600, padding: "3px 8px", borderRadius: 20 }}>{badge}</div>
       )}
       <div style={{ padding: "1rem", display: "flex", alignItems: "center", gap: 10 }}>
         <div style={{ width: 44, height: 44, borderRadius: "50%", background: C.surface, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 18, fontWeight: 600, color: C.mid, flexShrink: 0 }}>{name[0]}</div>
@@ -263,7 +263,7 @@ export default function AllphomeCase() {
           <hr style={hr} />
 
           {/* FASE 3 */}
-          <div style={{ fontFamily: "'Caveat', cursive", fontSize: "1.2rem", fontWeight: 600, color: C.accent, marginBottom: 8, display: "inline-flex", alignItems: "center", gap: 6 }}>
+          <div style={{ fontFamily: "'Caveat', cursive", fontSize: "20px", fontWeight: 600, color: C.accent, marginBottom: 8, display: "inline-flex", alignItems: "center", gap: 6 }}>
             <span style={{ display: "inline-block", animation: "bob 0.9s ease-in-out infinite alternate" }}>↑</span> key step!
           </div>
           <Phase n="03" title="User Research and Behavioral Mapping">
@@ -298,7 +298,7 @@ export default function AllphomeCase() {
               pains={["Parents have busy routines", "Too many distractions"]}
               highlight badge="↑ led to Kids feature being cut" />
           </div>
-          <div style={{ fontFamily: "'Caveat', cursive", fontSize: 16, fontWeight: 500, color: C.accent, lineHeight: 1.6, marginBottom: "1.5rem" }}>
+          <div style={{ fontFamily: "'Caveat', cursive", fontSize: "20px", fontWeight: 500, color: C.accent, lineHeight: 1.6, marginBottom: "1.5rem" }}>
             ↑ Bernardo was the persona behind the proposed Kids feature. Research showed he represented only a small fraction of actual users, redirecting investment toward features that served Milena, Daiane, and Julio instead.
           </div>
           <div className="a-g3" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 12, marginBottom: "1rem" }}>
@@ -333,7 +333,7 @@ export default function AllphomeCase() {
               <span style={{ fontSize: 22, color: C.accent, fontWeight: 700 }}>→</span>
               <Phone src="/images/allphome-1.png" alt="UI: Home screen" />
             </div>
-            <div style={{ marginTop: 10, fontFamily: "'Caveat', cursive", fontSize: 16, fontWeight: 500, color: C.accent, lineHeight: 1.5 }}>
+            <div style={{ marginTop: 10, fontFamily: "'Caveat', cursive", fontSize: "20px", fontWeight: 500, color: C.accent, lineHeight: 1.5 }}>
               ↑ tab structure and content card hierarchy were defined at wireframe stage, visual decisions came only after the structure was validated
             </div>
           </div>
@@ -388,7 +388,7 @@ export default function AllphomeCase() {
               </div>
             </div>
           ))}
-          <div style={{ fontFamily: "'Caveat', cursive", fontSize: 16, fontWeight: 500, color: C.accent, lineHeight: 1.5, marginBottom: "1rem" }}>
+          <div style={{ fontFamily: "'Caveat', cursive", fontSize: "20px", fontWeight: 500, color: C.accent, lineHeight: 1.5, marginBottom: "1rem" }}>
             ↑ tokens defined before UI work began, ensuring every decision traced back to a shared system
           </div>
           <hr style={hr} />
@@ -451,7 +451,7 @@ export default function AllphomeCase() {
       <section style={sec}>
         <div style={wrap}>
           <div style={{ display: "flex", gap: "2.5rem", alignItems: "flex-start" }}>
-            <div style={{ fontFamily: "'Caveat', cursive", fontSize: 18, fontWeight: 600, color: C.accent, writingMode: "vertical-lr", transform: "rotate(180deg)", flexShrink: 0, letterSpacing: "0.05em" }}>
+            <div style={{ fontFamily: "'Caveat', cursive", fontSize: "20px", fontWeight: 600, color: C.accent, writingMode: "vertical-lr", transform: "rotate(180deg)", flexShrink: 0, letterSpacing: "0.05em" }}>
               lessons learned ↓
             </div>
             <div style={{ background: C.surface, borderRadius: 14, padding: "1.75rem 2rem", flex: 1 }}>

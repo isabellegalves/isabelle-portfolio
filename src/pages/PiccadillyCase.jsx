@@ -20,7 +20,7 @@ function Ann({ children }) {
   const dir = children.startsWith("↑") ? "↑" : "↓"
   const text = children.replace(/^[↑↓] ?/, "")
   return (
-    <div style={{ fontFamily: "'Caveat', cursive", fontSize: "1.2rem", fontWeight: 600, color: C.accent, marginBottom: "1.25rem", display: "inline-flex", alignItems: "center", gap: 6 }}>
+    <div style={{ fontFamily: "'Caveat', cursive", fontSize: "20px", fontWeight: 600, color: C.accent, marginBottom: "1.25rem", display: "inline-flex", alignItems: "center", gap: 6 }}>
       <span style={{ display: "inline-block", animation: "bob 0.9s ease-in-out infinite alternate" }}>{dir}</span>
       {text}
     </div>
@@ -33,7 +33,7 @@ function Phase({ n, title, children }) {
     <div style={{ marginBottom: "1.75rem" }}>
       <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: "0.6rem" }}>
         <div style={{ width: 32, height: 3, background: C.accent, flexShrink: 0 }} />
-        <span style={{ fontFamily: "'Caveat', cursive", fontSize: 18, fontWeight: 600, color: C.accent }}>{n}</span>
+        <span style={{ fontFamily: "'Caveat', cursive", fontSize: "20px", fontWeight: 600, color: C.accent }}>{n}</span>
       </div>
       <h3 style={{ fontFamily: "Georgia, serif", fontStyle: "italic", fontWeight: 400, fontSize: "1.9rem", color: C.text, marginBottom: "0.9rem", lineHeight: 1.2 }}>{title}</h3>
       {children && <p style={{ fontSize: 15, lineHeight: 1.8, color: C.mid, maxWidth: 600, fontFamily: "system-ui, sans-serif" }}>{children}</p>}
@@ -179,7 +179,7 @@ export default function PiccadillyCase() {
           <HR />
 
           {/* FASE 2 */}
-          <div style={{ fontFamily: "'Caveat', cursive", fontSize: "1.2rem", fontWeight: 600, color: C.accent, marginBottom: 8, display: "inline-flex", alignItems: "center", gap: 6 }}>
+          <div style={{ fontFamily: "'Caveat', cursive", fontSize: "20px", fontWeight: 600, color: C.accent, marginBottom: 8, display: "inline-flex", alignItems: "center", gap: 6 }}>
             <span style={{ display: "inline-block", animation: "bob 0.9s ease-in-out infinite alternate" }}>↑</span>
             key step!
           </div>
@@ -332,7 +332,7 @@ export default function PiccadillyCase() {
       <section style={sec}>
         <div style={wrap}>
           <div style={{ display: "flex", gap: "2.5rem", alignItems: "flex-start" }}>
-            <div style={{ fontFamily: "'Caveat', cursive", fontSize: 18, fontWeight: 600, color: C.accent, writingMode: "vertical-lr", transform: "rotate(180deg)", flexShrink: 0, letterSpacing: "0.05em" }}>
+            <div style={{ fontFamily: "'Caveat', cursive", fontSize: "20px", fontWeight: 600, color: C.accent, writingMode: "vertical-lr", transform: "rotate(180deg)", flexShrink: 0, letterSpacing: "0.05em" }}>
               lessons learned ↓
             </div>
             <div style={{ background: C.surface, borderRadius: 14, padding: "1.75rem 2rem", flex: 1 }}>
