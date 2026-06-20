@@ -255,14 +255,25 @@ export default function CaseStudy({ onContactClick }) {
         <FadeUp>
           <SweepLabel>The Problem</SweepLabel>
           <p style={BODY}>{c.problem.body}</p>
-          <div style={{ background: T.ink, borderRadius: 16, padding: "36px 48px", marginTop: 28 }}>
+          <div style={{ padding: "36px 0 8px", marginTop: 12 }}>
             <p style={{
-              fontFamily: "Georgia, serif",
-              fontSize: "clamp(18px, 2.2vw, 26px)",
-              fontStyle: "italic", color: T.white,
-              lineHeight: 1.5, letterSpacing: "-0.02em", margin: 0,
+              fontFamily: "'Caveat', cursive",
+              fontSize: "clamp(28px, 3.5vw, 48px)",
+              fontWeight: 500,
+              color: T.ink,
+              lineHeight: 1.3,
+              letterSpacing: "0.01em",
+              margin: 0,
             }}>
-              "{c.problem.highlight}"
+              {c.problem.highlight.split(" ").map((word, i, arr) => {
+                const mid = Math.floor(arr.length / 2)
+                const isPurple = i >= mid - 1 && i <= mid + 1
+                return (
+                  <span key={i} style={{ color: isPurple ? "#6C1FF3" : T.ink }}>
+                    {word}{i < arr.length - 1 ? " " : ""}
+                  </span>
+                )
+              })}
             </p>
           </div>
         </FadeUp>
