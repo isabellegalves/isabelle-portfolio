@@ -117,11 +117,10 @@ export default function Nav({ onContactClick }) {
           aria-label="Isabelle Alves, home"
           style={{ display: "flex", alignItems: "center", textDecoration: "none" }}
         >
-          <img
-            src="/images/logo-black.svg"
-            alt="Isabelle Alves"
-            style={{ height: 28, width: "auto", display: "block" }}
-          />
+          <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+            <img src="/images/logo-black.svg" alt="" aria-hidden="true" style={{ height: 28, width: "auto", display: "block" }} />
+            <span style={{ fontFamily: "'Caveat', cursive", fontSize: 26, fontWeight: 700, color: "#0A0A0A", letterSpacing: "0.02em", lineHeight: 1 }}>Isabelle Alves</span>
+          </div>
         </Link>
 
         <div style={{ display: "flex", gap: 6, alignItems: "center" }}>
