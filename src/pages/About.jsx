@@ -154,42 +154,42 @@ function ToolIcon({ tool }) {
 
 const EXPERIENCE = [
   {
-    logo: "/images/logo-empresa-bradesco.svg", bg: "#F7F7F5",
+    logo: "/images/logo-empresa-bradesco.svg", contain: true,
     role: "Senior Product Designer",
     company: "Bradesco · via Frito · Remote",
     period: "Aug 2024 – Present",
     tags: ["UI Design", "Design System", "UX Research", "Usability Testing", "Service Design", "Discovery", "Prototyping", "Stakeholder Alignment"],
   },
   {
-    logo: "/images/logo-empresa-edglobo.svg", bg: "#F7F7F5",
+    logo: "/images/logo-empresa-edglobo.svg", contain: true,
     role: "Senior Product Designer",
     company: "Editora Globo · Conde Nast · Remote",
     period: "Mar 2022 – Aug 2024",
     tags: ["UI Design", "Design System", "UX Audit", "Usability Testing", "Data Analysis", "Component Library", "Visual Identity"],
   },
   {
-    logo: "/images/logo-empresa-mjv.svg", bg: "#F7F7F5",
+    logo: "/images/logo-empresa-mjv.svg",
     role: "User Researcher & UI/UX Designer",
     company: "MJV Technology · Bradesco Seguros",
     period: "Jun 2021 – Mar 2022",
     tags: ["UX Research", "User Interviews", "Prototyping", "Journey Mapping", "Discovery", "Research Scripts"],
   },
   {
-    logo: "/images/logo-empresa-sodexo.svg", bg: "#F7F7F5",
+    logo: "/images/logo-empresa-sodexo.svg", contain: true,
     role: "UI/UX Product Designer",
     company: "Sodexo LATAM · Remote",
     period: "Aug 2020 – Jun 2021",
     tags: ["UI Design", "Mobile", "Dashboard", "Usability Testing", "Agile", "Prototyping"],
   },
   {
-    logo: "/images/logo-empresa-piccadilly.svg", bg: "#F7F7F5",
+    logo: "/images/logo-empresa-piccadilly.svg",
     role: "UI/UX Product Designer",
     company: "Piccadilly",
     period: "May 2019 – Aug 2020",
     tags: ["UI Design", "Mobile App", "UX Strategy", "Omnichannel", "Design System"],
   },
   {
-    logo: "/images/logo-empresa-s2p.svg", bg: "#F7F7F5",
+    logo: "/images/logo-empresa-s2p.svg",
     role: "UI/UX Designer & Design Lead",
     company: "Safe2Pay",
     period: "Aug 2015 – May 2019",
@@ -226,7 +226,7 @@ const CERTS = [
     name: "Fundamentals of UI/UX Design",
     issuer: "Microsoft",
     date: "Jun 2025",
-    logo: "https://raw.githubusercontent.com/gilbarbara/logos/main/logos/microsoft.svg",
+    logo: "https://raw.githubusercontent.com/gilbarbara/logos/main/logos/microsoft-icon.svg",
     logoBg: "#ffffff", abbr: "MS",
   },
   {
@@ -436,13 +436,17 @@ export default function About() {
                 <div style={{ display: "flex", flexDirection: "column", alignItems: "center", flexShrink: 0 }}>
                   <div style={{
                     width: 44, height: 44, borderRadius: 10,
-                    background: e.logo ? "transparent" : e.bg,
-                    border: e.logo ? "none" : `1px solid ${T.rule}`,
+                    background: e.contain ? "#FFFFFF" : "transparent",
+                    border: e.contain ? `1px solid ${T.rule}` : "none",
                     flexShrink: 0, overflow: "hidden",
+                    display: "flex", alignItems: "center", justifyContent: "center",
                   }}>
                     {e.logo
-                      ? <img src={e.logo} alt={e.company} style={{ width: 44, height: 44, objectFit: "cover", display: "block", borderRadius: 10 }} />
-                      : <span style={{ display: "flex", alignItems: "center", justifyContent: "center", width: "100%", height: "100%", fontFamily: "system-ui, sans-serif", fontSize: 11, fontWeight: 800, color: e.color }}>{e.abbr}</span>
+                      ? <img src={e.logo} alt={e.company} style={e.contain
+                          ? { width: 28, height: 28, objectFit: "contain", display: "block" }
+                          : { width: 44, height: 44, objectFit: "cover", display: "block", borderRadius: 10 }
+                        } />
+                      : <span style={{ fontFamily: "system-ui, sans-serif", fontSize: 11, fontWeight: 800, color: e.color }}>{e.abbr}</span>
                     }
                   </div>
                   {i < EXPERIENCE.length - 1 && (
