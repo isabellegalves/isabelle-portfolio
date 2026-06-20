@@ -337,7 +337,7 @@ export default function About() {
                   <path d="M 118 10 L 106 8" stroke="#6C1FF3" strokeWidth="1.5" fill="none" strokeLinecap="round"/>
                   <path d="M 118 10 L 112 22" stroke="#6C1FF3" strokeWidth="1.5" fill="none" strokeLinecap="round"/>
                   {/* texto handwritten — bem abaixo da cauda da seta */}
-                  <text x="0" y="110" style={{ fontFamily: "'Caveat', cursive", fontSize: "18px", fontWeight: 400, fill: "#6C1FF3", letterSpacing: "0.04em" }}>
+                  <text x="0" y="110" style={{ fontFamily: "'Caveat', cursive", fontSize: "22px", fontWeight: 400, fill: "#6C1FF3", letterSpacing: "0.04em" }}>
                     This is me!
                   </text>
                 </svg>
