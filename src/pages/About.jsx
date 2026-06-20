@@ -161,9 +161,9 @@ const EXPERIENCE = [
     tags: ["UI Design", "Design System", "UX Research", "Usability Testing", "Service Design", "Discovery", "Prototyping", "Stakeholder Alignment"],
   },
   {
-    abbr: "CN", bg: "#0A0A0A", color: "#fff",
+    logo: "/images/logo-empresa-edglobo.svg", bg: "#F7F7F5",
     role: "Senior Product Designer",
-    company: "Conde Nast · Editora Globo · Remote",
+    company: "Editora Globo · Conde Nast · Remote",
     period: "Mar 2022 – Aug 2024",
     tags: ["UI Design", "Design System", "UX Audit", "Usability Testing", "Data Analysis", "Component Library", "Visual Identity"],
   },
@@ -436,13 +436,12 @@ export default function About() {
                 <div style={{ display: "flex", flexDirection: "column", alignItems: "center", flexShrink: 0 }}>
                   <div style={{
                     width: 44, height: 44, borderRadius: 10,
-                    background: e.logo ? "transparent" : e.bg,
-                    border: e.logo ? "none" : `1px solid ${T.rule}`,
+                    background: "#FFFFFF", border: `1px solid ${T.rule}`,
                     display: "flex", alignItems: "center", justifyContent: "center",
-                    flexShrink: 0, overflow: "hidden",
+                    flexShrink: 0,
                   }}>
                     {e.logo
-                      ? <img src={e.logo} alt={e.company} style={{ width: 44, height: 44, objectFit: "cover", display: "block", borderRadius: 10 }} />
+                      ? <img src={e.logo} alt={e.company} style={{ width: "100%", height: "100%", objectFit: "contain", display: "block", padding: 6 }} />
                       : <span style={{ fontFamily: "system-ui, sans-serif", fontSize: 11, fontWeight: 800, color: e.color }}>{e.abbr}</span>
                     }
                   </div>
