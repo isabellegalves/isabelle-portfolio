@@ -436,16 +436,12 @@ export default function About() {
                 <div style={{ display: "flex", flexDirection: "column", alignItems: "center", flexShrink: 0 }}>
                   <div style={{
                     width: 44, height: 44, borderRadius: 10,
-                    background: e.contain ? "#FFFFFF" : "transparent",
-                    border: e.contain ? `1px solid ${T.rule}` : "none",
+                    background: "#FFFFFF", border: `1px solid ${T.rule}`,
                     flexShrink: 0, overflow: "hidden",
                     display: "flex", alignItems: "center", justifyContent: "center",
                   }}>
                     {e.logo
-                      ? <img src={e.logo} alt={e.company} style={e.contain
-                          ? { width: 28, height: 28, objectFit: "contain", display: "block" }
-                          : { width: 44, height: 44, objectFit: "cover", display: "block", borderRadius: 10 }
-                        } />
+                      ? <img src={e.logo} alt={e.company} style={{ width: 32, height: 32, objectFit: "contain", display: "block" }} />
                       : <span style={{ fontFamily: "system-ui, sans-serif", fontSize: 11, fontWeight: 800, color: e.color }}>{e.abbr}</span>
                     }
                   </div>
