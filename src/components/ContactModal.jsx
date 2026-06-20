@@ -64,12 +64,22 @@ export default function ContactModal({ onClose }) {
           ×
         </button>
 
-        <h2 id="modal-title" style={{
-          fontFamily: "system-ui, sans-serif", fontSize: 22, fontWeight: 800,
-          letterSpacing: "-0.03em", color: T.ink, marginBottom: 8,
-        }}>
-          Get in touch
-        </h2>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 8 }}>
+          <h2 id="modal-title" style={{
+            fontFamily: "system-ui, sans-serif", fontSize: 22, fontWeight: 800,
+            letterSpacing: "-0.03em", color: T.ink, margin: 0,
+          }}>
+            Get in touch
+          </h2>
+          <svg width="100" height="48" viewBox="0 0 100 48" overflow="visible" aria-hidden="true" style={{ marginRight: 40 }}>
+            <text x="4" y="16" style={{ fontFamily: "'Caveat', cursive", fontSize: "18px", fontWeight: 500, fill: "#6C1FF3" }}>
+              say hello!
+            </text>
+            <path d="M 22 22 C 16 28, 10 36, 8 44" stroke="#6C1FF3" strokeWidth="1.5" fill="none" strokeLinecap="round"/>
+            <path d="M 8 44 L 2 38" stroke="#6C1FF3" strokeWidth="1.5" fill="none" strokeLinecap="round"/>
+            <path d="M 8 44 L 14 40" stroke="#6C1FF3" strokeWidth="1.5" fill="none" strokeLinecap="round"/>
+          </svg>
+        </div>
         <p style={{
           fontFamily: "system-ui, sans-serif", fontSize: 14, color: T.mid,
           lineHeight: 1.6, marginBottom: 32,

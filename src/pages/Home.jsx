@@ -266,26 +266,41 @@ function Hero({ onContactClick }) {
           transition={{ ...spring, delay: 0.2 }}
           style={{
             marginTop: 120, paddingTop: 32, borderTop: `1px solid ${T.rule}`,
-            display: "flex", flexWrap: "wrap", gap: 0,
+            position: "relative",
           }}
         >
-          {[
-            { n: 30, suffix: "%", label: "Reduction in dev time at Bradesco" },
-            { n: 50, suffix: "+", label: "Users interviewed across projects" },
-            { n: 40, suffix: "%", label: "Faster delivery with Design Systems" },
-            { n: 20, suffix: "%", label: "Increase in usability at Sodexo" },
-          ].map((s, i) => (
-            <div key={i} style={{
-              flex: "1 1 160px", paddingRight: 28, marginRight: 28,
-              borderRight: i < 3 ? `1px solid ${T.rule}` : "none",
-            }}>
-              <Counter to={s.n} suffix={s.suffix} duration={1.2 + i * 0.1} />
-              <div style={{
-                fontFamily: "system-ui, sans-serif", fontSize: 11,
-                color: T.mid, marginTop: 6, letterSpacing: "0.04em", textTransform: "uppercase",
-              }}>{s.label}</div>
-            </div>
-          ))}
+          <svg
+            width="160" height="52" viewBox="0 0 160 52"
+            style={{ position: "absolute", top: -48, left: 0, overflow: "visible" }}
+            aria-hidden="true"
+          >
+            <text x="0" y="20" style={{ fontFamily: "'Caveat', cursive", fontSize: "18px", fontWeight: 500, fill: "#6C1FF3" }}>
+              real numbers
+            </text>
+            <path d="M 95 24 C 108 28, 120 34, 130 38" stroke="#6C1FF3" strokeWidth="1.5" fill="none" strokeLinecap="round"/>
+            <path d="M 130 38 L 122 32" stroke="#6C1FF3" strokeWidth="1.5" fill="none" strokeLinecap="round"/>
+            <path d="M 130 38 L 126 46" stroke="#6C1FF3" strokeWidth="1.5" fill="none" strokeLinecap="round"/>
+          </svg>
+
+          <div style={{ display: "flex", flexWrap: "wrap", gap: 0 }}>
+            {[
+              { n: 30, suffix: "%", label: "Reduction in dev time at Bradesco" },
+              { n: 50, suffix: "+", label: "Users interviewed across projects" },
+              { n: 40, suffix: "%", label: "Faster delivery with Design Systems" },
+              { n: 20, suffix: "%", label: "Increase in usability at Sodexo" },
+            ].map((s, i) => (
+              <div key={i} style={{
+                flex: "1 1 160px", paddingRight: 28, marginRight: 28,
+                borderRight: i < 3 ? `1px solid ${T.rule}` : "none",
+              }}>
+                <Counter to={s.n} suffix={s.suffix} duration={1.2 + i * 0.1} />
+                <div style={{
+                  fontFamily: "system-ui, sans-serif", fontSize: 11,
+                  color: T.mid, marginTop: 6, letterSpacing: "0.04em", textTransform: "uppercase",
+                }}>{s.label}</div>
+              </div>
+            ))}
+          </div>
         </motion.div>
       </div>
     </section>
@@ -455,7 +470,34 @@ function Capabilities() {
     <section aria-labelledby="capabilities-heading" style={{ padding: "120px 0", background: T.offwhite }}>
       <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 48px" }}>
         <FadeUp>
-          <HandUnderlineHeading id="capabilities-heading">How I work</HandUnderlineHeading>
+          <div style={{ display: "inline-flex", alignItems: "center", gap: 32, marginBottom: 52 }}>
+            <div style={{ position: "relative", display: "inline-block" }}>
+              <h2 id="capabilities-heading" style={{
+                fontFamily: "system-ui, sans-serif",
+                fontSize: "clamp(26px, 3vw, 36px)", fontWeight: 800,
+                letterSpacing: "-0.04em", color: T.ink, margin: 0,
+              }}>
+                How I work
+              </h2>
+              <svg viewBox="0 0 220 10" width="100%" height="10"
+                style={{ position: "absolute", bottom: -8, left: 0, overflow: "visible" }}
+                aria-hidden="true"
+              >
+                <path
+                  d="M 1 6 C 15 2, 35 9, 58 5 C 78 2, 100 8, 125 5 C 148 2, 170 8, 192 5 C 202 3, 210 7, 218 5"
+                  stroke="#6C1FF3" strokeWidth="2.2" fill="none" strokeLinecap="round"
+                />
+              </svg>
+            </div>
+            <svg width="110" height="52" viewBox="0 0 110 52" overflow="visible" aria-hidden="true">
+              <text x="0" y="16" style={{ fontFamily: "'Caveat', cursive", fontSize: "18px", fontWeight: 500, fill: "#6C1FF3" }}>
+                my process
+              </text>
+              <path d="M 20 20 C 14 30, 10 40, 16 50" stroke="#6C1FF3" strokeWidth="1.5" fill="none" strokeLinecap="round"/>
+              <path d="M 16 50 L 10 44" stroke="#6C1FF3" strokeWidth="1.5" fill="none" strokeLinecap="round"/>
+              <path d="M 16 50 L 22 46" stroke="#6C1FF3" strokeWidth="1.5" fill="none" strokeLinecap="round"/>
+            </svg>
+          </div>
         </FadeUp>
         <div ref={ref} className="caps-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 2 }}>
           {items.map((item, i) => (
@@ -655,8 +697,17 @@ function ContactSection({ onContactClick }) {
         }}>
           Good work starts with a good conversation.
         </h2>
-        {/* solid-white: bg branco + texto preto em fundo escuro; hover → gradiente + texto branco */}
-        <Btn variant="solid-white" onClick={onContactClick} padding="15px 34px" borderRadius={32}>Get in touch</Btn>
+        <div style={{ display: "inline-flex", alignItems: "center", gap: 0 }}>
+          <svg width="120" height="56" viewBox="0 0 120 56" overflow="visible" aria-hidden="true">
+            <text x="0" y="20" style={{ fontFamily: "'Caveat', cursive", fontSize: "18px", fontWeight: 500, fill: "#ffffff" }}>
+              let's talk!
+            </text>
+            <path d="M 50 26 C 62 26, 76 30, 88 36" stroke="#ffffff" strokeWidth="1.5" fill="none" strokeLinecap="round"/>
+            <path d="M 88 36 L 82 30" stroke="#ffffff" strokeWidth="1.5" fill="none" strokeLinecap="round"/>
+            <path d="M 88 36 L 84 43" stroke="#ffffff" strokeWidth="1.5" fill="none" strokeLinecap="round"/>
+          </svg>
+          <Btn variant="solid-white" onClick={onContactClick} padding="15px 34px" borderRadius={32}>Get in touch</Btn>
+        </div>
       </FadeUp>
     </section>
   )
