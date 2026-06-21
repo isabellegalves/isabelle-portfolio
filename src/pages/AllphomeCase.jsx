@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
 
 const C = {
@@ -134,6 +134,11 @@ function Phone({ src, alt }) {
 /* ── Main ─────────────────────────────────────────────────────────────────── */
 export default function AllphomeCase() {
   const [hover, setHover] = useState(false)
+
+  useEffect(() => {
+    document.documentElement.scrollTop = 0
+    document.body.scrollTop = 0
+  }, [])
 
   return (
     <main style={{ background: C.bg, color: C.text }}>

@@ -108,6 +108,11 @@ export default function App() {
                 <PiccadillyCase />
               </AnimatedPage>
             } />
+            <Route path="/work/allphome" element={
+              <AnimatedPage>
+                <AllphomeCase />
+              </AnimatedPage>
+            } />
             <Route path="/work/gym-app" element={
               <AnimatedPage>
                 <AllphomeCase />

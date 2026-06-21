@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
 
 const C = {
@@ -85,6 +85,11 @@ function ImpactCard({ number, label }) {
 /* ── Main ── */
 export default function PiccadillyCase() {
   const [hover, setHover] = useState(false)
+
+  useEffect(() => {
+    document.documentElement.scrollTop = 0
+    document.body.scrollTop = 0
+  }, [])
 
   return (
     <main style={{ background: C.bg, color: C.text }}>
@@ -348,7 +353,7 @@ export default function PiccadillyCase() {
       {/* ── NEXT CASE ── */}
       <div style={{ ...wrap, paddingTop: "2rem", paddingBottom: "4rem" }}>
         <Link
-          to="/work/gym-app"
+          to="/work/allphome"
           onMouseEnter={() => setHover(true)}
           onMouseLeave={() => setHover(false)}
           style={{ display: "flex", alignItems: "center", justifyContent: "space-between", background: "#0D0D0D", borderRadius: 14, padding: "2.5rem", textDecoration: "none", opacity: hover ? 0.9 : 1, transition: "opacity 0.25s" }}

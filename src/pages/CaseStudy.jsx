@@ -112,6 +112,7 @@ export default function CaseStudy({ onContactClick }) {
   }, [slug])
 
   if (!c) return <Navigate to="/" replace />
+  if (c.customPage) return <Navigate to={`/work/${c.slug}`} replace />
 
   // Show password gate if case is protected and not yet unlocked
   if (c.passwordHash && !unlocked) {

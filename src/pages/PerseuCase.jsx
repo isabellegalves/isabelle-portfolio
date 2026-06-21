@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
 
 const C = {
@@ -91,6 +91,11 @@ function Swatch({ color, label, light }) {
 /* ── Main ── */
 export default function PerseuCase() {
   const [hover, setHover] = useState(false)
+
+  useEffect(() => {
+    document.documentElement.scrollTop = 0
+    document.body.scrollTop = 0
+  }, [])
 
   return (
     <main style={{ background: C.bg, color: C.text }}>

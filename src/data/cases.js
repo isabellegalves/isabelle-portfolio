@@ -104,6 +104,7 @@ export const cases = [
   {
     id: "03",
     slug: "piccadilly",
+    customPage: true,
     company: "Piccadilly",
     year: "2019 to 2020",
     title: "Restructuring a retail app around how people actually shop for shoes.",
@@ -199,7 +200,8 @@ export const cases = [
 
   {
     id: "05",
-    slug: "gym-app",
+    slug: "allphome",
+    customPage: true,
     company: "Allphome",
     year: "2021",
     title: "Behavioral design for habit formation. Making the right action feel effortless.",
@@ -349,6 +351,7 @@ export const cases = [
   {
     id: "08",
     slug: "perseu",
+    customPage: true,
     company: "Perseu",
     year: "2021",
     title: "An on-demand marketplace connecting students, trainers and creators.",
