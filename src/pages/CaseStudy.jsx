@@ -484,21 +484,41 @@ export default function CaseStudy({ onContactClick }) {
                 fontFamily: "system-ui, sans-serif",
                 fontSize: "clamp(18px, 2.5vw, 28px)",
                 fontWeight: 700, letterSpacing: "-0.03em", color: T.ink, marginBottom: 6,
+                position: "relative", display: "inline-block",
               }}>
                 {next.company}
+                <svg
+                  viewBox="0 0 220 10" height="8"
+                  style={{
+                    position: "absolute", left: 0, bottom: -6, width: "100%",
+                    overflow: "visible",
+                    opacity: nextHovered ? 1 : 0,
+                    transition: "opacity 0.2s",
+                  }}
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M 1 6 C 15 2, 35 9, 58 5 C 78 2, 100 8, 125 5 C 148 2, 170 8, 192 5 C 202 3, 210 7, 218 5"
+                    stroke="#6C1FF3" strokeWidth="2.2" fill="none" strokeLinecap="round"
+                  />
+                </svg>
               </div>
               <div style={{ fontFamily: "Georgia, serif", fontSize: 15, fontStyle: "italic", color: T.mid }}>
                 {next.title.length > 65 ? next.title.slice(0, 65) + "..." : next.title}
               </div>
             </div>
-            <motion.span
-              animate={{ x: nextHovered ? 8 : 0 }}
-              transition={{ duration: 0.3 }}
-              aria-hidden="true"
-              style={{ fontSize: 28, color: T.ink }}
+
+            {/* Seta handwritten roxa */}
+            <svg
+              width="48" height="36" viewBox="0 0 48 36"
+              overflow="visible" aria-hidden="true"
+              style={{ flexShrink: 0, marginLeft: 24, transition: "transform 0.3s cubic-bezier(0.34,1.56,0.64,1)", transform: nextHovered ? "translateX(6px)" : "translateX(0)" }}
             >
-              →
-            </motion.span>
+              <path d="M 4 18 C 12 16, 22 18, 34 18" stroke="#6C1FF3" strokeWidth="1.5" fill="none" strokeLinecap="round"/>
+              <path d="M 30 12 C 33 14, 35 16, 34 18" stroke="#6C1FF3" strokeWidth="1.5" fill="none" strokeLinecap="round"/>
+              <path d="M 34 18 C 33 20, 31 22, 30 24" stroke="#6C1FF3" strokeWidth="1.5" fill="none" strokeLinecap="round"/>
+            </svg>
+
           </div>
         </Link>
       )}
