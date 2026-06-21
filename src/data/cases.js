@@ -345,6 +345,36 @@ export const cases = [
     ],
     takeaway: "Subscription design is conversion design. Every inconsistency in branding, every unclear pricing line and every extra step in checkout is a reason for the user to stop. Small, systematic changes across the funnel compound into significant revenue impact.",
   },
+
+  {
+    id: "08",
+    slug: "perseu",
+    company: "Perseu",
+    year: "2021",
+    title: "An on-demand marketplace connecting students, trainers and creators.",
+    summary: "How designing one shared concept, the source of a workout, turned three loosely related apps into a single coherent marketplace.",
+    tags: ["Fitness", "Marketplace"],
+    bg: "#0F1A12",
+    image: "/images/perseu/aluno-home.png",
+    comingSoon: false,
+    overview: {
+      role: "Product Designer, sole designer, end to end",
+      scope: "Discovery, UX, UI, Design System, Prototyping, Handoff",
+      team: "Solo",
+      context: "Perseu was a three-sided fitness marketplace: students booking on-demand personal training, trainers accepting sessions inside a coverage radius, and digital influencers publishing and monetizing workout content. The product was fully designed and handed to the development team in 2021. Launch was cancelled by the owner.",
+    },
+    problem: {
+      body: "Three users, opposite needs, one app. A student wants to find and book. A trainer wants to fill a schedule and be paid. An influencer wants reach and revenue. The risk was building three loosely related apps stitched into one binary, heavy and incoherent.",
+      highlight: "The hard part was never any single screen. It was deciding what the three sides share.",
+    },
+    process: [],
+    takeaway: "Designing a marketplace is not designing screens. It is deciding what the sides share. One attribute, the source of a workout, did more for the product than any layout.",
+    metrics: [
+      { n: "3",    label: "Sides designed end to end" },
+      { n: "Solo", label: "Sole designer, discovery through handoff" },
+      { n: "2",    label: "Platforms, iOS and Android" },
+    ],
+  },
 ]
 
 export const getCaseBySlug = (slug) => cases.find(c => c.slug === slug)

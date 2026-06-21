@@ -9,6 +9,7 @@ import CaseStudy from "./pages/CaseStudy"
 import About from "./pages/About"
 import AllphomeCase from "./pages/AllphomeCase"
 import PiccadillyCase from "./pages/PiccadillyCase"
+import PerseuCase from "./pages/PerseuCase"
 
 const pageVariants = {
   initial: { opacity: 0, y: 16 },
@@ -95,6 +96,11 @@ export default function App() {
             <Route path="/" element={
               <AnimatedPage>
                 <Home onContactClick={() => setModalOpen(true)} />
+              </AnimatedPage>
+            } />
+            <Route path="/work/perseu" element={
+              <AnimatedPage>
+                <PerseuCase />
               </AnimatedPage>
             } />
             <Route path="/work/piccadilly" element={
