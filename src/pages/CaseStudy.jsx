@@ -106,7 +106,7 @@ export default function CaseStudy({ onContactClick }) {
     return sessionStorage.getItem(`unlocked_${c.passwordHash}`) === "1"
   })
 
-  useEffect(() => { window.scrollTo(0, 0) }, [slug])
+  useEffect(() => { window.scrollTo({ top: 0, left: 0, behavior: "instant" }) }, [slug])
 
   if (!c) return <Navigate to="/" replace />
 
@@ -195,7 +195,7 @@ export default function CaseStudy({ onContactClick }) {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.5 }}
           style={{
-            background: c.bg, width: "100%",
+            background: "#F2F2F2", width: "100%",
             minHeight: 420, display: "flex",
             alignItems: "center", justifyContent: "center",
             padding: "64px 48px",
@@ -205,7 +205,7 @@ export default function CaseStudy({ onContactClick }) {
             src={c.image}
             alt={`${c.company} project screenshot`}
             style={{
-              maxWidth: "70%", maxHeight: 500,
+              maxWidth: "85%", maxHeight: 500,
               objectFit: "contain",
               filter: "drop-shadow(0 20px 48px rgba(0,0,0,0.14))",
             }}
