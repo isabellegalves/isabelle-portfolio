@@ -169,9 +169,9 @@ export default function AllphomeCase() {
 
         {/* ── BANNER ── */}
         <div style={{ width: "100%", background: C.surface, minHeight: 320, display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden" }}>
-          <img
-            src="/images/allphome.gif"
-            alt="Allphome prototype walkthrough"
+          <video
+            src="/images/allphome.mp4"
+            autoPlay muted loop playsInline
             style={{ width: "100%", maxHeight: 560, objectFit: "cover", display: "block" }}
           />
         </div>

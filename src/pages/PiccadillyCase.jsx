@@ -118,7 +118,7 @@ export default function PiccadillyCase() {
         {/* ── BANNER VIDEO ── */}
         <div style={{ width: "100%", background: "#111", overflow: "hidden", minHeight: 260, display: "flex", alignItems: "center", justifyContent: "center" }}>
           <video
-            src="/images/piccadilly.mov"
+            src="/images/piccadilly.mp4"
             autoPlay
             muted
             loop

@@ -205,15 +205,23 @@ export default function CaseStudy({ onContactClick }) {
             padding: "64px 48px",
           }}
         >
-          <img
-            src={c.image}
-            alt={`${c.company} project screenshot`}
-            style={{
-              maxWidth: "85%", maxHeight: 500,
-              objectFit: "contain",
-              filter: "drop-shadow(0 20px 48px rgba(0,0,0,0.14))",
-            }}
-          />
+          {c.image?.endsWith(".mp4") ? (
+            <video
+              src={c.image}
+              autoPlay muted loop playsInline
+              style={{ maxWidth: "85%", maxHeight: 500, objectFit: "contain" }}
+            />
+          ) : (
+            <img
+              src={c.image}
+              alt={`${c.company} project screenshot`}
+              style={{
+                maxWidth: "85%", maxHeight: 500,
+                objectFit: "contain",
+                filter: "drop-shadow(0 20px 48px rgba(0,0,0,0.14))",
+              }}
+            />
+          )}
         </motion.div>
       </section>
 
