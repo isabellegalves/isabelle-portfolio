@@ -98,20 +98,8 @@ export default function PiccadillyCase() {
         }
       `}</style>
 
-      {/* ── BANNER VIDEO ── */}
-      <div style={{ width: "100%", background: "#111", overflow: "hidden", minHeight: 260, display: "flex", alignItems: "center", justifyContent: "center" }}>
-        <video
-          src="/images/piccadilly.mov"
-          autoPlay
-          muted
-          loop
-          playsInline
-          style={{ width: "100%", maxHeight: 520, objectFit: "cover", display: "block" }}
-        />
-      </div>
-
       {/* ── HERO ── */}
-      <section style={sec}>
+      <section style={{ ...sec, paddingTop: "5rem" }}>
         <div style={wrap}>
           <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginBottom: "1.5rem" }}>
             {["Fashion and Retail", "Mobile App", "UI Design", "2019 – 2020"].map(t => (
@@ -119,7 +107,19 @@ export default function PiccadillyCase() {
             ))}
           </div>
           <h1 style={{ fontFamily: "Georgia, serif", fontStyle: "italic", fontWeight: 400, fontSize: "clamp(3rem, 7vw, 4.5rem)", lineHeight: 1.05, color: C.text, marginBottom: "1rem" }}>Piccadilly</h1>
-          <p style={{ fontSize: 14, fontWeight: 600, letterSpacing: "0.05em", textTransform: "uppercase", color: C.mid, fontFamily: "system-ui, sans-serif" }}>Restructuring how 2M+ customers discover and buy shoes online</p>
+          <p style={{ fontSize: 14, fontWeight: 600, letterSpacing: "0.05em", textTransform: "uppercase", color: C.mid, fontFamily: "system-ui, sans-serif", marginBottom: "3rem" }}>Restructuring how 2M+ customers discover and buy shoes online</p>
+        </div>
+
+        {/* ── BANNER VIDEO ── */}
+        <div style={{ width: "100%", background: "#111", overflow: "hidden", minHeight: 260, display: "flex", alignItems: "center", justifyContent: "center" }}>
+          <video
+            src="/images/piccadilly.mov"
+            autoPlay
+            muted
+            loop
+            playsInline
+            style={{ width: "100%", maxHeight: 520, objectFit: "cover", display: "block" }}
+          />
         </div>
       </section>
 

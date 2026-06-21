@@ -150,17 +150,8 @@ export default function AllphomeCase() {
         }
       `}</style>
 
-      {/* ── BANNER ── */}
-      <div style={{ width: "100%", background: C.surface, minHeight: 320, display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden" }}>
-        <img
-          src="/images/allphome.gif"
-          alt="Allphome prototype walkthrough"
-          style={{ width: "100%", maxHeight: 560, objectFit: "cover", display: "block" }}
-        />
-      </div>
-
       {/* ── HERO ── */}
-      <section style={sec}>
+      <section style={{ ...sec, paddingTop: "5rem" }}>
         <div style={wrap}>
           <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginBottom: "1.5rem" }}>
             {["Fitness and Wellness", "Web + Mobile", "End-to-End", "2021"].map(t => (
@@ -168,7 +159,16 @@ export default function AllphomeCase() {
             ))}
           </div>
           <h1 style={{ fontFamily: "Georgia, serif", fontStyle: "italic", fontWeight: 400, fontSize: "clamp(3rem, 7vw, 5.5rem)", lineHeight: 1.05, color: C.text, marginBottom: "1rem" }}>Allphome</h1>
-          <p style={{ fontSize: 14, fontWeight: 600, letterSpacing: "0.05em", textTransform: "uppercase", color: C.mid, fontFamily: "system-ui, sans-serif" }}>End-to-end product design for behavioral engagement</p>
+          <p style={{ fontSize: 14, fontWeight: 600, letterSpacing: "0.05em", textTransform: "uppercase", color: C.mid, fontFamily: "system-ui, sans-serif", marginBottom: "3rem" }}>End-to-end product design for behavioral engagement</p>
+        </div>
+
+        {/* ── BANNER ── */}
+        <div style={{ width: "100%", background: C.surface, minHeight: 320, display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden" }}>
+          <img
+            src="/images/allphome.gif"
+            alt="Allphome prototype walkthrough"
+            style={{ width: "100%", maxHeight: 560, objectFit: "cover", display: "block" }}
+          />
         </div>
       </section>
 

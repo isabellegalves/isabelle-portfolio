@@ -106,7 +106,10 @@ export default function CaseStudy({ onContactClick }) {
     return sessionStorage.getItem(`unlocked_${c.passwordHash}`) === "1"
   })
 
-  useEffect(() => { window.scrollTo({ top: 0, left: 0, behavior: "instant" }) }, [slug])
+  useEffect(() => {
+    document.documentElement.scrollTop = 0
+    document.body.scrollTop = 0
+  }, [slug])
 
   if (!c) return <Navigate to="/" replace />
 
@@ -455,31 +458,36 @@ export default function CaseStudy({ onContactClick }) {
       {next && (
         <Link
           to={`/work/${next.slug}`}
-          style={{ textDecoration: "none", display: "block" }}
+          style={{ textDecoration: "none", display: "block", padding: "0 80px 80px" }}
           onMouseEnter={() => setNextHovered(true)}
           onMouseLeave={() => setNextHovered(false)}
         >
           <div style={{
-            background: T.ink, padding: "64px 80px",
+            border: `1px solid ${T.rule}`,
+            borderRadius: 16,
+            padding: "40px 48px",
             display: "flex", alignItems: "center", justifyContent: "space-between",
-            transition: "background 0.3s",
+            background: T.white,
+            transition: "box-shadow 0.3s, transform 0.3s",
+            boxShadow: nextHovered ? "0 16px 48px rgba(0,0,0,0.08)" : "none",
+            transform: nextHovered ? "translateY(-4px)" : "translateY(0)",
           }}>
             <div>
               <div style={{
                 fontFamily: "system-ui, sans-serif", fontSize: 11, fontWeight: 600,
                 letterSpacing: "0.08em", textTransform: "uppercase",
-                marginBottom: 10, color: "#888888",
+                color: T.light, marginBottom: 10,
               }}>
                 Next case study
               </div>
               <div style={{
                 fontFamily: "system-ui, sans-serif",
                 fontSize: "clamp(18px, 2.5vw, 28px)",
-                fontWeight: 700, letterSpacing: "-0.03em", color: T.white, marginBottom: 6,
+                fontWeight: 700, letterSpacing: "-0.03em", color: T.ink, marginBottom: 6,
               }}>
                 {next.company}
               </div>
-              <div style={{ fontFamily: "Georgia, serif", fontSize: 15, fontStyle: "italic", color: "#888888" }}>
+              <div style={{ fontFamily: "Georgia, serif", fontSize: 15, fontStyle: "italic", color: T.mid }}>
                 {next.title.length > 65 ? next.title.slice(0, 65) + "..." : next.title}
               </div>
             </div>
@@ -487,7 +495,7 @@ export default function CaseStudy({ onContactClick }) {
               animate={{ x: nextHovered ? 8 : 0 }}
               transition={{ duration: 0.3 }}
               aria-hidden="true"
-              style={{ fontSize: 32, color: "#FFFFFF" }}
+              style={{ fontSize: 28, color: T.ink }}
             >
               →
             </motion.span>

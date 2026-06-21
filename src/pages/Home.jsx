@@ -416,8 +416,8 @@ function CaseCard({ c, index }) {
               }}>
                 <span style={{ position: "relative", display: "inline-block" }}>
                   <span style={{
-                    fontFamily: "'Caveat', cursive", fontSize: 20, fontWeight: 500,
-                    color: "#6C1FF3", letterSpacing: "0.02em",
+                    fontFamily: "system-ui, sans-serif", fontSize: 13, fontWeight: 600,
+                    color: "#6C1FF3", letterSpacing: "0.04em", textTransform: "uppercase",
                   }}>
                     Read case study
                   </span>
