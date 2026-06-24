@@ -779,10 +779,12 @@ function About() {
               fontSize: "clamp(26px, 3.2vw, 42px)", fontWeight: 800,
               letterSpacing: "-0.04em", color: T.ink, lineHeight: 1.1, margin: 0,
             }}>
-              Senior Product Designer.
+              I design with purpose.
+              <br />
+              Every pixel has a reason.
               <br />
               <span style={{ fontFamily: "Georgia, serif", fontWeight: 400, fontStyle: "italic", color: T.mid }}>
-                Ten years of work that matters.
+                Ten years of making the complex feel effortless.
               </span>
             </h2>
           </FadeUp>
