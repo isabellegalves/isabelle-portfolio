@@ -1,7 +1,6 @@
 import { useState, useEffect, useRef } from "react"
 import { T } from "../tokens"
 
-const GRAD = "linear-gradient(90deg, #6C1FF3, #DA37F4)"
 const PURPLE = "#6C1FF3"
 
 // Simple hash — not cryptographic, just obscures the password from casual view
@@ -109,7 +108,7 @@ export default function PasswordGate({ caseTitle, passwordHash, onUnlock }) {
             )}
           </div>
 
-          {/* Solid button — bg preto, hover gradiente */}
+          {/* Solid button, bg preto, hover roxo solido */}
           <button
             type="submit"
             style={{
@@ -121,7 +120,7 @@ export default function PasswordGate({ caseTitle, passwordHash, onUnlock }) {
               cursor: value.length > 0 ? "pointer" : "not-allowed",
               transition: "background 0.2s",
             }}
-            onMouseEnter={e => { if (value.length > 0) e.currentTarget.style.background = GRAD }}
+            onMouseEnter={e => { if (value.length > 0) e.currentTarget.style.background = PURPLE }}
             onMouseLeave={e => { if (value.length > 0) e.currentTarget.style.background = T.ink }}
           >
             Unlock

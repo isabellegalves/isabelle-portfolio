@@ -2,7 +2,6 @@ import { useState, useEffect } from "react"
 import { Link, useLocation, useNavigate } from "react-router-dom"
 import { T } from "../tokens"
 
-const GRAD = "linear-gradient(90deg, #6C1FF3, #DA37F4)"
 const PURPLE = "#6C1FF3"
 
 // Sublinhado handwritten SVG — ondulado orgânico
@@ -135,7 +134,7 @@ export default function Nav({ onContactClick }) {
               fontSize: 14, fontWeight: 600,
               padding: "9px 20px", borderRadius: 24,
               cursor: "pointer", border: "none",
-              background: contactHovered ? GRAD : "#0A0A0A",
+              background: contactHovered ? PURPLE : "#0A0A0A",
               color: "#FFFFFF",
               transition: "background 0.25s",
             }}

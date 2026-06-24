@@ -3,7 +3,6 @@ import { motion, useInView } from "framer-motion"
 import { T } from "../tokens"
 
 const spring = { duration: 0.9, ease: [0.16, 1, 0.3, 1] }
-const GRAD = "linear-gradient(90deg, #6C1FF3, #DA37F4)"
 const PURPLE = "#6C1FF3"
 
 // ─── GRAD BTN ────────────────────────────────────────────────────────────────

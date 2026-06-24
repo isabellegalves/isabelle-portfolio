@@ -88,7 +88,6 @@ function HeroLine({ children, delay = 0, serif = false, light = false, size }) {
   )
 }
 
-const GRAD = "linear-gradient(90deg, #6C1FF3, #DA37F4)"
 const PURPLE = "#6C1FF3"
 
 // Sublinhado handwritten sob headings de section
@@ -138,7 +137,7 @@ function Btn({ children, onClick, href, as: Tag = "button",
       letterSpacing: "0.05em", textTransform: "uppercase",
       padding, borderRadius, cursor: "pointer",
       display: "inline-block", textDecoration: "none",
-      background: hovered ? GRAD : "#0A0A0A",
+      background: hovered ? PURPLE : "#0A0A0A",
       color: "#FFFFFF", border: "none",
       transition: "background 0.2s",
     }
@@ -152,7 +151,7 @@ function Btn({ children, onClick, href, as: Tag = "button",
       letterSpacing: "0.05em", textTransform: "uppercase",
       padding, borderRadius, cursor: "pointer",
       display: "inline-block", textDecoration: "none",
-      background: hovered ? GRAD : "#FFFFFF",
+      background: hovered ? PURPLE : "#FFFFFF",
       color: hovered ? "#FFFFFF" : "#0A0A0A",
       border: "none", transition: "background 0.2s, color 0.2s",
     }
