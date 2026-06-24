@@ -1,5 +1,6 @@
-import { useState, useEffect } from "react"
-import { Link } from "react-router-dom"
+import { useEffect } from "react"
+import { CaseHeader, CaseNext, Annotation, PURPLE } from "../components/CaseParts"
+import { getCaseBySlug } from "../data/cases"
 
 const C = {
   bg:      "#FFFFFF",
@@ -7,25 +8,13 @@ const C = {
   border:  "#E2DDD6",
   text:    "#1A1917",
   mid:     "#6B6760",
-  accent:  "#7B5EA7",
+  accent:  PURPLE,
   light:   "#F3EFFF",
 }
 
-const wrap = { maxWidth: 780, margin: "0 auto", padding: "0 2rem" }
-const sec  = { padding: "4rem 0", borderBottom: `0.5px solid ${C.border}` }
+const wrap = { maxWidth: 1280, margin: "0 auto", padding: "0 80px" }
+const sec  = { padding: "64px 0", borderBottom: `0.5px solid ${C.border}` }
 const HR   = () => <div style={{ borderTop: `0.5px solid ${C.border}`, margin: "2.5rem 0" }} />
-
-/* ── Annotation ── */
-function Ann({ children }) {
-  const dir = children.startsWith("↑") ? "↑" : "↓"
-  const text = children.replace(/^[↑↓] ?/, "")
-  return (
-    <div style={{ fontFamily: "'Caveat', cursive", fontSize: "20px", fontWeight: 600, color: C.accent, marginBottom: "1.25rem", display: "inline-flex", alignItems: "center", gap: 6 }}>
-      <span style={{ display: "inline-block", animation: "bob 0.9s ease-in-out infinite alternate" }}>{dir}</span>
-      {text}
-    </div>
-  )
-}
 
 /* ── Phase header ── */
 function Phase({ n, title, children }) {
@@ -36,7 +25,7 @@ function Phase({ n, title, children }) {
         <span style={{ fontFamily: "'Caveat', cursive", fontSize: "20px", fontWeight: 600, color: C.accent }}>{n}</span>
       </div>
       <h3 style={{ fontFamily: "Georgia, serif", fontStyle: "italic", fontWeight: 400, fontSize: "1.9rem", color: C.text, marginBottom: "0.9rem", lineHeight: 1.2 }}>{title}</h3>
-      {children && <p style={{ fontSize: 15, lineHeight: 1.8, color: C.mid, maxWidth: 600, fontFamily: "system-ui, sans-serif" }}>{children}</p>}
+      {children && <p style={{ fontSize: 15, lineHeight: 1.8, color: C.mid, maxWidth: 640, fontFamily: "system-ui, sans-serif" }}>{children}</p>}
     </div>
   )
 }
@@ -66,7 +55,7 @@ function Phone({ src, alt, caption }) {
 /* ── Placeholder ── */
 function Placeholder({ label, ratio = "4/3" }) {
   return (
-    <div style={{ aspectRatio: ratio, border: `1.5px dashed ${C.border}`, borderRadius: 10, background: C.surface, display: "flex", alignItems: "center", justifyContent: "center" }}>
+    <div style={{ aspectRatio: ratio, border: `1.5px dashed ${C.border}`, borderRadius: 10, background: C.surface, display: "flex", alignItems: "center", justifyContent: "center", maxWidth: 420 }}>
       <span style={{ fontSize: 11, color: C.mid, fontFamily: "system-ui, sans-serif", textAlign: "center", padding: "0 1rem" }}>{label}</span>
     </div>
   )
@@ -84,7 +73,8 @@ function ImpactCard({ number, label }) {
 
 /* ── Main ── */
 export default function PiccadillyCase() {
-  const [hover, setHover] = useState(false)
+  const piccadilly = getCaseBySlug("piccadilly")
+  const next = getCaseBySlug("o-globo")
 
   useEffect(() => {
     document.documentElement.scrollTop = 0
@@ -95,7 +85,6 @@ export default function PiccadillyCase() {
     <main style={{ background: C.bg, color: C.text }}>
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&display=swap');
-        @keyframes bob { from { transform: translateY(0) } to { transform: translateY(4px) } }
         @media (max-width: 640px) {
           .p-g2 { grid-template-columns: 1fr !important; }
           .p-g3 { grid-template-columns: 1fr !important; }
@@ -103,30 +92,14 @@ export default function PiccadillyCase() {
         }
       `}</style>
 
-      {/* ── HERO ── */}
-      <section style={{ ...sec, paddingTop: "5rem" }}>
-        <div style={wrap}>
-          <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginBottom: "1.5rem" }}>
-            {["Fashion and Retail", "Mobile App", "UI Design", "2019 – 2020"].map(t => (
-              <span key={t} style={{ fontSize: 11, fontWeight: 600, letterSpacing: "0.06em", textTransform: "uppercase", color: C.mid, fontFamily: "system-ui, sans-serif", border: `0.5px solid ${C.border}`, borderRadius: 20, padding: "3px 10px" }}>{t}</span>
-            ))}
-          </div>
-          <h1 style={{ fontFamily: "Georgia, serif", fontStyle: "italic", fontWeight: 400, fontSize: "clamp(3rem, 7vw, 4.5rem)", lineHeight: 1.05, color: C.text, marginBottom: "1rem" }}>Piccadilly</h1>
-          <p style={{ fontSize: 14, fontWeight: 600, letterSpacing: "0.05em", textTransform: "uppercase", color: C.mid, fontFamily: "system-ui, sans-serif", marginBottom: "3rem" }}>Restructuring how 2M+ customers discover and buy shoes online</p>
-        </div>
-
-        {/* ── BANNER VIDEO ── */}
-        <div style={{ width: "100%", background: "#111", overflow: "hidden", minHeight: 260, display: "flex", alignItems: "center", justifyContent: "center" }}>
-          <video
-            src="/images/piccadilly.mp4"
-            autoPlay
-            muted
-            loop
-            playsInline
-            style={{ width: "100%", maxHeight: 520, objectFit: "cover", display: "block" }}
-          />
-        </div>
-      </section>
+      <CaseHeader
+        tags={piccadilly.tags}
+        year={piccadilly.year}
+        title={piccadilly.title}
+        summary={piccadilly.summary}
+        image={piccadilly.image}
+        company={piccadilly.company}
+      />
 
       {/* ── OVERVIEW ── */}
       <section style={sec}>
@@ -150,7 +123,7 @@ export default function PiccadillyCase() {
       {/* ── THE PROBLEM ── */}
       <section style={sec}>
         <div style={wrap}>
-          <Ann>↓ the challenge</Ann>
+          <Annotation text="the challenge" direction="down" />
           <div style={{ maxWidth: 640 }}>
             <p style={{ fontSize: 15, lineHeight: 1.85, color: C.text, marginBottom: "1.25rem", fontFamily: "system-ui, sans-serif" }}>
               Piccadilly is one of Brazil's largest women's footwear brands, with over 2 million followers and a loyal customer base built over decades. But in 2019, the brand had no digital product. No app, no e-commerce, nothing.
@@ -159,7 +132,7 @@ export default function PiccadillyCase() {
               Launched during the peak of the pandemic in Brazil, this was Piccadilly's first digital product ever. The challenge was not just to design an app. It was to build a complete digital commerce experience from scratch for a customer base that skewed older and had little familiarity with mobile shopping.
             </p>
           </div>
-          <blockquote style={{ borderLeft: `2px solid ${C.accent}`, paddingLeft: "1.25rem", marginBottom: "1.5rem", fontFamily: "Georgia, serif", fontStyle: "italic", fontSize: "1.05rem", color: C.mid, maxWidth: 580, lineHeight: 1.7 }}>
+          <blockquote style={{ borderLeft: `2px solid ${C.accent}`, paddingLeft: "1.25rem", marginBottom: "1.5rem", fontFamily: "Georgia, serif", fontStyle: "italic", fontSize: "1.05rem", color: C.mid, maxWidth: 640, lineHeight: 1.7 }}>
             "The brand had strong offline presence. The digital product had to earn the same trust, for a customer who had never bought shoes without trying them on."
           </blockquote>
           <p style={{ fontSize: 15, lineHeight: 1.85, color: C.mid, fontFamily: "system-ui, sans-serif", maxWidth: 640 }}>
@@ -171,28 +144,23 @@ export default function PiccadillyCase() {
       {/* ── THE PROCESS ── */}
       <section style={sec}>
         <div style={wrap}>
-          <Ann>↓ the process</Ann>
+          <Annotation text="the process" direction="down" />
 
           {/* FASE 1 */}
           <Phase n="01" title="Journey Mapping and Competitive Analysis">
             I mapped the shopping journey identifying the main friction points: poor search and filter functionality, unclear size selection flow and a checkout process with too many steps. Competitive analysis included Arezzo, Dumond and Beira Rio, focusing on how each platform handled product discovery and purchase completion.
           </Phase>
-          <div className="p-g2" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12, marginBottom: "1rem" }}>
-            <Placeholder label="Journey mapping" ratio="4/3" />
+          <div style={{ marginBottom: "1rem" }}>
             <Placeholder label="Competitive analysis" ratio="4/3" />
           </div>
           <HR />
 
           {/* FASE 2 */}
-          <div style={{ fontFamily: "'Caveat', cursive", fontSize: "20px", fontWeight: 600, color: C.accent, marginBottom: 8, display: "inline-flex", alignItems: "center", gap: 6 }}>
-            <span style={{ display: "inline-block", animation: "bob 0.9s ease-in-out infinite alternate" }}>↑</span>
-            key step!
-          </div>
+          <Annotation text="key step!" direction="down-left" />
           <Phase n="02" title="Information Architecture and UX">
             I restructured the product navigation around how users actually browse: by occasion, category and style, not just by product type. I simplified the size selection flow and reduced the checkout from 6 to 3 steps, validated through moderated usability testing before implementation.
           </Phase>
-          <div className="p-g2" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12, marginBottom: "1rem" }}>
-            <Placeholder label="Information architecture" ratio="4/3" />
+          <div style={{ marginBottom: "1rem" }}>
             <Placeholder label="UX flows" ratio="4/3" />
           </div>
           <HR />
@@ -202,7 +170,7 @@ export default function PiccadillyCase() {
             I created high-fidelity interfaces and UI components maintaining Piccadilly's visual identity across web and mobile. The choice of high-contrast black on white was deliberate, serving a mature audience that values legibility over decoration. All components were built for reuse and documented as part of a lightweight design system.
           </Phase>
 
-          {/* Design system — componentes HTML reais */}
+          {/* Design system, componentes HTML reais */}
           <div style={{ display: "flex", flexDirection: "column", gap: 20, marginBottom: "1.5rem" }}>
 
             {/* COLORS */}
@@ -248,65 +216,9 @@ export default function PiccadillyCase() {
               </div>
             ))}
 
-            {/* BUTTONS — with icon */}
-            <div>
-              <div style={{ fontSize: 10, fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", color: C.mid, borderBottom: `0.5px solid ${C.border}`, paddingBottom: 6, marginBottom: 10, fontFamily: "system-ui, sans-serif" }}>Buttons — with icon</div>
-              <div style={{ display: "flex", flexWrap: "wrap", gap: 20, alignItems: "flex-end" }}>
-                {[
-                  { label: "Primary",   bg: "#000",    color: "#fff",    border: "none"              },
-                  { label: "Secondary", bg: "#fff",    color: "#000",    border: "1.5px solid #000"  },
-                  { label: "Tertiary",  bg: "#fff",    color: "#000",    border: "1px solid #ADADAD" },
-                  { label: "Inactive",  bg: "#F5F5F5", color: "#ADADAD", border: "none"              },
-                ].map(btn => (
-                  <div key={btn.label} style={{ display: "flex", flexDirection: "column", gap: 6 }}>
-                    <span style={{ fontSize: 10, color: C.mid, fontFamily: "system-ui, sans-serif" }}>{btn.label}</span>
-                    <div style={{ background: btn.bg, color: btn.color, border: btn.border, borderRadius: 10, padding: "10px 20px", fontSize: 11, fontWeight: 700, letterSpacing: "0.02em", display: "inline-flex", alignItems: "center", gap: 5, cursor: "default", fontFamily: "system-ui, sans-serif" }}>
-                      <span style={{ fontSize: 10, opacity: 0.6 }}>‹</span> Label <span style={{ fontSize: 10, opacity: 0.6 }}>›</span>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* BUTTONS — without icon */}
-            <div>
-              <div style={{ fontSize: 10, fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", color: C.mid, borderBottom: `0.5px solid ${C.border}`, paddingBottom: 6, marginBottom: 10, fontFamily: "system-ui, sans-serif" }}>Buttons — without icon</div>
-              <div style={{ display: "flex", flexWrap: "wrap", gap: 20, alignItems: "flex-end" }}>
-                {[
-                  { label: "Primary",   bg: "#000",    color: "#fff",    border: "none"              },
-                  { label: "Secondary", bg: "#fff",    color: "#000",    border: "1.5px solid #000"  },
-                  { label: "Tertiary",  bg: "#fff",    color: "#000",    border: "1px solid #ADADAD" },
-                  { label: "Inactive",  bg: "#F5F5F5", color: "#ADADAD", border: "none"              },
-                ].map(btn => (
-                  <div key={btn.label} style={{ display: "flex", flexDirection: "column", gap: 6 }}>
-                    <span style={{ fontSize: 10, color: C.mid, fontFamily: "system-ui, sans-serif" }}>{btn.label}</span>
-                    <div style={{ background: btn.bg, color: btn.color, border: btn.border, borderRadius: 10, padding: "10px 20px", fontSize: 11, fontWeight: 700, letterSpacing: "0.02em", cursor: "default", fontFamily: "system-ui, sans-serif" }}>
-                      Label
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* ORDER STATUS */}
-            <div>
-              <div style={{ fontSize: 10, fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", color: C.mid, borderBottom: `0.5px solid ${C.border}`, paddingBottom: 6, marginBottom: 10, fontFamily: "system-ui, sans-serif" }}>Order status</div>
-              <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
-                {[
-                  { label: "Order received",   bg: "#F0F0F0", color: "#555555" },
-                  { label: "Awaiting payment", bg: "#F0F0F0", color: "#555555" },
-                  { label: "Payment approved", bg: "#FFE5CC", color: "#CC5500" },
-                  { label: "On the way",       bg: "#FFE5CC", color: "#CC5500" },
-                  { label: "Delivered",        bg: "#CCEDD8", color: "#1A7A3A" },
-                ].map(s => (
-                  <span key={s.label} style={{ background: s.bg, color: s.color, borderRadius: 20, padding: "4px 12px", fontSize: 10, fontWeight: 500, fontFamily: "system-ui, sans-serif" }}>{s.label}</span>
-                ))}
-              </div>
-            </div>
-
           </div>
 
-          <Ann>↑ high-contrast black on white as a deliberate accessibility choice for a mature audience that values legibility over decoration</Ann>
+          <Annotation text="high-contrast black on white, a deliberate choice for a mature audience that values legibility" direction="right" />
 
           {/* UI screens */}
           <div className="p-g4" style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 12, marginTop: "1rem" }}>
@@ -321,7 +233,7 @@ export default function PiccadillyCase() {
       {/* ── IMPACT ── */}
       <section style={sec}>
         <div style={wrap}>
-          <Ann>↓ the proof</Ann>
+          <Annotation text="the proof" direction="down" />
           <div className="p-g3" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 12, marginBottom: "1.5rem" }}>
             <ImpactCard number="18%" label="Task completion lift after restructuring the information architecture" />
             <ImpactCard number="3" label="Checkout steps, down from 6, validated through usability testing" />
@@ -337,9 +249,7 @@ export default function PiccadillyCase() {
       <section style={sec}>
         <div style={wrap}>
           <div style={{ display: "flex", gap: "2.5rem", alignItems: "flex-start" }}>
-            <div style={{ fontFamily: "'Caveat', cursive", fontSize: "20px", fontWeight: 600, color: C.accent, writingMode: "vertical-lr", transform: "rotate(180deg)", flexShrink: 0, letterSpacing: "0.05em" }}>
-              lessons learned ↓
-            </div>
+            <Annotation text="lessons learned" direction="left" />
             <div style={{ background: C.surface, borderRadius: 14, padding: "1.75rem 2rem", flex: 1 }}>
               <blockquote style={{ fontFamily: "Georgia, serif", fontStyle: "italic", fontSize: "1.1rem", lineHeight: 1.7, color: C.text, marginBottom: "1rem" }}>
                 "Information architecture is a business decision, not just a design decision. How you organize a product catalog determines which customer intent states you serve and which you leave unsupported. Restructuring around mental models instead of product taxonomy was what made the difference."
@@ -350,22 +260,7 @@ export default function PiccadillyCase() {
         </div>
       </section>
 
-      {/* ── NEXT CASE ── */}
-      <div style={{ ...wrap, paddingTop: "2rem", paddingBottom: "4rem" }}>
-        <Link
-          to="/work/allphome"
-          onMouseEnter={() => setHover(true)}
-          onMouseLeave={() => setHover(false)}
-          style={{ display: "flex", alignItems: "center", justifyContent: "space-between", background: "#0D0D0D", borderRadius: 14, padding: "2.5rem", textDecoration: "none", opacity: hover ? 0.9 : 1, transition: "opacity 0.25s" }}
-        >
-          <div>
-            <div style={{ fontSize: 12, fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: "#666", fontFamily: "system-ui, sans-serif", marginBottom: 4 }}>NEXT CASE STUDY</div>
-            <div style={{ fontSize: 12, fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: "#666", fontFamily: "system-ui, sans-serif", marginBottom: 8 }}>Allphome</div>
-            <div style={{ fontFamily: "Georgia, serif", fontStyle: "italic", fontWeight: 400, fontSize: "1.75rem", color: "#FFFFFF", lineHeight: 1.2 }}>End-to-end product design for behavioral engagement</div>
-          </div>
-          <span style={{ fontSize: 28, color: "#FFFFFF", transform: hover ? "translateX(6px)" : "translateX(0)", transition: "transform 0.25s", flexShrink: 0 }}>→</span>
-        </Link>
-      </div>
+      <CaseNext slug={next.slug} company={next.company} title={next.title} />
     </main>
   )
 }

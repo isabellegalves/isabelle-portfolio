@@ -1,5 +1,6 @@
-import { useState, useEffect } from "react"
-import { Link } from "react-router-dom"
+import { useEffect } from "react"
+import { CaseHeader, CaseNext, Annotation, PURPLE } from "../components/CaseParts"
+import { getCaseBySlug } from "../data/cases"
 
 const C = {
   bg:          "#FFFFFF",
@@ -7,29 +8,26 @@ const C = {
   border:      "#E2DDD6",
   text:        "#1A1917",
   mid:         "#6B6760",
-  accent:      "#7B5EA7",
+  accent:      PURPLE,
   accentLight: "#F3EFFF",
   green:       "#1D9E75",
   red:         "#D85A30",
 }
 
-const wrap = { maxWidth: 780, margin: "0 auto", padding: "0 2rem" }
-const sec  = { padding: "4rem 0", borderBottom: `0.5px solid ${C.border}` }
+const wrap = { maxWidth: 1280, margin: "0 auto", padding: "0 80px" }
+const sec  = { padding: "64px 0", borderBottom: `0.5px solid ${C.border}` }
 const hr   = { borderTop: `0.5px solid ${C.border}`, margin: "3rem 0", border: "none", borderTopStyle: "solid", borderTopWidth: "0.5px", borderTopColor: C.border }
 
-/* ── Annotation ──────────────────────────────────────────────────────────── */
-function Ann({ children }) {
-  const up = children.startsWith("↑")
-  const text = children.replace(/^[↑↓] ?/, "")
+/* ── Caption ── */
+function Caption({ children }) {
   return (
-    <div style={{ fontFamily: "'Caveat', cursive", fontSize: "20px", fontWeight: 600, color: C.accent, marginBottom: "1.25rem", display: "inline-flex", alignItems: "center", gap: 6 }}>
-      <span style={{ display: "inline-block", animation: "bob 0.9s ease-in-out infinite alternate" }}>{up ? "↑" : "↓"}</span>
-      {text}
+    <div style={{ fontFamily: "'Caveat', cursive", fontSize: "20px", fontWeight: 500, color: C.accent, lineHeight: 1.5, marginBottom: "1rem", maxWidth: 640 }}>
+      {children}
     </div>
   )
 }
 
-/* ── Phase header ─────────────────────────────────────────────────────────── */
+/* ── Phase header ── */
 function Phase({ n, title, children }) {
   return (
     <div style={{ marginBottom: "1.75rem" }}>
@@ -38,22 +36,22 @@ function Phase({ n, title, children }) {
         <span style={{ fontFamily: "'Caveat', cursive", fontSize: "20px", fontWeight: 600, color: C.accent }}>{n}</span>
       </div>
       <h3 style={{ fontFamily: "Georgia, serif", fontStyle: "italic", fontWeight: 400, fontSize: "1.9rem", color: C.text, marginBottom: "0.9rem", lineHeight: 1.2 }}>{title}</h3>
-      {children && <p style={{ fontSize: 15, lineHeight: 1.8, color: C.mid, maxWidth: 600, fontFamily: "system-ui, sans-serif" }}>{children}</p>}
+      {children && <p style={{ fontSize: 15, lineHeight: 1.8, color: C.mid, maxWidth: 640, fontFamily: "system-ui, sans-serif" }}>{children}</p>}
     </div>
   )
 }
 
-/* ── Callout ──────────────────────────────────────────────────────────────── */
+/* ── Callout ── */
 function Callout({ label, children }) {
   return (
-    <div style={{ borderLeft: `3px solid ${C.accent}`, borderRadius: "0 10px 10px 0", background: C.surface, padding: "1rem 1.25rem", marginBottom: "1rem" }}>
+    <div style={{ borderLeft: `3px solid ${C.accent}`, borderRadius: "0 10px 10px 0", background: C.surface, padding: "1rem 1.25rem", marginBottom: "1rem", maxWidth: 640 }}>
       <div style={{ fontSize: 10, fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: C.accent, marginBottom: 6, fontFamily: "system-ui, sans-serif" }}>{label}</div>
       <p style={{ fontSize: 14, lineHeight: 1.7, color: C.text, fontFamily: "system-ui, sans-serif" }}>{children}</p>
     </div>
   )
 }
 
-/* ── Benchmark card ───────────────────────────────────────────────────────── */
+/* ── Benchmark card ── */
 function BenchCard({ name, rating, strengths, weaknesses, highlight }) {
   return (
     <div style={{ background: C.bg, border: highlight ? `1.5px solid ${C.accent}` : `0.5px solid ${C.border}`, borderRadius: 12, padding: "1rem", fontFamily: "system-ui, sans-serif" }}>
@@ -71,7 +69,7 @@ function BenchCard({ name, rating, strengths, weaknesses, highlight }) {
   )
 }
 
-/* ── Persona card ─────────────────────────────────────────────────────────── */
+/* ── Persona card ── */
 function Persona({ name, age, role, company, tags, quote, goals, pains, highlight, badge }) {
   return (
     <div style={{ background: C.bg, border: highlight ? `1.5px solid ${C.accent}` : `0.5px solid ${C.border}`, borderRadius: 12, overflow: "hidden", fontFamily: "system-ui, sans-serif", position: "relative" }}>
@@ -97,7 +95,7 @@ function Persona({ name, age, role, company, tags, quote, goals, pains, highligh
   )
 }
 
-/* ── Color swatch ─────────────────────────────────────────────────────────── */
+/* ── Color swatch ── */
 function Swatch({ color, label, light, gradient }) {
   return (
     <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 4 }}>
@@ -112,7 +110,7 @@ function Swatch({ color, label, light, gradient }) {
   )
 }
 
-/* ── Impact card ──────────────────────────────────────────────────────────── */
+/* ── Impact card ── */
 function ImpactCard({ title, body }) {
   return (
     <div style={{ background: C.surface, borderRadius: 10, padding: "1.25rem", fontFamily: "system-ui, sans-serif" }}>
@@ -122,7 +120,7 @@ function ImpactCard({ title, body }) {
   )
 }
 
-/* ── Phone wrap ───────────────────────────────────────────────────────────── */
+/* ── Phone wrap ── */
 function Phone({ src, alt }) {
   return (
     <div style={{ borderRadius: 20, overflow: "hidden", border: `0.5px solid ${C.border}`, aspectRatio: "9/16", background: C.surface }}>
@@ -131,9 +129,10 @@ function Phone({ src, alt }) {
   )
 }
 
-/* ── Main ─────────────────────────────────────────────────────────────────── */
+/* ── Main ── */
 export default function AllphomeCase() {
-  const [hover, setHover] = useState(false)
+  const allphome = getCaseBySlug("allphome")
+  const next = getCaseBySlug("piccadilly")
 
   useEffect(() => {
     document.documentElement.scrollTop = 0
@@ -144,7 +143,6 @@ export default function AllphomeCase() {
     <main style={{ background: C.bg, color: C.text }}>
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&display=swap');
-        @keyframes bob { from { transform: translateY(0) } to { transform: translateY(4px) } }
         @media (max-width: 640px) {
           .a-g2 { grid-template-columns: 1fr !important; }
           .a-g3 { grid-template-columns: 1fr !important; }
@@ -155,27 +153,14 @@ export default function AllphomeCase() {
         }
       `}</style>
 
-      {/* ── HERO ── */}
-      <section style={{ ...sec, paddingTop: "5rem" }}>
-        <div style={wrap}>
-          <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginBottom: "1.5rem" }}>
-            {["Fitness and Wellness", "Web + Mobile", "End-to-End", "2021"].map(t => (
-              <span key={t} style={{ fontSize: 11, fontWeight: 600, letterSpacing: "0.06em", textTransform: "uppercase", color: C.mid, fontFamily: "system-ui, sans-serif", border: `0.5px solid ${C.border}`, borderRadius: 20, padding: "3px 10px" }}>{t}</span>
-            ))}
-          </div>
-          <h1 style={{ fontFamily: "Georgia, serif", fontStyle: "italic", fontWeight: 400, fontSize: "clamp(3rem, 7vw, 5.5rem)", lineHeight: 1.05, color: C.text, marginBottom: "1rem" }}>Allphome</h1>
-          <p style={{ fontSize: 14, fontWeight: 600, letterSpacing: "0.05em", textTransform: "uppercase", color: C.mid, fontFamily: "system-ui, sans-serif", marginBottom: "3rem" }}>End-to-end product design for behavioral engagement</p>
-        </div>
-
-        {/* ── BANNER ── */}
-        <div style={{ width: "100%", background: C.surface, minHeight: 320, display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden" }}>
-          <video
-            src="/images/allphome.mp4"
-            autoPlay muted loop playsInline
-            style={{ width: "100%", maxHeight: 560, objectFit: "cover", display: "block" }}
-          />
-        </div>
-      </section>
+      <CaseHeader
+        tags={allphome.tags}
+        year={allphome.year}
+        title={allphome.title}
+        summary={allphome.summary}
+        image={allphome.image}
+        company={allphome.company}
+      />
 
       {/* ── OVERVIEW ── */}
       <section style={sec}>
@@ -202,7 +187,7 @@ export default function AllphomeCase() {
       {/* ── THE PROBLEM ── */}
       <section style={sec}>
         <div style={wrap}>
-          <Ann>↓ the challenge</Ann>
+          <Annotation text="the challenge" direction="down" />
           <div style={{ maxWidth: 640 }}>
             <p style={{ fontSize: 15, lineHeight: 1.85, color: C.text, marginBottom: "1.25rem", fontFamily: "system-ui, sans-serif" }}>
               Allphome was an established gym business in Brazil with a loyal in-person community. As digital fitness platforms gained ground, with competitors like <strong style={{ color: C.text, fontWeight: 500 }}>Queima Diaria</strong> capturing online audiences, the company decided to launch its first digital product.
@@ -211,10 +196,10 @@ export default function AllphomeCase() {
               The challenge was not just to build an app. It was to help an established business <strong style={{ color: C.text, fontWeight: 500 }}>transition from a traditional gym model into a digital fitness experience</strong> without losing what made the brand valuable in the first place.
             </p>
           </div>
-          <blockquote style={{ borderLeft: `2px solid ${C.accent}`, paddingLeft: "1.25rem", marginBottom: "1.5rem", fontFamily: "Georgia, serif", fontStyle: "italic", fontSize: "1.05rem", color: C.mid, maxWidth: 580, lineHeight: 1.7 }}>
+          <blockquote style={{ borderLeft: `2px solid ${C.accent}`, paddingLeft: "1.25rem", marginBottom: "1.5rem", fontFamily: "Georgia, serif", fontStyle: "italic", fontSize: "1.05rem", color: C.mid, maxWidth: 640, lineHeight: 1.7 }}>
             "Most fitness platforms are built for operators, not members. Allphome wanted to flip that equation: the student's experience had to come first."
           </blockquote>
-          <p style={{ fontSize: 15, lineHeight: 1.85, color: C.mid, fontFamily: "system-ui, sans-serif" }}>
+          <p style={{ fontSize: 15, lineHeight: 1.85, color: C.mid, fontFamily: "system-ui, sans-serif", maxWidth: 640 }}>
             Early assumptions placed the class booking flow at the center of the product. Research told a different story.
           </p>
         </div>
@@ -223,7 +208,7 @@ export default function AllphomeCase() {
       {/* ── THE PROCESS ── */}
       <section style={sec}>
         <div style={wrap}>
-          <Ann>↓ the process</Ann>
+          <Annotation text="the process" direction="down" />
 
           {/* FASE 1 */}
           <Phase n="01" title="Discovery and Stakeholder Alignment">
@@ -252,7 +237,7 @@ export default function AllphomeCase() {
               strengths={["Trusted brand", "Nutrition app included", "Recurring billing"]}
               weaknesses={["No multi-screen support"]} />
           </div>
-          <Ann>↓ key opportunities identified</Ann>
+          <Annotation text="key opportunities identified" direction="down" />
           <div className="a-g3" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 12, marginBottom: "1rem" }}>
             {[
               ["Retention gap", "No competitor focused on post-workout feedback or habit loops as a core feature"],
@@ -268,9 +253,7 @@ export default function AllphomeCase() {
           <hr style={hr} />
 
           {/* FASE 3 */}
-          <div style={{ fontFamily: "'Caveat', cursive", fontSize: "20px", fontWeight: 600, color: C.accent, marginBottom: 8, display: "inline-flex", alignItems: "center", gap: 6 }}>
-            <span style={{ display: "inline-block", animation: "bob 0.9s ease-in-out infinite alternate" }}>↑</span> key step!
-          </div>
+          <Annotation text="key step!" direction="down-left" />
           <Phase n="03" title="User Research and Behavioral Mapping">
             Conducted research with approximately 200 active members from Allphome's existing gym community. Two findings reshaped the entire product strategy.
           </Phase>
@@ -301,11 +284,11 @@ export default function AllphomeCase() {
               quote="I want to end the boredom and spend more time with my family."
               goals={["Make more friends", "More family time"]}
               pains={["Parents have busy routines", "Too many distractions"]}
-              highlight badge="↑ led to Kids feature being cut" />
+              highlight badge="led to Kids feature being cut" />
           </div>
-          <div style={{ fontFamily: "'Caveat', cursive", fontSize: "20px", fontWeight: 500, color: C.accent, lineHeight: 1.6, marginBottom: "1.5rem" }}>
-            ↑ Bernardo was the persona behind the proposed Kids feature. Research showed he represented only a small fraction of actual users, redirecting investment toward features that served Milena, Daiane, and Julio instead.
-          </div>
+          <Caption>
+            Bernardo was the persona behind the proposed Kids feature. Research showed he represented only a small fraction of actual users, redirecting investment toward features that served Milena, Daiane, and Julio instead.
+          </Caption>
           <div className="a-g3" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 12, marginBottom: "1rem" }}>
             {[
               ["Common thread", "All three primary personas had busy, irregular routines, making consistency the core design challenge"],
@@ -338,19 +321,19 @@ export default function AllphomeCase() {
               <span style={{ fontSize: 22, color: C.accent, fontWeight: 700 }}>→</span>
               <Phone src="/images/allphome-1.png" alt="UI: Home screen" />
             </div>
-            <div style={{ marginTop: 10, fontFamily: "'Caveat', cursive", fontSize: "20px", fontWeight: 500, color: C.accent, lineHeight: 1.5 }}>
-              ↑ tab structure and content card hierarchy were defined at wireframe stage, visual decisions came only after the structure was validated
-            </div>
+            <Caption>
+              Tab structure and content card hierarchy were defined at wireframe stage, visual decisions came only after the structure was validated.
+            </Caption>
           </div>
           <hr style={hr} />
 
-          {/* FASE 6 — Design System */}
+          {/* FASE 6, Design System */}
           <Phase n="06" title="Design System">
             Built a scalable component library with design tokens to ensure consistency across web and mobile, and support future product growth.
           </Phase>
           {[
             {
-              label: "Primary — Orange",
+              label: "Primary, Orange",
               swatches: [
                 { color: "#FFF3EC", light: true },
                 { color: "#FF7646" },
@@ -359,15 +342,15 @@ export default function AllphomeCase() {
               ],
             },
             {
-              label: "Secondary — Purple",
+              label: "Secondary, Purple",
               swatches: [
                 { color: "#F3EFFF", light: true },
-                { color: "#971AAC" },
-                { color: "#861778" },
+                { color: PURPLE },
+                { color: "#4D14AD" },
               ],
             },
             {
-              label: "Neutrals — Gray",
+              label: "Neutrals, Gray",
               swatches: [
                 { color: "#F4F4F4", light: true },
                 { color: "#E0E0E0", light: true },
@@ -380,7 +363,7 @@ export default function AllphomeCase() {
             {
               label: "Special",
               swatches: [
-                { gradient: "linear-gradient(135deg, #FF5500, #7B5EA7)", label: "gradient" },
+                { gradient: `linear-gradient(135deg, #FF5500, ${PURPLE})`, label: "gradient" },
                 { color: "#252525" },
                 { color: "#1C1C1C" },
               ],
@@ -393,12 +376,12 @@ export default function AllphomeCase() {
               </div>
             </div>
           ))}
-          <div style={{ fontFamily: "'Caveat', cursive", fontSize: "20px", fontWeight: 500, color: C.accent, lineHeight: 1.5, marginBottom: "1rem" }}>
-            ↑ tokens defined before UI work began, ensuring every decision traced back to a shared system
-          </div>
+          <Caption>
+            Tokens defined before UI work began, ensuring every decision traced back to a shared system.
+          </Caption>
           <hr style={hr} />
 
-          {/* FASE 7 — Final UI */}
+          {/* FASE 7, Final UI */}
           <Phase n="07" title="Final UI">
             The full product shipped across web and mobile, covering 13+ modules from onboarding to live classes and affiliate programs.
           </Phase>
@@ -417,7 +400,7 @@ export default function AllphomeCase() {
           </div>
           <hr style={hr} />
 
-          {/* FASE 8 — Backoffice */}
+          {/* FASE 8, Backoffice */}
           <Phase n="08" title="Backoffice">
             Designed in parallel with the member-facing app, the administrative panel gives gym operators full control over content, users, banners, and program structure, without depending on the development team for day-to-day updates.
           </Phase>
@@ -440,7 +423,7 @@ export default function AllphomeCase() {
       {/* ── IMPACT ── */}
       <section style={sec}>
         <div style={wrap}>
-          <Ann>↓ the proof</Ann>
+          <Annotation text="the proof" direction="down" />
           <div className="a-impact" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))", gap: 12 }}>
             <ImpactCard title="3 habit loops" body="Designed core behavioral cycles to drive long-term member engagement" />
             <ImpactCard title="Progress-first" body="Post-workout feedback and achievements elevated above administrative UI" />
@@ -456,9 +439,7 @@ export default function AllphomeCase() {
       <section style={sec}>
         <div style={wrap}>
           <div style={{ display: "flex", gap: "2.5rem", alignItems: "flex-start" }}>
-            <div style={{ fontFamily: "'Caveat', cursive", fontSize: "20px", fontWeight: 600, color: C.accent, writingMode: "vertical-lr", transform: "rotate(180deg)", flexShrink: 0, letterSpacing: "0.05em" }}>
-              lessons learned ↓
-            </div>
+            <Annotation text="lessons learned" direction="left" />
             <div style={{ background: C.surface, borderRadius: 14, padding: "1.75rem 2rem", flex: 1 }}>
               <blockquote style={{ fontFamily: "Georgia, serif", fontStyle: "italic", fontSize: "1.15rem", lineHeight: 1.7, color: C.text, marginBottom: "1rem" }}>
                 "The decisions with the highest impact were not visual. They were structural. Knowing what not to build matters as much as knowing what to build well."
@@ -469,22 +450,7 @@ export default function AllphomeCase() {
         </div>
       </section>
 
-      {/* ── NEXT CASE ── */}
-      <div style={{ ...wrap, paddingTop: "2rem", paddingBottom: "4rem" }}>
-        <Link
-          to="/work/banco-vr"
-          onMouseEnter={() => setHover(true)}
-          onMouseLeave={() => setHover(false)}
-          style={{ display: "flex", alignItems: "center", justifyContent: "space-between", background: "#0D0D0D", borderRadius: 14, padding: "2.5rem", textDecoration: "none", opacity: hover ? 0.9 : 1, transition: "opacity 0.25s" }}
-        >
-          <div>
-            <div style={{ fontSize: 12, fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: "#666", fontFamily: "system-ui, sans-serif", marginBottom: 4 }}>NEXT CASE STUDY</div>
-            <div style={{ fontSize: 12, fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: "#666", fontFamily: "system-ui, sans-serif", marginBottom: 8 }}>Banco VR</div>
-            <div style={{ fontFamily: "Georgia, serif", fontStyle: "italic", fontWeight: 400, fontSize: "1.75rem", color: "#FFFFFF", lineHeight: 1.2 }}>From meal vouchers to full banking</div>
-          </div>
-          <span style={{ fontSize: 28, color: "#FFFFFF", transform: hover ? "translateX(6px)" : "translateX(0)", transition: "transform 0.25s", flexShrink: 0 }}>→</span>
-        </Link>
-      </div>
+      <CaseNext slug={next.slug} company={next.company} title={next.title} />
     </main>
   )
 }

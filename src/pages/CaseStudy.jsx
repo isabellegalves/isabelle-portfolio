@@ -200,9 +200,9 @@ export default function CaseStudy({ onContactClick }) {
           transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.5 }}
           style={{
             background: "#F2F2F2", width: "100%",
-            minHeight: 420, display: "flex",
+            height: 500, display: "flex",
             alignItems: "center", justifyContent: "center",
-            padding: "64px 48px",
+            overflow: "hidden",
           }}
         >
           {c.image?.endsWith(".mp4") ? (
@@ -367,15 +367,15 @@ export default function CaseStudy({ onContactClick }) {
                 </span>
               </div>
               <p style={BODY}>{phase.body}</p>
-              <div style={{
-                width: "100%", height: 300, background: T.offwhite, borderRadius: 14,
-                display: "flex", alignItems: "center", justifyContent: "center",
-                border: `1px dashed ${T.rule}`, marginTop: 28,
-              }}>
-                <span style={{ fontFamily: "system-ui, sans-serif", fontSize: 11, fontWeight: 600, letterSpacing: "0.06em", textTransform: "uppercase", color: "#AAAAAA" }}>
-                  Add your process image here
-                </span>
-              </div>
+              {phase.image && (
+                <div style={{
+                  width: "100%", height: 300, background: T.offwhite, borderRadius: 14,
+                  display: "flex", alignItems: "center", justifyContent: "center",
+                  overflow: "hidden", marginTop: 28,
+                }}>
+                  <img src={phase.image} alt={phase.title} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                </div>
+              )}
             </div>
           </FadeUp>
         ))}
