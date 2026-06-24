@@ -333,57 +333,6 @@ function Hero({ onContactClick }) {
   )
 }
 
-// ─── CASE MEDIA (imagem) ──────────────────────────────────────────────────────
-// Banner do case. Imagem com leve zoom no hover.
-function CaseMedia({ image, bg, company, hovered, height = 280, cover = false }) {
-  return (
-    <div style={{ height, overflow: "hidden", position: "relative", flexShrink: 0, background: bg }}>
-      <motion.img
-        src={image}
-        alt={`${company} project screenshot`}
-        loading="lazy"
-        animate={{ scale: hovered ? 1.04 : 1, y: hovered ? -8 : 0 }}
-        transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-        style={{
-          width: "100%", height: "100%",
-          objectFit: cover ? "cover" : "contain",
-          objectPosition: "center",
-        }}
-      />
-    </div>
-  )
-}
-
-// ─── READ CASE STUDY (link handwritten compartilhado) ─────────────────────────
-function ReadCaseLink({ hovered }) {
-  return (
-    <span style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: 0 }}>
-      <span style={{ position: "relative", display: "inline-block" }}>
-        <span style={{
-          fontFamily: "system-ui, sans-serif", fontSize: 13, fontWeight: 600,
-          color: "#6C1FF3", letterSpacing: "0.04em", textTransform: "uppercase",
-        }}>
-          Read case study
-        </span>
-        <svg viewBox="0 0 130 8" height="8" aria-hidden="true" style={{
-          position: "absolute", left: 0, bottom: -4, width: "100%",
-          overflow: "visible", opacity: hovered ? 1 : 0, transition: "opacity 0.2s",
-        }}>
-          <path d="M 1 5 C 12 2, 28 7, 45 4 C 62 1, 80 7, 100 4 C 112 2, 122 6, 128 4"
-            stroke="#6C1FF3" strokeWidth="2.2" fill="none" strokeLinecap="round"/>
-        </svg>
-      </span>
-      <svg width="20" height="14" viewBox="0 0 20 14" fill="none"
-        strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"
-        style={{ transition: "transform 0.25s cubic-bezier(0.34,1.56,0.64,1)", transform: hovered ? "translateX(4px)" : "translateX(0)" }}>
-        <path d="M 2 7 C 5 6, 9 7, 13 7" stroke="#6C1FF3" strokeWidth="1.5"/>
-        <path d="M 10 3 C 12 5, 13 6, 13 7" stroke="#6C1FF3" strokeWidth="1.5"/>
-        <path d="M 13 7 C 12 8, 11 10, 10 11" stroke="#6C1FF3" strokeWidth="1.5"/>
-      </svg>
-    </span>
-  )
-}
-
 // ─── TAGS ──────────────────────────────────────────────────────────────────────
 function Tags({ tags }) {
   return (
@@ -399,82 +348,34 @@ function Tags({ tags }) {
   )
 }
 
-// ─── FEATURED CARD (primeiro case, largura total, métrica-âncora) ─────────────
-function FeaturedCard({ c }) {
-  const ref = useRef(null)
-  const inView = useInView(ref, { once: true, margin: "-60px" })
-  const [hovered, setHovered] = useState(false)
-  const metrics = (c.metrics || []).slice(0, 3)
-
+// ─── OUTLINE BUTTON (vira roxo + seta handwritten no hover) ───────────────────
+function OutlineButton({ hovered }) {
   return (
-    <motion.article
-      ref={ref}
-      initial={{ opacity: 0, y: 48 }}
-      animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ ...spring }}
-      aria-labelledby={`case-title-${c.id}`}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-      style={{
-        border: `1px solid ${T.rule}`, borderRadius: 18, overflow: "hidden",
-        transition: "box-shadow 0.35s ease, transform 0.35s ease",
-        boxShadow: hovered ? "0 20px 56px rgba(0,0,0,0.10)" : "none",
-        transform: hovered ? "translateY(-4px)" : "translateY(0)",
-        cursor: "pointer", marginBottom: 20,
-      }}
-    >
-      <Link
-        to={c.comingSoon ? "#" : `/work/${c.slug}`}
-        onClick={c.comingSoon ? (e) => e.preventDefault() : undefined}
-        style={{ textDecoration: "none", display: "grid", gridTemplateColumns: "1.15fr 1fr", alignItems: "stretch" }}
-        className="featured-grid"
-      >
-        <CaseMedia image={c.image} bg={c.bg} company={c.company} hovered={hovered} height={380} cover />
-
-        <div style={{ padding: "40px 44px", background: T.white, display: "flex", flexDirection: "column", justifyContent: "center" }}>
-          <div style={{ marginBottom: 18 }}><Tags tags={c.tags} /></div>
-
-          <div style={{
-            fontFamily: "system-ui, sans-serif", fontSize: 10, fontWeight: 700,
-            letterSpacing: "0.08em", textTransform: "uppercase", color: "#666666", marginBottom: 10,
-          }}>
-            {c.company}
-          </div>
-
-          <h3 id={`case-title-${c.id}`} style={{
-            fontFamily: "Georgia, serif", fontSize: "clamp(24px, 2.6vw, 32px)",
-            fontWeight: 400, fontStyle: "italic", letterSpacing: "-0.02em",
-            color: T.ink, lineHeight: 1.18, marginBottom: 24,
-          }}>
-            {c.title}
-          </h3>
-
-          {metrics.length > 0 && (
-            <div style={{ display: "flex", gap: 28, marginBottom: 28, flexWrap: "wrap" }}>
-              {metrics.map(m => (
-                <div key={m.label}>
-                  <div style={{ fontFamily: "Georgia, serif", fontSize: 26, color: T.ink, lineHeight: 1 }}>{m.n}</div>
-                  <div style={{ fontFamily: "system-ui, sans-serif", fontSize: 11, color: "#888888", letterSpacing: "0.02em", marginTop: 6 }}>{m.label}</div>
-                </div>
-              ))}
-            </div>
-          )}
-
-          {!c.comingSoon
-            ? <ReadCaseLink hovered={hovered} />
-            : <span style={{ fontFamily: "system-ui, sans-serif", fontSize: 13, fontWeight: 600, color: "#AAAAAA" }}>Coming soon</span>}
-        </div>
-      </Link>
-    </motion.article>
+    <span style={{
+      display: "inline-flex", alignItems: "center", gap: 8,
+      fontFamily: "system-ui, sans-serif", fontSize: 11, fontWeight: 600,
+      letterSpacing: "0.04em", textTransform: "uppercase",
+      color: hovered ? PURPLE : T.ink,
+      border: `1px solid ${hovered ? PURPLE : "#555555"}`,
+      padding: "10px 20px", borderRadius: 24,
+      transition: "color 0.3s, border-color 0.3s",
+    }}>
+      Read case study
+      <svg width="16" height="12" viewBox="0 0 16 12" aria-hidden="true"
+        style={{ overflow: "visible", transition: "transform 0.25s cubic-bezier(0.34,1.56,0.64,1)", transform: hovered ? "translateX(4px)" : "translateX(0)" }}>
+        <path d="M 2 6 C 4 5, 7 6, 11 6" stroke="currentColor" strokeWidth="1.4" fill="none" strokeLinecap="round"/>
+        <path d="M 8 3 C 10 4, 11 5, 11 6" stroke="currentColor" strokeWidth="1.4" fill="none" strokeLinecap="round"/>
+        <path d="M 11 6 C 10 7, 9 9, 8 10" stroke="currentColor" strokeWidth="1.4" fill="none" strokeLinecap="round"/>
+      </svg>
+    </span>
   )
 }
 
-// ─── CASE CARD (cards do grid 2 colunas) ───────────────────────────────────────
+// ─── CASE CARD ────────────────────────────────────────────────────────────────
 function CaseCard({ c, index }) {
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: "-60px" })
   const [hovered, setHovered] = useState(false)
-  const anchor = (c.metrics || [])[0]
 
   return (
     <motion.article
@@ -486,72 +387,89 @@ function CaseCard({ c, index }) {
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       style={{
-        border: `1px solid ${T.rule}`, borderRadius: 16, overflow: "hidden",
-        display: "flex", flexDirection: "column",
+        border: `1px solid ${T.rule}`, borderRadius: 18, overflow: "hidden",
+        background: T.white,
         transition: "box-shadow 0.35s ease, transform 0.35s ease",
-        boxShadow: hovered ? "0 16px 48px rgba(0,0,0,0.09)" : "none",
+        boxShadow: hovered ? "0 18px 50px rgba(0,0,0,0.12)" : "none",
         transform: hovered ? "translateY(-4px)" : "translateY(0)",
-        cursor: "pointer",
       }}
     >
       <Link
         to={c.comingSoon ? "#" : `/work/${c.slug}`}
         onClick={c.comingSoon ? (e) => e.preventDefault() : undefined}
-        style={{ textDecoration: "none", display: "flex", flexDirection: "column", flex: 1 }}
+        style={{ textDecoration: "none", display: "block" }}
       >
-        <div style={{ position: "relative" }}>
-          <CaseMedia image={c.image} bg={c.bg} company={c.company} hovered={hovered} height={280} />
-          {c.comingSoon && (
-            <span style={{
-              position: "absolute", top: 14, right: 14,
-              fontSize: 9, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase",
-              color: "#4A4A4A", background: "rgba(255,255,255,0.92)", padding: "4px 10px", borderRadius: 10,
+        {/* Moldura com respiro em volta da imagem quadrada */}
+        <div style={{ padding: 14 }}>
+          <div style={{ aspectRatio: "1 / 1", borderRadius: 12, overflow: "hidden", background: c.bg, position: "relative" }}>
+            <motion.img
+              src={c.image}
+              alt={`${c.company} project screenshot`}
+              loading="lazy"
+              animate={{ scale: hovered ? 1.06 : 1 }}
+              transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+              style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center", display: "block" }}
+            />
+            {/* Véu roxo + View case */}
+            <div style={{
+              position: "absolute", inset: 0,
+              background: hovered ? "rgba(108,31,243,0.30)" : "rgba(108,31,243,0)",
+              transition: "background 0.35s",
+              display: "flex", alignItems: "center", justifyContent: "center",
             }}>
-              Case study coming soon
-            </span>
-          )}
+              <span style={{
+                fontFamily: "system-ui, sans-serif", fontSize: 11, fontWeight: 600,
+                letterSpacing: "0.04em", textTransform: "uppercase", color: "#FFFFFF",
+                border: "1.5px solid #FFFFFF", padding: "10px 22px", borderRadius: 24,
+                opacity: hovered ? 1 : 0,
+                transform: hovered ? "scale(1)" : "scale(0.92)",
+                transition: "opacity 0.35s, transform 0.35s",
+              }}>
+                View case
+              </span>
+            </div>
+            {c.comingSoon && (
+              <span style={{
+                position: "absolute", top: 14, right: 14, zIndex: 2,
+                fontSize: 9, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase",
+                color: "#4A4A4A", background: "rgba(255,255,255,0.92)", padding: "4px 10px", borderRadius: 10,
+              }}>
+                Coming soon
+              </span>
+            )}
+          </div>
         </div>
 
-        <div style={{ padding: "28px 32px 32px", background: T.white, flex: 1, display: "flex", flexDirection: "column" }}>
+        {/* Texto embaixo */}
+        <div style={{ padding: "6px 24px 28px" }}>
           <div style={{ marginBottom: 14 }}><Tags tags={c.tags} /></div>
 
           <div style={{
             fontFamily: "system-ui, sans-serif", fontSize: 10, fontWeight: 700,
-            letterSpacing: "0.08em", textTransform: "uppercase", color: "#666666", marginBottom: 16,
+            letterSpacing: "0.08em", textTransform: "uppercase", color: "#666666", marginBottom: 8,
           }}>
             {c.company}
           </div>
 
           <h3 id={`case-title-${c.id}`} style={{
-            fontFamily: "Georgia, serif", fontSize: "clamp(18px, 1.8vw, 23px)",
+            fontFamily: "Georgia, serif", fontSize: "clamp(18px, 2vw, 22px)",
             fontWeight: 400, fontStyle: "italic", letterSpacing: "-0.02em",
-            color: T.ink, lineHeight: 1.3, flex: 1,
+            color: T.ink, lineHeight: 1.25, marginBottom: 20,
           }}>
             {c.title}
           </h3>
 
-          {anchor && !c.comingSoon && (
-            <div style={{ display: "flex", alignItems: "baseline", gap: 8, marginTop: 18 }}>
-              <span style={{ fontFamily: "Georgia, serif", fontSize: 20, color: T.ink }}>{anchor.n}</span>
-              <span style={{ fontFamily: "system-ui, sans-serif", fontSize: 11, color: "#888888", letterSpacing: "0.02em" }}>{anchor.label}</span>
-            </div>
-          )}
-
-          <div style={{ marginTop: 24, paddingTop: 20, borderTop: `1px solid ${T.rule}` }}>
-            {!c.comingSoon
-              ? <ReadCaseLink hovered={hovered} />
-              : <span style={{ fontFamily: "system-ui, sans-serif", fontSize: 13, fontWeight: 600, color: "#AAAAAA" }}>Coming soon</span>}
-          </div>
+          {!c.comingSoon
+            ? <OutlineButton hovered={hovered} />
+            : <span style={{ fontFamily: "system-ui, sans-serif", fontSize: 13, fontWeight: 600, color: "#AAAAAA" }}>Coming soon</span>}
         </div>
       </Link>
     </motion.article>
   )
 }
 
-// ─── WORK (featured + grid) ────────────────────────────────────────────────────
-
+// ─── WORK ─────────────────────────────────────────────────────────────────────
 function Work() {
-  const [featured, ...rest] = cases
   return (
     <section id="work" aria-labelledby="work-heading" style={{ padding: "90px 0", background: T.white }}>
       <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 48px" }}>
@@ -559,10 +477,8 @@ function Work() {
           <HandUnderlineHeading id="work-heading">Selected work</HandUnderlineHeading>
         </FadeUp>
 
-        {featured && <FeaturedCard c={featured} />}
-
-        <div className="work-grid" style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 16 }}>
-          {rest.map((c, i) => <CaseCard key={c.id} c={c} index={i} />)}
+        <div className="work-grid" style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 20 }}>
+          {cases.map((c, i) => <CaseCard key={c.id} c={c} index={i} />)}
         </div>
       </div>
     </section>
