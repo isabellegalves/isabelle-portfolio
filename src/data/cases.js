@@ -157,7 +157,7 @@ export const cases = [
     tags: ["Media", "Subscription UX", "Conversion Optimization"],
     year: "2022 to 2024",
     bg: "#EEF2F8",
-    image: "/images/oglobo.jpg",
+    image: "/images/o-globo.jpg",
     comingSoon: false,
     title: "Turning drop-offs into subscribers. Redesigning trust in a digital news paywall.",
     summary: "How a competitor benchmark, user flow analysis and differentiated UX strategy reduced friction in O Globo and Valor's subscription journeys.",
