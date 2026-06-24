@@ -52,6 +52,7 @@ export default function App() {
           .work-grid { grid-template-columns: 1fr !important; }
           .caps-grid { grid-template-columns: 1fr !important; }
           .overview-grid { grid-template-columns: 1fr !important; }
+          .featured-grid { grid-template-columns: 1fr !important; }
         }
 
         @media (max-width: 768px) {

@@ -17,7 +17,7 @@ export const cases = [
     ],
     passwordHash: "aWdhbHZlcw==",
     bg: "#FCEEF0",
-    image: "/images/bradesco.mp4",
+    image: "/images/bradesco.png",
     overview: {
       role: "Senior UI/UX Product Designer",
       scope: "Design System, UX Research, Interface Design",
@@ -66,7 +66,7 @@ export const cases = [
       { n: "3", label: "Core habit loops designed" },
     ],
     bg: "#F0EEEE",
-    image: "/images/allphome.mp4",
+    image: "/images/gymapp.png",
     comingSoon: false,
     overview: {
       role: "Product Designer",
@@ -116,7 +116,7 @@ export const cases = [
       { n: "2",   label: "Platforms redesigned" },
     ],
     bg: "#F5F0EE",
-    image: "/images/piccadilly.mp4",
+    image: "/images/piccadilly.png",
     overview: {
       role: "Senior Product Designer",
       scope: "Mobile App, Web E-commerce, Information Architecture",
@@ -157,7 +157,7 @@ export const cases = [
     tags: ["Media", "Subscription UX", "Conversion Optimization"],
     year: "2022 to 2024",
     bg: "#EEF2F8",
-    image: "/images/o-globo.mp4",
+    image: "/images/oglobo.png",
     comingSoon: false,
     title: "Turning drop-offs into subscribers. Redesigning trust in a digital news paywall.",
     summary: "How a competitor benchmark, user flow analysis and differentiated UX strategy reduced friction in O Globo and Valor's subscription journeys.",
@@ -264,7 +264,7 @@ export const cases = [
       { n: "50+", label: "Agile ceremonies" },
     ],
     bg: "#EEF0F8",
-    image: "/images/sodexo.mp4",
+    image: "/images/sodexo.png",
     overview: {
       role: "Senior Product Designer",
       scope: "B2B Dashboard, B2C Mobile App, Web Products",
