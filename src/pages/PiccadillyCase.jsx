@@ -52,15 +52,6 @@ function Phone({ src, alt, caption }) {
   )
 }
 
-/* ── Placeholder ── */
-function Placeholder({ label, ratio = "4/3" }) {
-  return (
-    <div style={{ aspectRatio: ratio, border: `1.5px dashed ${C.border}`, borderRadius: 10, background: C.surface, display: "flex", alignItems: "center", justifyContent: "center", maxWidth: 420 }}>
-      <span style={{ fontSize: 11, color: C.mid, fontFamily: "system-ui, sans-serif", textAlign: "center", padding: "0 1rem" }}>{label}</span>
-    </div>
-  )
-}
-
 /* ── Impact card ── */
 function ImpactCard({ number, label }) {
   return (
@@ -150,9 +141,6 @@ export default function PiccadillyCase() {
           <Phase n="01" title="Journey Mapping and Competitive Analysis">
             I mapped the shopping journey identifying the main friction points: poor search and filter functionality, unclear size selection flow and a checkout process with too many steps. Competitive analysis included Arezzo, Dumond and Beira Rio, focusing on how each platform handled product discovery and purchase completion.
           </Phase>
-          <div style={{ marginBottom: "1rem" }}>
-            <Placeholder label="Competitive analysis" ratio="4/3" />
-          </div>
           <HR />
 
           {/* FASE 2 */}
@@ -160,9 +148,6 @@ export default function PiccadillyCase() {
           <Phase n="02" title="Information Architecture and UX">
             I restructured the product navigation around how users actually browse: by occasion, category and style, not just by product type. I simplified the size selection flow and reduced the checkout from 6 to 3 steps, validated through moderated usability testing before implementation.
           </Phase>
-          <div style={{ marginBottom: "1rem" }}>
-            <Placeholder label="UX flows" ratio="4/3" />
-          </div>
           <HR />
 
           {/* FASE 3 */}
@@ -221,11 +206,9 @@ export default function PiccadillyCase() {
           <Annotation text="high-contrast black on white, a deliberate choice for a mature audience that values legibility" direction="right" />
 
           {/* UI screens */}
-          <div className="p-g4" style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 12, marginTop: "1rem" }}>
-            <Phone src="/images/piccadilly-1.png" alt="Product listing" caption="Product listing" />
-            <Phone src="/images/piccadilly-2.png" alt="Product detail" caption="Product detail" />
-            <Phone src="/images/piccadilly-3.png" alt="Filters" caption="Filters" />
-            <Phone src="/images/piccadilly-4.png" alt="Personalization" caption="Personalization" />
+          <div style={{ display: "flex", flexDirection: "column", gap: 16, marginTop: "1rem" }}>
+            <img src="/images/piccadilly-final-01.jpg" alt="Piccadilly UI screens" style={{ width: "100%", display: "block", borderRadius: 10 }} />
+            <img src="/images/piccadilly-final-02.jpg" alt="Piccadilly UI screens" style={{ width: "100%", display: "block", borderRadius: 10 }} />
           </div>
         </div>
       </section>

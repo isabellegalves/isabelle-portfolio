@@ -381,6 +381,21 @@ export default function CaseStudy({ onContactClick }) {
         ))}
       </section>
 
+      {c.beforeImpact && (
+        <>
+          <div style={{ height: "0.5px", background: T.rule }} />
+          <section style={P}>
+            <FadeUp>
+              <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+                {(Array.isArray(c.beforeImpact) ? c.beforeImpact : [c.beforeImpact]).map((src, i) => (
+                  <img key={i} src={src} alt={`${c.company} screens`} style={{ width: "100%", display: "block", borderRadius: 10 }} />
+                ))}
+              </div>
+            </FadeUp>
+          </section>
+        </>
+      )}
+
       {/* IMPACT */}
       <div style={{ height: "0.5px", background: T.rule }} />
       <section style={P}>
@@ -417,6 +432,36 @@ export default function CaseStudy({ onContactClick }) {
           </div>
         </FadeUp>
       </section>
+
+      {c.afterImpact && (
+        <>
+          <div style={{ height: "0.5px", background: T.rule }} />
+          <section style={P}>
+            <FadeUp>
+              <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+                {(Array.isArray(c.afterImpact) ? c.afterImpact : [c.afterImpact]).map((src, i) => (
+                  <img key={i} src={src} alt={`${c.company} screens`} style={{ width: "100%", display: "block", borderRadius: 10 }} />
+                ))}
+              </div>
+            </FadeUp>
+          </section>
+        </>
+      )}
+
+      {c.beforeTakeaway && (
+        <>
+          <div style={{ height: "0.5px", background: T.rule }} />
+          <section style={P}>
+            <FadeUp>
+              <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+                {(Array.isArray(c.beforeTakeaway) ? c.beforeTakeaway : [c.beforeTakeaway]).map((src, i) => (
+                  <img key={i} src={src} alt={`${c.company} screens`} style={{ width: "100%", display: "block", borderRadius: 10 }} />
+                ))}
+              </div>
+            </FadeUp>
+          </section>
+        </>
+      )}
 
       {/* TAKEAWAY */}
       <div style={{ height: "0.5px", background: T.rule }} />

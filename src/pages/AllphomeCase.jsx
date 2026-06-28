@@ -385,18 +385,9 @@ export default function AllphomeCase() {
           <Phase n="07" title="Final UI">
             The full product shipped across web and mobile, covering 13+ modules from onboarding to live classes and affiliate programs.
           </Phase>
-          <div className="a-g4" style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 12, marginBottom: "1rem" }}>
-            {[
-              ["/images/allphome-1.png", "Home"],
-              ["/images/allphome-2.png", "Progress"],
-              ["/images/allphome-3.png", "Re-engagement"],
-              ["/images/allphome-4.png", "Classes"],
-            ].map(([src, cap]) => (
-              <div key={cap}>
-                <Phone src={src} alt={cap} />
-                <div style={{ fontSize: 11, color: C.mid, marginTop: 6, textAlign: "center", fontFamily: "system-ui, sans-serif" }}>{cap}</div>
-              </div>
-            ))}
+          <div style={{ display: "flex", flexDirection: "column", gap: 16, marginBottom: "1rem" }}>
+            <img src="/images/allphome-final-02.jpg" alt="Allphome final UI overview" style={{ width: "100%", display: "block", borderRadius: 10 }} />
+            <img src="/images/allphome-final-01.jpg" alt="Allphome final UI screens" style={{ width: "100%", display: "block", borderRadius: 10 }} />
           </div>
           <hr style={hr} />
 

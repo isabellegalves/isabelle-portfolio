@@ -18,6 +18,8 @@ export const cases = [
     passwordHash: "aWdhbHZlcw==",
     bg: "#FCEEF0",
     image: "/images/bradesco.jpg",
+    beforeImpact: "/images/bradesco-01.jpg",
+    afterImpact: "/images/bradesco-02.jpg",
     overview: {
       role: "Senior UI/UX Product Designer",
       scope: "Design System, UX Research, Interface Design",
@@ -158,6 +160,7 @@ export const cases = [
     year: "2022 to 2024",
     bg: "#EEF2F8",
     image: "/images/o-globo.jpg",
+    beforeImpact: "/images/oglobo-01.jpg",
     comingSoon: false,
     title: "Turning drop-offs into subscribers. Redesigning trust in a digital news paywall.",
     summary: "How a competitor benchmark, user flow analysis and differentiated UX strategy reduced friction in O Globo and Valor's subscription journeys.",
@@ -217,6 +220,7 @@ export const cases = [
     ],
     bg: "#F5F0EC",
     image: "/images/vogue.jpg",
+    beforeTakeaway: ["/images/vogue-01.png", "/images/vogue-02.png"],
     overview: {
       role: "Senior Product Designer",
       scope: "Design System, UI Tokens, UX Audit, Interface Design",
@@ -265,6 +269,7 @@ export const cases = [
     ],
     bg: "#EEF0F8",
     image: "/images/sodexo.jpg",
+    beforeTakeaway: "/images/sodexo-01.jpg",
     overview: {
       role: "Senior Product Designer",
       scope: "B2B Dashboard, B2C Mobile App, Web Products",
