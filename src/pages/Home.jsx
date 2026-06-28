@@ -706,10 +706,10 @@ function About() {
           </FadeUp>
           <FadeUp delay={0.2}>
             <p style={{ fontFamily: "system-ui, sans-serif", fontSize: 15, lineHeight: 1.8, color: T.mid, marginBottom: 20 }}>
-              I'm a Product Designer at the intersection of business, research and interface craft. My background in Advertising sharpens how I think about positioning and business goals. My postgrad in UX keeps me grounded in real user needs.
+              I'm a Product Designer at the intersection of <strong style={{ fontWeight: 600, color: T.ink }}>business, research and interface craft</strong>. My background in <strong style={{ fontWeight: 600, color: T.ink }}>Advertising</strong> sharpens how I think about positioning and business goals. My postgrad in <strong style={{ fontWeight: 600, color: T.ink }}>UX</strong> keeps me grounded in real user needs.
             </p>
             <p style={{ fontFamily: "system-ui, sans-serif", fontSize: 15, lineHeight: 1.8, color: T.mid, marginBottom: 36 }}>
-              I've led discovery sessions, built design systems from scratch, conducted research with 50+ users and shipped products used by millions. I work well in cross-functional teams, in English and Portuguese, and I care deeply about accessibility and inclusive design.
+              I've led discovery sessions, built <strong style={{ fontWeight: 600, color: T.ink }}>design systems from scratch</strong>, conducted research with <strong style={{ fontWeight: 600, color: T.ink }}>50+ users</strong> and shipped <strong style={{ fontWeight: 600, color: T.ink }}>products used by millions</strong>. I work well in cross-functional teams, in English and Portuguese, and I care deeply about <strong style={{ fontWeight: 600, color: T.ink }}>accessibility and inclusive design</strong>.
             </p>
             <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginBottom: 32 }}>
               {["Figma", "UX Research", "Design Systems", "Prototyping", "Usability Testing", "Accessibility", "Hotjar", "Maze", "Miro", "Jira", "Webflow"].map(s => (

@@ -199,7 +199,7 @@ export default function CaseStudy({ onContactClick }) {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.5 }}
           style={{
-            background: "#F2F2F2", width: "100%",
+            background: T.white, width: "100%",
             height: 500, display: "flex",
             alignItems: "center", justifyContent: "center",
             overflow: "hidden",
@@ -209,16 +209,15 @@ export default function CaseStudy({ onContactClick }) {
             <video
               src={c.image}
               autoPlay muted loop playsInline
-              style={{ maxWidth: "85%", maxHeight: 500, objectFit: "contain" }}
+              style={{ width: "100%", height: "100%", objectFit: "cover", borderRadius: 16 }}
             />
           ) : (
             <img
               src={c.image}
               alt={`${c.company} project screenshot`}
               style={{
-                maxWidth: "85%", maxHeight: 500,
-                objectFit: "contain",
-                filter: "drop-shadow(0 20px 48px rgba(0,0,0,0.14))",
+                width: "100%", height: "100%",
+                objectFit: "cover", borderRadius: 16,
               }}
             />
           )}
@@ -512,7 +511,7 @@ export default function CaseStudy({ onContactClick }) {
       {next && (
         <Link
           to={`/work/${next.slug}`}
-          style={{ textDecoration: "none", display: "block", padding: "0 80px 80px" }}
+          style={{ textDecoration: "none", display: "block", maxWidth: 1280, margin: "0 auto", padding: "0 80px 80px" }}
           onMouseEnter={() => setNextHovered(true)}
           onMouseLeave={() => setNextHovered(false)}
         >

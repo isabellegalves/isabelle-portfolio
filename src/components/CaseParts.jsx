@@ -188,7 +188,7 @@ export function CaseHeader({ tags = [], year = "", title, summary, image, compan
           initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.5 }}
           style={{
-            background: "#F2F2F2", width: "100%",
+            background: T.white, width: "100%",
             height: 500, display: "flex",
             alignItems: "center", justifyContent: "center",
             overflow: "hidden",
@@ -198,15 +198,14 @@ export function CaseHeader({ tags = [], year = "", title, summary, image, compan
             <video
               src={image}
               autoPlay muted loop playsInline
-              style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+              style={{ width: "100%", height: "100%", objectFit: "cover", borderRadius: 16, display: "block" }}
             />
           ) : (
             <img
               src={image}
               alt={`${company || ""} project screenshot`}
               style={{
-                maxWidth: "85%", maxHeight: 500, objectFit: "contain",
-                filter: "drop-shadow(0 20px 48px rgba(0,0,0,0.14))",
+                width: "100%", height: "100%", objectFit: "cover", borderRadius: 16,
               }}
             />
           )}
