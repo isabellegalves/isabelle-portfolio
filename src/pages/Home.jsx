@@ -607,44 +607,35 @@ function CapabilityCard({ item, index, inView }) {
 // ─── COMPANIES ───────────────────────────────────────────────────────────────
 
 const COMPANIES = [
-  { name: "Bradesco", abbr: "B", bg: "#CC092F", color: "#fff", logo: "/images/logo-empresa-bradesco.svg" },
-  { name: "Editora Globo", abbr: "EG", bg: "#0A0A0A", color: "#fff", logo: "/images/logo-empresa-edglobo.svg" },
-  { name: "MJV", abbr: "MJV", bg: "#F7F7F5", color: "#0A0A0A", logo: "/images/logo-empresa-mjv.svg" },
-  { name: "Sodexo", abbr: "Sdx", bg: "#5C2D91", color: "#fff", logo: "/images/logo-empresa-sodexo.svg" },
-  { name: "Piccadilly", abbr: "Pic", bg: "#F7F7F5", color: "#0A0A0A", logo: "/images/logo-empresa-piccadilly.svg" },
-  { name: "S2P", abbr: "S2P", bg: "#F7F7F5", color: "#0A0A0A", logo: "/images/logo-empresa-s2p.svg" },
+  { name: "Bradesco", logo: "/images/logo-empresa-bradesco.svg" },
+  { name: "Editora Globo", logo: "/images/logo-empresa-edglobo.svg" },
+  { name: "Sodexo", logo: "/images/logo-empresa-sodexo.svg" },
+  { name: "Piccadilly", logo: "/images/logo-empresa-piccadilly.svg" },
+  { name: "MJV", logo: "/images/logo-empresa-mjv.svg" },
+  { name: "S2P", logo: "/images/logo-empresa-s2p.svg" },
 ]
 
 function CompanyBadge({ c }) {
   const [hovered, setHovered] = useState(false)
-  const [imgFailed, setImgFailed] = useState(false)
   return (
     <div
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       style={{
-        display: "flex", alignItems: "center", gap: 12,
-        padding: "10px 20px 10px 10px",
-        border: `1px solid ${hovered ? "#0A0A0A" : "#E8E8E6"}`,
-        borderRadius: 999, background: "#fff", whiteSpace: "nowrap",
-        cursor: "default",
-        transform: hovered ? "translateY(-3px)" : "translateY(0)",
-        transition: "border-color 0.2s, transform 0.2s",
+        display: "flex", alignItems: "center", justifyContent: "center",
+        height: 64, padding: "0 40px", flexShrink: 0,
       }}
     >
-      <div style={{
-        width: 38, height: 38, borderRadius: "50%", background: c.bg,
-        display: "flex", alignItems: "center", justifyContent: "center",
-        flexShrink: 0, overflow: "hidden", border: "1px solid rgba(0,0,0,0.06)",
-      }}>
-        {c.logo && !imgFailed
-          ? <img src={c.logo} width={24} height={24} style={{ objectFit: "contain", filter: hovered ? "none" : "grayscale(100%)", opacity: hovered ? 1 : 0.6, transition: "filter 0.3s, opacity 0.3s" }} onError={() => setImgFailed(true)} alt={c.name} />
-          : <span style={{ fontSize: 11, fontWeight: 800, color: c.color }}>{c.abbr}</span>
-        }
-      </div>
-      <span style={{ fontFamily: "system-ui, sans-serif", fontSize: 13, fontWeight: 600, color: "#0A0A0A" }}>
-        {c.name}
-      </span>
+      <img
+        src={c.logo}
+        alt={c.name}
+        style={{
+          height: 36, width: "auto", display: "block",
+          filter: hovered ? "none" : "grayscale(1)",
+          opacity: hovered ? 1 : 0.55,
+          transition: "filter 0.3s, opacity 0.3s",
+        }}
+      />
     </div>
   )
 }
