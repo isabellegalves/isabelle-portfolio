@@ -305,20 +305,16 @@ export default function About() {
         <FadeUp>
           <div style={{ display: "grid", gridTemplateColumns: "220px 1fr", gap: 64, alignItems: "flex-start", marginBottom: 64 }}>
             <div style={{ position: "relative" }}>
-              {/* Foto placeholder */}
+              {/* Foto */}
               <div style={{
                 width: 200, height: 250, borderRadius: 20,
-                background: T.offwhite, border: `1px dashed ${T.rule}`,
-                display: "flex", flexDirection: "column",
-                alignItems: "center", justifyContent: "center", gap: 10,
+                overflow: "hidden", background: T.offwhite,
               }}>
-                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#CCCCCC" strokeWidth="1.5">
-                  <circle cx="12" cy="8" r="4" />
-                  <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" />
-                </svg>
-                <span style={{ fontFamily: "system-ui, sans-serif", fontSize: 10, color: "#CCCCCC", letterSpacing: "0.05em", textTransform: "uppercase" }}>
-                  Your photo
-                </span>
+                <img
+                  src="/images/isabelle.jpg"
+                  alt="Isabelle Alves"
+                  style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", borderRadius: 20 }}
+                />
               </div>
 
               {/* Seta handwritten + This is me! */}
