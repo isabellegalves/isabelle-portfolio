@@ -380,6 +380,51 @@ export default function CaseStudy({ onContactClick }) {
         ))}
       </section>
 
+      {c.colorSystem && (
+        <>
+          <div style={{ height: "0.5px", background: T.rule }} />
+          <section style={P}>
+            <FadeUp>
+              <SweepLabel>Design System</SweepLabel>
+              {c.colorSystem.intro && (
+                <p style={{ fontFamily: "system-ui, sans-serif", fontSize: 18, lineHeight: 1.7, color: "#444444", maxWidth: 640, marginBottom: 40 }}>
+                  {c.colorSystem.intro}
+                </p>
+              )}
+              {c.colorSystem.groups.map((group) => (
+                <div key={group.name} style={{ marginBottom: 32 }}>
+                  <div style={{
+                    fontFamily: "system-ui, sans-serif", fontSize: 11, fontWeight: 700,
+                    letterSpacing: "0.08em", textTransform: "uppercase", color: "#666666",
+                    marginBottom: 16, borderBottom: `1px solid ${T.rule}`, paddingBottom: 8,
+                  }}>
+                    {group.name}
+                  </div>
+                  <div style={{ display: "flex", gap: 18, flexWrap: "wrap" }}>
+                    {group.swatches.map((s) => (
+                      <div key={s.label}>
+                        <div style={{
+                          width: 84, height: 84, borderRadius: 12, background: s.hex,
+                          border: "1px solid rgba(0,0,0,0.06)",
+                        }} />
+                        <div style={{ fontFamily: "monospace", fontSize: 11, color: "#888888", marginTop: 6 }}>
+                          {s.label}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ))}
+              {c.colorSystem.note && (
+                <p style={{ fontFamily: "'Caveat', cursive", fontSize: 22, fontWeight: 500, color: "#6C1FF3", marginTop: 24 }}>
+                  {c.colorSystem.note}
+                </p>
+              )}
+            </FadeUp>
+          </section>
+        </>
+      )}
+
       {c.beforeImpact && (
         <>
           <div style={{ height: "0.5px", background: T.rule }} />

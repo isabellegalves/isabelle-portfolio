@@ -17,6 +17,41 @@ export const cases = [
     image: "/images/bradesco.jpg",
     beforeImpact: "/images/bradesco-01.jpg",
     afterImpact: "/images/bradesco-02.jpg",
+    colorSystem: {
+      intro: "A scalable token-based system that kept the MyAccount experience consistent across screens and aligned with Bradesco's brand identity.",
+      note: "Tokens defined before UI work began, so every decision traced back to a shared system.",
+      groups: [
+        {
+          name: "Primary, red",
+          swatches: [
+            { hex: "#F8E8EA", label: "xlight" },
+            { hex: "#CF4257", label: "light" },
+            { hex: "#C01F38", label: "primary" },
+            { hex: "#7E1A24", label: "dark" },
+          ],
+        },
+        {
+          name: "Call to action, blue",
+          swatches: [
+            { hex: "#ECEFFB", label: "xlight" },
+            { hex: "#6C84F0", label: "light" },
+            { hex: "#3D5AE0", label: "cta" },
+            { hex: "#1C25C4", label: "dark" },
+          ],
+        },
+        {
+          name: "Neutrals",
+          swatches: [
+            { hex: "#FFFFFF", label: "0" },
+            { hex: "#F1F1F3", label: "10" },
+            { hex: "#D8D8DC", label: "20" },
+            { hex: "#9A9AA0", label: "40" },
+            { hex: "#4A4A4E", label: "60" },
+            { hex: "#0A0A0A", label: "100" },
+          ],
+        },
+      ],
+    },
     overview: {
       role: "Senior Product Designer",
       scope: "UX Research, Product Design, Information Architecture",
