@@ -200,7 +200,7 @@ export default function CaseStudy({ onContactClick }) {
           transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.5 }}
           style={{
             background: T.white, width: "100%",
-            height: 500, display: "flex",
+            height: 520, display: "flex",
             alignItems: "center", justifyContent: "center",
             overflow: "hidden",
           }}
@@ -209,15 +209,15 @@ export default function CaseStudy({ onContactClick }) {
             <video
               src={c.image}
               autoPlay muted loop playsInline
-              style={{ width: "100%", height: "100%", objectFit: "cover", borderRadius: 16 }}
+              style={{ maxWidth: "100%", maxHeight: "100%", width: "auto", height: "auto", objectFit: "contain", borderRadius: 16, display: "block" }}
             />
           ) : (
             <img
               src={c.image}
               alt={`${c.company} project screenshot`}
               style={{
-                width: "100%", height: "100%",
-                objectFit: "cover", borderRadius: 16,
+                maxWidth: "100%", maxHeight: "100%", width: "auto", height: "auto",
+                objectFit: "contain", borderRadius: 16, display: "block",
               }}
             />
           )}
