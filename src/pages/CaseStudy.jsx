@@ -392,24 +392,24 @@ export default function CaseStudy({ onContactClick }) {
                 </p>
               )}
               {c.colorSystem.groups.map((group) => (
-                <div key={group.name} style={{ marginBottom: 32 }}>
+                <div key={group.name} style={{ marginBottom: 28 }}>
                   <div style={{
                     fontFamily: "system-ui, sans-serif", fontSize: 11, fontWeight: 700,
                     letterSpacing: "0.08em", textTransform: "uppercase", color: "#666666",
-                    marginBottom: 16, borderBottom: `1px solid ${T.rule}`, paddingBottom: 8,
+                    marginBottom: 14, borderBottom: `1px solid ${T.rule}`, paddingBottom: 8,
                   }}>
                     {group.name}
                   </div>
-                  <div style={{ display: "flex", gap: 18, flexWrap: "wrap" }}>
+                  <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
                     {group.swatches.map((s) => (
-                      <div key={s.label}>
+                      <div key={s.label} style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 4 }}>
                         <div style={{
-                          width: 84, height: 84, borderRadius: 12, background: s.hex,
-                          border: "1px solid rgba(0,0,0,0.06)",
+                          width: 40, height: 40, borderRadius: 6, background: s.hex,
+                          border: "0.5px solid rgba(0,0,0,0.08)", flexShrink: 0,
                         }} />
-                        <div style={{ fontFamily: "monospace", fontSize: 11, color: "#888888", marginTop: 6 }}>
+                        <span style={{ fontSize: 8, fontFamily: "monospace", color: "#888888", textAlign: "center", lineHeight: 1.3 }}>
                           {s.label}
-                        </div>
+                        </span>
                       </div>
                     ))}
                   </div>
