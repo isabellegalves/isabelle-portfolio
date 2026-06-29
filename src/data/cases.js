@@ -10,7 +10,7 @@ export const cases = [
     metrics: [
       { n: "15%", label: "Fewer card-related complaints" },
       { n: "30%", label: "Increase in perceived product value" },
-      { n: "Fewer", label: "Support calls on card issues" },
+      { n: "20%", label: "Fewer support calls on card issues" },
     ],
     passwordHash: "aWdhbHZlcw==",
     bg: "#FCEEF0",
