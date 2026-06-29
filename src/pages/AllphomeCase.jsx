@@ -316,7 +316,7 @@ export default function AllphomeCase() {
           {/* Single wireframe → UI pair */}
           <div style={{ marginBottom: "1.5rem" }}>
             <div style={{ fontSize: 10, fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", color: C.mid, paddingBottom: 8, marginBottom: 12, borderBottom: `0.5px solid ${C.border}`, fontFamily: "system-ui, sans-serif" }}>Home screen</div>
-            <div style={{ display: "grid", gridTemplateColumns: "1fr auto 1fr", gap: "1rem", alignItems: "center" }}>
+            <div style={{ display: "grid", gridTemplateColumns: "1fr auto 1fr", gap: "1rem", alignItems: "center", maxWidth: 520, margin: "0 auto" }}>
               <Phone src="/images/allphome-wire1.png" alt="Wireframe: Home screen" />
               <span style={{ fontSize: 22, color: C.accent, fontWeight: 700 }}>→</span>
               <Phone src="/images/allphome-1.png" alt="UI: Home screen" />
