@@ -69,6 +69,7 @@ export default function App() {
           .caps-grid { grid-template-columns: 1fr !important; }
           .overview-grid { grid-template-columns: 1fr !important; }
           .featured-grid { grid-template-columns: 1fr !important; }
+          .process-grid { grid-template-columns: 1fr !important; }
         }
 
         @media (max-width: 768px) {

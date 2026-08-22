@@ -286,3 +286,74 @@ export function CaseNext({ slug, company, title }) {
     </Link>
   )
 }
+
+// ─── PROCESS GALLERY ───────────────────────────────────────────────────
+// Grid 2x2 de imagens de processo, com caminho parametrizado por slug:
+//   /images/cases/<slug>/process-01.jpg ... process-04.jpg
+// Enquanto o arquivo não existir, o slot mostra um placeholder neutro,
+// então o grid nunca quebra e as imagens podem ser adicionadas aos poucos.
+
+const PROCESS_SLOTS = ["process-01", "process-02", "process-03", "process-04"]
+
+export function processImagePath(slug, name) {
+  return `/images/cases/${slug}/${name}.jpg`
+}
+
+function ProcessShot({ slug, name, index }) {
+  // "loading" -> tentando carregar | "ready" -> imagem existe | "empty" -> sem arquivo
+  const [status, setStatus] = useState("loading")
+  const src = processImagePath(slug, name)
+
+  return (
+    <div
+      style={{
+        position: "relative", width: "100%", aspectRatio: "4 / 3",
+        background: T.offwhite, borderRadius: 14, overflow: "hidden",
+      }}
+    >
+      {status !== "ready" && (
+        <div
+          aria-hidden="true"
+          style={{
+            position: "absolute", inset: 0,
+            display: "flex", alignItems: "center", justifyContent: "center",
+            fontFamily: "system-ui, sans-serif", fontSize: 11, fontWeight: 600,
+            letterSpacing: "0.08em", textTransform: "uppercase", color: T.light,
+          }}
+        >
+          {String(index + 1).padStart(2, "0")}
+        </div>
+      )}
+
+      <img
+        src={src}
+        alt=""
+        loading="lazy"
+        onLoad={() => setStatus("ready")}
+        onError={() => setStatus("empty")}
+        style={{
+          position: "relative", width: "100%", height: "100%",
+          objectFit: "cover", display: "block",
+          opacity: status === "ready" ? 1 : 0,
+          transition: "opacity 0.4s ease",
+        }}
+      />
+    </div>
+  )
+}
+
+export function ProcessGallery({ slug, slots = PROCESS_SLOTS }) {
+  if (!slug) return null
+  return (
+    <div
+      className="process-grid"
+      style={{
+        display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12, marginTop: 40,
+      }}
+    >
+      {slots.map((name, i) => (
+        <ProcessShot key={name} slug={slug} name={name} index={i} />
+      ))}
+    </div>
+  )
+}

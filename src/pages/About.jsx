@@ -156,14 +156,14 @@ const EXPERIENCE = [
     logo: "/images/logo-empresa-bradesco.svg", contain: true,
     role: "Senior Product Designer",
     company: "Bradesco · via Frito · Remote",
-    period: "Aug 2024 – Present",
+    period: "Sep 2025 – Present",
     tags: ["UI Design", "Design System", "UX Research", "Usability Testing", "Service Design", "Discovery", "Prototyping", "Stakeholder Alignment"],
   },
   {
     logo: "/images/logo-empresa-edglobo.svg", contain: true,
     role: "Senior Product Designer",
     company: "Editora Globo · Conde Nast · Remote",
-    period: "Mar 2022 – Aug 2024",
+    period: "Mar 2022 – Sep 2025",
     tags: ["UI Design", "Design System", "UX Audit", "Usability Testing", "Data Analysis", "Component Library", "Visual Identity"],
   },
   {

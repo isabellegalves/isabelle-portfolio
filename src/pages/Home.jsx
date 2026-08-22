@@ -640,8 +640,18 @@ function CompanyBadge({ c }) {
   )
 }
 
+// Marquee infinito sem emenda.
+// O truque do translateX(-50%) só fecha se metade da faixa for EXATAMENTE
+// igual a um número inteiro de grupos. Por isso o gap fica dentro do grupo
+// (com paddingRight fechando o último), e a faixa externa não tem gap nenhum.
+// GROUPS precisa ser par: metade da faixa (GROUPS / 2 grupos) tem que ser
+// mais larga que a tela, senão sobra espaço em branco no fim de cada volta.
+// 8 grupos de 768px = 6144px. Metade = 3072px, que cobre telas de até 3072px
+// de largura sem deixar espaço vazio no fim da volta.
+const MARQUEE_GROUPS = 8
+const MARQUEE_GAP = 12
+
 function CompaniesMarquee() {
-  const loop = [...COMPANIES, ...COMPANIES]
   return (
     <section aria-label="Companies" style={{ padding: "80px 0", background: "#F7F7F5", overflow: "hidden" }}>
       <style>{`
@@ -653,7 +663,7 @@ function CompaniesMarquee() {
       <div style={{ maxWidth: 1280, margin: "0 auto 40px", padding: "0 48px" }}>
         <HandUnderlineHeading style={{ marginBottom: 8 }}>Companies I've worked with</HandUnderlineHeading>
         <p style={{ fontFamily: "Georgia, serif", fontStyle: "italic", fontSize: 15, color: T.light }}>
-          10 years across fintech, media, retail and HR tech
+          10 years across fintech, media and retail
         </p>
       </div>
       <div style={{
@@ -662,11 +672,22 @@ function CompaniesMarquee() {
         maskImage: "linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent)",
       }}>
         <div style={{
-          display: "flex", width: "max-content", gap: 12,
-          animation: "companies-scroll 36s linear infinite",
+          display: "flex", width: "max-content",
+          animation: "companies-scroll 192s linear infinite",
           willChange: "transform",
         }}>
-          {loop.map((c, i) => <CompanyBadge key={`${c.name}-${i}`} c={c} />)}
+          {Array.from({ length: MARQUEE_GROUPS }).map((_, g) => (
+            <div
+              key={g}
+              aria-hidden={g > 0 ? "true" : undefined}
+              style={{
+                display: "flex", gap: MARQUEE_GAP,
+                paddingRight: MARQUEE_GAP, flexShrink: 0,
+              }}
+            >
+              {COMPANIES.map((c) => <CompanyBadge key={`${g}-${c.name}`} c={c} />)}
+            </div>
+          ))}
         </div>
       </div>
     </section>

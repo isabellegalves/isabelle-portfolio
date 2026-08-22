@@ -4,6 +4,7 @@ import { motion, useInView, animate } from "framer-motion"
 import { T } from "../tokens"
 import { getCaseBySlug, getNextCase } from "../data/cases"
 import PasswordGate from "../components/PasswordGate"
+import { ProcessGallery } from "../components/CaseParts"
 
 const spring = { duration: 0.8, ease: [0.16, 1, 0.3, 1] }
 
@@ -378,6 +379,10 @@ export default function CaseStudy({ onContactClick }) {
             </div>
           </FadeUp>
         ))}
+
+        <FadeUp>
+          <ProcessGallery slug={c.slug} />
+        </FadeUp>
       </section>
 
       {c.colorSystem && (

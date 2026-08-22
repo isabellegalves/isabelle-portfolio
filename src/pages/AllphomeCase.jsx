@@ -1,6 +1,6 @@
 import { useEffect } from "react"
 import { CaseHeader, CaseNext, Annotation, PURPLE } from "../components/CaseParts"
-import { getCaseBySlug } from "../data/cases"
+import { getCaseBySlug, getNextCase } from "../data/cases"
 
 const C = {
   bg:          "#FFFFFF",
@@ -132,7 +132,8 @@ function Phone({ src, alt }) {
 /* ── Main ── */
 export default function AllphomeCase() {
   const allphome = getCaseBySlug("allphome")
-  const next = getCaseBySlug("piccadilly")
+  // Segue a ordem do array em data/cases.js, então nunca sai de sincronia.
+  const next = getNextCase("allphome")
 
   useEffect(() => {
     document.documentElement.scrollTop = 0

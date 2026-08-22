@@ -1,6 +1,6 @@
 import { useEffect } from "react"
 import { CaseHeader, CaseNext, Annotation, PURPLE } from "../components/CaseParts"
-import { getCaseBySlug } from "../data/cases"
+import { getCaseBySlug, getNextCase } from "../data/cases"
 
 const C = {
   bg:      "#FFFFFF",
@@ -65,7 +65,8 @@ function ImpactCard({ number, label }) {
 /* ── Main ── */
 export default function PiccadillyCase() {
   const piccadilly = getCaseBySlug("piccadilly")
-  const next = getCaseBySlug("o-globo")
+  // Segue a ordem do array em data/cases.js, então nunca sai de sincronia.
+  const next = getNextCase("piccadilly")
 
   useEffect(() => {
     document.documentElement.scrollTop = 0
