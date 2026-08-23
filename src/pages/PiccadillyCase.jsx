@@ -1,5 +1,5 @@
 import { useEffect } from "react"
-import { CaseHeader, CaseNext, Annotation, PURPLE } from "../components/CaseParts"
+import { CaseHeader, CaseNext, Annotation, ProcessGallery, PURPLE } from "../components/CaseParts"
 import { getCaseBySlug, getNextCase } from "../data/cases"
 
 const C = {
@@ -211,6 +211,8 @@ export default function PiccadillyCase() {
             <img src="/images/piccadilly-final-01.jpg" alt="Piccadilly UI screens" style={{ width: "100%", display: "block", borderRadius: 10 }} />
             <img src="/images/piccadilly-final-02.jpg" alt="Piccadilly UI screens" style={{ width: "100%", display: "block", borderRadius: 10 }} />
           </div>
+
+          <ProcessGallery slug="piccadilly" />
         </div>
       </section>
 

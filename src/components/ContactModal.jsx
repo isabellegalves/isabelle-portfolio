@@ -112,7 +112,7 @@ export default function ContactModal({ onClose }) {
         {/* LinkedIn */}
         <div style={rowStyle}>
           <div>
-            <div style={labelStyle}>LinkedIn</div>
+            <div style={labelStyle}>Linkedin</div>
             <a
               href="https://www.linkedin.com/in/isabellegalves/"
               target="_blank"
@@ -126,7 +126,7 @@ export default function ContactModal({ onClose }) {
             href="https://www.linkedin.com/in/isabellegalves/"
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="Open LinkedIn profile"
+            aria-label="Open Linkedin profile"
             style={iconBtnStyle}
           >
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">

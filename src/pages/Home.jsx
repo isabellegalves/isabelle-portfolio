@@ -254,7 +254,7 @@ function Hero({ onContactClick }) {
                 fontFamily: "system-ui, sans-serif", fontSize: 16, lineHeight: 1.7,
                 color: T.mid, marginBottom: 28, maxWidth: 480,
               }}>
-                A decade of product design across fintech, media and retail, helping companies like Conde Nast, Bradesco and Sodexo build products that serve both users and business goals.
+                Eleven years of product design across fintech, media and retail, helping companies like Conde Nast, Bradesco and Sodexo build products that serve both users and business goals.
               </p>
               <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
                 <Btn variant="solid" as="a" href="#work">View work</Btn>
@@ -663,7 +663,7 @@ function CompaniesMarquee() {
       <div style={{ maxWidth: 1280, margin: "0 auto 40px", padding: "0 48px" }}>
         <HandUnderlineHeading style={{ marginBottom: 8 }}>Companies I've worked with</HandUnderlineHeading>
         <p style={{ fontFamily: "Georgia, serif", fontStyle: "italic", fontSize: 15, color: T.light }}>
-          10 years across fintech, media and retail
+          11 years across fintech, media and retail
         </p>
       </div>
       <div style={{
@@ -712,7 +712,7 @@ function About() {
               Every pixel has a reason.
               <br />
               <span style={{ fontFamily: "Georgia, serif", fontWeight: 400, fontStyle: "italic", color: T.mid }}>
-                Ten years of making the complex feel effortless.
+                Eleven years of making the complex feel effortless.
               </span>
             </h2>
           </FadeUp>
@@ -733,7 +733,7 @@ function About() {
               ))}
             </div>
             <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
-              <Btn variant="outline" as="a" href="https://www.linkedin.com/in/isabellegalves/" padding="9px 18px" borderRadius={20}>LinkedIn</Btn>
+              <Btn variant="outline" as="a" href="https://www.linkedin.com/in/isabellegalves/" padding="9px 18px" borderRadius={20}>Linkedin</Btn>
               <Btn variant="outline" as="a" href="/about" padding="9px 18px" borderRadius={20}>About</Btn>
             </div>
           </FadeUp>

@@ -1,5 +1,5 @@
 import { useEffect } from "react"
-import { CaseHeader, CaseNext, Annotation, PURPLE } from "../components/CaseParts"
+import { CaseHeader, CaseNext, Annotation, ProcessGallery, PURPLE } from "../components/CaseParts"
 import { getCaseBySlug, getNextCase } from "../data/cases"
 
 const C = {
@@ -415,6 +415,8 @@ export default function AllphomeCase() {
           <Phase n="09" title="In-platform video editing">
             Trainers could record short workout demos for their classes, but onboarding revealed a barrier: many were experts in coaching, not in video editing. Having to edit footage in external tools before uploading pushed less technical trainers away from the feature entirely. I designed a built-in editor so trainers could trim clips, add captions and on-screen cues directly inside the upload flow, removing the technical barrier and letting any trainer publish a polished demo for their members without ever leaving the app.
           </Phase>
+
+          <ProcessGallery slug="allphome" />
         </div>
       </section>
 

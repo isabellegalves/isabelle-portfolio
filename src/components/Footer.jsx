@@ -29,7 +29,7 @@ export default function Footer() {
         <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: 12 }}>
           <div style={{ display: "flex", gap: 24 }}>
             {[
-              { label: "LinkedIn", href: "https://www.linkedin.com/in/isabellegalves/" },
+              { label: "Linkedin", href: "https://www.linkedin.com/in/isabellegalves/" },
               { label: "Work", href: "/#work" },
               { label: "About", href: "/about" },
             ].map(l => (
