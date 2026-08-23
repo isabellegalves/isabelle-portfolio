@@ -258,6 +258,22 @@ const AWARDS = [
   },
 ]
 
+// Palestras em conferência. Mais recente primeiro, como no resto da página.
+const SPEAKING = [
+  {
+    title: "Accessibility and inclusive digital experiences",
+    issuer: "RCX",
+    date: "2024",
+    category: "Speaker",
+  },
+  {
+    title: "The role of empathy in UX",
+    issuer: "The Developers Conference (TDC)",
+    date: "2020",
+    category: "Speaker",
+  },
+]
+
 function CertRow({ cert, last }) {
   const [imgFailed, setImgFailed] = useState(false)
   return (
@@ -405,7 +421,7 @@ export default function About() {
               <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
                 {[
                   { lang: "English", level: "Fluent" },
-                  { lang: "Portuguese", level: "Fluent" },
+                  { lang: "Portuguese", level: "Native" },
                   { lang: "Spanish", level: "Intermediate" },
                 ].map(l => (
                   <div key={l.lang} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", paddingBottom: 14, borderBottom: `0.5px solid ${T.rule}` }}>
@@ -494,6 +510,28 @@ export default function About() {
                 ))}
               </div>
             </div>
+          </div>
+        </FadeUp>
+
+        <div style={RULE} />
+
+        {/* 5b — SPEAKING */}
+        <FadeUp>
+          <span style={LABEL}>Speaking</span>
+          <div style={{ display: "flex", flexDirection: "column" }}>
+            {SPEAKING.map((s, i) => (
+              <div key={i} style={{
+                display: "flex", justifyContent: "space-between", alignItems: "flex-start",
+                padding: "16px 0",
+                borderBottom: i < SPEAKING.length - 1 ? `0.5px solid ${T.rule}` : "none",
+              }}>
+                <div>
+                  <div style={{ fontFamily: "system-ui, sans-serif", fontSize: 14, fontWeight: 700, color: T.ink, marginBottom: 3 }}>{s.title}</div>
+                  <div style={{ fontFamily: "system-ui, sans-serif", fontSize: 12, color: "#888" }}>{s.issuer} · {s.category}</div>
+                </div>
+                <div style={{ fontFamily: "Georgia, serif", fontStyle: "italic", fontSize: 12, color: "#AAAAAA", whiteSpace: "nowrap", marginLeft: 16, marginTop: 2 }}>{s.date}</div>
+              </div>
+            ))}
           </div>
         </FadeUp>
 
