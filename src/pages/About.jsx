@@ -261,6 +261,12 @@ const AWARDS = [
 // Palestras em conferência. Mais recente primeiro, como no resto da página.
 const SPEAKING = [
   {
+    title: "AI in everyday work and tricks for using Figma",
+    issuer: "Conexão UX, hosted at Bradesco",
+    date: "Aug 2026",
+    category: "Speaker",
+  },
+  {
     title: "Accessibility and inclusive digital experiences",
     issuer: "RCX",
     date: "2024",
