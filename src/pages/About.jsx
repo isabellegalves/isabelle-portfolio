@@ -357,7 +357,7 @@ export default function About() {
                 Art is how I connect with people. By illustrating, drawing and creating interfaces, I express myself and tell visual stories. My goal is always that every user feels represented.
               </p>
               <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
-                <HandBtn href="https://www.linkedin.com/in/isabellegalves/" target="_blank" rel="noopener noreferrer">LinkedIn</HandBtn>
+                <HandBtn href="https://www.linkedin.com/in/isabellegalves/" target="_blank" rel="noopener noreferrer">Linkedin</HandBtn>
               </div>
             </div>
           </div>
