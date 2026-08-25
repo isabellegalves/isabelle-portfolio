@@ -221,7 +221,7 @@ export function CaseHeader({ tags = [], year = "", title, summary, image, compan
 // seta handwritten roxa. Idêntico ao padrão correto do CaseStudy / O Globo.
 export function CaseNext({ slug, company, title }) {
   const [hovered, setHovered] = useState(false)
-  const titleClipped = title && title.length > 65 ? title.slice(0, 65) + "..." : title
+  // Sem corte: o card tem largura de sobra e o maior summary tem 80 caracteres.
 
   return (
     <Link
@@ -267,9 +267,9 @@ export function CaseNext({ slug, company, title }) {
               />
             </svg>
           </div>
-          {titleClipped && (
+          {title && (
             <div style={{ fontFamily: "Georgia, serif", fontSize: 15, fontStyle: "italic", color: T.mid }}>
-              {titleClipped}
+              {title}
             </div>
           )}
         </div>

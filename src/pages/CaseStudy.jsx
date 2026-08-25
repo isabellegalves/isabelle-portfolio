@@ -607,7 +607,7 @@ export default function CaseStudy({ onContactClick }) {
                 </svg>
               </div>
               <div style={{ fontFamily: "Georgia, serif", fontSize: 15, fontStyle: "italic", color: T.mid }}>
-                {next.title.length > 65 ? next.title.slice(0, 65) + "..." : next.title}
+                {next.title}
               </div>
             </div>
 
