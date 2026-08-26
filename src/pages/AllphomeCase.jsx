@@ -170,7 +170,7 @@ export default function AllphomeCase() {
             ["Company",   "Allphome"],
             ["Role",      "Lead Product Designer, Individual Contributor"],
             ["Duration",  "2 to 3 months"],
-            ["Year",      "2021"],
+            ["Year",      "2023"],
             ["Scope",     "Pre-sale, Discovery, UX, UI, Design System, Handoff"],
             ["Team",      "Product Manager, Developers, Client Stakeholders"],
             ["Platforms", "Web + iOS and Android"],
@@ -256,8 +256,24 @@ export default function AllphomeCase() {
           {/* FASE 3 */}
           <Annotation text="key step!" direction="down-left" />
           <Phase n="03" title="User Research and Behavioral Mapping">
-            Conducted research with approximately 200 active members from Allphome's existing gym community. Two findings reshaped the entire product strategy.
+            Surveyed approximately 200 active members from Allphome's existing gym community. The numbers described an audience nobody in the room had assumed, and two of the findings reshaped the entire product strategy.
           </Phase>
+          <div className="a-g4" style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 12, marginBottom: "1rem" }}>
+            {[
+              ["81%", "said what they lacked was stimulus, not access"],
+              ["77%", "had not exercised at all before joining"],
+              ["43%", "trained for health, ahead of weight loss at 34%"],
+              ["87%", "wanted the product to address mental health"],
+            ].map(([n, b]) => (
+              <div key={n} style={{ background: C.surface, borderRadius: 10, padding: "1rem", fontFamily: "system-ui, sans-serif" }}>
+                <div style={{ fontSize: 26, fontWeight: 700, color: C.text, marginBottom: 6, letterSpacing: "-0.02em" }}>{n}</div>
+                <div style={{ fontSize: 12, color: C.mid, lineHeight: 1.6 }}>{b}</div>
+              </div>
+            ))}
+          </div>
+          <Caption>
+            The audience was beginners, not athletes, and their obstacle was motivation rather than access. That is what moved the design away from the booking flow and toward the loop that closes after a workout.
+          </Caption>
           <Callout label="STRATEGIC PIVOT 1: THE KIDS AREA">
             Stakeholders believed a dedicated Kids section would be a key differentiator. Research revealed that the majority of members did not have children, meaning the feature would add significant development effort while reaching a small fraction of the audience. The investment was redirected toward features that would benefit the entire member base.
           </Callout>
@@ -444,7 +460,7 @@ export default function AllphomeCase() {
               <blockquote style={{ fontFamily: "Georgia, serif", fontStyle: "italic", fontSize: "1.15rem", lineHeight: 1.7, color: C.text, marginBottom: "1rem" }}>
                 "The decisions with the highest impact were not visual. They were structural. Knowing what not to build matters as much as knowing what to build well."
               </blockquote>
-              <div style={{ fontSize: 11, fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", color: C.mid, fontFamily: "system-ui, sans-serif" }}>ALLPHOME, 2021</div>
+              <div style={{ fontSize: 11, fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", color: C.mid, fontFamily: "system-ui, sans-serif" }}>ALLPHOME, 2023</div>
             </div>
           </div>
         </div>
