@@ -322,7 +322,7 @@ export const cases = [
       {
         n: "01",
         title: "Competitive benchmark",
-        body: "I mapped and compared subscription flows from Exame, Folha de Sao Paulo, Estadao, UOL and The New York Times, identifying UX best practices across the category: clear CTAs on the homepage, transparent pricing and benefits presentation, mobile-first journeys, humanized support touchpoints and recurring payment models that avoided using the full credit card limit in a single charge. Each competitor was scored on onboarding clarity, checkout friction and trust signals, giving the team a shared reference for what a best-in-class subscription journey looked like.",
+        body: "I mapped and compared subscription flows from Exame, Folha de Sao Paulo, Estadao, UOL, Globoplay and The New York Times, identifying UX best practices across the category: clear CTAs on the homepage, transparent pricing and benefits presentation, mobile-first journeys, humanized support touchpoints and recurring payment models that avoided using the full credit card limit in a single charge. Each competitor was scored on onboarding clarity, checkout friction and trust signals, giving the team a shared reference for what a best-in-class subscription journey looked like.",
         image: null,
       },
       {
