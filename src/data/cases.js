@@ -109,89 +109,60 @@ export const cases = [
     takeaway: "When a product needs a training programme before anyone can use it, the training is covering for the design. This system served experts, and designing for experts is not about simplifying, because the work itself is genuinely hard. It is about refusing to make people carry what the product could carry for them. The redesign shipped to production, and the codes that operators used to memorise now live where they belong, underneath.",
   },
 
+
   {
     id: "03",
-    slug: "bradesco",
+    slug: "conta-internacional",
     company: "Bradesco My Account",
-    year: "2025 to present",
-    title: "Turning a moment of failure into the product's strongest feature.",
-    summary: "A behavior-led redesign of the MyAccount card experience that cut card-related complaints and turned a moment of failure into a competitive differentiator.",
-    tags: ["Fintech", "UX Research", "Product Design"],
+    year: "2026",
+    title: "Two international accounts. Only a third of customers could tell them apart.",
+    summary: "Bradesco sells two international accounts with different purposes and confusingly close names. A quantitative study found that only a third of customers could explain the difference. I replaced the side by side comparison with one question about what the person actually wants to do.",
+    tags: ["Fintech", "Product Design", "Content Design", "Information Architecture"],
     metrics: [
-      { n: "4", label: "Card capabilities the new area made possible" },
-      { n: "2", label: "Controls moved from a buried submenu to primary actions" },
+      { n: "34%", label: "Could explain the difference between the two accounts" },
+      { n: "7", label: "Intents replacing a side by side comparison" },
+      { n: "84", label: "Clients in the study behind the redesign" },
     ],
     passwordHash: "aWdhbHZlcw==",
-    bg: "#FCEEF0",
-    image: "/images/bradesco.jpg",
-    beforeImpact: "/images/bradesco-01.jpg",
-    afterImpact: "/images/bradesco-02.jpg",
-    colorSystem: {
-      intro: "A scalable token-based system that kept the MyAccount experience consistent across screens and aligned with Bradesco's brand identity.",
-      note: "Tokens defined before UI work began, so every decision traced back to a shared system.",
-      groups: [
-        {
-          name: "Primary, red",
-          swatches: [
-            { hex: "#F8E8EA", label: "xlight" },
-            { hex: "#CF4257", label: "light" },
-            { hex: "#C01F38", label: "primary" },
-            { hex: "#7E1A24", label: "dark" },
-          ],
-        },
-        {
-          name: "Call to action, blue",
-          swatches: [
-            { hex: "#ECEFFB", label: "xlight" },
-            { hex: "#6C84F0", label: "light" },
-            { hex: "#3D5AE0", label: "cta" },
-            { hex: "#1C25C4", label: "dark" },
-          ],
-        },
-        {
-          name: "Neutrals",
-          swatches: [
-            { hex: "#FFFFFF", label: "0" },
-            { hex: "#F1F1F3", label: "10" },
-            { hex: "#D8D8DC", label: "20" },
-            { hex: "#9A9AA0", label: "40" },
-            { hex: "#4A4A4E", label: "60" },
-            { hex: "#0A0A0A", label: "100" },
-          ],
-        },
-      ],
-    },
+    bg: "#FAF1F3",
+    image: "/images/conta-internacional.jpg",
     overview: {
       role: "Senior Product Designer",
-      scope: "UX Research, Product Design, Information Architecture",
-      team: "Cross-functional team with POs, developers and business stakeholders",
-      context: "Bradesco is one of Latin America's largest banks, with operations across the US, Europe and Asia. MyAccount is its international digital account, built for Brazilians who live, invest or travel abroad, competing directly with players like Wise and Revolut.",
+      scope: "Product Design, Content Design, Information Architecture, Interaction Design",
+      team: "Sole product designer, working from a quantitative study run by the bank's CX insights team, alongside product and the international accounts squad",
+      context: "Bradesco offers two international accounts. Bradesco Bank is a full American checking account with investments, a US credit card and property financing. My Account holds foreign currency for travel, with a physical and virtual debit card, withdrawals in 180 currencies and acceptance in 195 countries. They serve different lives, and they sat next to each other in the app as two cards of equal weight. Every value shown in this case is sample data.",
     },
     problem: {
-      body: "Support tickets and user interviews pointed to a recurring pattern. Most customers used the card almost exclusively when traveling, and kept it switched off in daily life for safety, either through a temporary lock or by disabling contactless. The trouble started before the trip. Many forgot to turn those functions back on, and only discovered it at the worst possible moment, standing at a checkout abroad with a card that would not work. The result was frustration, a sense that the product had failed them, and a steady stream of support calls. The controls that could have prevented this were buried in a hard to reach corner of the app.",
-      highlight: "A card that does not work abroad is not a small bug. It is the exact moment the product promised to deliver, and the moment it failed.",
+      body: "An unmoderated study with eighty four clients, none of whom held an international account, ran over three weeks. Asked to describe the difference between the two products in their own words, only thirty four per cent could. Half said outright that they could not. The screen built to explain the difference scored fifty out of a hundred for usability and carried a fifty eight per cent misclick rate, the worst in the journey. The comparison carousel meant to resolve it was rarely reached at all.",
+      highlight: "The product was asking people to choose between two names before it had told them what either name was for.",
     },
     process: [
       {
         n: "01",
-        title: "Research and problem framing",
-        body: "I started from the data, analyzing support tickets and running interviews to map how people actually used the card, not how we assumed they did. That revealed the dormant card behavior at the center of the problem: cards kept locked at home and forgotten before travel.",
+        title: "Reading the study before redrawing anything",
+        body: "The research was already there and it was quantitative, so the first job was to find the sentence inside it. Misclicks and abandonment said the screen was hard to use, but the open question said something worse: people were not failing to operate the interface, they were failing to understand what they were choosing between. That distinction decided the whole redesign. A clearer layout of two equally weighted cards would have improved the score and left the actual problem untouched.",
         image: null,
       },
       {
         n: "02",
-        title: "A dedicated cards area",
-        body: "I designed a dedicated Cards area that brought the critical controls into the open. I restructured the information architecture, surfaced temporary lock and contactless as primary actions, and rewrote the supporting copy so the state of the card and the impact of each action were impossible to misread.",
+        title: "Turning the choice into a question",
+        body: "I replaced the comparison with a single question, asked before any product is named: what are you looking for right now. Under it sit seven things people actually do, written as activities rather than as features. A debit card for travel. Living, working or studying in the US. An American credit card. Holding dollars in the app. Investing in US stocks and funds. Shopping on international sites. Withdrawing in foreign currency. More than one can be selected, because people rarely want only one thing, and a single choice would have forced a false answer.",
         image: null,
       },
       {
         n: "03",
-        title: "Expanding the product's value",
-        body: "With the new area in place, I used it as a platform to expand the product's value, designing additional cards, virtual cards, digital wallet integration, and card personalization right in the onboarding, creating clear differentiation against competitors.",
+        title: "Recommending, and letting people decline",
+        body: "The answers resolve into one recommendation with one sentence of reasoning: ideal for those moving to the US, buying property or investing in the American market, or ideal for those focused on travel, international purchases and temporary use. The primary action opens that account. The secondary action is Not now, and it does not argue. A recommendation that cannot be refused is a sales funnel wearing the clothes of a guide.",
+        image: null,
+      },
+      {
+        n: "04",
+        title: "Rewriting the comparison itself",
+        body: "The two cards stayed, but they stopped leading with brand names. Each one now opens with what the account is for, an account for use while traveling or an account for use in the US, and carries the product name only in the link underneath. The recommended card moves to the top and says so. The other one is never hidden, because removing the alternative would be deciding for the customer rather than with them.",
         image: null,
       },
     ],
-    takeaway: "Designing around real context of use, not assumed behavior, is what connects a design decision to a business outcome. In financial products, visibility and clarity carry as much weight as the feature itself. And a narrow fix, handled well, can become the opening to expand a product's value rather than just patch a problem.",
+    takeaway: "The measurable problem was a usability score. The real problem was naming. Two products had been given names that described the bank's structure rather than the customer's situation, and every screen after that was paying interest on it. Renaming was not on the table, so the interface had to do the work instead: ask what the person wants, answer in their words, and let the names arrive last, once they finally mean something.",
   },
 
   {
@@ -393,14 +364,161 @@ export const cases = [
     takeaway: "Working in media taught me that design systems serve both users and content creators. A well-built system frees editorial teams to focus on storytelling instead of worrying about how things look, and that trust between design and editorial is what makes premium digital publishing work at scale.",
   },
 
+  // ── Arquivados ──────────────────────────────────────────────────────
+  // Ficam aqui inteiros para nao se perderem, mas nao aparecem em lugar
+  // nenhum do site: filtrados de visibleCases e da navegacao entre cases.
+
+  {
+    id: "90",
+    archived: true,
+    slug: "bradesco",
+    company: "Bradesco My Account",
+    year: "2025 to present",
+    title: "Turning a moment of failure into the product's strongest feature.",
+    summary: "A behavior-led redesign of the MyAccount card experience that cut card-related complaints and turned a moment of failure into a competitive differentiator.",
+    tags: ["Fintech", "UX Research", "Product Design"],
+    metrics: [
+      { n: "4", label: "Card capabilities the new area made possible" },
+      { n: "2", label: "Controls moved from a buried submenu to primary actions" },
+    ],
+    passwordHash: "aWdhbHZlcw==",
+    bg: "#FCEEF0",
+    image: "/images/bradesco.jpg",
+    beforeImpact: "/images/bradesco-01.jpg",
+    afterImpact: "/images/bradesco-02.jpg",
+    colorSystem: {
+      intro: "A scalable token-based system that kept the MyAccount experience consistent across screens and aligned with Bradesco's brand identity.",
+      note: "Tokens defined before UI work began, so every decision traced back to a shared system.",
+      groups: [
+        {
+          name: "Primary, red",
+          swatches: [
+            { hex: "#F8E8EA", label: "xlight" },
+            { hex: "#CF4257", label: "light" },
+            { hex: "#C01F38", label: "primary" },
+            { hex: "#7E1A24", label: "dark" },
+          ],
+        },
+        {
+          name: "Call to action, blue",
+          swatches: [
+            { hex: "#ECEFFB", label: "xlight" },
+            { hex: "#6C84F0", label: "light" },
+            { hex: "#3D5AE0", label: "cta" },
+            { hex: "#1C25C4", label: "dark" },
+          ],
+        },
+        {
+          name: "Neutrals",
+          swatches: [
+            { hex: "#FFFFFF", label: "0" },
+            { hex: "#F1F1F3", label: "10" },
+            { hex: "#D8D8DC", label: "20" },
+            { hex: "#9A9AA0", label: "40" },
+            { hex: "#4A4A4E", label: "60" },
+            { hex: "#0A0A0A", label: "100" },
+          ],
+        },
+      ],
+    },
+    overview: {
+      role: "Senior Product Designer",
+      scope: "UX Research, Product Design, Information Architecture",
+      team: "Cross-functional team with POs, developers and business stakeholders",
+      context: "Bradesco is one of Latin America's largest banks, with operations across the US, Europe and Asia. MyAccount is its international digital account, built for Brazilians who live, invest or travel abroad, competing directly with players like Wise and Revolut.",
+    },
+    problem: {
+      body: "Support tickets and user interviews pointed to a recurring pattern. Most customers used the card almost exclusively when traveling, and kept it switched off in daily life for safety, either through a temporary lock or by disabling contactless. The trouble started before the trip. Many forgot to turn those functions back on, and only discovered it at the worst possible moment, standing at a checkout abroad with a card that would not work. The result was frustration, a sense that the product had failed them, and a steady stream of support calls. The controls that could have prevented this were buried in a hard to reach corner of the app.",
+      highlight: "A card that does not work abroad is not a small bug. It is the exact moment the product promised to deliver, and the moment it failed.",
+    },
+    process: [
+      {
+        n: "01",
+        title: "Research and problem framing",
+        body: "I started from the data, analyzing support tickets and running interviews to map how people actually used the card, not how we assumed they did. That revealed the dormant card behavior at the center of the problem: cards kept locked at home and forgotten before travel.",
+        image: null,
+      },
+      {
+        n: "02",
+        title: "A dedicated cards area",
+        body: "I designed a dedicated Cards area that brought the critical controls into the open. I restructured the information architecture, surfaced temporary lock and contactless as primary actions, and rewrote the supporting copy so the state of the card and the impact of each action were impossible to misread.",
+        image: null,
+      },
+      {
+        n: "03",
+        title: "Expanding the product's value",
+        body: "With the new area in place, I used it as a platform to expand the product's value, designing additional cards, virtual cards, digital wallet integration, and card personalization right in the onboarding, creating clear differentiation against competitors.",
+        image: null,
+      },
+    ],
+    takeaway: "Designing around real context of use, not assumed behavior, is what connects a design decision to a business outcome. In financial products, visibility and clarity carry as much weight as the feature itself. And a narrow fix, handled well, can become the opening to expand a product's value rather than just patch a problem.",
+  },
+
+  {
+    id: "91",
+    archived: true,
+    slug: "sodexo",
+    company: "Sodexo / Pluxee",
+    year: "2020 to 2021",
+    title: "Two user types. Two product philosophies. One cohesive ecosystem.",
+    summary: "Two user groups with opposite needs, served by two products built on deliberately opposite philosophies, inside one ecosystem at Sodexo LATAM.",
+    tags: ["HR Tech", "B2B and B2C", "Product Design"],
+    metrics: [
+      { n: "4", label: "New products launched at Sodexo LATAM" },
+      { n: "2", label: "User groups with opposite needs, inside one ecosystem" },
+    ],
+    bg: "#EEF0F8",
+    image: "/images/sodexo.jpg",
+    beforeTakeaway: "/images/sodexo-01.jpg",
+    overview: {
+      role: "Senior Product Designer",
+      scope: "B2B Dashboard, B2C Mobile App, Web Products",
+      team: "Sodexo LATAM product team, Agile sprints",
+      context: "Sodexo (now Pluxee) is one of the world's largest multinational companies in employee benefits, operating in more than 50 countries. I worked as UI/UX Product Designer on an indirect contract, embedded within the Sodexo LATAM product team, developing end-to-end digital products across dashboards, websites and mobile applications.",
+    },
+    problem: {
+      body: "Sodexo LATAM operated a suite of digital products serving two fundamentally different user groups with opposing needs. HR managers required data-dense dashboards with filtering, drill-down capabilities and exportable reports. Employees needed fast, frictionless mobile experiences to check balances and use benefits in seconds. Both groups were being served by the same product logic, resulting in experiences that worked poorly for everyone and a backlog of 4 products waiting to launch with no clear design direction.",
+      highlight: "We had two completely different users sharing the same product. Designing for one meant failing the other.",
+    },
+    process: [
+      {
+        n: "01",
+        title: "User research and segmentation",
+        body: "Before designing anything, I mapped both user groups through interviews and contextual research. HR managers were power users operating in desktop environments with complex data needs and tolerance for learning curves. Employees were casual users in mobile contexts, often checking benefits quickly between tasks. This segmentation became the foundation for every design decision that followed.",
+        image: null,
+      },
+      {
+        n: "02",
+        title: "B2B dashboard design",
+        body: "For the B2B dashboard, I focused on information architecture and data hierarchy. I designed a modular system that allowed HR managers to customize their view, with drill-down capabilities, exportable reports and role-based data access. Visual density was intentional, not accidental, because these users needed maximum information with minimum navigation.",
+        image: null,
+      },
+      {
+        n: "03",
+        title: "B2C mobile app",
+        body: "For the B2C mobile app, I applied the opposite philosophy. Every screen was designed for speed and clarity, with single-action flows, progressive disclosure and context-aware content. I reduced the number of taps to complete core tasks and validated every flow through usability testing with real employees before release.",
+        image: null,
+      },
+    ],
+    takeaway: "B2B and B2C products require genuinely different design philosophies, not just stylistic ones. B2B users are trained, efficient and task-oriented. B2C users are casual, time-pressured and context-dependent. Serving both well within the same ecosystem requires clear user segmentation before any design work begins.",
+  },
+
 ]
 
+// Tudo que o site lista ou percorre usa esta lista, nunca a completa.
+export const visibleCases = cases.filter(c => !c.archived)
+
 export const getCaseBySlug = (slug) => cases.find(c => c.slug === slug)
+
+// Um case arquivado nao entra na roda: quem chegar nele por link direto
+// segue para o primeiro visivel.
 export const getNextCase = (slug) => {
-  const idx = cases.findIndex(c => c.slug === slug)
-  return cases[(idx + 1) % cases.length]
+  const idx = visibleCases.findIndex(c => c.slug === slug)
+  if (idx === -1) return visibleCases[0]
+  return visibleCases[(idx + 1) % visibleCases.length]
 }
 export const getPrevCase = (slug) => {
-  const idx = cases.findIndex(c => c.slug === slug)
-  return cases[(idx - 1 + cases.length) % cases.length]
+  const idx = visibleCases.findIndex(c => c.slug === slug)
+  if (idx === -1) return visibleCases[visibleCases.length - 1]
+  return visibleCases[(idx - 1 + visibleCases.length) % visibleCases.length]
 }

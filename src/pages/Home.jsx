@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react"
 import { Link } from "react-router-dom"
 import { motion, useInView } from "framer-motion"
 import { T } from "../tokens"
-import { cases } from "../data/cases"
+import { visibleCases } from "../data/cases"
 
 const spring = { duration: 0.9, ease: [0.16, 1, 0.3, 1] }
 
@@ -478,7 +478,7 @@ function Work() {
         </FadeUp>
 
         <div className="work-grid" style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 20 }}>
-          {cases.map((c, i) => <CaseCard key={c.id} c={c} index={i} />)}
+          {visibleCases.map((c, i) => <CaseCard key={c.id} c={c} index={i} />)}
         </div>
       </div>
     </section>
