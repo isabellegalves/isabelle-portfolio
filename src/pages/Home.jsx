@@ -206,7 +206,7 @@ function Hero({ onContactClick }) {
             style={{ display: "flex", alignItems: "center", justifyContent: "center" }}
           >
             <motion.img
-              src="/images/hero-phones.jpg"
+              src="/images/hero-phones.webp"
               alt="Mobile app screenshots"
               animate={{ y: [0, -14, 0] }}
               transition={{ duration: 4.5, ease: "easeInOut", repeat: Infinity }}
@@ -311,9 +311,10 @@ function Hero({ onContactClick }) {
 
           <div style={{ display: "flex", flexWrap: "wrap", gap: 0 }}>
             {[
-              { n: 30, suffix: "%", label: "Reduction in dev time at Bradesco" },
+              // Cada um destes tem um bullet do curriculo ou um case atras dele.
+              { n: 30, suffix: "%", label: "Fewer update tickets at Bradesco" },
               { n: 50, suffix: "+", label: "Users interviewed across projects" },
-              { n: 40, suffix: "%", label: "Faster delivery with Design Systems" },
+              { n: 25, suffix: "%", label: "More site retention at Editora Globo" },
               { n: 500, suffix: "k+", label: "Downloads of the Piccadilly app" },
             ].map((s, i) => (
               <div key={i} style={{
@@ -610,6 +611,8 @@ function CapabilityCard({ item, index, inView }) {
 const COMPANIES = [
   { name: "Bradesco", logo: "/images/logo-empresa-bradesco.svg" },
   { name: "Editora Globo", logo: "/images/logo-empresa-edglobo.svg" },
+  // Sem arquivo de logo ainda: cai no wordmark ate chegar o SVG oficial.
+  { name: "Condé Nast", logo: null },
   { name: "Sodexo", logo: "/images/logo-empresa-sodexo.svg" },
   { name: "Piccadilly", logo: "/images/logo-empresa-piccadilly.svg" },
   { name: "MJV", logo: "/images/logo-empresa-mjv.svg" },
@@ -627,16 +630,28 @@ function CompanyBadge({ c }) {
         height: 64, padding: "0 40px", flexShrink: 0,
       }}
     >
-      <img
-        src={c.logo}
-        alt={c.name}
-        style={{
-          height: 36, width: "auto", display: "block",
-          filter: hovered ? "none" : "grayscale(1)",
-          opacity: hovered ? 1 : 0.55,
-          transition: "filter 0.3s, opacity 0.3s",
-        }}
-      />
+      {c.logo ? (
+        <img
+          src={c.logo}
+          alt={c.name}
+          style={{
+            height: 36, width: "auto", display: "block",
+            filter: hovered ? "none" : "grayscale(1)",
+            opacity: hovered ? 1 : 0.55,
+            transition: "filter 0.3s, opacity 0.3s",
+          }}
+        />
+      ) : (
+        // Sem SVG oficial da marca. Um wordmark na tipografia do proprio site
+        // e honesto: nao tenta imitar o logo de ninguem.
+        <span style={{
+          fontFamily: "Georgia, serif", fontSize: 26, letterSpacing: "0.02em",
+          color: T.ink, whiteSpace: "nowrap",
+          opacity: hovered ? 1 : 0.55, transition: "opacity 0.3s",
+        }}>
+          {c.name}
+        </span>
+      )}
     </div>
   )
 }

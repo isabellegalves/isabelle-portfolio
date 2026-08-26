@@ -346,9 +346,9 @@ export default function AllphomeCase() {
           <div style={{ marginBottom: "1.5rem" }}>
             <div style={{ fontSize: 10, fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", color: C.mid, paddingBottom: 8, marginBottom: 12, borderBottom: `0.5px solid ${C.border}`, fontFamily: "system-ui, sans-serif" }}>Home screen</div>
             <div style={{ display: "grid", gridTemplateColumns: "1fr auto 1fr", gap: "1rem", alignItems: "center", maxWidth: 520, margin: "0 auto" }}>
-              <Phone src="/images/allphome-wire1.png" alt="Wireframe: Home screen" />
+              <Phone src="/images/allphome-wire1.webp" alt="Wireframe: Home screen" />
               <span style={{ fontSize: 22, color: C.accent, fontWeight: 700 }}>→</span>
-              <Phone src="/images/allphome-1.png" alt="UI: Home screen" />
+              <Phone src="/images/allphome-1.webp" alt="UI: Home screen" />
             </div>
             <Caption>
               Tab structure and content card hierarchy were defined at wireframe stage, visual decisions came only after the structure was validated.
@@ -415,8 +415,8 @@ export default function AllphomeCase() {
             The full product shipped across web and mobile, covering 13+ modules from onboarding to live classes and affiliate programs.
           </Phase>
           <div style={{ display: "flex", flexDirection: "column", gap: 16, marginBottom: "1rem" }}>
-            <img src="/images/allphome-final-02.jpg" alt="Allphome final UI overview" style={{ width: "100%", display: "block", borderRadius: 10 }} />
-            <img src="/images/allphome-final-01.jpg" alt="Allphome final UI screens" style={{ width: "100%", display: "block", borderRadius: 10 }} />
+            <img src="/images/allphome-final-02.webp" alt="Allphome final UI overview" style={{ width: "100%", display: "block", borderRadius: 10 }} />
+            <img src="/images/allphome-final-01.webp" alt="Allphome final UI screens" style={{ width: "100%", display: "block", borderRadius: 10 }} />
           </div>
           <hr style={hr} />
 
@@ -426,8 +426,8 @@ export default function AllphomeCase() {
           </Phase>
           <div className="a-g2" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
             {[
-              ["/images/allphome-backoffice-user.png", "User management"],
-              ["/images/allphome-backoffice-content.png", "Content management"],
+              ["/images/allphome-backoffice-user.webp", "User management"],
+              ["/images/allphome-backoffice-content.webp", "Content management"],
             ].map(([src, cap]) => (
               <div key={cap}>
                 <div style={{ borderRadius: 10, overflow: "hidden", border: `0.5px solid ${C.border}` }}>

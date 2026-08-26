@@ -302,7 +302,7 @@ export function CaseNext({ slug, company, title }) {
 
 // ─── PROCESS GALLERY ───────────────────────────────────────────────────
 // Grid 2x2 de imagens de processo, com caminho parametrizado por slug:
-//   /images/cases/<slug>/process-01.jpg ... process-04.jpg
+//   /images/cases/<slug>/process-01.webp ... process-04.webp
 // O grid pergunta antes quais arquivos existem, então um case sem imagens
 // não deixa quatro caixas vazias na página: a seção inteira não aparece.
 // As imagens podem continuar sendo adicionadas aos poucos, uma a uma.
@@ -310,7 +310,7 @@ export function CaseNext({ slug, company, title }) {
 const PROCESS_SLOTS = ["process-01", "process-02", "process-03", "process-04"]
 
 export function processImagePath(slug, name) {
-  return `/images/cases/${slug}/${name}.jpg`
+  return `/images/cases/${slug}/${name}.webp`
 }
 
 function ProcessShot({ slug, name, index }) {

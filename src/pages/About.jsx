@@ -157,7 +157,7 @@ const EXPERIENCE = [
   {
     logo: "/images/logo-empresa-bradesco.svg", contain: true,
     role: "Senior Product Designer",
-    company: "Bradesco · via Frito · Remote",
+    company: "Bradesco · outsourced by Frito · Remote",
     period: "Sep 2025 – Present",
     tags: ["UI Design", "Design System", "UX Research", "Usability Testing", "Service Design", "Discovery", "Prototyping", "Stakeholder Alignment"],
   },
@@ -178,7 +178,7 @@ const EXPERIENCE = [
   {
     logo: "/images/logo-empresa-sodexo.svg", contain: true,
     role: "UI/UX Product Designer",
-    company: "Sodexo LATAM · Remote",
+    company: "Sodexo LATAM · outsourced by ACT Digital · Remote",
     period: "Aug 2020 – Jun 2021",
     tags: ["UI Design", "Mobile", "Dashboard", "Usability Testing", "Agile", "Prototyping"],
   },
@@ -342,7 +342,7 @@ export default function About() {
                 overflow: "hidden", background: T.offwhite,
               }}>
                 <img
-                  src="/images/isabelle.jpg"
+                  src="/images/isabelle.webp"
                   alt="Isabelle Alves"
                   style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", borderRadius: 20 }}
                 />

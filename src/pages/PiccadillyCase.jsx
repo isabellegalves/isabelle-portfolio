@@ -212,8 +212,8 @@ export default function PiccadillyCase() {
 
           {/* UI screens */}
           <div style={{ display: "flex", flexDirection: "column", gap: 16, marginTop: "1rem" }}>
-            <img src="/images/piccadilly-final-01.jpg" alt="Piccadilly UI screens" style={{ width: "100%", display: "block", borderRadius: 10 }} />
-            <img src="/images/piccadilly-final-02.jpg" alt="Piccadilly UI screens" style={{ width: "100%", display: "block", borderRadius: 10 }} />
+            <img src="/images/piccadilly-final-01.webp" alt="Piccadilly UI screens" style={{ width: "100%", display: "block", borderRadius: 10 }} />
+            <img src="/images/piccadilly-final-02.webp" alt="Piccadilly UI screens" style={{ width: "100%", display: "block", borderRadius: 10 }} />
           </div>
 
           <ProcessGallery slug="piccadilly" />
