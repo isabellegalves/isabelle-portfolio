@@ -56,6 +56,61 @@ export const cases = [
 
   {
     id: "02",
+    slug: "interbancario",
+    company: "Bradesco CMIB",
+    year: "2026",
+    title: "Training was the workaround for a system that never explained itself.",
+    summary: "A ground-up redesign of CMIB, the desktop system Bradesco's trading desk uses to run interbank foreign exchange. The legacy application only worked for people who had already memorised its codes, so I rebuilt it around language the desk actually uses.",
+    tags: ["Fintech", "Enterprise UX", "Desktop Application", "Information Architecture"],
+    metrics: [
+      { n: "6", label: "Modules unified in a single workspace" },
+      { n: "15", label: "Toolbar codes replaced by named navigation" },
+      { n: "6", label: "Operation states surfaced as filters" },
+    ],
+    passwordHash: "aWdhbHZlcw==",
+    bg: "#EEF2FC",
+    image: "/images/interbancario.jpg",
+    overview: {
+      role: "Senior Product Designer",
+      scope: "Product Design, Information Architecture, Interaction Design, Design System, Design Handoff",
+      team: "Sole product designer, working alongside product, engineering and the foreign exchange trading desk",
+      context: "CMIB is the internal system Bradesco's trading desk uses to run interbank foreign exchange: buying and selling currency with other institutions, exchanging messages with the central bank and over SWIFT, and settling operations that move hundreds of millions. Every value, client name and operator detail shown in this case is fictitious sample data.",
+    },
+    problem: {
+      body: "The legacy system was a native desktop application whose knowledge lived in the people who used it rather than in the product. Its toolbar was fifteen three-letter buttons. Its fields carried raw codes as values, so a counterparty read as 0000003025-STANDARD CHARTERED BA, truncated mid-name, and a delivery method read as 65-Teletransmissao. Windows opened inside windows, tables nested inside tables, and disabled fields gave no reason for being disabled. New people could not use it without training, it crashed often, and operations that should have been immediate took days and passed through steps that existed only because a person had to carry the work from one screen to the next.",
+      highlight: "Training was not onboarding. It was the workaround for a product that never explained itself.",
+    },
+    process: [
+      {
+        n: "01",
+        title: "Auditing a system nobody could read",
+        body: "I walked the legacy application module by module and separated what was genuinely complex from what was merely undocumented. Interbank foreign exchange is complex: the rates, the settlement dates, the messaging obligations. The fifteen unlabelled buttons and the codes shown as values were not complexity. They were knowledge the product had pushed onto the operator and then never explained.",
+        image: null,
+      },
+      {
+        n: "02",
+        title: "Naming things the way the desk says them",
+        body: "The desk does not talk in codes. It talks about buying and selling, counterparties, settlement and confirmation. I replaced the code-value pattern throughout, so the counterparty reads as its name, the product reads as Interbancário and the delivery method reads as SWIFT. The codes still exist underneath for the systems that need them. They stopped being the operator's problem.",
+        image: null,
+      },
+      {
+        n: "03",
+        title: "One workspace instead of fifteen buttons",
+        body: "I restructured the application around the six things the desk actually does: managing operations, central bank messaging, SWIFT messaging, client records, parameters and reports. Each one became a named destination with a description, reachable from a persistent sidebar, so a new operator can see the shape of the system before knowing any of its vocabulary.",
+        image: null,
+      },
+      {
+        n: "04",
+        title: "Making the state of an operation visible",
+        body: "In the legacy system, knowing where an operation stood meant knowing which screen to open and what the totals at the bottom meant. I designed the operations manager around state: contracted, settling, settled and pending reconciliation became filters with live counts, the table became sortable on every column that matters, and the period filter states its own limit instead of failing silently.",
+        image: null,
+      },
+    ],
+    takeaway: "When a product needs a training programme before anyone can use it, the training is covering for the design. This system served experts, and designing for experts is not about simplifying, because the work itself is genuinely hard. It is about refusing to make people carry what the product could carry for them. The redesign shipped to production, and the codes that operators used to memorise now live where they belong, underneath.",
+  },
+
+  {
+    id: "03",
     slug: "bradesco",
     company: "Bradesco My Account",
     year: "2025 to present",
@@ -141,7 +196,7 @@ export const cases = [
   },
 
   {
-    id: "03",
+    id: "04",
     slug: "piccadilly",
     customPage: true,
     company: "Piccadilly",
@@ -190,7 +245,7 @@ export const cases = [
   },
 
   {
-    id: "04",
+    id: "05",
     slug: "allphome",
     customPage: true,
     company: "Allphome",
@@ -240,7 +295,7 @@ export const cases = [
   },
 
   {
-    id: "05",
+    id: "06",
     slug: "o-globo",
     company: "O Globo / Editora Globo",
     tags: ["Media", "Subscription UX", "Conversion Optimization"],
@@ -291,7 +346,7 @@ export const cases = [
   },
 
   {
-    id: "06",
+    id: "07",
     slug: "vogue",
     company: "Conde Nast / Vogue Brasil",
     year: "2022 to 2025",
@@ -342,7 +397,7 @@ export const cases = [
   },
 
   {
-    id: "07",
+    id: "08",
     slug: "sodexo",
     company: "Sodexo / Pluxee",
     year: "2020 to 2021",
