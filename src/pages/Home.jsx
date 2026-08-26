@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react"
 import { Link } from "react-router-dom"
 import { motion, useInView } from "framer-motion"
-import { T } from "../tokens"
+import { T, TYPE } from "../tokens"
 import { PURPLE } from "../components/CaseParts"
 import { visibleCases } from "../data/cases"
 
@@ -73,7 +73,7 @@ function HeroLine({ children, delay = 0, serif = false, light = false, size }) {
       }}
       style={{
         display: "block",
-        fontSize: size || (light ? "20px" : "clamp(40px, 5.5vw, 72px)"),
+        fontSize: size || (light ? "20px" : TYPE.display),
         lineHeight: light ? 1.4 : 0.93,
         letterSpacing: serif ? "-0.03em" : "-0.04em",
         fontWeight: serif ? 400 : (light ? 400 : 800),
@@ -97,7 +97,7 @@ function HandUnderlineHeading({ children, id, style = {} }) {
     <div style={{ display: "inline-block", position: "relative", marginBottom: 52 }}>
       <h2 id={id} style={{
         fontFamily: "system-ui, sans-serif",
-        fontSize: "clamp(26px, 3vw, 36px)", fontWeight: 800,
+        fontSize: TYPE.section, fontWeight: 800,
         letterSpacing: "-0.04em", color: T.ink, margin: 0,
         ...style,
       }}>
@@ -453,7 +453,7 @@ function CaseCard({ c, index }) {
           </div>
 
           <h3 id={`case-title-${c.id}`} style={{
-            fontFamily: "Georgia, serif", fontSize: "clamp(18px, 2vw, 22px)",
+            fontFamily: "Georgia, serif", fontSize: TYPE.cardTitle,
             fontWeight: 400, fontStyle: "italic", letterSpacing: "-0.02em",
             color: T.ink, lineHeight: 1.25, marginBottom: 20,
           }}>
@@ -506,7 +506,7 @@ function Capabilities() {
             <div style={{ position: "relative", display: "inline-block" }}>
               <h2 id="capabilities-heading" style={{
                 fontFamily: "system-ui, sans-serif",
-                fontSize: "clamp(26px, 3vw, 36px)", fontWeight: 800,
+                fontSize: TYPE.section, fontWeight: 800,
                 letterSpacing: "-0.04em", color: T.ink, margin: 0,
               }}>
                 How I work
@@ -705,7 +705,7 @@ function About() {
           <FadeUp>
             <h2 id="about-heading" style={{
               fontFamily: "system-ui, sans-serif",
-              fontSize: "clamp(26px, 3.2vw, 42px)", fontWeight: 800,
+              fontSize: TYPE.lead, fontWeight: 800,
               letterSpacing: "-0.04em", color: T.ink, lineHeight: 1.1, margin: 0,
             }}>
               I design with purpose.
@@ -752,7 +752,7 @@ function ContactSection({ onContactClick }) {
       <FadeUp>
         <h2 id="contact-heading" style={{
           fontFamily: "Georgia, serif",
-          fontSize: "clamp(28px, 4vw, 52px)",
+          fontSize: TYPE.statement,
           fontStyle: "italic", fontWeight: 400,
           letterSpacing: "-0.04em", lineHeight: 1.1, marginBottom: 44,
           color: "#FFFFFF",

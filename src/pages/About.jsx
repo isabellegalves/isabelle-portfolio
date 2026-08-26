@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react"
 import { motion, useInView } from "framer-motion"
-import { T } from "../tokens"
+import { T, TYPE } from "../tokens"
 import { PURPLE } from "../components/CaseParts"
 
 const spring = { duration: 0.9, ease: [0.16, 1, 0.3, 1] }
@@ -373,7 +373,7 @@ export default function About() {
             <div>
               <h1 style={{
                 fontFamily: "Georgia, serif", fontStyle: "italic", fontWeight: 400,
-                fontSize: "clamp(26px, 3.5vw, 42px)", letterSpacing: "-0.03em",
+                fontSize: TYPE.lead, letterSpacing: "-0.03em",
                 color: T.ink, lineHeight: 1.2, marginBottom: 24,
               }}>
                 Hello, I'm Isabelle.

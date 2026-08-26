@@ -1,5 +1,5 @@
 import { useEffect } from "react"
-import { CaseHeader, CaseNext, Annotation, ProcessGallery, PURPLE } from "../components/CaseParts"
+import { CaseHeader, CaseNext, Annotation, ProcessGallery, PURPLE, SectionLabel } from "../components/CaseParts"
 import { getCaseBySlug, getNextCase } from "../data/cases"
 import { T } from "../tokens"
 
@@ -169,6 +169,7 @@ export default function AllphomeCase() {
       {/* ── OVERVIEW ── */}
       <section style={sec}>
         <div style={wrap}>
+          <SectionLabel>Overview</SectionLabel>
           {[
             ["Company",   "Allphome"],
             ["Role",      "Lead Product Designer, Individual Contributor"],
@@ -191,7 +192,7 @@ export default function AllphomeCase() {
       {/* ── THE PROBLEM ── */}
       <section style={sec}>
         <div style={wrap}>
-          <Annotation text="the challenge" direction="down" />
+          <SectionLabel>The Problem</SectionLabel>
           <div style={{ maxWidth: 640 }}>
             <p style={{ fontSize: 15, lineHeight: 1.85, color: C.text, marginBottom: "1.25rem", fontFamily: "system-ui, sans-serif" }}>
               Allphome was an established gym business in Brazil with a loyal in-person community. As digital fitness platforms gained ground, with competitors like <strong style={{ color: C.text, fontWeight: 500 }}>Queima Diaria</strong> capturing online audiences, the company decided to launch its first digital product.
@@ -212,7 +213,7 @@ export default function AllphomeCase() {
       {/* ── THE PROCESS ── */}
       <section style={sec}>
         <div style={wrap}>
-          <Annotation text="the process" direction="down" />
+          <SectionLabel>Process</SectionLabel>
 
           {/* FASE 1 */}
           <Phase n="01" title="Discovery and Stakeholder Alignment">
@@ -442,7 +443,7 @@ export default function AllphomeCase() {
       {/* ── IMPACT ── */}
       <section style={sec}>
         <div style={wrap}>
-          <Annotation text="the proof" direction="down" />
+          <SectionLabel>Impact</SectionLabel>
           <div className="a-impact" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))", gap: 12 }}>
             <ImpactCard title="3 habit loops" body="Designed core behavioral cycles to drive long-term member engagement" />
             <ImpactCard title="Progress-first" body="Post-workout feedback and achievements elevated above administrative UI" />
@@ -458,7 +459,7 @@ export default function AllphomeCase() {
       <section style={sec}>
         <div style={wrap}>
           <div style={{ display: "flex", gap: "2.5rem", alignItems: "flex-start" }}>
-            <Annotation text="lessons learned" direction="left" />
+            <SectionLabel>Key takeaway</SectionLabel>
             <div style={{ background: C.surface, borderRadius: 14, padding: "1.75rem 2rem", flex: 1 }}>
               <blockquote style={{ fontFamily: "Georgia, serif", fontStyle: "italic", fontSize: "1.15rem", lineHeight: 1.7, color: C.text, marginBottom: "1rem" }}>
                 "The decisions with the highest impact were not visual. They were structural. Knowing what not to build matters as much as knowing what to build well."

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import { motion } from "framer-motion"
-import { T } from "../tokens"
+import { T, TYPE } from "../tokens"
 
 /*
   CaseParts.jsx
@@ -22,6 +22,19 @@ export const PURPLE = "#6C1FF3"
 // Container padrão de section
 export const CASE_MAX = 1280
 export const sectionPad = { padding: "64px 80px", maxWidth: CASE_MAX, margin: "0 auto" }
+
+// ─── ROTULO DE SECTION ─────────────────────────────────────────────────
+// Um h2 de verdade, para o case ler h1 > h2 > h3 num leitor de tela, e o
+// mesmo rotulo em todas as paginas de case, genericas ou proprias.
+export const SECTION_LABEL = {
+  fontFamily: "system-ui, sans-serif", fontSize: 11, fontWeight: 700,
+  letterSpacing: "0.1em", textTransform: "uppercase",
+  color: T.ink, margin: "0 0 20px", display: "block",
+}
+
+export function SectionLabel({ children }) {
+  return <h2 style={SECTION_LABEL}>{children}</h2>
+}
 
 // Divisor fino entre sections
 export function CaseRule() {
@@ -160,7 +173,7 @@ export function CaseHeader({ tags = [], year = "", title, summary, image, compan
           transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
           style={{
             fontFamily: "Georgia, serif",
-            fontSize: "clamp(28px, 4.5vw, 58px)", fontWeight: 400, fontStyle: "italic",
+            fontSize: TYPE.title, fontWeight: 400, fontStyle: "italic",
             letterSpacing: "-0.03em", color: T.ink, lineHeight: 1.1,
             maxWidth: 800, marginBottom: 24,
           }}
@@ -248,7 +261,7 @@ export function CaseNext({ slug, company, title }) {
           </div>
           <div style={{
             fontFamily: "system-ui, sans-serif",
-            fontSize: "clamp(18px, 2.5vw, 28px)", fontWeight: 700,
+            fontSize: TYPE.subhead, fontWeight: 700,
             letterSpacing: "-0.03em", color: T.ink, marginBottom: 6,
             position: "relative", display: "inline-block",
           }}>

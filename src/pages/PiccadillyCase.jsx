@@ -1,5 +1,5 @@
 import { useEffect } from "react"
-import { CaseHeader, CaseNext, Annotation, ProcessGallery, PURPLE } from "../components/CaseParts"
+import { CaseHeader, CaseNext, Annotation, ProcessGallery, PURPLE, SectionLabel } from "../components/CaseParts"
 import { getCaseBySlug, getNextCase } from "../data/cases"
 import { T } from "../tokens"
 
@@ -99,6 +99,7 @@ export default function PiccadillyCase() {
       {/* ── OVERVIEW ── */}
       <section style={sec}>
         <div style={wrap}>
+          <SectionLabel>Overview</SectionLabel>
           {[
             ["Company",  "Piccadilly"],
             ["Role",     "UI Designer"],
@@ -118,7 +119,7 @@ export default function PiccadillyCase() {
       {/* ── THE PROBLEM ── */}
       <section style={sec}>
         <div style={wrap}>
-          <Annotation text="the challenge" direction="down" />
+          <SectionLabel>The Problem</SectionLabel>
           <div style={{ maxWidth: 640 }}>
             <p style={{ fontSize: 15, lineHeight: 1.85, color: C.text, marginBottom: "1.25rem", fontFamily: "system-ui, sans-serif" }}>
               Piccadilly is one of Brazil's largest women's footwear brands, with over 2 million followers and a loyal customer base built over decades. But in 2019, the brand sold online through a web store and an institutional site, and had no app at all.
@@ -139,7 +140,7 @@ export default function PiccadillyCase() {
       {/* ── THE PROCESS ── */}
       <section style={sec}>
         <div style={wrap}>
-          <Annotation text="the process" direction="down" />
+          <SectionLabel>Process</SectionLabel>
 
           {/* FASE 1 */}
           <Phase n="01" title="Journey Mapping and Competitive Analysis">
@@ -222,7 +223,7 @@ export default function PiccadillyCase() {
       {/* ── IMPACT ── */}
       <section style={sec}>
         <div style={wrap}>
-          <Annotation text="the proof" direction="down" />
+          <SectionLabel>Impact</SectionLabel>
           <div className="p-g3" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 12, marginBottom: "1.5rem" }}>
             <ImpactCard number="4.9" label="Rating on both the App Store and Google Play" />
             <ImpactCard number="500k+" label="Downloads on Google Play since launch" />
@@ -238,7 +239,7 @@ export default function PiccadillyCase() {
       <section style={sec}>
         <div style={wrap}>
           <div style={{ display: "flex", gap: "2.5rem", alignItems: "flex-start" }}>
-            <Annotation text="lessons learned" direction="left" />
+            <SectionLabel>Key takeaway</SectionLabel>
             <div style={{ background: C.surface, borderRadius: 14, padding: "1.75rem 2rem", flex: 1 }}>
               <blockquote style={{ fontFamily: "Georgia, serif", fontStyle: "italic", fontSize: "1.1rem", lineHeight: 1.7, color: C.text, marginBottom: "1rem" }}>
                 "Information architecture is a business decision, not just a design decision. How you organize a product catalog determines which customer intent states you serve and which you leave unsupported. Restructuring around mental models instead of product taxonomy was what made the difference."

@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from "react"
 import { useParams, Link, Navigate } from "react-router-dom"
 import { motion, useInView, animate } from "framer-motion"
-import { T } from "../tokens"
+import { T, TYPE } from "../tokens"
 import { getCaseBySlug, getNextCase } from "../data/cases"
 import PasswordGate from "../components/PasswordGate"
-import { ProcessGallery } from "../components/CaseParts"
+import { ProcessGallery, SectionLabel } from "../components/CaseParts"
 
 const spring = { duration: 0.8, ease: [0.16, 1, 0.3, 1] }
 
@@ -77,27 +77,14 @@ function MetricCounter({ value, label }) {
 
 const P = { padding: "64px 80px", maxWidth: 1280, margin: "0 auto" }
 
-const LABEL_BASE = {
-  fontFamily: "system-ui, sans-serif", fontSize: 11, fontWeight: 700,
-  letterSpacing: "0.1em", textTransform: "uppercase",
-  // margin zerada porque o elemento e um h2: o navegador traria margem propria
-  margin: "0 0 20px", display: "block",
-}
+
 
 const BODY = {
   fontFamily: "system-ui, sans-serif", fontSize: 16,
   lineHeight: 1.85, color: "#333333", marginBottom: 16,
 }
 
-function SweepLabel({ children }) {
-  return (
-    // h2 de verdade: sem isto a pagina pula de h1 para h3 e o leitor de tela
-    // perde a estrutura das secoes
-    <h2 style={LABEL_BASE}>
-      {children}
-    </h2>
-  )
-}
+
 
 export default function CaseStudy({ onContactClick }) {
   const { slug } = useParams()
@@ -175,7 +162,7 @@ export default function CaseStudy({ onContactClick }) {
             transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
             style={{
               fontFamily: "Georgia, serif",
-              fontSize: "clamp(28px, 4.5vw, 58px)", fontWeight: 400,
+              fontSize: TYPE.title, fontWeight: 400,
               fontStyle: "italic",
               letterSpacing: "-0.03em", color: T.ink, lineHeight: 1.1,
               maxWidth: 800, marginBottom: 24,
@@ -256,7 +243,7 @@ export default function CaseStudy({ onContactClick }) {
           </motion.svg>
         </div>
         <FadeUp>
-          <SweepLabel>Overview</SweepLabel>
+          <SectionLabel>Overview</SectionLabel>
           <div className="overview-grid" style={{ display: "grid", gridTemplateColumns: "1fr 2.5fr", gap: 72, alignItems: "start" }}>
             <div style={{ display: "flex", flexDirection: "column", gap: 28 }}>
               {[
@@ -293,12 +280,12 @@ export default function CaseStudy({ onContactClick }) {
       <div style={{ height: "0.5px", background: T.rule }} />
       <section style={P}>
         <FadeUp>
-          <SweepLabel>The Problem</SweepLabel>
+          <SectionLabel>The Problem</SectionLabel>
           <p style={BODY}>{c.problem.body}</p>
           <div style={{ padding: "36px 0 8px", marginTop: 12 }}>
             <p style={{
               fontFamily: "'Caveat', cursive",
-              fontSize: "clamp(28px, 3.5vw, 48px)",
+              fontSize: TYPE.statement,
               fontWeight: 500,
               color: T.ink,
               lineHeight: 1.3,
@@ -322,7 +309,7 @@ export default function CaseStudy({ onContactClick }) {
       {/* PROCESS */}
       <div style={{ height: "0.5px", background: T.rule }} />
       <section style={P}>
-        <FadeUp><SweepLabel>Process</SweepLabel></FadeUp>
+        <FadeUp><SectionLabel>Process</SectionLabel></FadeUp>
         {c.process.map((phase, i) => (
           <FadeUp key={i} delay={i * 0.08}>
             <div style={{ marginBottom: 64, position: "relative" }}>
@@ -394,7 +381,7 @@ export default function CaseStudy({ onContactClick }) {
           <div style={{ height: "0.5px", background: T.rule }} />
           <section style={P}>
             <FadeUp>
-              <SweepLabel>Design System</SweepLabel>
+              <SectionLabel>Design System</SectionLabel>
               {c.colorSystem.intro && (
                 <p style={{ fontFamily: "system-ui, sans-serif", fontSize: 18, lineHeight: 1.7, color: "#444444", maxWidth: 640, marginBottom: 40 }}>
                   {c.colorSystem.intro}
@@ -453,7 +440,7 @@ export default function CaseStudy({ onContactClick }) {
       <div style={{ height: "0.5px", background: T.rule }} />
       <section style={P}>
         <FadeUp>
-          <SweepLabel>Impact</SweepLabel>
+          <SectionLabel>Impact</SectionLabel>
           <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 16 }}>
             <motion.svg width="130" height="64" viewBox="0 0 130 64" overflow="visible" aria-hidden="true"
               initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}
@@ -520,7 +507,7 @@ export default function CaseStudy({ onContactClick }) {
       <div style={{ height: "0.5px", background: T.rule }} />
       <section style={P}>
         <FadeUp>
-          <SweepLabel>Key takeaway</SweepLabel>
+          <SectionLabel>Key takeaway</SectionLabel>
           <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 16 }}>
             <motion.svg width="200" height="64" viewBox="0 0 200 64" overflow="visible" aria-hidden="true"
               initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}
@@ -548,7 +535,7 @@ export default function CaseStudy({ onContactClick }) {
           <div style={{ background: T.offwhite, borderRadius: 16, padding: "44px 52px" }}>
             <p style={{
               fontFamily: "Georgia, serif",
-              fontSize: "clamp(18px, 2.2vw, 26px)",
+              fontSize: TYPE.takeaway,
               fontStyle: "italic", color: T.ink,
               lineHeight: 1.6, letterSpacing: "-0.01em", margin: "0 0 18px",
             }}>
@@ -589,7 +576,7 @@ export default function CaseStudy({ onContactClick }) {
               </div>
               <div style={{
                 fontFamily: "system-ui, sans-serif",
-                fontSize: "clamp(18px, 2.5vw, 28px)",
+                fontSize: TYPE.subhead,
                 fontWeight: 700, letterSpacing: "-0.03em", color: T.ink, marginBottom: 6,
                 position: "relative", display: "inline-block",
               }}>
