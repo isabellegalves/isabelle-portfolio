@@ -393,53 +393,6 @@ export const cases = [
     takeaway: "Working in media taught me that design systems serve both users and content creators. A well-built system frees editorial teams to focus on storytelling instead of worrying about how things look, and that trust between design and editorial is what makes premium digital publishing work at scale.",
   },
 
-  {
-    id: "08",
-    slug: "sodexo",
-    company: "Sodexo / Pluxee",
-    year: "2020 to 2021",
-    title: "Two user types. Two product philosophies. One cohesive ecosystem.",
-    summary: "Two user groups with opposite needs, served by two products built on deliberately opposite philosophies, inside one ecosystem at Sodexo LATAM.",
-    tags: ["HR Tech", "B2B and B2C", "Product Design"],
-    metrics: [
-      { n: "4", label: "New products launched at Sodexo LATAM" },
-      { n: "2", label: "User groups with opposite needs, inside one ecosystem" },
-    ],
-    bg: "#EEF0F8",
-    image: "/images/sodexo.jpg",
-    beforeTakeaway: "/images/sodexo-01.jpg",
-    overview: {
-      role: "Senior Product Designer",
-      scope: "B2B Dashboard, B2C Mobile App, Web Products",
-      team: "Sodexo LATAM product team, Agile sprints",
-      context: "Sodexo (now Pluxee) is one of the world's largest multinational companies in employee benefits, operating in more than 50 countries. I worked as UI/UX Product Designer on an indirect contract, embedded within the Sodexo LATAM product team, developing end-to-end digital products across dashboards, websites and mobile applications.",
-    },
-    problem: {
-      body: "Sodexo LATAM operated a suite of digital products serving two fundamentally different user groups with opposing needs. HR managers required data-dense dashboards with filtering, drill-down capabilities and exportable reports. Employees needed fast, frictionless mobile experiences to check balances and use benefits in seconds. Both groups were being served by the same product logic, resulting in experiences that worked poorly for everyone and a backlog of 4 products waiting to launch with no clear design direction.",
-      highlight: "We had two completely different users sharing the same product. Designing for one meant failing the other.",
-    },
-    process: [
-      {
-        n: "01",
-        title: "User research and segmentation",
-        body: "Before designing anything, I mapped both user groups through interviews and contextual research. HR managers were power users operating in desktop environments with complex data needs and tolerance for learning curves. Employees were casual users in mobile contexts, often checking benefits quickly between tasks. This segmentation became the foundation for every design decision that followed.",
-        image: null,
-      },
-      {
-        n: "02",
-        title: "B2B dashboard design",
-        body: "For the B2B dashboard, I focused on information architecture and data hierarchy. I designed a modular system that allowed HR managers to customize their view, with drill-down capabilities, exportable reports and role-based data access. Visual density was intentional, not accidental, because these users needed maximum information with minimum navigation.",
-        image: null,
-      },
-      {
-        n: "03",
-        title: "B2C mobile app",
-        body: "For the B2C mobile app, I applied the opposite philosophy. Every screen was designed for speed and clarity, with single-action flows, progressive disclosure and context-aware content. I reduced the number of taps to complete core tasks and validated every flow through usability testing with real employees before release.",
-        image: null,
-      },
-    ],
-    takeaway: "B2B and B2C products require genuinely different design philosophies, not just stylistic ones. B2B users are trained, efficient and task-oriented. B2C users are casual, time-pressured and context-dependent. Serving both well within the same ecosystem requires clear user segmentation before any design work begins.",
-  },
 ]
 
 export const getCaseBySlug = (slug) => cases.find(c => c.slug === slug)
