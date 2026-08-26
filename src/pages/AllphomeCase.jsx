@@ -54,6 +54,14 @@ function Callout({ label, children }) {
   )
 }
 
+// Cabecalho de coluna. Existe porque sem ele a unica coisa que separava
+// forcas de fraquezas era a cor do marcador, verde contra vermelho, que e
+// justamente o par que some para quem tem daltonismo.
+const COL_HEAD = {
+  fontSize: 10, fontWeight: 700, letterSpacing: "0.08em",
+  textTransform: "uppercase", color: C.mid, marginBottom: 6,
+}
+
 /* ── Benchmark card ── */
 function BenchCard({ name, rating, strengths, weaknesses, highlight }) {
   return (
@@ -65,8 +73,8 @@ function BenchCard({ name, rating, strengths, weaknesses, highlight }) {
         </span>
       </div>
       <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8 }}>
-        <div>{strengths.map((s, i) => <div key={i} style={{ display: "flex", gap: 5, marginBottom: 4 }}><span style={{ color: C.green, fontSize: 8, marginTop: 3, flexShrink: 0 }}>●</span><span style={{ fontSize: 11, color: C.mid, lineHeight: 1.5 }}>{s}</span></div>)}</div>
-        <div>{weaknesses.map((w, i) => <div key={i} style={{ display: "flex", gap: 5, marginBottom: 4 }}><span style={{ color: C.red, fontSize: 8, marginTop: 3, flexShrink: 0 }}>●</span><span style={{ fontSize: 11, color: C.mid, lineHeight: 1.5 }}>{w}</span></div>)}</div>
+        <div><div style={COL_HEAD}>Strengths</div>{strengths.map((s, i) => <div key={i} style={{ display: "flex", gap: 5, marginBottom: 4 }}><span style={{ color: C.green, fontSize: 9, marginTop: 3, flexShrink: 0 }}>●</span><span style={{ fontSize: 11, color: C.mid, lineHeight: 1.5 }}>{s}</span></div>)}</div>
+        <div><div style={COL_HEAD}>Weaknesses</div>{weaknesses.map((w, i) => <div key={i} style={{ display: "flex", gap: 5, marginBottom: 4 }}><span style={{ color: C.red, fontSize: 9, marginTop: 3, flexShrink: 0 }}>●</span><span style={{ fontSize: 11, color: C.mid, lineHeight: 1.5 }}>{w}</span></div>)}</div>
       </div>
     </div>
   )
@@ -91,8 +99,8 @@ function Persona({ name, age, role, company, tags, quote, goals, pains, highligh
       </div>
       <div style={{ background: C.surface, borderBottom: `0.5px solid ${C.border}`, padding: "0.6rem 1rem", fontFamily: "Georgia, serif", fontStyle: "italic", fontSize: 11, color: C.mid, lineHeight: 1.6 }}>"{quote}"</div>
       <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr" }}>
-        <div style={{ padding: "0.75rem 1rem" }}>{goals.map((g, i) => <div key={i} style={{ display: "flex", gap: 5, marginBottom: 4 }}><span style={{ color: C.green, fontSize: 8, marginTop: 3, flexShrink: 0 }}>●</span><span style={{ fontSize: 11, color: C.mid, lineHeight: 1.5 }}>{g}</span></div>)}</div>
-        <div style={{ padding: "0.75rem 1rem", borderLeft: `0.5px solid ${C.border}` }}>{pains.map((p, i) => <div key={i} style={{ display: "flex", gap: 5, marginBottom: 4 }}><span style={{ color: C.red, fontSize: 8, marginTop: 3, flexShrink: 0 }}>●</span><span style={{ fontSize: 11, color: C.mid, lineHeight: 1.5 }}>{p}</span></div>)}</div>
+        <div style={{ padding: "0.75rem 1rem" }}><div style={COL_HEAD}>Goals</div>{goals.map((g, i) => <div key={i} style={{ display: "flex", gap: 5, marginBottom: 4 }}><span style={{ color: C.green, fontSize: 9, marginTop: 3, flexShrink: 0 }}>●</span><span style={{ fontSize: 11, color: C.mid, lineHeight: 1.5 }}>{g}</span></div>)}</div>
+        <div style={{ padding: "0.75rem 1rem", borderLeft: `0.5px solid ${C.border}` }}><div style={COL_HEAD}>Pain points</div>{pains.map((p, i) => <div key={i} style={{ display: "flex", gap: 5, marginBottom: 4 }}><span style={{ color: C.red, fontSize: 9, marginTop: 3, flexShrink: 0 }}>●</span><span style={{ fontSize: 11, color: C.mid, lineHeight: 1.5 }}>{p}</span></div>)}</div>
       </div>
     </div>
   )
