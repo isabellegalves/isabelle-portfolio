@@ -313,7 +313,7 @@ function Hero({ onContactClick }) {
               { n: 30, suffix: "%", label: "Reduction in dev time at Bradesco" },
               { n: 50, suffix: "+", label: "Users interviewed across projects" },
               { n: 40, suffix: "%", label: "Faster delivery with Design Systems" },
-              { n: 20, suffix: "%", label: "Increase in usability at Sodexo" },
+              { n: 500, suffix: "k+", label: "Downloads of the Piccadilly app" },
             ].map((s, i) => (
               <div key={i} style={{
                 flex: "1 1 160px", paddingRight: 28, marginRight: 28,
