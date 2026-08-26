@@ -1,6 +1,61 @@
 export const cases = [
   {
     id: "01",
+    slug: "cambio",
+    company: "Bradesco Câmbio",
+    year: "2026",
+    title: "The central bank required the data. It never required the customer to decode it.",
+    summary: "A ground-up redesign of Bradesco's international remittance journey. I replaced a single regulatory form with a guided flow that shows the real cost while the person types, and regrouped central bank classifications around what the person is actually doing.",
+    tags: ["Fintech", "Product Design", "Regulated Products", "Information Architecture"],
+    metrics: [
+      { n: "8", label: "Intent groups replacing central bank codes" },
+      { n: "14", label: "Screens designed for the new journey" },
+      { n: "3", label: "Financial validation states built into the flow" },
+    ],
+    passwordHash: "aWdhbHZlcw==",
+    bg: "#FCEEF0",
+    image: "/images/cambio.jpg",
+    overview: {
+      role: "Senior Product Designer",
+      scope: "Product Design, Information Architecture, Interaction Design, Prototyping, Design Handoff",
+      team: "Sole product designer on Câmbio, in a design pair with a UX Writer, working alongside product, engineering, compliance and legal",
+      context: "Bradesco Câmbio handles international remittances for customers sending money abroad. Every transfer carries a central bank classification, foreign exchange rules, IOF tax and a spread, and all of it has to be collected and disclosed correctly before the money moves.",
+    },
+    problem: {
+      body: "The existing journey was a single screen titled ENVIAR ORDEM DE PAGAMENTO AO EXTERIOR, written in the bank's own vocabulary. It asked for every field at once. The reason for the transfer was a dropdown of central bank classifications, listed exactly as the regulator writes them, so a person paying for a child's tuition had to recognise themselves in MANUTENCAO DEPENDENTE NO IR. The destination was an alphabetical list of every country on earth, opening on South Africa, Andorra, Anguilla and Antarctica. And the cost appeared only at the end: an exchange rate carried to seven decimal places, then IOF, issuing fee and total effective value stacked underneath. The person had to commit before they could know what they would pay.",
+      highlight: "The regulation required the data. It never required that the person be the one to decode it.",
+    },
+    process: [
+      {
+        n: "01",
+        title: "Auditing the legacy journey",
+        body: "I walked the existing flow end to end and mapped every point where the product spoke the bank's language instead of the customer's: the title, the classification dropdown, the country list, and a cost that arrived too late to inform a decision. The audit also set the technical ground for the rebuild, moving the experience out of Adobe XD and into Figma on the bank's Design System. Seven legacy screens became the brief for a fourteen screen journey, not because more screens are better, but because one screen was carrying nine separate decisions.",
+        image: null,
+      },
+      {
+        n: "02",
+        title: "Translating regulation into intent",
+        body: "The central bank requires a reason code for every transfer, and that requirement was not negotiable. What was negotiable was who did the translating. I regrouped the codes into eight things people actually do: paying for a service, studying abroad, supporting someone who lives outside Brazil, medical costs, importing a product, investing, moving assets and giving. Each group carries a plain sentence explaining it, and a search field sits on top for people who already know what they need. I also stated on the screen why the question exists at all, because a requirement that is explained stops feeling like an obstacle.",
+        image: null,
+      },
+      {
+        n: "03",
+        title: "Moving cost into the decision",
+        body: "I moved the money to the front. Live rates sit at the top of the journey, the amount converts in both directions as the person types, and the spread is named rather than buried, with a link that explains it. IOF is disclosed inline before confirmation instead of after. In a product where the spread is the revenue, showing it early was a decision about trust, not just about layout.",
+        image: null,
+      },
+      {
+        n: "04",
+        title: "Designing the failure states",
+        body: "Financial transactions fail for legitimate reasons, and the legacy flow had nothing to say when they did. I designed insufficient balance, exceeded limit and minimum amount as part of the journey rather than as system errors, each resolved on the screen where it happens and each explaining what the person can do next. The happy path is not the product.",
+        image: null,
+      },
+    ],
+    takeaway: "Regulated products hide behind their constraints. The constraint here was real: the central bank does require the classification, the tax does apply, and the spread has to be disclosed. But none of that required the customer to read like a compliance officer. The redesign went through homologation and shipped, replacing the legacy journey on both web and app. The regulation set what had to be collected. It never set who had to do the interpreting.",
+  },
+
+  {
+    id: "02",
     slug: "bradesco",
     company: "Bradesco My Account",
     year: "2025 to present",
@@ -86,7 +141,7 @@ export const cases = [
   },
 
   {
-    id: "02",
+    id: "03",
     slug: "piccadilly",
     customPage: true,
     company: "Piccadilly",
@@ -135,7 +190,7 @@ export const cases = [
   },
 
   {
-    id: "03",
+    id: "04",
     slug: "allphome",
     customPage: true,
     company: "Allphome",
@@ -185,7 +240,7 @@ export const cases = [
   },
 
   {
-    id: "04",
+    id: "05",
     slug: "o-globo",
     company: "O Globo / Editora Globo",
     tags: ["Media", "Subscription UX", "Conversion Optimization"],
@@ -236,7 +291,7 @@ export const cases = [
   },
 
   {
-    id: "05",
+    id: "06",
     slug: "vogue",
     company: "Conde Nast / Vogue Brasil",
     year: "2022 to 2025",
@@ -287,7 +342,7 @@ export const cases = [
   },
 
   {
-    id: "06",
+    id: "07",
     slug: "sodexo",
     company: "Sodexo / Pluxee",
     year: "2020 to 2021",
