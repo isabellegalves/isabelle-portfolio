@@ -50,7 +50,7 @@ function NavLink({ to, children, onClick }) {
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       style={{
-        fontFamily: "system-ui, -apple-system, sans-serif",
+        fontFamily: "system-ui, sans-serif",
         fontSize: 14,
         fontWeight: 500,
         letterSpacing: "0.01em",
@@ -130,7 +130,7 @@ export default function Nav({ onContactClick }) {
             onMouseEnter={() => setContactHovered(true)}
             onMouseLeave={() => setContactHovered(false)}
             style={{
-              fontFamily: "system-ui, -apple-system, sans-serif",
+              fontFamily: "system-ui, sans-serif",
               fontSize: 14, fontWeight: 600,
               padding: "9px 20px", borderRadius: 24,
               cursor: "pointer", border: "none",

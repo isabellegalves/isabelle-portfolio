@@ -1,13 +1,16 @@
 import { useEffect } from "react"
 import { CaseHeader, CaseNext, Annotation, ProcessGallery, PURPLE } from "../components/CaseParts"
 import { getCaseBySlug, getNextCase } from "../data/cases"
+import { T } from "../tokens"
 
 const C = {
-  bg:      "#FFFFFF",
-  surface: "#F5F5F5",
-  border:  "#E2DDD6",
-  text:    "#1A1917",
-  mid:     "#6B6760",
+  // Alinhado aos tokens do site. Os unicos valores proprios sao o roxo de
+  // acento e a superficie clara dele, que nao existem em tokens.js.
+  bg:      T.white,
+  surface: T.offwhite,
+  border:  T.rule,
+  text:    T.ink,
+  mid:     T.mid,
   accent:  PURPLE,
   light:   "#F3EFFF",
 }

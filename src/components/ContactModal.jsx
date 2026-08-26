@@ -187,7 +187,7 @@ const rowStyle = {
 }
 const labelStyle = {
   fontFamily: "system-ui, sans-serif", fontSize: 11, fontWeight: 600,
-  letterSpacing: "0.08em", textTransform: "uppercase", color: "#888888",
+  letterSpacing: "0.08em", textTransform: "uppercase", color: T.meta,
   marginBottom: 4,
 }
 const iconBtnStyle = {

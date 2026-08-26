@@ -1,9 +1,10 @@
 import { useEffect, useRef, useState } from "react"
 import { motion, useInView } from "framer-motion"
 import { T } from "../tokens"
+import { PURPLE } from "../components/CaseParts"
 
 const spring = { duration: 0.9, ease: [0.16, 1, 0.3, 1] }
-const PURPLE = "#6C1FF3"
+// PURPLE vem de CaseParts: um valor so para o site inteiro
 
 // ─── GRAD BTN ────────────────────────────────────────────────────────────────
 // variant="outline"      → borda preta + texto preto; hover: contorno roxo + texto roxo
@@ -99,8 +100,9 @@ function FadeUp({ children, delay = 0 }) {
 
 const LABEL = {
   fontFamily: "system-ui, sans-serif", fontSize: 10, fontWeight: 700,
-  letterSpacing: "0.1em", textTransform: "uppercase", color: "#888888",
-  marginBottom: 20, display: "block",
+  letterSpacing: "0.1em", textTransform: "uppercase", color: T.meta,
+  // margem zerada porque o elemento e um h2 e o navegador traria a sua
+  margin: "0 0 20px", display: "block",
 }
 
 const RULE = { height: "0.5px", background: T.rule, margin: "48px 0" }
@@ -312,11 +314,11 @@ function CertRow({ cert, last }) {
         <div style={{ fontFamily: "system-ui, sans-serif", fontSize: 14, fontWeight: 700, color: T.ink, marginBottom: 2 }}>
           {cert.name}
         </div>
-        <div style={{ fontFamily: "system-ui, sans-serif", fontSize: 12, color: "#888" }}>
+        <div style={{ fontFamily: "system-ui, sans-serif", fontSize: 12, color: T.meta }}>
           {cert.issuer}
         </div>
       </div>
-      <div style={{ fontFamily: "Georgia, serif", fontStyle: "italic", fontSize: 12, color: "#AAAAAA", whiteSpace: "nowrap", marginLeft: 12 }}>
+      <div style={{ fontFamily: "Georgia, serif", fontStyle: "italic", fontSize: 12, color: T.meta, whiteSpace: "nowrap", marginLeft: 12 }}>
         {cert.date}
       </div>
     </div>
@@ -417,20 +419,20 @@ export default function About() {
         <FadeUp>
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 80 }}>
             <div>
-              <span style={LABEL}>Education</span>
+              <h2 style={LABEL}>Education</h2>
               <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
                 <div>
                   <div style={{ fontFamily: "system-ui, sans-serif", fontSize: 15, fontWeight: 600, color: T.ink }}>Post Graduate in UX/UI</div>
-                  <div style={{ fontFamily: "system-ui, sans-serif", fontSize: 13, color: "#888", marginTop: 4 }}>Laureate University · Uniritter</div>
+                  <div style={{ fontFamily: "system-ui, sans-serif", fontSize: 13, color: T.meta, marginTop: 4 }}>Laureate University · Uniritter</div>
                 </div>
                 <div>
                   <div style={{ fontFamily: "system-ui, sans-serif", fontSize: 15, fontWeight: 600, color: T.ink }}>Advertising &amp; Publicity</div>
-                  <div style={{ fontFamily: "system-ui, sans-serif", fontSize: 13, color: "#888", marginTop: 4 }}>Laureate University · Uniritter</div>
+                  <div style={{ fontFamily: "system-ui, sans-serif", fontSize: 13, color: T.meta, marginTop: 4 }}>Laureate University · Uniritter</div>
                 </div>
               </div>
             </div>
             <div>
-              <span style={LABEL}>Languages</span>
+              <h2 style={LABEL}>Languages</h2>
               <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
                 {[
                   { lang: "English", level: "Fluent" },
@@ -439,7 +441,7 @@ export default function About() {
                 ].map(l => (
                   <div key={l.lang} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", paddingBottom: 14, borderBottom: `0.5px solid ${T.rule}` }}>
                     <span style={{ fontFamily: "system-ui, sans-serif", fontSize: 15, fontWeight: 500, color: T.ink }}>{l.lang}</span>
-                    <span style={{ fontFamily: "Georgia, serif", fontStyle: "italic", fontSize: 13, color: "#888" }}>{l.level}</span>
+                    <span style={{ fontFamily: "Georgia, serif", fontStyle: "italic", fontSize: 13, color: T.meta }}>{l.level}</span>
                   </div>
                 ))}
               </div>
@@ -451,7 +453,7 @@ export default function About() {
 
         {/* 4 — EXPERIENCE */}
         <FadeUp>
-          <span style={LABEL}>Experience</span>
+          <h2 style={LABEL}>Experience</h2>
         </FadeUp>
         <div style={{ position: "relative" }}>
           {EXPERIENCE.map((e, i) => (
@@ -481,9 +483,9 @@ export default function About() {
                   <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 16, marginBottom: 12 }}>
                     <div>
                       <div style={{ fontFamily: "system-ui, sans-serif", fontSize: 15, fontWeight: 700, color: T.ink }}>{e.role}</div>
-                      <div style={{ fontFamily: "system-ui, sans-serif", fontSize: 13, color: "#888", marginTop: 3 }}>{e.company}</div>
+                      <div style={{ fontFamily: "system-ui, sans-serif", fontSize: 13, color: T.meta, marginTop: 3 }}>{e.company}</div>
                     </div>
-                    <div style={{ fontFamily: "Georgia, serif", fontStyle: "italic", fontSize: 13, color: "#AAAAAA", whiteSpace: "nowrap", marginTop: 2 }}>{e.period}</div>
+                    <div style={{ fontFamily: "Georgia, serif", fontStyle: "italic", fontSize: 13, color: T.meta, whiteSpace: "nowrap", marginTop: 2 }}>{e.period}</div>
                   </div>
                   <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
                     {e.tags.map(t => <span key={t} style={TAG_STYLE}>{t}</span>)}
@@ -500,13 +502,13 @@ export default function About() {
         <FadeUp>
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 80, alignItems: "start" }}>
             <div>
-              <span style={LABEL}>Certifications</span>
+              <h2 style={LABEL}>Certifications</h2>
               <div style={{ display: "flex", flexDirection: "column" }}>
                 {CERTS.map((c, i) => <CertRow key={i} cert={c} last={i === CERTS.length - 1} />)}
               </div>
             </div>
             <div>
-              <span style={LABEL}>Awards</span>
+              <h2 style={LABEL}>Awards</h2>
               <div style={{ display: "flex", flexDirection: "column" }}>
                 {AWARDS.map((a, i) => (
                   <div key={i} style={{
@@ -516,9 +518,9 @@ export default function About() {
                   }}>
                     <div>
                       <div style={{ fontFamily: "system-ui, sans-serif", fontSize: 14, fontWeight: 700, color: T.ink, marginBottom: 3 }}>{a.title}</div>
-                      <div style={{ fontFamily: "system-ui, sans-serif", fontSize: 12, color: "#888" }}>{a.issuer} · {a.category}</div>
+                      <div style={{ fontFamily: "system-ui, sans-serif", fontSize: 12, color: T.meta }}>{a.issuer} · {a.category}</div>
                     </div>
-                    <div style={{ fontFamily: "Georgia, serif", fontStyle: "italic", fontSize: 12, color: "#AAAAAA", whiteSpace: "nowrap", marginLeft: 16, marginTop: 2 }}>{a.date}</div>
+                    <div style={{ fontFamily: "Georgia, serif", fontStyle: "italic", fontSize: 12, color: T.meta, whiteSpace: "nowrap", marginLeft: 16, marginTop: 2 }}>{a.date}</div>
                   </div>
                 ))}
               </div>
@@ -530,7 +532,7 @@ export default function About() {
 
         {/* 5b — SPEAKING */}
         <FadeUp>
-          <span style={LABEL}>Speaking</span>
+          <h2 style={LABEL}>Speaking</h2>
           <div style={{ display: "flex", flexDirection: "column" }}>
             {SPEAKING.map((s, i) => (
               <div key={i} style={{
@@ -540,9 +542,9 @@ export default function About() {
               }}>
                 <div>
                   <div style={{ fontFamily: "system-ui, sans-serif", fontSize: 14, fontWeight: 700, color: T.ink, marginBottom: 3 }}>{s.title}</div>
-                  <div style={{ fontFamily: "system-ui, sans-serif", fontSize: 12, color: "#888" }}>{s.issuer} · {s.category}</div>
+                  <div style={{ fontFamily: "system-ui, sans-serif", fontSize: 12, color: T.meta }}>{s.issuer} · {s.category}</div>
                 </div>
-                <div style={{ fontFamily: "Georgia, serif", fontStyle: "italic", fontSize: 12, color: "#AAAAAA", whiteSpace: "nowrap", marginLeft: 16, marginTop: 2 }}>{s.date}</div>
+                <div style={{ fontFamily: "Georgia, serif", fontStyle: "italic", fontSize: 12, color: T.meta, whiteSpace: "nowrap", marginLeft: 16, marginTop: 2 }}>{s.date}</div>
               </div>
             ))}
           </div>
@@ -552,7 +554,7 @@ export default function About() {
 
         {/* 6 — TOOLBOX */}
         <FadeUp>
-          <span style={LABEL}>Toolbox</span>
+          <h2 style={LABEL}>Toolbox</h2>
           <div style={{ display: "flex", flexWrap: "wrap", gap: 10 }}>
             {TOOLS.map((tool) => (
               <div

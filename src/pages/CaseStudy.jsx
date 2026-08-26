@@ -80,7 +80,8 @@ const P = { padding: "64px 80px", maxWidth: 1280, margin: "0 auto" }
 const LABEL_BASE = {
   fontFamily: "system-ui, sans-serif", fontSize: 11, fontWeight: 700,
   letterSpacing: "0.1em", textTransform: "uppercase",
-  marginBottom: 20, display: "block",
+  // margin zerada porque o elemento e um h2: o navegador traria margem propria
+  margin: "0 0 20px", display: "block",
 }
 
 const BODY = {
@@ -90,9 +91,11 @@ const BODY = {
 
 function SweepLabel({ children }) {
   return (
-    <span style={LABEL_BASE}>
+    // h2 de verdade: sem isto a pagina pula de h1 para h3 e o leitor de tela
+    // perde a estrutura das secoes
+    <h2 style={LABEL_BASE}>
       {children}
-    </span>
+    </h2>
   )
 }
 
@@ -161,7 +164,7 @@ export default function CaseStudy({ onContactClick }) {
                 color: T.mid, background: T.offwhite, padding: "3px 10px", borderRadius: 12,
               }}>{t}</span>
             ))}
-            <span style={{ fontFamily: "Georgia, serif", fontSize: 12, fontStyle: "italic", color: "#888888" }}>
+            <span style={{ fontFamily: "Georgia, serif", fontSize: 12, fontStyle: "italic", color: T.meta }}>
               {c.year.replace(" to present", "").replace(" to ", " – ")}
             </span>
           </motion.div>
@@ -261,8 +264,9 @@ export default function CaseStudy({ onContactClick }) {
                 { label: "Role", value: c.overview.role },
                 { label: "Year", value: c.year.replace(" to present", " – present").replace(" to ", " – ") },
                 { label: "Scope", value: c.overview.scope },
+                { label: "Tools", value: c.overview.tools },
                 { label: "Team", value: c.overview.team },
-              ].map(item => (
+              ].filter(item => item.value).map(item => (
                 <div key={item.label}>
                   <div style={{
                     fontFamily: "system-ui, sans-serif", fontSize: 10, fontWeight: 700,
@@ -412,7 +416,7 @@ export default function CaseStudy({ onContactClick }) {
                           width: 40, height: 40, borderRadius: 6, background: s.hex,
                           border: "0.5px solid rgba(0,0,0,0.08)", flexShrink: 0,
                         }} />
-                        <span style={{ fontSize: 8, fontFamily: "monospace", color: "#888888", textAlign: "center", lineHeight: 1.3 }}>
+                        <span style={{ fontSize: 8, fontFamily: "monospace", color: T.meta, textAlign: "center", lineHeight: 1.3 }}>
                           {s.label}
                         </span>
                       </div>
@@ -550,7 +554,7 @@ export default function CaseStudy({ onContactClick }) {
             }}>
               {c.takeaway}
             </p>
-            <span style={{ fontFamily: "system-ui, sans-serif", fontSize: 12, fontWeight: 600, letterSpacing: "0.06em", textTransform: "uppercase", color: "#888888" }}>
+            <span style={{ fontFamily: "system-ui, sans-serif", fontSize: 12, fontWeight: 600, letterSpacing: "0.06em", textTransform: "uppercase", color: T.meta }}>
               {c.company} · {c.year.replace(" to present", "").replace(" to ", " – ")}
             </span>
           </div>
@@ -579,7 +583,7 @@ export default function CaseStudy({ onContactClick }) {
               <div style={{
                 fontFamily: "system-ui, sans-serif", fontSize: 11, fontWeight: 600,
                 letterSpacing: "0.08em", textTransform: "uppercase",
-                color: T.light, marginBottom: 10,
+                color: T.meta, marginBottom: 10,
               }}>
                 Next case study
               </div>

@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react"
 import { Link } from "react-router-dom"
 import { motion, useInView } from "framer-motion"
 import { T } from "../tokens"
+import { PURPLE } from "../components/CaseParts"
 import { visibleCases } from "../data/cases"
 
 const spring = { duration: 0.9, ease: [0.16, 1, 0.3, 1] }
@@ -88,7 +89,7 @@ function HeroLine({ children, delay = 0, serif = false, light = false, size }) {
   )
 }
 
-const PURPLE = "#6C1FF3"
+// PURPLE vem de CaseParts: um valor so para o site inteiro
 
 // Sublinhado handwritten sob headings de section
 function HandUnderlineHeading({ children, id, style = {} }) {
@@ -461,7 +462,7 @@ function CaseCard({ c, index }) {
 
           {!c.comingSoon
             ? <OutlineButton hovered={hovered} />
-            : <span style={{ fontFamily: "system-ui, sans-serif", fontSize: 13, fontWeight: 600, color: "#AAAAAA" }}>Coming soon</span>}
+            : <span style={{ fontFamily: "system-ui, sans-serif", fontSize: 13, fontWeight: 600, color: T.meta }}>Coming soon</span>}
         </div>
       </Link>
     </motion.article>
@@ -662,7 +663,7 @@ function CompaniesMarquee() {
       `}</style>
       <div style={{ maxWidth: 1280, margin: "0 auto 40px", padding: "0 48px" }}>
         <HandUnderlineHeading style={{ marginBottom: 8 }}>Companies I've worked with</HandUnderlineHeading>
-        <p style={{ fontFamily: "Georgia, serif", fontStyle: "italic", fontSize: 15, color: T.light }}>
+        <p style={{ fontFamily: "Georgia, serif", fontStyle: "italic", fontSize: 15, color: T.meta }}>
           11 years across fintech, media and retail
         </p>
       </div>

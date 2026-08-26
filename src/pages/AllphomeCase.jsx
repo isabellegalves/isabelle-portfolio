@@ -1,13 +1,16 @@
 import { useEffect } from "react"
 import { CaseHeader, CaseNext, Annotation, ProcessGallery, PURPLE } from "../components/CaseParts"
 import { getCaseBySlug, getNextCase } from "../data/cases"
+import { T } from "../tokens"
 
 const C = {
-  bg:          "#FFFFFF",
-  surface:     "#F0EDE8",
-  border:      "#E2DDD6",
-  text:        "#1A1917",
-  mid:         "#6B6760",
+  // Alinhado aos tokens do site. Verde e vermelho ficam porque sao
+  // semanticos dentro do case, nao decoracao.
+  bg:          T.white,
+  surface:     T.offwhite,
+  border:      T.rule,
+  text:        T.ink,
+  mid:         T.mid,
   accent:      PURPLE,
   accentLight: "#F3EFFF",
   green:       "#1D9E75",

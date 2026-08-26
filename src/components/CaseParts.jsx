@@ -149,7 +149,7 @@ export function CaseHeader({ tags = [], year = "", title, summary, image, compan
             }}>{t}</span>
           ))}
           {yearClean && (
-            <span style={{ fontFamily: "Georgia, serif", fontSize: 12, fontStyle: "italic", color: "#888888" }}>
+            <span style={{ fontFamily: "Georgia, serif", fontSize: 12, fontStyle: "italic", color: T.meta }}>
               {yearClean}
             </span>
           )}
@@ -242,7 +242,7 @@ export function CaseNext({ slug, company, title }) {
           <div style={{
             fontFamily: "system-ui, sans-serif", fontSize: 11, fontWeight: 600,
             letterSpacing: "0.08em", textTransform: "uppercase",
-            color: T.light, marginBottom: 10,
+            color: T.meta, marginBottom: 10,
           }}>
             Next case study
           </div>
@@ -318,7 +318,7 @@ function ProcessShot({ slug, name, index }) {
             position: "absolute", inset: 0,
             display: "flex", alignItems: "center", justifyContent: "center",
             fontFamily: "system-ui, sans-serif", fontSize: 11, fontWeight: 600,
-            letterSpacing: "0.08em", textTransform: "uppercase", color: T.light,
+            letterSpacing: "0.08em", textTransform: "uppercase", color: T.meta,
           }}
         >
           {String(index + 1).padStart(2, "0")}

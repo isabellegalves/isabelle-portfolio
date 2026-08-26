@@ -17,6 +17,7 @@ export const cases = [
     image: "/images/cambio.jpg",
     overview: {
       role: "Senior Product Designer",
+      tools: "Figma, plus Figma Make and FigJam with AI assistance for references and early sketches",
       scope: "Product Design, Information Architecture, Interaction Design, Prototyping, Design Handoff",
       team: "Sole product designer on Câmbio, in a design pair with a UX Writer, working alongside product, engineering, compliance and legal",
       context: "Bradesco Câmbio handles international remittances for customers sending money abroad. Every transfer carries a central bank classification, foreign exchange rules, IOF tax and a spread, and all of it has to be collected and disclosed correctly before the money moves.",
@@ -72,6 +73,7 @@ export const cases = [
     image: "/images/interbancario.jpg",
     overview: {
       role: "Senior Product Designer",
+      tools: "Figma, plus Figma Make and FigJam with AI assistance for references and early sketches",
       scope: "Product Design, Information Architecture, Interaction Design, Design System, Design Handoff",
       team: "Sole product designer, working alongside product, engineering and the foreign exchange trading desk",
       context: "CMIB is the internal system Bradesco's trading desk uses to run interbank foreign exchange: buying and selling currency with other institutions, exchanging messages with the central bank and over SWIFT, and settling operations that move hundreds of millions. Every value, client name and operator detail shown in this case is fictitious sample data.",
@@ -128,6 +130,7 @@ export const cases = [
     image: "/images/conta-internacional.jpg",
     overview: {
       role: "Senior Product Designer",
+      tools: "Figma, plus Figma Make and FigJam with AI assistance for references and early sketches",
       scope: "Product Design, Content Design, Information Architecture, Interaction Design",
       team: "Sole product designer, working from a quantitative study run by the bank's CX insights team, alongside product and the international accounts squad",
       context: "Bradesco offers two international accounts. Bradesco Bank is a full American checking account with investments, a US credit card and property financing. My Account holds foreign currency for travel, with a physical and virtual debit card, withdrawals in 180 currencies and acceptance in 195 countries. They serve different lives, and they sat next to each other in the app as two cards of equal weight. Every value shown in this case is sample data.",
@@ -423,6 +426,7 @@ export const cases = [
     },
     overview: {
       role: "Senior Product Designer",
+      tools: "Figma, plus Figma Make and FigJam with AI assistance for references and early sketches",
       scope: "UX Research, Product Design, Information Architecture",
       team: "Cross-functional team with POs, developers and business stakeholders",
       context: "Bradesco is one of Latin America's largest banks, with operations across the US, Europe and Asia. MyAccount is its international digital account, built for Brazilians who live, invest or travel abroad, competing directly with players like Wise and Revolut.",
