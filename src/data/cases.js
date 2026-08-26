@@ -201,11 +201,13 @@ export const cases = [
     customPage: true,
     company: "Piccadilly",
     year: "2019 to 2020",
-    title: "Restructuring a retail app around how people actually shop for shoes.",
-    summary: "How restructuring the information architecture around customer intent states instead of product taxonomy lifted task completion rates by 18% on the Piccadilly mobile app.",
+    title: "Designing a footwear brand's first app, in a category that had barely gone mobile.",
+    summary: "Piccadilly sold online through a web store, but had no app, and almost none of its competitors did either. I designed the brand's first mobile product from scratch, organised around how people decide what to wear rather than how a warehouse stores stock.",
     tags: ["E-commerce", "Mobile", "UX Strategy"],
     metrics: [
-      { n: "18%", label: "Task completion lift" },
+      { n: "4.9", label: "Rating on both the App Store and Google Play" },
+      { n: "500k+", label: "Downloads on Google Play since launch" },
+      { n: "5.4k", label: "Reviews sustaining the rating" },
       { n: "3",   label: "Checkout steps (down from 6)" },
       { n: "2",   label: "Platforms redesigned" },
     ],
@@ -218,20 +220,20 @@ export const cases = [
       context: "Piccadilly is one of Brazil's largest women's footwear brands. I was responsible for defining the UX strategy for a new mobile app from scratch, creating the information architecture, high-fidelity wireframes and UI components for web, desktop and mobile.",
     },
     problem: {
-      body: "Piccadilly had a loyal customer base but a digital experience that did not reflect the brand quality. The mobile app lacked a clear information architecture, made product discovery difficult and had drop-off points in the purchase flow that were costing conversions. Users knew what they wanted but could not find it easily.",
-      highlight: "The brand had strong offline presence. The digital product was not keeping up.",
+      body: "Piccadilly had a loyal customer base, a web store and an institutional site, but no app. Neither did most of the category: of the brands we studied, only Arezzo had shipped one. That left two problems at once. The brand had no mobile product, and there was no mature reference in the category to learn from. The web store was organised the way a warehouse thinks about inventory, by product type, which works for stock control and not for someone deciding what to wear.",
+      highlight: "There was no app to improve, and almost none in the category to learn from.",
     },
     process: [
       {
         n: "01",
-        title: "Journey mapping and research",
-        body: "I mapped the existing shopping journey through user interviews and competitive analysis, identifying the main friction points: poor search and filter functionality, unclear size selection flow and a checkout process with too many steps. These findings defined the redesign priorities.",
+        title: "Benchmarking a category that had barely gone mobile",
+        body: "The owner asked us to follow Arezzo's pattern, the only direct competitor that had shipped an app. I studied it alongside Dumond and Bottero, brands positioned like Piccadilly on modern design and comfort, mapping how each handled discovery, size and checkout. Because most of them had no app at all, the study was as much about what the category was missing as about what to borrow.",
         image: null,
       },
       {
         n: "02",
-        title: "Information architecture and UX",
-        body: "I restructured the product navigation around how users actually browse: by occasion, category and style, not just by product type. I simplified the size selection flow and reduced the checkout to three steps, validated through moderated usability testing before implementation.",
+        title: "Organising around occasion, not inventory",
+        body: "I followed the reference where it served the product and diverged where it did not. Navigation moved away from the web store's product taxonomy and towards how someone actually decides: by occasion, category and style. I designed size selection as a focused sequence and brought the purchase down to three steps, against the six the web store required, validated through moderated usability testing before implementation.",
         image: null,
       },
       {

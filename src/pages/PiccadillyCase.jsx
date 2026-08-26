@@ -118,17 +118,17 @@ export default function PiccadillyCase() {
           <Annotation text="the challenge" direction="down" />
           <div style={{ maxWidth: 640 }}>
             <p style={{ fontSize: 15, lineHeight: 1.85, color: C.text, marginBottom: "1.25rem", fontFamily: "system-ui, sans-serif" }}>
-              Piccadilly is one of Brazil's largest women's footwear brands, with over 2 million followers and a loyal customer base built over decades. But in 2019, the brand had no digital product. No app, no e-commerce, nothing.
+              Piccadilly is one of Brazil's largest women's footwear brands, with over 2 million followers and a loyal customer base built over decades. But in 2019, the brand sold online through a web store and an institutional site, and had no app at all.
             </p>
             <p style={{ fontSize: 15, lineHeight: 1.85, color: C.text, marginBottom: "1.75rem", fontFamily: "system-ui, sans-serif" }}>
-              Launched during the peak of the pandemic in Brazil, this was Piccadilly's first digital product ever. The challenge was not just to design an app. It was to build a complete digital commerce experience from scratch for a customer base that skewed older and had little familiarity with mobile shopping.
+              Launched during the peak of the pandemic in Brazil, this was Piccadilly's first mobile product. The challenge was not just to design an app. It was to build a complete digital commerce experience from scratch for a customer base that skewed older and had little familiarity with mobile shopping.
             </p>
           </div>
           <blockquote style={{ borderLeft: `2px solid ${C.accent}`, paddingLeft: "1.25rem", marginBottom: "1.5rem", fontFamily: "Georgia, serif", fontStyle: "italic", fontSize: "1.05rem", color: C.mid, maxWidth: 640, lineHeight: 1.7 }}>
             "The brand had strong offline presence. The digital product had to earn the same trust, for a customer who had never bought shoes without trying them on."
           </blockquote>
           <p style={{ fontSize: 15, lineHeight: 1.85, color: C.mid, fontFamily: "system-ui, sans-serif", maxWidth: 640 }}>
-            The existing catalog structure was organized around product taxonomy, the way a warehouse thinks about inventory. Not around how a woman actually shops for shoes.
+            The web store's catalog was organized around product taxonomy, the way a warehouse thinks about inventory. Not around how a woman actually shops for shoes.
           </p>
         </div>
       </section>
@@ -140,14 +140,14 @@ export default function PiccadillyCase() {
 
           {/* FASE 1 */}
           <Phase n="01" title="Journey Mapping and Competitive Analysis">
-            I mapped the shopping journey identifying the main friction points: poor search and filter functionality, unclear size selection flow and a checkout process with too many steps. Competitive analysis included Arezzo, Dumond and Beira Rio, focusing on how each platform handled product discovery and purchase completion.
+            I mapped the shopping journey identifying the main friction points: poor search and filter functionality, unclear size selection flow and a checkout process with too many steps. Competitive analysis included Arezzo, Dumond and Bottero, brands positioned like Piccadilly on modern design and comfort. Of the three, only Arezzo had shipped an app, so the study was as much about what the category was missing as about what to borrow.
           </Phase>
           <HR />
 
           {/* FASE 2 */}
           <Annotation text="key step!" direction="down-left" />
           <Phase n="02" title="Information Architecture and UX">
-            I restructured the product navigation around how users actually browse: by occasion, category and style, not just by product type. I simplified the size selection flow and reduced the checkout from 6 to 3 steps, validated through moderated usability testing before implementation.
+            I restructured the product navigation around how users actually browse: by occasion, category and style, not just by product type. I designed size selection as a focused sequence and brought the purchase down to 3 steps, against the 6 the web store required, validated through moderated usability testing before implementation.
           </Phase>
           <HR />
 
@@ -221,9 +221,9 @@ export default function PiccadillyCase() {
         <div style={wrap}>
           <Annotation text="the proof" direction="down" />
           <div className="p-g3" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 12, marginBottom: "1.5rem" }}>
-            <ImpactCard number="18%" label="Task completion lift after restructuring the information architecture" />
-            <ImpactCard number="3" label="Checkout steps, down from 6, validated through usability testing" />
-            <ImpactCard number="2" label="Platforms redesigned, iOS and Android, with a shared component library" />
+            <ImpactCard number="4.9" label="Rating on both the App Store and Google Play" />
+            <ImpactCard number="500k+" label="Downloads on Google Play since launch" />
+            <ImpactCard number="3" label="Checkout steps, against the 6 the web store required" />
           </div>
           <Callout label="BEYOND THE APP">
             The app's success directly enabled the Embaixadoras Piccadilly program, a digital reseller initiative that gave women an additional source of income during the pandemic. What started as a product launch became a vehicle for financial inclusion.
