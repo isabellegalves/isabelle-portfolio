@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import { motion } from "framer-motion"
 import { T } from "../tokens"
@@ -290,8 +290,9 @@ export function CaseNext({ slug, company, title }) {
 // ─── PROCESS GALLERY ───────────────────────────────────────────────────
 // Grid 2x2 de imagens de processo, com caminho parametrizado por slug:
 //   /images/cases/<slug>/process-01.jpg ... process-04.jpg
-// Enquanto o arquivo não existir, o slot mostra um placeholder neutro,
-// então o grid nunca quebra e as imagens podem ser adicionadas aos poucos.
+// O grid pergunta antes quais arquivos existem, então um case sem imagens
+// não deixa quatro caixas vazias na página: a seção inteira não aparece.
+// As imagens podem continuar sendo adicionadas aos poucos, uma a uma.
 
 const PROCESS_SLOTS = ["process-01", "process-02", "process-03", "process-04"]
 
@@ -300,8 +301,7 @@ export function processImagePath(slug, name) {
 }
 
 function ProcessShot({ slug, name, index }) {
-  // "loading" -> tentando carregar | "ready" -> imagem existe | "empty" -> sem arquivo
-  const [status, setStatus] = useState("loading")
+  const [pronta, setPronta] = useState(false)
   const src = processImagePath(slug, name)
 
   return (
@@ -311,7 +311,7 @@ function ProcessShot({ slug, name, index }) {
         background: T.offwhite, borderRadius: 14, overflow: "hidden",
       }}
     >
-      {status !== "ready" && (
+      {!pronta && (
         <div
           aria-hidden="true"
           style={{
@@ -329,12 +329,11 @@ function ProcessShot({ slug, name, index }) {
         src={src}
         alt=""
         loading="lazy"
-        onLoad={() => setStatus("ready")}
-        onError={() => setStatus("empty")}
+        onLoad={() => setPronta(true)}
         style={{
           position: "relative", width: "100%", height: "100%",
           objectFit: "cover", display: "block",
-          opacity: status === "ready" ? 1 : 0,
+          opacity: pronta ? 1 : 0,
           transition: "opacity 0.4s ease",
         }}
       />
@@ -342,8 +341,40 @@ function ProcessShot({ slug, name, index }) {
   )
 }
 
+// Um HEAD por slot. Barato, e resolve antes de qualquer pixel aparecer.
+// O servidor de desenvolvimento devolve index.html com 200 para arquivo
+// que não existe, então o content-type é que decide, não só o status.
+async function existe(url) {
+  try {
+    const res = await fetch(url, { method: "HEAD" })
+    if (!res.ok) return false
+    const tipo = res.headers.get("content-type") || ""
+    return tipo.startsWith("image/")
+  } catch {
+    return false
+  }
+}
+
 export function ProcessGallery({ slug, slots = PROCESS_SLOTS }) {
-  if (!slug) return null
+  // null = ainda perguntando. Até saber, nada é desenhado.
+  const [existentes, setExistentes] = useState(null)
+
+  useEffect(() => {
+    if (!slug) return
+    let vivo = true
+    setExistentes(null)
+    Promise.all(slots.map((name) => existe(processImagePath(slug, name)))).then(
+      (achados) => {
+        if (vivo) setExistentes(slots.filter((_, i) => achados[i]))
+      },
+    )
+    return () => {
+      vivo = false
+    }
+  }, [slug, slots])
+
+  if (!slug || !existentes || existentes.length === 0) return null
+
   return (
     <div
       className="process-grid"
@@ -351,8 +382,8 @@ export function ProcessGallery({ slug, slots = PROCESS_SLOTS }) {
         display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12, marginTop: 40,
       }}
     >
-      {slots.map((name, i) => (
-        <ProcessShot key={name} slug={slug} name={name} index={i} />
+      {existentes.map((name) => (
+        <ProcessShot key={name} slug={slug} name={name} index={slots.indexOf(name)} />
       ))}
     </div>
   )
