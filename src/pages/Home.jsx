@@ -205,7 +205,7 @@ function Hero({ onContactClick }) {
             style={{ display: "flex", alignItems: "center", justifyContent: "center" }}
           >
             <motion.img
-              src="/images/hero-phones.png"
+              src="/images/hero-phones.jpg"
               alt="Mobile app screenshots"
               animate={{ y: [0, -14, 0] }}
               transition={{ duration: 4.5, ease: "easeInOut", repeat: Infinity }}

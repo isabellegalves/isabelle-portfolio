@@ -208,10 +208,17 @@ const P = { maxWidth: 1280, margin: "0 auto", padding: "0 80px" }
 
 const CERTS = [
   {
+    name: "Building AI Apps with Figma Make and Supabase",
+    issuer: "Memorisely",
+    date: "Feb 2026",
+    logo: null,
+    logoBg: "#ffffff", abbr: "M",
+  },
+  {
     name: "AI for Designers",
     issuer: "IxDF — The Interaction Design Foundation",
     date: "Aug 2025",
-    logo: "https://logo.clearbit.com/interaction-design.org",
+    logo: null,
     logoBg: "#ffffff", abbr: "IxDF",
   },
   {
@@ -294,7 +301,7 @@ function CertRow({ cert, last }) {
         display: "flex", alignItems: "center", justifyContent: "center",
         overflow: "hidden",
       }}>
-        {!imgFailed
+        {cert.logo && !imgFailed
           ? <img src={cert.logo} alt={cert.issuer} width={26} height={26}
               style={{ objectFit: "contain", display: "block" }}
               onError={() => setImgFailed(true)} />

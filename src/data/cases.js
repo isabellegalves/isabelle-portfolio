@@ -162,7 +162,7 @@ export const cases = [
         image: null,
       },
     ],
-    takeaway: "The measurable problem was a usability score. The real problem was naming. Two products had been given names that described the bank's structure rather than the customer's situation, and every screen after that was paying interest on it. Renaming was not on the table, so the interface had to do the work instead: ask what the person wants, answer in their words, and let the names arrive last, once they finally mean something.",
+    takeaway: "The measurable problem was a usability score. The real problem was naming. Two products had been given names that described the bank's structure rather than the customer's situation, and every screen after that was paying interest on it. Renaming was not on the table, so the interface had to do the work instead: ask what the person wants, answer in their words, and let the names arrive last, once they finally mean something. The flow shipped to production.",
   },
 
   {
