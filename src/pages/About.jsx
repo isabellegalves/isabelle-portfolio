@@ -276,15 +276,21 @@ const SPEAKING = [
     category: "Speaker",
   },
   {
-    title: "Accessibility and inclusive digital experiences",
-    issuer: "RCX",
+    title: "User interfaces and design systems",
+    issuer: "RCX Talk Terça",
     date: "2024",
     category: "Speaker",
   },
   {
-    title: "The role of empathy in UX",
+    title: "Accessibility and inclusive digital experiences",
+    issuer: "RCX Talk Terça",
+    date: "2024",
+    category: "Speaker",
+  },
+  {
+    title: "The empathy behind the interface in UX design",
     issuer: "The Developers Conference (TDC)",
-    date: "2020",
+    date: "Mar 2021",
     category: "Speaker",
   },
 ]
