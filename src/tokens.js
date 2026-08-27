@@ -37,3 +37,16 @@ export const TYPE = {
   takeaway:  "clamp(18px, 2.2vw, 26px)",  // fecho do case
   cardTitle: "clamp(18px, 2vw, 22px)",    // titulo no card da grade
 }
+
+// ─── PROSA CORRIDA ─────────────────────────────────────────────────────
+// Tres papeis, nao mais. Antes o mesmo paragrafo de case aparecia com 15,
+// 16, 17 e 18px dependendo da pagina e da secao, cada um com sua altura de
+// linha e sua cor. A diferenca nao se le como hierarquia, se le como
+// descuido. `lead` abre a pagina, `body` carrega o texto, `small` e para
+// legenda e item de lista. Texto longo nunca desce de 16px, que e o piso
+// de leitura confortavel no celular.
+export const TEXT = {
+  lead:  { fontFamily: "system-ui, sans-serif", fontSize: 18, lineHeight: 1.7, color: "#333333" },
+  body:  { fontFamily: "system-ui, sans-serif", fontSize: 16, lineHeight: 1.8, color: "#333333" },
+  small: { fontFamily: "system-ui, sans-serif", fontSize: 15, lineHeight: 1.7, color: "#4A4A4A" },
+}

@@ -55,7 +55,8 @@ function NavLink({ to, children, onClick }) {
         fontWeight: 500,
         letterSpacing: "0.01em",
         textDecoration: "none",
-        padding: "6px 14px",
+        // 6px davam 29px de alvo. O minimo confortavel no toque e 44.
+        padding: "14px 14px",
         borderRadius: 20,
         color: showUnderline ? PURPLE : "#4A4A4A",
         position: "relative",
@@ -132,7 +133,7 @@ export default function Nav({ onContactClick }) {
             style={{
               fontFamily: "system-ui, sans-serif",
               fontSize: 14, fontWeight: 600,
-              padding: "9px 20px", borderRadius: 24,
+              padding: "14px 20px", borderRadius: 24,
               cursor: "pointer", border: "none",
               background: contactHovered ? PURPLE : "#0A0A0A",
               color: "#FFFFFF",

@@ -1,7 +1,7 @@
 import { useEffect } from "react"
 import { CaseHeader, CaseNext, Annotation, ProcessGallery, PURPLE, SectionLabel } from "../components/CaseParts"
 import { getCaseBySlug, getNextCase } from "../data/cases"
-import { T } from "../tokens"
+import { T, TEXT } from "../tokens"
 
 const C = {
   // Alinhado aos tokens do site. Verde e vermelho ficam porque sao
@@ -39,7 +39,7 @@ function Phase({ n, title, children }) {
         <span style={{ fontFamily: "'Caveat', cursive", fontSize: "20px", fontWeight: 600, color: C.accent }}>{n}</span>
       </div>
       <h3 style={{ fontFamily: "Georgia, serif", fontStyle: "italic", fontWeight: 400, fontSize: "1.9rem", color: C.text, marginBottom: "0.9rem", lineHeight: 1.2 }}>{title}</h3>
-      {children && <p style={{ fontSize: 15, lineHeight: 1.8, color: C.mid, maxWidth: 640, fontFamily: "system-ui, sans-serif" }}>{children}</p>}
+      {children && <p style={{ ...TEXT.body, color: C.mid, maxWidth: 640 }}>{children}</p>}
     </div>
   )
 }
@@ -202,17 +202,17 @@ export default function AllphomeCase() {
         <div style={wrap}>
           <SectionLabel>The Problem</SectionLabel>
           <div style={{ maxWidth: 640 }}>
-            <p style={{ fontSize: 15, lineHeight: 1.85, color: C.text, marginBottom: "1.25rem", fontFamily: "system-ui, sans-serif" }}>
+            <p style={{ ...TEXT.body, color: C.text, marginBottom: "1.25rem" }}>
               Allphome was an established gym business in Brazil with a loyal in-person community. As digital fitness platforms gained ground, with competitors like <strong style={{ color: C.text, fontWeight: 500 }}>Queima Diaria</strong> capturing online audiences, the company decided to launch its first digital product.
             </p>
-            <p style={{ fontSize: 15, lineHeight: 1.85, color: C.text, marginBottom: "1.75rem", fontFamily: "system-ui, sans-serif" }}>
+            <p style={{ ...TEXT.body, color: C.text, marginBottom: "1.75rem" }}>
               The challenge was not just to build an app. It was to help an established business <strong style={{ color: C.text, fontWeight: 500 }}>transition from a traditional gym model into a digital fitness experience</strong> without losing what made the brand valuable in the first place.
             </p>
           </div>
           <blockquote style={{ borderLeft: `2px solid ${C.accent}`, paddingLeft: "1.25rem", marginBottom: "1.5rem", fontFamily: "Georgia, serif", fontStyle: "italic", fontSize: "1.05rem", color: C.mid, maxWidth: 640, lineHeight: 1.7 }}>
             "Most fitness platforms are built for operators, not members. Allphome wanted to flip that equation: the student's experience had to come first."
           </blockquote>
-          <p style={{ fontSize: 15, lineHeight: 1.85, color: C.mid, fontFamily: "system-ui, sans-serif", maxWidth: 640 }}>
+          <p style={{ ...TEXT.body, color: C.mid, maxWidth: 640 }}>
             Early assumptions placed the class booking flow at the center of the product. Research told a different story.
           </p>
         </div>

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import { motion } from "framer-motion"
-import { T, TYPE } from "../tokens"
+import { T, TYPE, TEXT } from "../tokens"
 
 /*
   CaseParts.jsx
@@ -142,8 +142,9 @@ export function CaseHeader({ tags = [], year = "", title, summary, image, compan
           <Link to="/#work" style={{
             fontFamily: "system-ui, sans-serif", fontSize: 12, fontWeight: 600,
             letterSpacing: "0.04em", textTransform: "uppercase",
-            color: "#666666", textDecoration: "none",
+            color: T.meta, textDecoration: "none",
             display: "inline-flex", alignItems: "center", gap: 6,
+            minHeight: 44, marginTop: -14,
           }}>
             ← All work
           </Link>
@@ -185,10 +186,7 @@ export function CaseHeader({ tags = [], year = "", title, summary, image, compan
           <motion.p
             initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.35 }}
-            style={{
-              fontFamily: "system-ui, sans-serif", fontSize: 18,
-              lineHeight: 1.7, color: "#444444", maxWidth: 640, marginBottom: 56,
-            }}
+            style={{ ...TEXT.lead, maxWidth: 640, marginBottom: 56 }}
           >
             {summary}
           </motion.p>

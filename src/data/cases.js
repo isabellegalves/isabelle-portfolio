@@ -17,6 +17,7 @@ export const cases = [
     bg: "#FCEEF0",
     image: "/images/cambio.webp",
     overview: {
+      company: "Banco Bradesco, international area",
       role: "Senior Product Designer",
       tools: "Figma, plus Figma Make and FigJam with AI assistance for references and early sketches",
       scope: "Product Design, Information Architecture, Interaction Design, Prototyping, Design Handoff",
@@ -73,6 +74,7 @@ export const cases = [
     bg: "#EEF2FC",
     image: "/images/interbancario.webp",
     overview: {
+      company: "Banco Bradesco, international area",
       role: "Senior Product Designer",
       tools: "Figma, plus Figma Make and FigJam with AI assistance for references and early sketches",
       scope: "Product Design, Information Architecture, Interaction Design, Design System, Design Handoff",
@@ -131,6 +133,7 @@ export const cases = [
     bg: "#FAF1F3",
     image: "/images/conta-internacional.webp",
     overview: {
+      company: "Banco Bradesco, international area",
       role: "Senior Product Designer",
       tools: "Figma, plus Figma Make and FigJam with AI assistance for references and early sketches",
       scope: "Product Design, Content Design, Information Architecture, Interaction Design",
@@ -428,11 +431,12 @@ export const cases = [
       ],
     },
     overview: {
+      company: "Banco Bradesco, international area",
       role: "Senior Product Designer",
       tools: "Figma, plus Figma Make and FigJam with AI assistance for references and early sketches",
       scope: "UX Research, Product Design, Information Architecture",
       team: "Cross-functional team with POs, developers and business stakeholders",
-      context: "Bradesco is one of Latin America's largest banks, with operations across the US, Europe and Asia. MyAccount is its international digital account, built for Brazilians who live, invest or travel abroad, competing directly with players like Wise and Revolut.",
+      context: "Banco Bradesco is one of Latin America's largest banks, with operations across the US, Europe and Asia. My Account is one of its international products, built for Brazilians who live, invest or travel abroad, competing directly with players like Wise and Revolut.",
     },
     problem: {
       body: "Support tickets and user interviews pointed to a recurring pattern. Most customers used the card almost exclusively when traveling, and kept it switched off in daily life for safety, either through a temporary lock or by disabling contactless. The trouble started before the trip. Many forgot to turn those functions back on, and only discovered it at the worst possible moment, standing at a checkout abroad with a card that would not work. The result was frustration, a sense that the product had failed them, and a steady stream of support calls. The controls that could have prevented this were buried in a hard to reach corner of the app.",

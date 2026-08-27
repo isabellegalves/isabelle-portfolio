@@ -27,7 +27,7 @@ export default function Footer() {
         </div>
 
         <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: 12 }}>
-          <div style={{ display: "flex", gap: 24 }}>
+          <div style={{ display: "flex", gap: 24, marginBottom: -12 }}>
             {[
               { label: "Linkedin", href: "https://www.linkedin.com/in/isabellegalves/" },
               { label: "Work", href: "/#work" },
@@ -38,6 +38,8 @@ export default function Footer() {
                   fontFamily: "system-ui, sans-serif", fontSize: 12, fontWeight: 500,
                   letterSpacing: "0.04em", textTransform: "uppercase",
                   color: "#555", textDecoration: "none",
+                  // Tinham 14px de altura de alvo, metade do minimo de toque.
+                  display: "inline-flex", alignItems: "center", minHeight: 44,
                   transition: "color 0.2s",
                 }}
                 onMouseEnter={e => e.currentTarget.style.color = "#fff"}

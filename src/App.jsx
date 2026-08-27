@@ -67,7 +67,7 @@ export default function App() {
           .hero-phones { display: none !important; }
           .work-grid { grid-template-columns: 1fr !important; }
           .caps-grid { grid-template-columns: 1fr !important; }
-          .overview-grid { grid-template-columns: 1fr !important; }
+          .overview-grid { grid-template-columns: repeat(2, 1fr) !important; }
           .featured-grid { grid-template-columns: 1fr !important; }
           .process-grid { grid-template-columns: 1fr !important; }
 
@@ -104,6 +104,17 @@ export default function App() {
           .caps-grid > div {
             border-radius: 14px !important;
           }
+
+          /* Empilhados, os tres cards do About ficavam com o arredondamento
+             de quando eram uma faixa horizontal: o primeiro so com os cantos
+             da esquerda, o do meio quadrado, o ultimo so com os da direita.
+             Empilhado, cada card e um card. */
+          .about-values > div {
+            border-radius: 14px !important;
+          }
+          .about-values { gap: 10px !important; }
+
+          .overview-grid { grid-template-columns: 1fr !important; }
         }
 
         @media (prefers-reduced-motion: reduce) {

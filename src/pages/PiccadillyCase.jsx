@@ -1,7 +1,7 @@
 import { useEffect } from "react"
 import { CaseHeader, CaseNext, Annotation, ProcessGallery, PURPLE, SectionLabel } from "../components/CaseParts"
 import { getCaseBySlug, getNextCase } from "../data/cases"
-import { T } from "../tokens"
+import { T, TEXT } from "../tokens"
 
 const C = {
   // Alinhado aos tokens do site. Os unicos valores proprios sao o roxo de
@@ -28,7 +28,7 @@ function Phase({ n, title, children }) {
         <span style={{ fontFamily: "'Caveat', cursive", fontSize: "20px", fontWeight: 600, color: C.accent }}>{n}</span>
       </div>
       <h3 style={{ fontFamily: "Georgia, serif", fontStyle: "italic", fontWeight: 400, fontSize: "1.9rem", color: C.text, marginBottom: "0.9rem", lineHeight: 1.2 }}>{title}</h3>
-      {children && <p style={{ fontSize: 15, lineHeight: 1.8, color: C.mid, maxWidth: 640, fontFamily: "system-ui, sans-serif" }}>{children}</p>}
+      {children && <p style={{ ...TEXT.body, color: C.mid, maxWidth: 640 }}>{children}</p>}
     </div>
   )
 }
@@ -121,17 +121,17 @@ export default function PiccadillyCase() {
         <div style={wrap}>
           <SectionLabel>The Problem</SectionLabel>
           <div style={{ maxWidth: 640 }}>
-            <p style={{ fontSize: 15, lineHeight: 1.85, color: C.text, marginBottom: "1.25rem", fontFamily: "system-ui, sans-serif" }}>
+            <p style={{ ...TEXT.body, color: C.text, marginBottom: "1.25rem" }}>
               Piccadilly is one of Brazil's largest women's footwear brands, with over 2 million followers and a loyal customer base built over decades. But in 2019, the brand sold online through a web store and an institutional site, and had no app at all.
             </p>
-            <p style={{ fontSize: 15, lineHeight: 1.85, color: C.text, marginBottom: "1.75rem", fontFamily: "system-ui, sans-serif" }}>
+            <p style={{ ...TEXT.body, color: C.text, marginBottom: "1.75rem" }}>
               Launched during the peak of the pandemic in Brazil, this was Piccadilly's first mobile product. The challenge was not just to design an app. It was to build a complete digital commerce experience from scratch for a customer base that skewed older and had little familiarity with mobile shopping.
             </p>
           </div>
           <blockquote style={{ borderLeft: `2px solid ${C.accent}`, paddingLeft: "1.25rem", marginBottom: "1.5rem", fontFamily: "Georgia, serif", fontStyle: "italic", fontSize: "1.05rem", color: C.mid, maxWidth: 640, lineHeight: 1.7 }}>
             "The brand had strong offline presence. The digital product had to earn the same trust, for a customer who had never bought shoes without trying them on."
           </blockquote>
-          <p style={{ fontSize: 15, lineHeight: 1.85, color: C.mid, fontFamily: "system-ui, sans-serif", maxWidth: 640 }}>
+          <p style={{ ...TEXT.body, color: C.mid, maxWidth: 640 }}>
             The web store's catalog was organized around product taxonomy, the way a warehouse thinks about inventory. Not around how a woman actually shops for shoes.
           </p>
         </div>

@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react"
 import { useParams, Link, Navigate } from "react-router-dom"
 import { motion, useInView, animate } from "framer-motion"
-import { T, TYPE } from "../tokens"
+import { T, TYPE, TEXT } from "../tokens"
 import { getCaseBySlug, getNextCase } from "../data/cases"
 import PasswordGate from "../components/PasswordGate"
 import { ProcessGallery, SectionLabel } from "../components/CaseParts"
@@ -79,10 +79,7 @@ const P = { padding: "64px 80px", maxWidth: 1280, margin: "0 auto" }
 
 
 
-const BODY = {
-  fontFamily: "system-ui, sans-serif", fontSize: 16,
-  lineHeight: 1.85, color: "#333333", marginBottom: 16,
-}
+const BODY = { ...TEXT.body, marginBottom: 16 }
 
 
 
@@ -131,8 +128,9 @@ export default function CaseStudy({ onContactClick }) {
             <Link to="/#work" style={{
               fontFamily: "system-ui, sans-serif", fontSize: 12, fontWeight: 600,
               letterSpacing: "0.04em", textTransform: "uppercase",
-              color: "#666666", textDecoration: "none",
+              color: T.meta, textDecoration: "none",
               display: "inline-flex", alignItems: "center", gap: 6,
+              minHeight: 44, marginTop: -14,
             }}>
               ← All work
             </Link>
@@ -175,10 +173,7 @@ export default function CaseStudy({ onContactClick }) {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.35 }}
-            style={{
-              fontFamily: "system-ui, sans-serif", fontSize: 18,
-              lineHeight: 1.7, color: "#444444", maxWidth: 640, marginBottom: 56,
-            }}
+            style={{ ...TEXT.lead, maxWidth: 640, marginBottom: 56 }}
           >
             {c.summary}
           </motion.p>
@@ -191,7 +186,9 @@ export default function CaseStudy({ onContactClick }) {
           transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.5 }}
           style={{
             background: T.white, width: "100%",
-            height: 520, display: "flex",
+            // 520px fixos viravam uma faixa branca mais alta que a tela num
+            // celular, com a imagem pequena perdida no meio.
+            height: "clamp(240px, 52vw, 520px)", display: "flex",
             alignItems: "center", justifyContent: "center",
             overflow: "hidden",
           }}
@@ -244,35 +241,42 @@ export default function CaseStudy({ onContactClick }) {
         </div>
         <FadeUp>
           <SectionLabel>Overview</SectionLabel>
-          <div className="overview-grid" style={{ display: "grid", gridTemplateColumns: "1fr 2.5fr", gap: 72, alignItems: "start" }}>
-            <div style={{ display: "flex", flexDirection: "column", gap: 28 }}>
-              {[
-                { label: "Company", value: c.company },
-                { label: "Role", value: c.overview.role },
-                { label: "Year", value: c.year },
-                { label: "Scope", value: c.overview.scope },
-                { label: "Tools", value: c.overview.tools },
-                { label: "Team", value: c.overview.team },
-              ].filter(item => item.value).map(item => (
-                <div key={item.label}>
-                  <div style={{
-                    fontFamily: "system-ui, sans-serif", fontSize: 10, fontWeight: 700,
-                    letterSpacing: "0.08em", textTransform: "uppercase",
-                    color: "#666666", marginBottom: 6,
-                  }}>
-                    {item.label}
-                  </div>
-                  <div style={{
-                    fontFamily: "system-ui, sans-serif", fontSize: 15,
-                    fontWeight: 500, color: T.ink, lineHeight: 1.5,
-                  }}>
-                    {item.value}
-                  </div>
+          {/* A ficha era uma coluna estreita de seis itens empilhados ao lado
+              do paragrafo. Os seis somavam uma coluna alta e apertada contra
+              um texto de tres linhas, sobrando meia pagina vazia a direita.
+              Agora a ficha e uma faixa de tres colunas e o texto vem abaixo,
+              na medida de leitura. */}
+          <div className="overview-grid" style={{
+            display: "grid", gridTemplateColumns: "repeat(3, 1fr)",
+            columnGap: 48, rowGap: 32, alignItems: "start", marginBottom: 40,
+          }}>
+            {[
+              { label: "Company", value: c.overview.company || c.company },
+              { label: "Role", value: c.overview.role },
+              { label: "Year", value: c.year },
+              { label: "Scope", value: c.overview.scope },
+              { label: "Team", value: c.overview.team },
+              { label: "Tools", value: c.overview.tools },
+            ].filter(item => item.value).map(item => (
+              <div key={item.label}>
+                <div style={{
+                  fontFamily: "system-ui, sans-serif", fontSize: 10, fontWeight: 700,
+                  letterSpacing: "0.08em", textTransform: "uppercase",
+                  color: T.meta, marginBottom: 6,
+                }}>
+                  {item.label}
                 </div>
-              ))}
-            </div>
-            <p style={{ ...BODY, fontSize: 17, marginBottom: 0 }}>{c.overview.context}</p>
+                <div style={{
+                  fontFamily: "system-ui, sans-serif", fontSize: 15,
+                  fontWeight: 500, color: T.ink, lineHeight: 1.5,
+                }}>
+                  {item.value}
+                </div>
+              </div>
+            ))}
           </div>
+          <div style={{ height: "0.5px", background: T.rule, marginBottom: 32 }} />
+          <p style={{ ...TEXT.body, maxWidth: 720, marginBottom: 0 }}>{c.overview.context}</p>
         </FadeUp>
       </section>
 
@@ -383,7 +387,7 @@ export default function CaseStudy({ onContactClick }) {
             <FadeUp>
               <SectionLabel>Design System</SectionLabel>
               {c.colorSystem.intro && (
-                <p style={{ fontFamily: "system-ui, sans-serif", fontSize: 18, lineHeight: 1.7, color: "#444444", maxWidth: 640, marginBottom: 40 }}>
+                <p style={{ ...TEXT.body, maxWidth: 640, marginBottom: 40 }}>
                   {c.colorSystem.intro}
                 </p>
               )}
