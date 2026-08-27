@@ -129,7 +129,7 @@ export function SweepLabel({ children }) {
 // Banner SEMPRE após o summary, altura fixa, suporta vídeo ou imagem.
 export function CaseHeader({ tags = [], year = "", title, summary, image, company }) {
   const isVideo = typeof image === "string" && image.endsWith(".mp4")
-  const yearClean = year.replace(" to present", "").replace(" to ", " – ")
+  const yearClean = year.replace(" to present", "")
 
   return (
     <section style={{ paddingTop: 100, background: T.white }}>
@@ -195,7 +195,7 @@ export function CaseHeader({ tags = [], year = "", title, summary, image, compan
         )}
       </div>
 
-      {/* BANNER — sempre após o summary. Altura fixa 520, largura total. */}
+      {/* BANNER: sempre após o summary. Altura fixa 520, largura total. */}
       {image && (
         <motion.div
           initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }}

@@ -3,7 +3,7 @@ import { T } from "../tokens"
 
 const PURPLE = "#6C1FF3"
 
-// Simple hash — not cryptographic, just obscures the password from casual view
+// Simple hash: not cryptographic, just obscures the password from casual view
 // Usage: generate with btoa("yourpassword") in browser console
 function check(input, hash) {
   return btoa(input) === hash

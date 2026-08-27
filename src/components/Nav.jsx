@@ -4,7 +4,7 @@ import { T } from "../tokens"
 
 const PURPLE = "#6C1FF3"
 
-// Sublinhado handwritten SVG — ondulado orgânico
+// Sublinhado handwritten SVG: ondulado orgânico
 function HandUnderline({ active }) {
   return (
     <svg

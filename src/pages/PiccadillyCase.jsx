@@ -103,7 +103,7 @@ export default function PiccadillyCase() {
           {[
             ["Company",  "Piccadilly"],
             ["Role",     "UI Designer"],
-            ["Year",     "2019 – 2020"],
+            ["Year",     "2019 to 2020"],
             ["Scope",    "Mobile App, Web E-commerce, Information Architecture, Design System"],
             ["Team",     "Product Manager, Developers, Product Team"],
             ["Platform", "iOS and Android"],
@@ -244,7 +244,7 @@ export default function PiccadillyCase() {
               <blockquote style={{ fontFamily: "Georgia, serif", fontStyle: "italic", fontSize: "1.1rem", lineHeight: 1.7, color: C.text, marginBottom: "1rem" }}>
                 "Information architecture is a business decision, not just a design decision. How you organize a product catalog determines which customer intent states you serve and which you leave unsupported. Restructuring around mental models instead of product taxonomy was what made the difference."
               </blockquote>
-              <div style={{ fontSize: 11, fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", color: C.mid, fontFamily: "system-ui, sans-serif" }}>PICCADILLY, 2019 – 2020</div>
+              <div style={{ fontSize: 11, fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", color: C.mid, fontFamily: "system-ui, sans-serif" }}>PICCADILLY, 2019 to 2020</div>
             </div>
           </div>
         </div>

@@ -47,7 +47,7 @@ function GradBtn({ children, href, variant = "outline", target, rel }) {
   )
 }
 
-// Botao handwritten secundario — Caveat roxo, sublinhado no hover, seta hand
+// Botao handwritten secundario: Caveat roxo, sublinhado no hover, seta hand
 function HandBtn({ children, href, target, rel }) {
   const [hovered, setHovered] = useState(false)
   const textLen = String(children).length
@@ -158,42 +158,42 @@ const EXPERIENCE = [
     logo: "/images/logo-empresa-bradesco.svg", contain: true,
     role: "Senior Product Designer",
     company: "Bradesco · outsourced by Frito · Remote",
-    period: "Sep 2025 – Present",
+    period: "Sep 2025 to Present",
     tags: ["UI Design", "Design System", "UX Research", "Usability Testing", "Service Design", "Discovery", "Prototyping", "Stakeholder Alignment"],
   },
   {
     logo: "/images/logo-empresa-edglobo.svg", contain: true,
     role: "Senior Product Designer",
     company: "Editora Globo · Conde Nast · Remote",
-    period: "Mar 2022 – Sep 2025",
+    period: "Mar 2022 to Sep 2025",
     tags: ["UI Design", "Design System", "UX Audit", "Usability Testing", "Data Analysis", "Component Library", "Visual Identity"],
   },
   {
     logo: "/images/logo-empresa-mjv.svg",
     role: "User Researcher & Product Designer",
     company: "MJV Technology · Bradesco Seguros",
-    period: "Jun 2021 – Mar 2022",
+    period: "Jun 2021 to Mar 2022",
     tags: ["UX Research", "User Interviews", "Prototyping", "Journey Mapping", "Discovery", "Research Scripts"],
   },
   {
     logo: "/images/logo-empresa-sodexo.svg", contain: true,
     role: "Product Designer",
     company: "Sodexo LATAM · outsourced by ACT Digital · Remote",
-    period: "Aug 2020 – Jun 2021",
+    period: "Aug 2020 to Jun 2021",
     tags: ["UI Design", "Mobile", "Dashboard", "Usability Testing", "Agile", "Prototyping"],
   },
   {
     logo: "/images/logo-empresa-piccadilly.svg",
     role: "Product Designer",
     company: "Piccadilly",
-    period: "May 2019 – Aug 2020",
+    period: "May 2019 to Aug 2020",
     tags: ["UI Design", "Mobile App", "UX Strategy", "Omnichannel", "Design System"],
   },
   {
     logo: "/images/logo-empresa-s2p.svg",
     role: "Product Designer, then Design Lead",
     company: "Safe2Pay",
-    period: "Aug 2015 – May 2019",
+    period: "Aug 2015 to May 2019",
     tags: ["UI Design", "Visual Identity", "Design Lead", "Conversion Optimization", "Component Library"],
   },
 ]
@@ -218,13 +218,13 @@ const CERTS = [
   },
   {
     name: "AI for Designers",
-    issuer: "IxDF — The Interaction Design Foundation",
+    issuer: "IxDF, The Interaction Design Foundation",
     date: "Aug 2025",
     logo: null,
     logoBg: "#ffffff", abbr: "IxDF",
   },
   {
-    name: "Generative AI — Elevate your Software Development Career",
+    name: "Generative AI: Elevate your Software Development Career",
     issuer: "IBM",
     date: "Jul 2025",
     logo: "https://raw.githubusercontent.com/gilbarbara/logos/main/logos/ibm.svg",
@@ -248,7 +248,7 @@ const CERTS = [
 
 const AWARDS = [
   {
-    title: "SET | Awarded Campaign — Advertising",
+    title: "SET | Awarded Campaign, Advertising",
     issuer: "PUC-RS",
     date: "Dec 2017",
     category: "1st Place · Advertising Campaign",
@@ -260,7 +260,7 @@ const AWARDS = [
     category: "1st Place · Creative Direction",
   },
   {
-    title: "SET | Awarded Campaign — Alternative Media",
+    title: "SET | Awarded Campaign, Alternative Media",
     issuer: "PUC-RS",
     date: "Nov 2015",
     category: "1st Place · Alternative Media",
@@ -332,7 +332,7 @@ export default function About() {
     <main style={{ paddingTop: 100, background: T.white }}>
       <div className="page-pad" style={{ ...P, paddingTop: 48, paddingBottom: 120 }}>
 
-        {/* 1 — HELLO */}
+        {/* 1: HELLO */}
         <FadeUp>
           <div className="about-intro" style={{ display: "grid", gridTemplateColumns: "220px 1fr", gap: 64, alignItems: "flex-start", marginBottom: 64 }}>
             <div style={{ position: "relative" }}>
@@ -362,7 +362,7 @@ export default function About() {
                   {/* ponta */}
                   <path d="M 118 10 L 106 8" stroke="#6C1FF3" strokeWidth="1.5" fill="none" strokeLinecap="round"/>
                   <path d="M 118 10 L 112 22" stroke="#6C1FF3" strokeWidth="1.5" fill="none" strokeLinecap="round"/>
-                  {/* texto handwritten — bem abaixo da cauda da seta */}
+                  {/* texto handwritten: bem abaixo da cauda da seta */}
                   <text x="0" y="110" style={{ fontFamily: "'Caveat', cursive", fontSize: "22px", fontWeight: 400, fill: "#6C1FF3", letterSpacing: "0.04em" }}>
                     This is me!
                   </text>
@@ -394,7 +394,7 @@ export default function About() {
           </div>
         </FadeUp>
 
-        {/* 2 — VALORES */}
+        {/* 2: VALORES */}
         <FadeUp delay={0.1}>
           <div className="about-values" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 2 }}>
             {[
@@ -415,7 +415,7 @@ export default function About() {
 
         <div style={RULE} />
 
-        {/* 3 — EDUCATION + LANGUAGES */}
+        {/* 3: EDUCATION + LANGUAGES */}
         <FadeUp>
           <div className="about-two" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 80 }}>
             <div>
@@ -451,7 +451,7 @@ export default function About() {
 
         <div style={RULE} />
 
-        {/* 4 — EXPERIENCE */}
+        {/* 4: EXPERIENCE */}
         <FadeUp>
           <h2 style={LABEL}>Experience</h2>
         </FadeUp>
@@ -498,7 +498,7 @@ export default function About() {
 
         <div style={RULE} />
 
-        {/* 5 — CERTIFICATIONS + AWARDS em duas colunas */}
+        {/* 5: CERTIFICATIONS + AWARDS em duas colunas */}
         <FadeUp>
           <div className="about-two" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 80, alignItems: "start" }}>
             <div>
@@ -530,7 +530,7 @@ export default function About() {
 
         <div style={RULE} />
 
-        {/* 5b — SPEAKING */}
+        {/* 5b: SPEAKING */}
         <FadeUp>
           <h2 style={LABEL}>Speaking</h2>
           <div style={{ display: "flex", flexDirection: "column" }}>
@@ -552,7 +552,7 @@ export default function About() {
 
         <div style={RULE} />
 
-        {/* 6 — TOOLBOX */}
+        {/* 6: TOOLBOX */}
         <FadeUp>
           <h2 style={LABEL}>Toolbox</h2>
           <div style={{ display: "flex", flexWrap: "wrap", gap: 10 }}>

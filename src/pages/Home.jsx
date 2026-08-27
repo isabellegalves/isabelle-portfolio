@@ -160,7 +160,7 @@ function Btn({ children, onClick, href, as: Tag = "button",
     return <button onClick={onClick} {...events} style={style}>{children}</button>
   }
 
-  // outline / outline-gray — wrapper 1.5px simula border, hover = roxo solido
+  // outline / outline-gray: wrapper 1.5px simula border, hover = roxo solido
   const defaultBorder = variant === "outline-gray" ? "#555555" : "#0A0A0A"
   const wrapperStyle = {
     display: "inline-block", borderRadius, padding: "1.5px",

@@ -152,7 +152,7 @@ export default function CaseStudy({ onContactClick }) {
               }}>{t}</span>
             ))}
             <span style={{ fontFamily: "Georgia, serif", fontSize: 12, fontStyle: "italic", color: T.meta }}>
-              {c.year.replace(" to present", "").replace(" to ", " – ")}
+              {c.year.replace(" to present", "")}
             </span>
           </motion.div>
 
@@ -249,7 +249,7 @@ export default function CaseStudy({ onContactClick }) {
               {[
                 { label: "Company", value: c.company },
                 { label: "Role", value: c.overview.role },
-                { label: "Year", value: c.year.replace(" to present", " – present").replace(" to ", " – ") },
+                { label: "Year", value: c.year },
                 { label: "Scope", value: c.overview.scope },
                 { label: "Tools", value: c.overview.tools },
                 { label: "Team", value: c.overview.team },
@@ -542,7 +542,7 @@ export default function CaseStudy({ onContactClick }) {
               {c.takeaway}
             </p>
             <span style={{ fontFamily: "system-ui, sans-serif", fontSize: 12, fontWeight: 600, letterSpacing: "0.06em", textTransform: "uppercase", color: T.meta }}>
-              {c.company} · {c.year.replace(" to present", "").replace(" to ", " – ")}
+              {c.company} · {c.year.replace(" to present", "")}
             </span>
           </div>
         </FadeUp>
