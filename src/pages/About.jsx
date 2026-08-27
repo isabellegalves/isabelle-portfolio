@@ -295,6 +295,29 @@ const SPEAKING = [
   },
 ]
 
+// Voluntariado. Fica no site porque sustenta a fala de design inclusivo
+// com fato, e nao com adjetivo.
+const COMMUNITY = [
+  {
+    title: "PETHOUR, a charity event I created and ran",
+    issuer: "Pata Santa animal shelter, Porto Alegre",
+    date: "2015",
+    category: "Admission paid in pet food, 30kg collected",
+  },
+  {
+    title: "Meals and donations at Jardim Gramacho",
+    issuer: "Corrente pelo Bem, Rio de Janeiro",
+    date: "2022",
+    category: "On site with families living beside the landfill",
+  },
+  {
+    title: "Three collection drives for children, older people and people sleeping rough",
+    issuer: "Organised while at Safe2Pay, Porto Alegre",
+    date: "2015 to 2019",
+    category: "Food, clothing and school supplies",
+  },
+]
+
 function CertRow({ cert, last }) {
   const [imgFailed, setImgFailed] = useState(false)
   return (
@@ -551,6 +574,28 @@ export default function About() {
                   <div style={{ fontFamily: "system-ui, sans-serif", fontSize: 12, color: T.meta }}>{s.issuer} · {s.category}</div>
                 </div>
                 <div style={{ fontFamily: "Georgia, serif", fontStyle: "italic", fontSize: 12, color: T.meta, whiteSpace: "nowrap", marginLeft: 16, marginTop: 2 }}>{s.date}</div>
+              </div>
+            ))}
+          </div>
+        </FadeUp>
+
+        <div style={RULE} />
+
+        {/* 5c: COMMUNITY */}
+        <FadeUp>
+          <h2 style={LABEL}>Community</h2>
+          <div style={{ display: "flex", flexDirection: "column" }}>
+            {COMMUNITY.map((c, i) => (
+              <div key={i} style={{
+                display: "flex", justifyContent: "space-between", alignItems: "flex-start",
+                padding: "16px 0",
+                borderBottom: i < COMMUNITY.length - 1 ? `0.5px solid ${T.rule}` : "none",
+              }}>
+                <div>
+                  <div style={{ fontFamily: "system-ui, sans-serif", fontSize: 14, fontWeight: 700, color: T.ink, marginBottom: 3 }}>{c.title}</div>
+                  <div style={{ fontFamily: "system-ui, sans-serif", fontSize: 12, color: T.meta }}>{c.issuer} · {c.category}</div>
+                </div>
+                <div style={{ fontFamily: "Georgia, serif", fontStyle: "italic", fontSize: 12, color: T.meta, whiteSpace: "nowrap", marginLeft: 16, marginTop: 2 }}>{c.date}</div>
               </div>
             ))}
           </div>
