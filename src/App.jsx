@@ -70,10 +70,31 @@ export default function App() {
           .overview-grid { grid-template-columns: 1fr !important; }
           .featured-grid { grid-template-columns: 1fr !important; }
           .process-grid { grid-template-columns: 1fr !important; }
+
+          /* O About monta as grades com estilo inline e nao passava por
+             nenhuma media query: a coluna de texto ao lado da foto chegava
+             a 92px numa tela de celular. */
+          .about-intro { grid-template-columns: 1fr !important; gap: 32px !important; }
+          .about-values { grid-template-columns: 1fr !important; }
+          .about-two { grid-template-columns: 1fr !important; gap: 48px !important; }
         }
 
         @media (max-width: 768px) {
-          section > div, nav > div, footer {
+          /* O recuo lateral mora ora na section, ora no div de dentro,
+             dependendo da pagina. A regra antiga so alcancava o div, entao
+             numa pagina de case a section mantinha os 80px e o conteudo
+             ficava com 182px de largura numa tela de 390. Agora a section
+             carrega os 24px e o div de dentro e zerado, de modo que o total
+             e sempre 24, venha o recuo de onde vier. */
+          section {
+            padding-left: 24px !important;
+            padding-right: 24px !important;
+          }
+          section > div {
+            padding-left: 0 !important;
+            padding-right: 0 !important;
+          }
+          nav > div, footer, .page-pad {
             padding-left: 24px !important;
             padding-right: 24px !important;
           }

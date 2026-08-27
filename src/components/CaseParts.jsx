@@ -319,8 +319,11 @@ function ProcessShot({ slug, name, index }) {
 
   return (
     <div
+      // Sem aspectRatio fixo: a imagem manda na altura. Antes o container
+      // era 4/3 com objectFit cover, entao qualquer proporcao diferente era
+      // recortada em cima e embaixo.
       style={{
-        position: "relative", width: "100%", aspectRatio: "4 / 3",
+        position: "relative", width: "100%", aspectRatio: "16 / 10",
         background: T.offwhite, borderRadius: 14, overflow: "hidden",
       }}
     >
@@ -392,7 +395,7 @@ export function ProcessGallery({ slug, slots = PROCESS_SLOTS }) {
     <div
       className="process-grid"
       style={{
-        display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12, marginTop: 40,
+        display: "grid", gridTemplateColumns: "1fr", gap: 20, marginTop: 40,
       }}
     >
       {existentes.map((name) => (

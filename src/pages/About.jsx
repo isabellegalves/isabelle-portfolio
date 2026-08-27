@@ -330,11 +330,11 @@ export default function About() {
 
   return (
     <main style={{ paddingTop: 100, background: T.white }}>
-      <div style={{ ...P, paddingTop: 48, paddingBottom: 120 }}>
+      <div className="page-pad" style={{ ...P, paddingTop: 48, paddingBottom: 120 }}>
 
         {/* 1 — HELLO */}
         <FadeUp>
-          <div style={{ display: "grid", gridTemplateColumns: "220px 1fr", gap: 64, alignItems: "flex-start", marginBottom: 64 }}>
+          <div className="about-intro" style={{ display: "grid", gridTemplateColumns: "220px 1fr", gap: 64, alignItems: "flex-start", marginBottom: 64 }}>
             <div style={{ position: "relative" }}>
               {/* Foto */}
               <div style={{
@@ -396,7 +396,7 @@ export default function About() {
 
         {/* 2 — VALORES */}
         <FadeUp delay={0.1}>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 2 }}>
+          <div className="about-values" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 2 }}>
             {[
               { title: "Accessibility first", body: "Good design must work for everyone. I build inclusive experiences that leave no user behind, from day one." },
               { title: "Art as connection", body: "I illustrate, draw and design interfaces to tell visual stories and connect with people on a human level." },
@@ -417,7 +417,7 @@ export default function About() {
 
         {/* 3 — EDUCATION + LANGUAGES */}
         <FadeUp>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 80 }}>
+          <div className="about-two" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 80 }}>
             <div>
               <h2 style={LABEL}>Education</h2>
               <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
@@ -500,7 +500,7 @@ export default function About() {
 
         {/* 5 — CERTIFICATIONS + AWARDS em duas colunas */}
         <FadeUp>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 80, alignItems: "start" }}>
+          <div className="about-two" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 80, alignItems: "start" }}>
             <div>
               <h2 style={LABEL}>Certifications</h2>
               <div style={{ display: "flex", flexDirection: "column" }}>
