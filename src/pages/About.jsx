@@ -169,9 +169,9 @@ const EXPERIENCE = [
     tags: ["UI Design", "Design System", "UX Audit", "Usability Testing", "Data Analysis", "Component Library", "Visual Identity"],
   },
   {
-    logo: "/images/logo-empresa-mjv.svg",
+    logo: "/images/logo-empresa-bradesco.svg", contain: true,
     role: "User Researcher & Product Designer",
-    company: "MJV Technology · Bradesco Seguros",
+    company: "Bradesco Seguros · outsourced by MJV Technology · Remote",
     period: "Jun 2021 to Mar 2022",
     tags: ["UX Research", "User Interviews", "Prototyping", "Journey Mapping", "Discovery", "Research Scripts"],
   },
