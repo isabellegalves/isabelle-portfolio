@@ -318,6 +318,25 @@ const COMMUNITY = [
   },
 ]
 
+// Awards, Speaking e Community desenhavam a mesma linha, byte a byte, em
+// tres blocos separados. Titulo a esquerda, emissor e categoria embaixo,
+// data em italico a direita.
+function ListRow({ item, last }) {
+  return (
+    <div style={{
+      display: "flex", justifyContent: "space-between", alignItems: "flex-start",
+      padding: "16px 0",
+      borderBottom: last ? "none" : `0.5px solid ${T.rule}`,
+    }}>
+      <div>
+        <div style={{ fontFamily: "system-ui, sans-serif", fontSize: 14, fontWeight: 700, color: T.ink, marginBottom: 3 }}>{item.title}</div>
+        <div style={{ fontFamily: "system-ui, sans-serif", fontSize: 12, color: T.meta }}>{item.issuer} · {item.category}</div>
+      </div>
+      <div style={{ fontFamily: "Georgia, serif", fontStyle: "italic", fontSize: 12, color: T.meta, whiteSpace: "nowrap", marginLeft: 16, marginTop: 2 }}>{item.date}</div>
+    </div>
+  )
+}
+
 function CertRow({ cert, last }) {
   const [imgFailed, setImgFailed] = useState(false)
   return (
@@ -539,19 +558,7 @@ export default function About() {
             <div>
               <h2 style={LABEL}>Awards</h2>
               <div style={{ display: "flex", flexDirection: "column" }}>
-                {AWARDS.map((a, i) => (
-                  <div key={i} style={{
-                    display: "flex", justifyContent: "space-between", alignItems: "flex-start",
-                    padding: "16px 0",
-                    borderBottom: i < AWARDS.length - 1 ? `0.5px solid ${T.rule}` : "none",
-                  }}>
-                    <div>
-                      <div style={{ fontFamily: "system-ui, sans-serif", fontSize: 14, fontWeight: 700, color: T.ink, marginBottom: 3 }}>{a.title}</div>
-                      <div style={{ fontFamily: "system-ui, sans-serif", fontSize: 12, color: T.meta }}>{a.issuer} · {a.category}</div>
-                    </div>
-                    <div style={{ fontFamily: "Georgia, serif", fontStyle: "italic", fontSize: 12, color: T.meta, whiteSpace: "nowrap", marginLeft: 16, marginTop: 2 }}>{a.date}</div>
-                  </div>
-                ))}
+                {AWARDS.map((x, i) => <ListRow key={i} item={x} last={i === AWARDS.length - 1} />)}
               </div>
             </div>
           </div>
@@ -559,45 +566,21 @@ export default function About() {
 
         <div style={RULE} />
 
-        {/* 5b: SPEAKING */}
+        {/* 5b: SPEAKING + COMMUNITY em duas colunas */}
         <FadeUp>
-          <h2 style={LABEL}>Speaking</h2>
-          <div style={{ display: "flex", flexDirection: "column" }}>
-            {SPEAKING.map((s, i) => (
-              <div key={i} style={{
-                display: "flex", justifyContent: "space-between", alignItems: "flex-start",
-                padding: "16px 0",
-                borderBottom: i < SPEAKING.length - 1 ? `0.5px solid ${T.rule}` : "none",
-              }}>
-                <div>
-                  <div style={{ fontFamily: "system-ui, sans-serif", fontSize: 14, fontWeight: 700, color: T.ink, marginBottom: 3 }}>{s.title}</div>
-                  <div style={{ fontFamily: "system-ui, sans-serif", fontSize: 12, color: T.meta }}>{s.issuer} · {s.category}</div>
-                </div>
-                <div style={{ fontFamily: "Georgia, serif", fontStyle: "italic", fontSize: 12, color: T.meta, whiteSpace: "nowrap", marginLeft: 16, marginTop: 2 }}>{s.date}</div>
+          <div className="about-two" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 80, alignItems: "start" }}>
+            <div>
+              <h2 style={LABEL}>Speaking</h2>
+              <div style={{ display: "flex", flexDirection: "column" }}>
+                {SPEAKING.map((x, i) => <ListRow key={i} item={x} last={i === SPEAKING.length - 1} />)}
               </div>
-            ))}
-          </div>
-        </FadeUp>
-
-        <div style={RULE} />
-
-        {/* 5c: COMMUNITY */}
-        <FadeUp>
-          <h2 style={LABEL}>Community</h2>
-          <div style={{ display: "flex", flexDirection: "column" }}>
-            {COMMUNITY.map((c, i) => (
-              <div key={i} style={{
-                display: "flex", justifyContent: "space-between", alignItems: "flex-start",
-                padding: "16px 0",
-                borderBottom: i < COMMUNITY.length - 1 ? `0.5px solid ${T.rule}` : "none",
-              }}>
-                <div>
-                  <div style={{ fontFamily: "system-ui, sans-serif", fontSize: 14, fontWeight: 700, color: T.ink, marginBottom: 3 }}>{c.title}</div>
-                  <div style={{ fontFamily: "system-ui, sans-serif", fontSize: 12, color: T.meta }}>{c.issuer} · {c.category}</div>
-                </div>
-                <div style={{ fontFamily: "Georgia, serif", fontStyle: "italic", fontSize: 12, color: T.meta, whiteSpace: "nowrap", marginLeft: 16, marginTop: 2 }}>{c.date}</div>
+            </div>
+            <div>
+              <h2 style={LABEL}>Community</h2>
+              <div style={{ display: "flex", flexDirection: "column" }}>
+                {COMMUNITY.map((x, i) => <ListRow key={i} item={x} last={i === COMMUNITY.length - 1} />)}
               </div>
-            ))}
+            </div>
           </div>
         </FadeUp>
 
