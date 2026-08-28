@@ -60,10 +60,10 @@ export const cases = [
   {
     id: "02",
     slug: "interbancario",
-    company: "CMIB",
+    company: "Interbank FX Desk",
     year: "2026",
     title: "Training was the workaround for a system that never explained itself.",
-    summary: "A ground-up redesign of CMIB, the desktop system Bradesco's trading desk uses to run interbank foreign exchange. The legacy application only worked for people who had already memorised its codes, so I rebuilt it around language the desk actually uses.",
+    summary: "A ground-up redesign of the desktop system Bradesco's trading desk uses to run interbank foreign exchange. The legacy application only worked for people who had already memorised its codes, so I rebuilt it around language the desk actually uses.",
     tags: ["Fintech", "Enterprise UX", "Desktop Application", "Information Architecture"],
     metrics: [
       { n: "6", label: "Modules unified in a single workspace" },
@@ -79,7 +79,7 @@ export const cases = [
       tools: "Figma, plus Figma Make and FigJam with AI assistance for references and early sketches",
       scope: "Product Design, Information Architecture, Interaction Design, Design System, Design Handoff",
       team: "Sole product designer, working alongside product, engineering and the foreign exchange trading desk",
-      context: "CMIB is the internal system Bradesco's trading desk uses to run interbank foreign exchange: buying and selling currency with other institutions, exchanging messages with the central bank and over SWIFT, and settling operations that move hundreds of millions. Every value, client name and operator detail shown in this case is fictitious sample data.",
+      context: "The interbank desk runs foreign exchange between banks: buying and selling currency with other institutions, exchanging messages with the central bank and over SWIFT, and settling operations that move hundreds of millions. Every value, client name and operator detail shown in this case is fictitious sample data.",
     },
     problem: {
       body: "The legacy system was a native desktop application whose knowledge lived in the people who used it rather than in the product. Its toolbar was fifteen three-letter buttons. Its fields carried raw codes as values, so a counterparty read as 0000003025-STANDARD CHARTERED BA, truncated mid-name, and a delivery method read as 65-Teletransmissao. Windows opened inside windows, tables nested inside tables, and disabled fields gave no reason for being disabled. New people could not use it without training, it crashed often, and operations that should have been immediate took days and passed through steps that existed only because a person had to carry the work from one screen to the next.",
