@@ -124,7 +124,8 @@ function HandUnderlineHeading({ children, id, style = {} }) {
 
 function Btn({ children, onClick, href, as: Tag = "button",
   variant = "outline",
-  padding = "13px 26px", borderRadius = 26,
+  // 13px davam 43px de altura, 1 abaixo do minimo de toque de 44.
+  padding = "14px 26px", borderRadius = 26,
 }) {
   const [hovered, setHovered] = useState(false)
   const events = {
@@ -748,8 +749,8 @@ function About() {
               ))}
             </div>
             <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
-              <Btn variant="outline" as="a" href="https://www.linkedin.com/in/isabellegalves/" padding="9px 18px" borderRadius={20}>Linkedin</Btn>
-              <Btn variant="outline" as="a" href="/about" padding="9px 18px" borderRadius={20}>About</Btn>
+              <Btn variant="outline" as="a" href="https://www.linkedin.com/in/isabellegalves/" padding="14px 18px" borderRadius={20}>Linkedin</Btn>
+              <Btn variant="outline" as="a" href="/about" padding="14px 18px" borderRadius={20}>About</Btn>
             </div>
           </FadeUp>
         </div>

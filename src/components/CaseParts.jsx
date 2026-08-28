@@ -137,7 +137,7 @@ export function CaseHeader({ tags = [], year = "", title, summary, image, compan
         <motion.div
           initial={{ opacity: 0, x: -12 }} animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-          style={{ marginBottom: 40 }}
+          style={{ marginBottom: 26 }}
         >
           <Link to="/#work" style={{
             fontFamily: "system-ui, sans-serif", fontSize: 12, fontWeight: 600,

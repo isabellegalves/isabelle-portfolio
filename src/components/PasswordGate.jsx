@@ -112,7 +112,8 @@ export default function PasswordGate({ caseTitle, passwordHash, onUnlock }) {
           <button
             type="submit"
             style={{
-              width: "100%", padding: "14px",
+              // 14px de recuo davam 42px de altura, 2 abaixo do minimo de toque.
+              width: "100%", padding: "15px 14px",
               fontFamily: "system-ui, sans-serif", fontSize: 12,
               fontWeight: 700, letterSpacing: "0.05em", textTransform: "uppercase",
               background: value.length > 0 ? T.ink : "#CCCCCC",
