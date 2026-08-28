@@ -2,7 +2,7 @@ export const cases = [
   {
     id: "01",
     slug: "cambio",
-    company: "Bradesco Câmbio",
+    company: "Câmbio",
     year: "2026",
     title: "The central bank required the data. It never required the customer to decode it.",
     summary: "A ground-up redesign of Bradesco's international remittance journey. I replaced a single regulatory form with a guided flow that shows the real cost while the person types, and regrouped central bank classifications around what the person is actually doing.",
@@ -60,7 +60,7 @@ export const cases = [
   {
     id: "02",
     slug: "interbancario",
-    company: "Bradesco CMIB",
+    company: "CMIB",
     year: "2026",
     title: "Training was the workaround for a system that never explained itself.",
     summary: "A ground-up redesign of CMIB, the desktop system Bradesco's trading desk uses to run interbank foreign exchange. The legacy application only worked for people who had already memorised its codes, so I rebuilt it around language the desk actually uses.",
@@ -118,7 +118,7 @@ export const cases = [
   {
     id: "03",
     slug: "conta-internacional",
-    company: "Bradesco My Account",
+    company: "My Account",
     year: "2026",
     title: "Two international accounts. Only a third of customers could tell them apart.",
     summary: "Bradesco sells two international accounts with different purposes and confusingly close names. A quantitative study found that only a third of customers could explain the difference. I replaced the side by side comparison with one question about what the person actually wants to do.",
@@ -381,7 +381,7 @@ export const cases = [
     id: "90",
     archived: true,
     slug: "bradesco",
-    company: "Bradesco My Account",
+    company: "My Account",
     year: "2025 to present",
     title: "Turning a moment of failure into the product's strongest feature.",
     summary: "A behavior-led redesign of the MyAccount card experience that cut card-related complaints and turned a moment of failure into a competitive differentiator.",
