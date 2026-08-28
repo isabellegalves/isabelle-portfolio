@@ -157,7 +157,7 @@ const EXPERIENCE = [
   {
     logo: "/images/logo-empresa-bradesco.svg", contain: true,
     role: "Senior Product Designer",
-    company: "Banco Bradesco, international area · outsourced by Frito · Remote",
+    company: "Bradesco Bank, international area · outsourced by Frito · Remote",
     period: "Sep 2025 to Present",
     tags: ["UI Design", "Design System", "UX Research", "Usability Testing", "Service Design", "Discovery", "Prototyping", "Stakeholder Alignment"],
   },
@@ -171,7 +171,7 @@ const EXPERIENCE = [
   {
     logo: "/images/logo-empresa-bradesco.svg", contain: true,
     role: "User Researcher & Product Designer",
-    company: "Bradesco Seguros · outsourced by MJV Technology · Remote",
+    company: "Bradesco Insurance · outsourced by MJV Technology · Remote",
     period: "Jun 2021 to Mar 2022",
     tags: ["UX Research", "User Interviews", "Prototyping", "Journey Mapping", "Discovery", "Research Scripts"],
   },

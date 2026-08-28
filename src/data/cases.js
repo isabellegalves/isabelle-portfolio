@@ -17,7 +17,7 @@ export const cases = [
     bg: "#FCEEF0",
     image: "/images/cambio.webp",
     overview: {
-      company: "Banco Bradesco, international area",
+      company: "Bradesco Bank, international area",
       role: "Senior Product Designer",
       tools: "Figma, plus Figma Make and FigJam with AI assistance for references and early sketches",
       scope: "Product Design, Information Architecture, Interaction Design, Prototyping, Design Handoff",
@@ -74,7 +74,7 @@ export const cases = [
     bg: "#EEF2FC",
     image: "/images/interbancario.webp",
     overview: {
-      company: "Banco Bradesco, international area",
+      company: "Bradesco Bank, international area",
       role: "Senior Product Designer",
       tools: "Figma, plus Figma Make and FigJam with AI assistance for references and early sketches",
       scope: "Product Design, Information Architecture, Interaction Design, Design System, Design Handoff",
@@ -133,12 +133,12 @@ export const cases = [
     bg: "#FAF1F3",
     image: "/images/conta-internacional.webp",
     overview: {
-      company: "Banco Bradesco, international area",
+      company: "Bradesco Bank, international area",
       role: "Senior Product Designer",
       tools: "Figma, plus Figma Make and FigJam with AI assistance for references and early sketches",
       scope: "Product Design, Content Design, Information Architecture, Interaction Design",
       team: "Sole product designer, working from a quantitative study run by the bank's CX insights team, alongside product and the international accounts squad",
-      context: "Bradesco offers two international accounts. Bradesco Bank is a full American checking account with investments, a US credit card and property financing. My Account holds foreign currency for travel, with a physical and virtual debit card, withdrawals in 180 currencies and acceptance in 195 countries. They serve different lives, and they sat next to each other in the app as two cards of equal weight. Every value shown in this case is sample data.",
+      context: "The bank sells two international accounts. Bradesco Bank is a full American checking account with investments, a US credit card and property financing. My Account holds foreign currency for travel, with a physical and virtual debit card, withdrawals in 180 currencies and acceptance in 195 countries. They serve different lives, and they sat next to each other in the app as two cards of equal weight. Every value shown in this case is sample data.",
     },
     problem: {
       body: "An unmoderated study with eighty four clients, none of whom held an international account, ran over three weeks. Asked to describe the difference between the two products in their own words, only thirty four per cent could. Half said outright that they could not. The screen built to explain the difference scored fifty out of a hundred for usability and carried a fifty eight per cent misclick rate, the worst in the journey. The comparison carousel meant to resolve it was rarely reached at all.",
@@ -431,12 +431,12 @@ export const cases = [
       ],
     },
     overview: {
-      company: "Banco Bradesco, international area",
+      company: "Bradesco Bank, international area",
       role: "Senior Product Designer",
       tools: "Figma, plus Figma Make and FigJam with AI assistance for references and early sketches",
       scope: "UX Research, Product Design, Information Architecture",
       team: "Cross-functional team with POs, developers and business stakeholders",
-      context: "Banco Bradesco is one of Latin America's largest banks, with operations across the US, Europe and Asia. My Account is one of its international products, built for Brazilians who live, invest or travel abroad, competing directly with players like Wise and Revolut.",
+      context: "Bradesco Bank is one of Latin America's largest banks, with operations across the US, Europe and Asia. My Account is one of its international products, built for Brazilians who live, invest or travel abroad, competing directly with players like Wise and Revolut.",
     },
     problem: {
       body: "Support tickets and user interviews pointed to a recurring pattern. Most customers used the card almost exclusively when traveling, and kept it switched off in daily life for safety, either through a temporary lock or by disabling contactless. The trouble started before the trip. Many forgot to turn those functions back on, and only discovered it at the worst possible moment, standing at a checkout abroad with a card that would not work. The result was frustration, a sense that the product had failed them, and a steady stream of support calls. The controls that could have prevented this were buried in a hard to reach corner of the app.",
