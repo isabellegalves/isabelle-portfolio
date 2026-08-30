@@ -213,8 +213,10 @@ const CERTS = [
     name: "Building AI Apps with Figma Make and Supabase",
     issuer: "Memorisely",
     date: "Feb 2026",
-    logo: null,
-    logoBg: "#ffffff", abbr: "M",
+    // A marca e branca sobre preto, entao o ladrilho e preto para o fundo
+    // da imagem encostar no fundo da caixa sem emenda.
+    logo: "/images/logo-memorisely.webp",
+    logoBg: "#000000", abbr: "M",
   },
   {
     name: "AI for Designers",
