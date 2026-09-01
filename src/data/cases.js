@@ -8,11 +8,9 @@ export const cases = [
     summary: "A ground-up redesign of Bradesco's international remittance journey. I replaced a single regulatory form with a guided flow that shows the real cost while the person types, and regrouped central bank classifications around what the person is actually doing.",
     tags: ["Fintech", "Product Design", "Regulated Products", "Information Architecture"],
     metrics: [
-      { n: "8", label: "Intent groups replacing central bank codes" },
-      { n: "14", label: "Screens designed for the new journey" },
-      { n: "3", label: "Financial validation states built into the flow" },
       { n: "18%", label: "Less development rework across the discovery" },
     ],
+    outcome: "The redesign went through homologation and shipped, replacing the legacy journey on both web and app.",
     passwordHash: "aWdhbHZlcw==",
     bg: "#FCEEF0",
     image: "/images/cambio.webp",
@@ -22,6 +20,7 @@ export const cases = [
       tools: "Figma, plus Figma Make and FigJam with AI assistance for references and early sketches",
       scope: "Product Design, Information Architecture, Interaction Design, Prototyping, Design Handoff",
       team: "Sole product designer on Câmbio, in a design pair with a UX Writer, working alongside product, engineering, compliance and legal",
+      delivered: "8 intent groups, 14 screens, 3 financial validation states",
       context: "Bradesco Câmbio handles international remittances for customers sending money abroad. Every transfer carries a central bank classification, foreign exchange rules, IOF tax and a spread, and all of it has to be collected and disclosed correctly before the money moves.",
     },
     problem: {
@@ -65,11 +64,8 @@ export const cases = [
     title: "Training was the workaround for a system that never explained itself.",
     summary: "A ground-up redesign of the desktop system Bradesco's trading desk uses to run interbank foreign exchange. The legacy application only worked for people who had already memorised its codes, so I rebuilt it around language the desk actually uses.",
     tags: ["Fintech", "Enterprise UX", "Desktop Application", "Information Architecture"],
-    metrics: [
-      { n: "6", label: "Modules unified in a single workspace" },
-      { n: "15", label: "Toolbar codes replaced by named navigation" },
-      { n: "6", label: "Operation states surfaced as filters" },
-    ],
+    metrics: [],
+    outcome: "The redesign shipped to production. Operators no longer memorise toolbar codes to navigate, and the operations manager opens on state, with live counts on every filter.",
     passwordHash: "aWdhbHZlcw==",
     bg: "#EEF2FC",
     image: "/images/interbancario.webp",
@@ -79,6 +75,7 @@ export const cases = [
       tools: "Figma, plus Figma Make and FigJam with AI assistance for references and early sketches",
       scope: "Product Design, Information Architecture, Interaction Design, Design System, Design Handoff",
       team: "Sole product designer, working alongside product, engineering and the foreign exchange trading desk",
+      delivered: "6 modules unified, 15 toolbar codes named, 6 operation states surfaced",
       context: "The interbank desk runs foreign exchange between banks: buying and selling currency with other institutions, exchanging messages with the central bank and over SWIFT, and settling operations that move hundreds of millions. Every value, client name and operator detail shown in this case is fictitious sample data.",
     },
     problem: {
@@ -124,11 +121,9 @@ export const cases = [
     summary: "Bradesco sells two international accounts with different purposes and confusingly close names. A quantitative study found that only a third of customers could explain the difference. I replaced the side by side comparison with one question about what the person actually wants to do.",
     tags: ["Fintech", "Product Design", "Content Design", "Information Architecture"],
     metrics: [
-      { n: "34%", label: "Could explain the difference between the two accounts" },
-      { n: "7", label: "Intents replacing a side by side comparison" },
-      { n: "84", label: "Clients in the study behind the redesign" },
       { n: "10%", label: "Retention lift across the app's international area" },
     ],
+    outcome: "The flow shipped to production.",
     passwordHash: "aWdhbHZlcw==",
     bg: "#FAF1F3",
     image: "/images/conta-internacional.webp",
@@ -138,6 +133,7 @@ export const cases = [
       tools: "Figma, plus Figma Make and FigJam with AI assistance for references and early sketches",
       scope: "Product Design, Content Design, Information Architecture, Interaction Design",
       team: "Sole product designer, working from a quantitative study run by the bank's CX insights team, alongside product and the international accounts squad",
+      delivered: "7 intents replacing the side by side comparison",
       context: "The bank sells two international accounts. Bradesco Bank is a full American checking account with investments, a US credit card and property financing. My Account holds foreign currency for travel, with a physical and virtual debit card, withdrawals in 180 currencies and acceptance in 195 countries. They serve different lives, and they sat next to each other in the app as two cards of equal weight. Every value shown in this case is sample data.",
     },
     problem: {
@@ -291,6 +287,7 @@ export const cases = [
       role: "Senior Product Designer",
       scope: "Subscription UX, Conversion Optimization, Competitive Benchmark",
       team: "Cross-functional with product and editorial teams",
+      delivered: "5 subscription flows benchmarked, 2 user states separated, redesigned journeys proposed for both",
       context: "O Globo and Valor Economico are two of Brazil's most influential news brands, operating under Editora Globo. The subscription journey is the main way readers experience these products end to end, from first contact through registration to becoming a member. The product was losing potential subscribers at every step of the funnel, not because the content lacked value, but because the experience failed to communicate it.",
     },
     problem: {
@@ -317,10 +314,8 @@ export const cases = [
         image: null,
       },
     ],
-    metrics: [
-      { n: "5", label: "Subscription flows benchmarked, including The New York Times" },
-      { n: "2", label: "User states the product was treating as one" },
-    ],
+    metrics: [],
+    outcome: "Delivered as redesigned journeys and recommendations for both O Globo and Valor Economico, together with a scored benchmark the team could keep using as a reference.",
     takeaway: "Subscription design is conversion design. Every inconsistency in branding, every unclear pricing line and every extra step in checkout is a reason for the user to stop. Small, systematic changes across the funnel compound into a meaningfully better reading and subscribing experience.",
   },
 
@@ -333,10 +328,9 @@ export const cases = [
     summary: "How separating brand tokens from functional ones let Vogue Brasil, Casa Vogue and GQ Brasil share one component library while keeping three distinct visual identities.",
     tags: ["Media", "Design System", "UX Audit"],
     metrics: [
-      { n: "3", label: "Brands sharing a single component library" },
-      { n: "2", label: "Token layers separating brand identity from function" },
       { n: "5%", label: "More newsletter sign-ups at Vogue Brasil" },
     ],
+    outcome: "One component library now serves three brands, so editorial teams ship without rebuilding components, and the redesigned newsletter flow lifted sign-ups at Vogue Brasil.",
     bg: "#F5F0EC",
     image: "/images/vogue.webp",
     beforeTakeaway: ["/images/vogue-01.webp", "/images/vogue-02.webp"],
@@ -344,6 +338,7 @@ export const cases = [
       role: "Senior Product Designer",
       scope: "Design System, UI Tokens, UX Audit, Interface Design",
       team: "Cross-functional, editorial, developers, product managers",
+      delivered: "3 brands on one component library, 2 token layers separating brand identity from function",
       context: "Conde Nast is one of the world's most recognized media companies, with titles including Vogue, GQ and Architectural Digest. In Brazil, the operation runs through Editora Globo. I joined as Senior Product Designer to lead UX strategy across the digital product portfolio, working with Vogue Brasil, Casa Vogue and GQ Brasil.",
     },
     problem: {
@@ -386,10 +381,8 @@ export const cases = [
     title: "Turning a moment of failure into the product's strongest feature.",
     summary: "A behavior-led redesign of the MyAccount card experience that cut card-related complaints and turned a moment of failure into a competitive differentiator.",
     tags: ["Fintech", "UX Research", "Product Design"],
-    metrics: [
-      { n: "4", label: "Card capabilities the new area made possible" },
-      { n: "2", label: "Controls moved from a buried submenu to primary actions" },
-    ],
+    metrics: [],
+    outcome: "The Cards area became the platform for the next round of work: additional cards, virtual cards, digital wallet integration and card personalisation in onboarding.",
     passwordHash: "aWdhbHZlcw==",
     bg: "#FCEEF0",
     image: "/images/bradesco.webp",
@@ -436,6 +429,7 @@ export const cases = [
       tools: "Figma, plus Figma Make and FigJam with AI assistance for references and early sketches",
       scope: "UX Research, Product Design, Information Architecture",
       team: "Cross-functional team with POs, developers and business stakeholders",
+      delivered: "1 dedicated Cards area, 2 controls moved from a buried submenu to primary actions",
       context: "Bradesco Bank is one of Latin America's largest banks, with operations across the US, Europe and Asia. My Account is one of its international products, built for Brazilians who live, invest or travel abroad, competing directly with players like Wise and Revolut.",
     },
     problem: {
@@ -475,9 +469,9 @@ export const cases = [
     summary: "Two user groups with opposite needs, served by two products built on deliberately opposite philosophies, inside one ecosystem at Sodexo LATAM.",
     tags: ["HR Tech", "B2B and B2C", "Product Design"],
     metrics: [
-      { n: "4", label: "New products launched at Sodexo LATAM" },
-      { n: "2", label: "User groups with opposite needs, inside one ecosystem" },
+      { n: "4", label: "Products launched at Sodexo LATAM" },
     ],
+    outcome: "The four products that had been waiting in the backlog launched, each with a design direction set by the segmentation. Every B2C flow was validated in usability testing with real employees before release.",
     bg: "#EEF0F8",
     image: "/images/sodexo.webp",
     beforeTakeaway: "/images/sodexo-01.webp",
@@ -485,6 +479,7 @@ export const cases = [
       role: "Senior Product Designer",
       scope: "B2B Dashboard, B2C Mobile App, Web Products",
       team: "Sodexo LATAM product team, Agile sprints",
+      delivered: "2 user groups segmented, 1 B2B dashboard and 1 B2C app designed against opposite principles",
       context: "Sodexo (now Pluxee) is one of the world's largest multinational companies in employee benefits, operating in more than 50 countries. I worked as UI/UX Product Designer on an indirect contract, embedded within the Sodexo LATAM product team, developing end-to-end digital products across dashboards, websites and mobile applications.",
     },
     problem: {

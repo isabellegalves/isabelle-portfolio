@@ -257,6 +257,9 @@ export default function CaseStudy({ onContactClick }) {
               { label: "Scope", value: c.overview.scope },
               { label: "Team", value: c.overview.team },
               { label: "Tools", value: c.overview.tools },
+              // O que foi produzido mora aqui, na ficha, e nao em Impact.
+              // Contagem de entrega nao e resultado.
+              { label: "Delivered", value: c.overview.delivered },
             ].filter(item => item.value).map(item => (
               <div key={item.label}>
                 <div style={{
@@ -451,11 +454,24 @@ export default function CaseStudy({ onContactClick }) {
                 transition={{ delay: 1.3, duration: 0.2, ease: "easeOut" }}/>
             </motion.svg>
           </div>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))", gap: 12, marginTop: 8 }}>
-            {c.metrics.map((m, i) => (
-              <MetricCounter key={i} value={m.n} label={m.label} />
-            ))}
-          </div>
+          {/* Antes esta secao mostrava contagem de entrega debaixo de um
+              rotulo que diz Impact e de uma anotacao que diz "the proof":
+              14 telas desenhadas, 6 modulos unificados, 15 codigos
+              substituidos. O numero era honesto e o rotulo o desmentia.
+              Agora Impact abre com o que mudou depois que o trabalho subiu,
+              e so mostra numero quando o numero mede uma mudanca. */}
+          {c.outcome && (
+            <p style={{ ...TEXT.lead, maxWidth: 640, marginBottom: c.metrics?.length ? 28 : 0 }}>
+              {c.outcome}
+            </p>
+          )}
+          {c.metrics?.length > 0 && (
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))", gap: 12, marginTop: 8 }}>
+              {c.metrics.map((m, i) => (
+                <MetricCounter key={i} value={m.n} label={m.label} />
+              ))}
+            </div>
+          )}
         </FadeUp>
       </section>
 
