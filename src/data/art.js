@@ -2,7 +2,7 @@
 // Titulos e tecnicas confirmados por ela; falta o ano de cada peca.
 export const ROOMS = [
   {
-    "name": "Ink",
+    "name": "Ink on paper",
     "line": "Three hearts and a Medusa. The line does all the work.",
     "items": [
       {
