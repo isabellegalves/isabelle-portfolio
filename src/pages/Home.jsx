@@ -608,8 +608,6 @@ function CapabilityCard({ item, index, inView }) {
 
 const COMPANIES = [
   { name: "Bradesco", logo: "/images/logo-empresa-bradesco.svg" },
-  // Sem arquivo de logo ainda: cai no wordmark ate chegar o SVG oficial.
-  { name: "Bradesco Insurance", logo: null },
   { name: "Editora Globo", logo: "/images/logo-empresa-edglobo.svg" },
   // Sem arquivo de logo ainda: cai no wordmark ate chegar o SVG oficial.
   { name: "Condé Nast", logo: null },
