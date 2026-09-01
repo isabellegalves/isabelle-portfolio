@@ -1,14 +1,20 @@
-import { T } from "../tokens"
+import { T, SHELL } from "../tokens"
+
+// Cinzas do rodape. Sobre o preto #0A0A0A, o #555 antigo dava 2.66:1 e o
+// #333 do copyright dava 1.57:1, quando o minimo legivel e 4.5:1. Era a
+// unica falha de contraste do site, e aparecia nas nove paginas.
+const FOOT_TEXT = "#9A9A9A"   // 7.0:1 sobre o preto do rodape
+const FOOT_META = "#7A7A7A"   // 4.6:1, passa raspando, so para o copyright
 
 export default function Footer() {
   return (
     <footer style={{
-      padding: "56px 80px",
+      padding: "56px 0",
       background: T.ink,
       borderTop: "1px solid #1a1a1a",
     }}>
       <div style={{
-        maxWidth: 1280, margin: "0 auto",
+        ...SHELL,
         display: "flex", justifyContent: "space-between",
         alignItems: "flex-end", flexWrap: "wrap", gap: 24,
       }}>
@@ -20,7 +26,7 @@ export default function Footer() {
           />
           <p style={{
             fontFamily: "Georgia, serif", fontStyle: "italic",
-            fontSize: 14, color: "#555", lineHeight: 1.6, maxWidth: 320,
+            fontSize: 14, color: FOOT_TEXT, lineHeight: 1.6, maxWidth: 320,
           }}>
             Senior Product Designer crafting experiences that serve both users and business goals.
           </p>
@@ -37,13 +43,13 @@ export default function Footer() {
                 style={{
                   fontFamily: "system-ui, sans-serif", fontSize: 12, fontWeight: 500,
                   letterSpacing: "0.04em", textTransform: "uppercase",
-                  color: "#555", textDecoration: "none",
+                  color: FOOT_TEXT, textDecoration: "none",
                   // Tinham 14px de altura de alvo, metade do minimo de toque.
                   display: "inline-flex", alignItems: "center", minHeight: 44,
                   transition: "color 0.2s",
                 }}
                 onMouseEnter={e => e.currentTarget.style.color = "#fff"}
-                onMouseLeave={e => e.currentTarget.style.color = "#555"}
+                onMouseLeave={e => e.currentTarget.style.color = FOOT_TEXT}
               >
                 {l.label}
               </a>
@@ -51,7 +57,7 @@ export default function Footer() {
           </div>
           <span style={{
             fontFamily: "system-ui, sans-serif", fontSize: 11,
-            color: "#333", letterSpacing: "0.04em",
+            color: FOOT_META, letterSpacing: "0.04em",
           }}>
             © 2026 Isabelle Alves
           </span>

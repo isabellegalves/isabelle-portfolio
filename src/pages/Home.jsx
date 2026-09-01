@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react"
 import { Link } from "react-router-dom"
 import { motion, useInView } from "framer-motion"
-import { T, TYPE, TEXT } from "../tokens"
+import { T, TYPE, TEXT, ACCENT, SHELL } from "../tokens"
 import { PURPLE } from "../components/CaseParts"
 import { visibleCases } from "../data/cases"
 
@@ -236,7 +236,7 @@ function Hero({ onContactClick }) {
                 >
                   <motion.path
                     d="M 2 7 C 20 3, 45 10, 75 6 C 105 2, 135 9, 168 6 C 198 3, 228 9, 255 6 C 265 4, 272 8, 278 6"
-                    stroke="#6C1FF3"
+                    stroke={ACCENT}
                     strokeWidth="2.4"
                     fill="none"
                     strokeLinecap="round"
@@ -284,24 +284,24 @@ function Hero({ onContactClick }) {
             transition={{ duration: 0.3 }}
           >
             <motion.text x="0" y="26"
-              style={{ fontFamily: "'Caveat', cursive", fontSize: "25px", fontWeight: 500, fill: "#6C1FF3" }}
+              style={{ fontFamily: "'Caveat', cursive", fontSize: "25px", fontWeight: 500, fill: ACCENT }}
               initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}
               transition={{ delay: 0.1, duration: 0.4 }}
             >
               real numbers
             </motion.text>
             <motion.path d="M 148 34 C 140 44, 136 54, 142 64"
-              stroke="#6C1FF3" strokeWidth="1.5" fill="none" strokeLinecap="round"
+              stroke={ACCENT} strokeWidth="1.5" fill="none" strokeLinecap="round"
               initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} viewport={{ once: true }}
               transition={{ delay: 0.5, duration: 0.6, ease: "easeOut" }}
             />
             <motion.path d="M 142 64 L 135 58"
-              stroke="#6C1FF3" strokeWidth="1.5" fill="none" strokeLinecap="round"
+              stroke={ACCENT} strokeWidth="1.5" fill="none" strokeLinecap="round"
               initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} viewport={{ once: true }}
               transition={{ delay: 1.1, duration: 0.2, ease: "easeOut" }}
             />
             <motion.path d="M 142 64 L 148 60"
-              stroke="#6C1FF3" strokeWidth="1.5" fill="none" strokeLinecap="round"
+              stroke={ACCENT} strokeWidth="1.5" fill="none" strokeLinecap="round"
               initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} viewport={{ once: true }}
               transition={{ delay: 1.3, duration: 0.2, ease: "easeOut" }}
             />
@@ -472,7 +472,7 @@ function CaseCard({ c, index }) {
 function Work() {
   return (
     <section id="work" aria-labelledby="work-heading" style={{ padding: "90px 0", background: T.white }}>
-      <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 48px" }}>
+      <div style={{ ...SHELL }}>
         <FadeUp>
           <HandUnderlineHeading id="work-heading">Selected work</HandUnderlineHeading>
         </FadeUp>
@@ -499,7 +499,7 @@ function Capabilities() {
 
   return (
     <section aria-labelledby="capabilities-heading" style={{ padding: "120px 0", background: T.offwhite }}>
-      <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 48px" }}>
+      <div style={{ ...SHELL }}>
         <FadeUp>
           <div style={{ display: "inline-flex", alignItems: "center", gap: 32, marginBottom: 52 }}>
             <div style={{ position: "relative", display: "inline-block" }}>
@@ -516,7 +516,7 @@ function Capabilities() {
               >
                 <path
                   d="M 1 6 C 15 2, 35 9, 58 5 C 78 2, 100 8, 125 5 C 148 2, 170 8, 192 5 C 202 3, 210 7, 218 5"
-                  stroke="#6C1FF3" strokeWidth="2.2" fill="none" strokeLinecap="round"
+                  stroke={ACCENT} strokeWidth="2.2" fill="none" strokeLinecap="round"
                 />
               </svg>
             </div>
@@ -526,24 +526,24 @@ function Capabilities() {
               transition={{ duration: 0.3 }}
             >
               <motion.text x="0" y="22"
-                style={{ fontFamily: "'Caveat', cursive", fontSize: "25px", fontWeight: 500, fill: "#6C1FF3" }}
+                style={{ fontFamily: "'Caveat', cursive", fontSize: "25px", fontWeight: 500, fill: ACCENT }}
                 initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}
                 transition={{ delay: 0.1, duration: 0.4 }}
               >
                 my process
               </motion.text>
               <motion.path d="M 54 34 C 44 44, 34 52, 24 60"
-                stroke="#6C1FF3" strokeWidth="1.5" fill="none" strokeLinecap="round"
+                stroke={ACCENT} strokeWidth="1.5" fill="none" strokeLinecap="round"
                 initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} viewport={{ once: true }}
                 transition={{ delay: 0.5, duration: 0.6, ease: "easeOut" }}
               />
               <motion.path d="M 24 60 L 22 52"
-                stroke="#6C1FF3" strokeWidth="1.5" fill="none" strokeLinecap="round"
+                stroke={ACCENT} strokeWidth="1.5" fill="none" strokeLinecap="round"
                 initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} viewport={{ once: true }}
                 transition={{ delay: 1.1, duration: 0.2, ease: "easeOut" }}
               />
               <motion.path d="M 24 60 L 32 60"
-                stroke="#6C1FF3" strokeWidth="1.5" fill="none" strokeLinecap="round"
+                stroke={ACCENT} strokeWidth="1.5" fill="none" strokeLinecap="round"
                 initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} viewport={{ once: true }}
                 transition={{ delay: 1.3, duration: 0.2, ease: "easeOut" }}
               />
@@ -585,7 +585,7 @@ function CapabilityCard({ item, index, inView }) {
         transition={{ duration: 0.5, delay: 0.2 + index * 0.15 }}
         style={{
           fontFamily: "'Caveat', cursive", fontSize: 32, fontWeight: 500,
-          color: "#6C1FF3", marginBottom: 20,
+          color: ACCENT, marginBottom: 20,
         }}
       >
         {item.n}
@@ -676,7 +676,7 @@ function CompaniesMarquee() {
           to { transform: translateX(-50%); }
         }
       `}</style>
-      <div style={{ maxWidth: 1280, margin: "0 auto 40px", padding: "0 48px" }}>
+      <div style={{ maxWidth: 1280, margin: "0 auto 40px", padding: "0 80px" }}>
         <HandUnderlineHeading style={{ marginBottom: 8 }}>Companies I've worked with</HandUnderlineHeading>
         <p style={{ fontFamily: "Georgia, serif", fontStyle: "italic", fontSize: 15, color: T.meta }}>
           11 years across fintech, media and retail
@@ -715,7 +715,7 @@ function CompaniesMarquee() {
 function About() {
   return (
     <section id="about" aria-labelledby="about-heading" style={{ padding: "120px 0", background: T.white }}>
-      <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 48px" }}>
+      <div style={{ ...SHELL }}>
         <div className="about-grid" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: 72, alignItems: "start" }}>
           <FadeUp>
             <h2 id="about-heading" style={{

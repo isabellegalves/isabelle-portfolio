@@ -1,7 +1,7 @@
 import { useEffect } from "react"
-import { CaseHeader, CaseNext, Annotation, ProcessGallery, PURPLE, SectionLabel } from "../components/CaseParts"
+import { CaseHeader, CaseNext, Annotation, ProcessGallery, PURPLE, SectionLabel, PhaseHeading } from "../components/CaseParts"
 import { getCaseBySlug, getNextCase } from "../data/cases"
-import { T, TEXT } from "../tokens"
+import { T, TEXT, ACCENT_SOFT, SHELL, QUOTE } from "../tokens"
 
 const C = {
   // Alinhado aos tokens do site. Os unicos valores proprios sao o roxo de
@@ -12,10 +12,10 @@ const C = {
   text:    T.ink,
   mid:     T.mid,
   accent:  PURPLE,
-  light:   "#F3EFFF",
+  light:   ACCENT_SOFT,
 }
 
-const wrap = { maxWidth: 1280, margin: "0 auto", padding: "0 80px" }
+const wrap = SHELL
 const sec  = { padding: "64px 0", borderBottom: `0.5px solid ${C.border}` }
 const HR   = () => <div style={{ borderTop: `0.5px solid ${C.border}`, margin: "2.5rem 0" }} />
 
@@ -23,11 +23,7 @@ const HR   = () => <div style={{ borderTop: `0.5px solid ${C.border}`, margin: "
 function Phase({ n, title, children }) {
   return (
     <div style={{ marginBottom: "1.75rem" }}>
-      <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: "0.6rem" }}>
-        <div style={{ width: 32, height: 3, background: C.accent, flexShrink: 0 }} />
-        <span style={{ fontFamily: "'Caveat', cursive", fontSize: "20px", fontWeight: 600, color: C.accent }}>{n}</span>
-      </div>
-      <h3 style={{ fontFamily: "Georgia, serif", fontStyle: "italic", fontWeight: 400, fontSize: "1.9rem", color: C.text, marginBottom: "0.9rem", lineHeight: 1.2 }}>{title}</h3>
+      <PhaseHeading n={n} title={title} />
       {children && <p style={{ ...TEXT.body, color: C.mid, maxWidth: 640 }}>{children}</p>}
     </div>
   )
@@ -128,7 +124,7 @@ export default function PiccadillyCase() {
               Launched during the peak of the pandemic in Brazil, this was Piccadilly's first mobile product. The challenge was not just to design an app. It was to build a complete digital commerce experience from scratch for a customer base that skewed older and had little familiarity with mobile shopping.
             </p>
           </div>
-          <blockquote style={{ borderLeft: `2px solid ${C.accent}`, paddingLeft: "1.25rem", marginBottom: "1.5rem", fontFamily: "Georgia, serif", fontStyle: "italic", fontSize: "1.05rem", color: C.mid, maxWidth: 640, lineHeight: 1.7 }}>
+          <blockquote style={{ borderLeft: `2px solid ${C.accent}`, paddingLeft: "1.25rem", marginBottom: "1.5rem", ...QUOTE, color: C.mid, maxWidth: 640, lineHeight: 1.7 }}>
             "The brand had strong offline presence. The digital product had to earn the same trust, for a customer who had never bought shoes without trying them on."
           </blockquote>
           <p style={{ ...TEXT.body, color: C.mid, maxWidth: 640 }}>
@@ -241,7 +237,7 @@ export default function PiccadillyCase() {
           <div style={{ display: "flex", gap: "2.5rem", alignItems: "flex-start" }}>
             <SectionLabel>Key takeaway</SectionLabel>
             <div style={{ background: C.surface, borderRadius: 14, padding: "1.75rem 2rem", flex: 1 }}>
-              <blockquote style={{ fontFamily: "Georgia, serif", fontStyle: "italic", fontSize: "1.1rem", lineHeight: 1.7, color: C.text, marginBottom: "1rem" }}>
+              <blockquote style={{ ...QUOTE, lineHeight: 1.7, color: C.text, marginBottom: "1rem" }}>
                 "Information architecture is a business decision, not just a design decision. How you organize a product catalog determines which customer intent states you serve and which you leave unsupported. Restructuring around mental models instead of product taxonomy was what made the difference."
               </blockquote>
               <div style={{ fontSize: 11, fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", color: C.mid, fontFamily: "system-ui, sans-serif" }}>PICCADILLY, 2019 to 2020</div>

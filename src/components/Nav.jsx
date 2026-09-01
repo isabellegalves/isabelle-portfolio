@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react"
 import { Link, useLocation, useNavigate } from "react-router-dom"
-import { T } from "../tokens"
+import { T, ACCENT, SHELL } from "../tokens"
 
-const PURPLE = "#6C1FF3"
+const PURPLE = ACCENT
 
 // Sublinhado handwritten SVG: ondulado orgânico
 function HandUnderline({ active }) {
@@ -109,7 +109,7 @@ export default function Nav({ onContactClick }) {
       }}
     >
       <div style={{
-        maxWidth: 1280, margin: "0 auto", padding: "0 48px",
+        maxWidth: 1280, margin: "0 auto", padding: "0 80px",
         height: "100%", display: "flex", alignItems: "center", justifyContent: "space-between",
       }}>
         <Link

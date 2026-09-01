@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react"
-import { T } from "../tokens"
+import { T, ACCENT } from "../tokens"
 
-const PURPLE = "#6C1FF3"
+const PURPLE = ACCENT
 
 // Simple hash: not cryptographic, just obscures the password from casual view
 // Usage: generate with btoa("yourpassword") in browser console

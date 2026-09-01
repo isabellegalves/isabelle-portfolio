@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from "react"
 import { useParams, Link, Navigate } from "react-router-dom"
 import { motion, useInView, animate } from "framer-motion"
-import { T, TYPE, TEXT } from "../tokens"
+import { T, TYPE, TEXT, ACCENT, SHELL } from "../tokens"
 import { getCaseBySlug, getNextCase } from "../data/cases"
 import PasswordGate from "../components/PasswordGate"
-import { ProcessGallery, SectionLabel } from "../components/CaseParts"
+import { ProcessGallery, SectionLabel, PhaseHeading } from "../components/CaseParts"
 
 const spring = { duration: 0.8, ease: [0.16, 1, 0.3, 1] }
 
@@ -118,7 +118,7 @@ export default function CaseStudy({ onContactClick }) {
 
       {/* HERO */}
       <section style={{ paddingTop: 100, background: T.white }}>
-        <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 80px" }}>
+        <div style={{ ...SHELL }}>
           <motion.div
             initial={{ opacity: 0, x: -12 }}
             animate={{ opacity: 1, x: 0 }}
@@ -220,21 +220,21 @@ export default function CaseStudy({ onContactClick }) {
             initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}
             transition={{ duration: 0.3 }}>
             <motion.text x="0" y="22"
-              style={{ fontFamily: "'Caveat', cursive", fontSize: "25px", fontWeight: 500, fill: "#6C1FF3" }}
+              style={{ fontFamily: "'Caveat', cursive", fontSize: "25px", fontWeight: 500, fill: ACCENT }}
               initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}
               transition={{ delay: 0.1, duration: 0.4 }}>
               the challenge
             </motion.text>
             <motion.path d="M 140 28 C 132 38, 128 48, 134 58"
-              stroke="#6C1FF3" strokeWidth="1.5" fill="none" strokeLinecap="round"
+              stroke={ACCENT} strokeWidth="1.5" fill="none" strokeLinecap="round"
               initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} viewport={{ once: true }}
               transition={{ delay: 0.5, duration: 0.6, ease: "easeOut" }}/>
             <motion.path d="M 134 58 L 127 52"
-              stroke="#6C1FF3" strokeWidth="1.5" fill="none" strokeLinecap="round"
+              stroke={ACCENT} strokeWidth="1.5" fill="none" strokeLinecap="round"
               initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} viewport={{ once: true }}
               transition={{ delay: 1.1, duration: 0.2, ease: "easeOut" }}/>
             <motion.path d="M 134 58 L 140 54"
-              stroke="#6C1FF3" strokeWidth="1.5" fill="none" strokeLinecap="round"
+              stroke={ACCENT} strokeWidth="1.5" fill="none" strokeLinecap="round"
               initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} viewport={{ once: true }}
               transition={{ delay: 1.3, duration: 0.2, ease: "easeOut" }}/>
           </motion.svg>
@@ -276,7 +276,7 @@ export default function CaseStudy({ onContactClick }) {
             ))}
           </div>
           <div style={{ height: "0.5px", background: T.rule, marginBottom: 32 }} />
-          <p style={{ ...TEXT.body, maxWidth: 720, marginBottom: 0 }}>{c.overview.context}</p>
+          <p style={{ ...TEXT.body, maxWidth: 640, marginBottom: 0 }}>{c.overview.context}</p>
         </FadeUp>
       </section>
 
@@ -300,7 +300,7 @@ export default function CaseStudy({ onContactClick }) {
                 const mid = Math.floor(arr.length / 2)
                 const isPurple = i >= mid - 1 && i <= mid + 1
                 return (
-                  <span key={i} style={{ color: isPurple ? "#6C1FF3" : T.ink }}>
+                  <span key={i} style={{ color: isPurple ? ACCENT : T.ink }}>
                     {word}{i < arr.length - 1 ? " " : ""}
                   </span>
                 )
@@ -323,44 +323,26 @@ export default function CaseStudy({ onContactClick }) {
                   initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}
                   transition={{ duration: 0.3 }}>
                   <motion.text x="0" y="20"
-                    style={{ fontFamily: "'Caveat', cursive", fontSize: "25px", fontWeight: 500, fill: "#6C1FF3" }}
+                    style={{ fontFamily: "'Caveat', cursive", fontSize: "25px", fontWeight: 500, fill: ACCENT }}
                     initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}
                     transition={{ delay: 0.1, duration: 0.4 }}>
                     key step!
                   </motion.text>
                   <motion.path d="M 76 26 C 66 34, 54 40, 42 48"
-                    stroke="#6C1FF3" strokeWidth="1.5" fill="none" strokeLinecap="round"
+                    stroke={ACCENT} strokeWidth="1.5" fill="none" strokeLinecap="round"
                     initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} viewport={{ once: true }}
                     transition={{ delay: 0.5, duration: 0.6, ease: "easeOut" }}/>
                   <motion.path d="M 42 48 L 40 40"
-                    stroke="#6C1FF3" strokeWidth="1.5" fill="none" strokeLinecap="round"
+                    stroke={ACCENT} strokeWidth="1.5" fill="none" strokeLinecap="round"
                     initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} viewport={{ once: true }}
                     transition={{ delay: 1.1, duration: 0.2, ease: "easeOut" }}/>
                   <motion.path d="M 42 48 L 50 48"
-                    stroke="#6C1FF3" strokeWidth="1.5" fill="none" strokeLinecap="round"
+                    stroke={ACCENT} strokeWidth="1.5" fill="none" strokeLinecap="round"
                     initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} viewport={{ once: true }}
                     transition={{ delay: 1.3, duration: 0.2, ease: "easeOut" }}/>
                 </motion.svg>
               )}
-              <div style={{ display: "flex", alignItems: "baseline", gap: 18, marginBottom: 18 }}>
-                <span style={{
-                  fontFamily: "'Caveat', cursive", fontSize: 28, fontWeight: 500,
-                  color: "#6C1FF3", flexShrink: 0,
-                }}>
-                  {phase.n}
-                </span>
-                <span style={{ position: "relative", display: "inline-block" }}>
-                  <h3 style={{ fontFamily: "system-ui, sans-serif", fontSize: 22, fontWeight: 700, letterSpacing: "-0.025em", color: T.ink, margin: 0 }}>
-                    {phase.title}
-                  </h3>
-                  <svg viewBox="0 0 260 8" height="8" aria-hidden="true" style={{
-                    position: "absolute", left: 0, bottom: -6, width: "100%", overflow: "visible",
-                  }}>
-                    <path d="M 1 5 C 20 2, 45 8, 75 4 C 105 1, 135 7, 165 4 C 195 1, 220 7, 255 4"
-                      stroke="#6C1FF3" strokeWidth="2" fill="none" strokeLinecap="round"/>
-                  </svg>
-                </span>
-              </div>
+              <PhaseHeading n={phase.n} title={phase.title} />
               <p style={BODY}>{phase.body}</p>
               {phase.image && (
                 <div style={{
@@ -416,7 +398,7 @@ export default function CaseStudy({ onContactClick }) {
                 </div>
               ))}
               {c.colorSystem.note && (
-                <p style={{ fontFamily: "'Caveat', cursive", fontSize: 22, fontWeight: 500, color: "#6C1FF3", marginTop: 24 }}>
+                <p style={{ fontFamily: "'Caveat', cursive", fontSize: 22, fontWeight: 500, color: ACCENT, marginTop: 24 }}>
                   {c.colorSystem.note}
                 </p>
               )}
@@ -450,21 +432,21 @@ export default function CaseStudy({ onContactClick }) {
               initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}
               transition={{ duration: 0.3 }}>
               <motion.text x="0" y="22"
-                style={{ fontFamily: "'Caveat', cursive", fontSize: "25px", fontWeight: 500, fill: "#6C1FF3" }}
+                style={{ fontFamily: "'Caveat', cursive", fontSize: "25px", fontWeight: 500, fill: ACCENT }}
                 initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}
                 transition={{ delay: 0.1, duration: 0.4 }}>
                 the proof
               </motion.text>
               <motion.path d="M 90 28 C 82 38, 78 48, 84 58"
-                stroke="#6C1FF3" strokeWidth="1.5" fill="none" strokeLinecap="round"
+                stroke={ACCENT} strokeWidth="1.5" fill="none" strokeLinecap="round"
                 initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} viewport={{ once: true }}
                 transition={{ delay: 0.5, duration: 0.6, ease: "easeOut" }}/>
               <motion.path d="M 84 58 L 77 52"
-                stroke="#6C1FF3" strokeWidth="1.5" fill="none" strokeLinecap="round"
+                stroke={ACCENT} strokeWidth="1.5" fill="none" strokeLinecap="round"
                 initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} viewport={{ once: true }}
                 transition={{ delay: 1.1, duration: 0.2, ease: "easeOut" }}/>
               <motion.path d="M 84 58 L 90 54"
-                stroke="#6C1FF3" strokeWidth="1.5" fill="none" strokeLinecap="round"
+                stroke={ACCENT} strokeWidth="1.5" fill="none" strokeLinecap="round"
                 initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} viewport={{ once: true }}
                 transition={{ delay: 1.3, duration: 0.2, ease: "easeOut" }}/>
             </motion.svg>
@@ -517,19 +499,19 @@ export default function CaseStudy({ onContactClick }) {
               initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}
               transition={{ duration: 0.3 }}>
               <motion.path d="M 18 6 C 10 18, 6 30, 12 42"
-                stroke="#6C1FF3" strokeWidth="1.5" fill="none" strokeLinecap="round"
+                stroke={ACCENT} strokeWidth="1.5" fill="none" strokeLinecap="round"
                 initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} viewport={{ once: true }}
                 transition={{ delay: 0.5, duration: 0.6, ease: "easeOut" }}/>
               <motion.path d="M 12 42 L 6 36"
-                stroke="#6C1FF3" strokeWidth="1.5" fill="none" strokeLinecap="round"
+                stroke={ACCENT} strokeWidth="1.5" fill="none" strokeLinecap="round"
                 initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} viewport={{ once: true }}
                 transition={{ delay: 1.1, duration: 0.2, ease: "easeOut" }}/>
               <motion.path d="M 12 42 L 18 38"
-                stroke="#6C1FF3" strokeWidth="1.5" fill="none" strokeLinecap="round"
+                stroke={ACCENT} strokeWidth="1.5" fill="none" strokeLinecap="round"
                 initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} viewport={{ once: true }}
                 transition={{ delay: 1.3, duration: 0.2, ease: "easeOut" }}/>
               <motion.text x="30" y="22"
-                style={{ fontFamily: "'Caveat', cursive", fontSize: "25px", fontWeight: 500, fill: "#6C1FF3" }}
+                style={{ fontFamily: "'Caveat', cursive", fontSize: "25px", fontWeight: 500, fill: ACCENT }}
                 initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}
                 transition={{ delay: 0.1, duration: 0.4 }}>
                 lessons learned
@@ -597,7 +579,7 @@ export default function CaseStudy({ onContactClick }) {
                 >
                   <path
                     d="M 1 6 C 15 2, 35 9, 58 5 C 78 2, 100 8, 125 5 C 148 2, 170 8, 192 5 C 202 3, 210 7, 218 5"
-                    stroke="#6C1FF3" strokeWidth="2.2" fill="none" strokeLinecap="round"
+                    stroke={ACCENT} strokeWidth="2.2" fill="none" strokeLinecap="round"
                   />
                 </svg>
               </div>
@@ -612,9 +594,9 @@ export default function CaseStudy({ onContactClick }) {
               overflow="visible" aria-hidden="true"
               style={{ flexShrink: 0, marginLeft: 24, transition: "transform 0.3s cubic-bezier(0.34,1.56,0.64,1)", transform: nextHovered ? "translateX(6px)" : "translateX(0)" }}
             >
-              <path d="M 4 18 C 12 16, 22 18, 34 18" stroke="#6C1FF3" strokeWidth="1.5" fill="none" strokeLinecap="round"/>
-              <path d="M 30 12 C 33 14, 35 16, 34 18" stroke="#6C1FF3" strokeWidth="1.5" fill="none" strokeLinecap="round"/>
-              <path d="M 34 18 C 33 20, 31 22, 30 24" stroke="#6C1FF3" strokeWidth="1.5" fill="none" strokeLinecap="round"/>
+              <path d="M 4 18 C 12 16, 22 18, 34 18" stroke={ACCENT} strokeWidth="1.5" fill="none" strokeLinecap="round"/>
+              <path d="M 30 12 C 33 14, 35 16, 34 18" stroke={ACCENT} strokeWidth="1.5" fill="none" strokeLinecap="round"/>
+              <path d="M 34 18 C 33 20, 31 22, 30 24" stroke={ACCENT} strokeWidth="1.5" fill="none" strokeLinecap="round"/>
             </svg>
 
           </div>

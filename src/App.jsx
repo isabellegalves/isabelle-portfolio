@@ -94,10 +94,13 @@ export default function App() {
             padding-left: 0 !important;
             padding-right: 0 !important;
           }
-          nav > div, footer, .page-pad {
+          /* O rodape passou a seguir a mesma grade das outras faixas: o
+             recuo mora no div de dentro, nao no elemento de fora. */
+          nav > div, footer > div, .page-pad {
             padding-left: 24px !important;
             padding-right: 24px !important;
           }
+          footer { padding-left: 0 !important; padding-right: 0 !important; }
         }
 
         @media (max-width: 640px) {

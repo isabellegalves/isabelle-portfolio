@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react"
 import { motion } from "framer-motion"
-import { T } from "../tokens"
+import { T, ACCENT } from "../tokens"
 
 export default function ContactModal({ onClose }) {
   const [copiedEmail, setCopiedEmail] = useState(false)
@@ -79,24 +79,24 @@ export default function ContactModal({ onClose }) {
             transition={{ duration: 0.3 }}
           >
             <motion.text x="4" y="22"
-              style={{ fontFamily: "'Caveat', cursive", fontSize: "25px", fontWeight: 500, fill: "#6C1FF3" }}
+              style={{ fontFamily: "'Caveat', cursive", fontSize: "25px", fontWeight: 500, fill: ACCENT }}
               initial={{ opacity: 0 }} animate={{ opacity: 1 }}
               transition={{ delay: 0.1, duration: 0.4 }}
             >
               say hello!
             </motion.text>
             <motion.path d="M 22 30 C 16 38, 10 44, 8 52"
-              stroke="#6C1FF3" strokeWidth="1.5" fill="none" strokeLinecap="round"
+              stroke={ACCENT} strokeWidth="1.5" fill="none" strokeLinecap="round"
               initial={{ pathLength: 0 }} animate={{ pathLength: 1 }}
               transition={{ delay: 0.5, duration: 0.5, ease: "easeOut" }}
             />
             <motion.path d="M 8 52 L 2 46"
-              stroke="#6C1FF3" strokeWidth="1.5" fill="none" strokeLinecap="round"
+              stroke={ACCENT} strokeWidth="1.5" fill="none" strokeLinecap="round"
               initial={{ pathLength: 0 }} animate={{ pathLength: 1 }}
               transition={{ delay: 1.0, duration: 0.2, ease: "easeOut" }}
             />
             <motion.path d="M 8 52 L 14 48"
-              stroke="#6C1FF3" strokeWidth="1.5" fill="none" strokeLinecap="round"
+              stroke={ACCENT} strokeWidth="1.5" fill="none" strokeLinecap="round"
               initial={{ pathLength: 0 }} animate={{ pathLength: 1 }}
               transition={{ delay: 1.2, duration: 0.2, ease: "easeOut" }}
             />

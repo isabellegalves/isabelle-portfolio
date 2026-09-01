@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react"
 import { motion, useInView } from "framer-motion"
-import { T, TYPE, TEXT } from "../tokens"
+import { T, TYPE, TEXT, ACCENT, SHELL } from "../tokens"
 import { PURPLE } from "../components/CaseParts"
 
 const spring = { duration: 0.9, ease: [0.16, 1, 0.3, 1] }
@@ -60,7 +60,7 @@ function HandBtn({ children, href, target, rel }) {
       style={{ display: "inline-flex", alignItems: "center", gap: 8, textDecoration: "none", cursor: "pointer" }}
     >
       <span style={{ position: "relative", display: "inline-block" }}>
-        <span style={{ fontFamily: "'Caveat', cursive", fontSize: 20, fontWeight: 500, color: "#6C1FF3", letterSpacing: "0.02em" }}>
+        <span style={{ fontFamily: "'Caveat', cursive", fontSize: 20, fontWeight: 500, color: ACCENT, letterSpacing: "0.02em" }}>
           {children}
         </span>
         <svg viewBox={`0 0 ${svgW} 8`} height="8" aria-hidden="true" style={{
@@ -68,16 +68,16 @@ function HandBtn({ children, href, target, rel }) {
           opacity: hovered ? 1 : 0, transition: "opacity 0.2s",
         }}>
           <path d={`M 1 5 C ${svgW*0.15} 2, ${svgW*0.35} 7, ${svgW*0.55} 4 C ${svgW*0.72} 1, ${svgW*0.88} 6, ${svgW-2} 4`}
-            stroke="#6C1FF3" strokeWidth="2.2" fill="none" strokeLinecap="round"/>
+            stroke={ACCENT} strokeWidth="2.2" fill="none" strokeLinecap="round"/>
         </svg>
       </span>
       <svg width="20" height="14" viewBox="0 0 20 14" fill="none" strokeLinecap="round" strokeLinejoin="round"
         style={{ transition: "transform 0.25s cubic-bezier(0.34,1.56,0.64,1)", transform: hovered ? "translateX(4px)" : "translateX(0)" }}
         aria-hidden="true"
       >
-        <path d="M 2 7 C 5 6, 9 7, 13 7" stroke="#6C1FF3" strokeWidth="1.5"/>
-        <path d="M 10 3 C 12 5, 13 6, 13 7" stroke="#6C1FF3" strokeWidth="1.5"/>
-        <path d="M 13 7 C 12 8, 11 10, 10 11" stroke="#6C1FF3" strokeWidth="1.5"/>
+        <path d="M 2 7 C 5 6, 9 7, 13 7" stroke={ACCENT} strokeWidth="1.5"/>
+        <path d="M 10 3 C 12 5, 13 6, 13 7" stroke={ACCENT} strokeWidth="1.5"/>
+        <path d="M 13 7 C 12 8, 11 10, 10 11" stroke={ACCENT} strokeWidth="1.5"/>
       </svg>
     </a>
   )
@@ -206,7 +206,7 @@ const TAG_STYLE = {
   border: `1px solid ${T.rule}`,
 }
 
-const P = { maxWidth: 1280, margin: "0 auto", padding: "0 80px" }
+const P = { ...SHELL }
 
 const CERTS = [
   {
@@ -407,13 +407,13 @@ export default function About() {
                   {/* seta: nasce perto do texto, curva subindo, ponta aponta para a foto */}
                   <path
                     d="M 72 96 C 60 74, 58 52, 80 28 C 90 18, 108 12, 118 10"
-                    stroke="#6C1FF3" strokeWidth="1.5" fill="none" strokeLinecap="round"
+                    stroke={ACCENT} strokeWidth="1.5" fill="none" strokeLinecap="round"
                   />
                   {/* ponta */}
-                  <path d="M 118 10 L 106 8" stroke="#6C1FF3" strokeWidth="1.5" fill="none" strokeLinecap="round"/>
-                  <path d="M 118 10 L 112 22" stroke="#6C1FF3" strokeWidth="1.5" fill="none" strokeLinecap="round"/>
+                  <path d="M 118 10 L 106 8" stroke={ACCENT} strokeWidth="1.5" fill="none" strokeLinecap="round"/>
+                  <path d="M 118 10 L 112 22" stroke={ACCENT} strokeWidth="1.5" fill="none" strokeLinecap="round"/>
                   {/* texto handwritten: bem abaixo da cauda da seta */}
-                  <text x="0" y="110" style={{ fontFamily: "'Caveat', cursive", fontSize: "22px", fontWeight: 400, fill: "#6C1FF3", letterSpacing: "0.04em" }}>
+                  <text x="0" y="110" style={{ fontFamily: "'Caveat', cursive", fontSize: "22px", fontWeight: 400, fill: ACCENT, letterSpacing: "0.04em" }}>
                     This is me!
                   </text>
                 </svg>

@@ -1,7 +1,7 @@
 import { useEffect } from "react"
-import { CaseHeader, CaseNext, Annotation, ProcessGallery, PURPLE, SectionLabel } from "../components/CaseParts"
+import { CaseHeader, CaseNext, Annotation, ProcessGallery, PURPLE, SectionLabel, PhaseHeading } from "../components/CaseParts"
 import { getCaseBySlug, getNextCase } from "../data/cases"
-import { T, TEXT } from "../tokens"
+import { T, TEXT, ACCENT_SOFT, SHELL, QUOTE } from "../tokens"
 
 const C = {
   // Alinhado aos tokens do site. Verde e vermelho ficam porque sao
@@ -12,12 +12,12 @@ const C = {
   text:        T.ink,
   mid:         T.mid,
   accent:      PURPLE,
-  accentLight: "#F3EFFF",
+  accentLight: ACCENT_SOFT,
   green:       "#1D9E75",
   red:         "#D85A30",
 }
 
-const wrap = { maxWidth: 1280, margin: "0 auto", padding: "0 80px" }
+const wrap = SHELL
 const sec  = { padding: "64px 0", borderBottom: `0.5px solid ${C.border}` }
 const hr   = { borderTop: `0.5px solid ${C.border}`, margin: "3rem 0", border: "none", borderTopStyle: "solid", borderTopWidth: "0.5px", borderTopColor: C.border }
 
@@ -34,11 +34,7 @@ function Caption({ children }) {
 function Phase({ n, title, children }) {
   return (
     <div style={{ marginBottom: "1.75rem" }}>
-      <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: "0.6rem" }}>
-        <div style={{ width: 32, height: 3, background: C.accent, flexShrink: 0 }} />
-        <span style={{ fontFamily: "'Caveat', cursive", fontSize: "20px", fontWeight: 600, color: C.accent }}>{n}</span>
-      </div>
-      <h3 style={{ fontFamily: "Georgia, serif", fontStyle: "italic", fontWeight: 400, fontSize: "1.9rem", color: C.text, marginBottom: "0.9rem", lineHeight: 1.2 }}>{title}</h3>
+      <PhaseHeading n={n} title={title} />
       {children && <p style={{ ...TEXT.body, color: C.mid, maxWidth: 640 }}>{children}</p>}
     </div>
   )
@@ -125,7 +121,7 @@ function Swatch({ color, label, light, gradient }) {
 function ImpactCard({ title, body }) {
   return (
     <div style={{ background: C.surface, borderRadius: 10, padding: "1.25rem", fontFamily: "system-ui, sans-serif" }}>
-      <div style={{ fontFamily: "Georgia, serif", fontStyle: "italic", fontSize: "1.1rem", color: C.text, marginBottom: 6, lineHeight: 1.3 }}>{title}</div>
+      <div style={{ ...QUOTE, color: C.text, marginBottom: 6, lineHeight: 1.3 }}>{title}</div>
       <div style={{ fontSize: 12, color: C.mid, lineHeight: 1.6 }}>{body}</div>
     </div>
   )
@@ -209,7 +205,7 @@ export default function AllphomeCase() {
               The challenge was not just to build an app. It was to help an established business <strong style={{ color: C.text, fontWeight: 500 }}>transition from a traditional gym model into a digital fitness experience</strong> without losing what made the brand valuable in the first place.
             </p>
           </div>
-          <blockquote style={{ borderLeft: `2px solid ${C.accent}`, paddingLeft: "1.25rem", marginBottom: "1.5rem", fontFamily: "Georgia, serif", fontStyle: "italic", fontSize: "1.05rem", color: C.mid, maxWidth: 640, lineHeight: 1.7 }}>
+          <blockquote style={{ borderLeft: `2px solid ${C.accent}`, paddingLeft: "1.25rem", marginBottom: "1.5rem", ...QUOTE, color: C.mid, maxWidth: 640, lineHeight: 1.7 }}>
             "Most fitness platforms are built for operators, not members. Allphome wanted to flip that equation: the student's experience had to come first."
           </blockquote>
           <p style={{ ...TEXT.body, color: C.mid, maxWidth: 640 }}>
@@ -373,7 +369,7 @@ export default function AllphomeCase() {
             {
               label: "Secondary, Purple",
               swatches: [
-                { color: "#F3EFFF", light: true },
+                { color: ACCENT_SOFT, light: true },
                 { color: PURPLE },
                 { color: "#4D14AD" },
               ],
@@ -469,7 +465,7 @@ export default function AllphomeCase() {
           <div style={{ display: "flex", gap: "2.5rem", alignItems: "flex-start" }}>
             <SectionLabel>Key takeaway</SectionLabel>
             <div style={{ background: C.surface, borderRadius: 14, padding: "1.75rem 2rem", flex: 1 }}>
-              <blockquote style={{ fontFamily: "Georgia, serif", fontStyle: "italic", fontSize: "1.15rem", lineHeight: 1.7, color: C.text, marginBottom: "1rem" }}>
+              <blockquote style={{ ...QUOTE, lineHeight: 1.7, color: C.text, marginBottom: "1rem" }}>
                 "The decisions with the highest impact were not visual. They were structural. Knowing what not to build matters as much as knowing what to build well."
               </blockquote>
               <div style={{ fontSize: 11, fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", color: C.mid, fontFamily: "system-ui, sans-serif" }}>ALLPHOME, 2023</div>

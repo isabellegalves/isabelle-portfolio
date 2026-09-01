@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import { motion } from "framer-motion"
-import { T, TYPE, TEXT } from "../tokens"
+import { T, TYPE, TEXT, ACCENT, STEP, SHELL } from "../tokens"
 
 /*
   CaseParts.jsx
@@ -9,19 +9,20 @@ import { T, TYPE, TEXT } from "../tokens"
   (CaseStudy genérico + páginas custom Piccadilly, Allphome).
 
   Regras de design respeitadas:
-  - Roxo único: #6C1FF3
-  - Max-width 1280, padding lateral 80px
+  - Roxo único: ACCENT, em tokens.js
+  - Grade única: SHELL, em tokens.js (1280 de largura, 80 de recuo)
   - Setas e sublinhados handwritten em SVG animado (motion.path pathLength)
   - Anotações em Caveat 500, cor #6C1FF3
   - Botões e labels sempre system-ui
   - Sem travessões nos textos
 */
 
-export const PURPLE = "#6C1FF3"
+// Mantido como reexport para as paginas que ja importavam PURPLE daqui.
+export const PURPLE = ACCENT
 
 // Container padrão de section
 export const CASE_MAX = 1280
-export const sectionPad = { padding: "64px 80px", maxWidth: CASE_MAX, margin: "0 auto" }
+export const sectionPad = { ...SHELL, padding: "64px 80px" }
 
 // ─── ROTULO DE SECTION ─────────────────────────────────────────────────
 // Um h2 de verdade, para o case ler h1 > h2 > h3 num leitor de tela, e o
@@ -34,6 +35,41 @@ export const SECTION_LABEL = {
 
 export function SectionLabel({ children }) {
   return <h2 style={SECTION_LABEL}>{children}</h2>
+}
+
+// ─── TITULO DE ETAPA DO PROCESSO ───────────────────────────────────────
+// O mesmo papel vinha desenhado de dois jeitos. Nos sete cases do template:
+// numero em Caveat 28 na mesma linha, titulo system-ui 22 bold e o risco
+// desenhado a mao por baixo. No Piccadilly e no Allphome: barra roxa e
+// numero em Caveat 20 numa linha acima, titulo Georgia italico 30.4 fixos e
+// nenhum risco. Nada em comum alem da cor. Agora e um componente so.
+export function PhaseHeading({ n, title, rule = true }) {
+  return (
+    <div style={{ display: "flex", alignItems: "baseline", gap: 18, marginBottom: 18 }}>
+      <span style={{
+        fontFamily: "'Caveat', cursive", fontSize: 28, fontWeight: 500,
+        color: ACCENT, flexShrink: 0,
+      }}>
+        {n}
+      </span>
+      <span style={{ position: "relative", display: "inline-block" }}>
+        <h3 style={{
+          fontFamily: "system-ui, sans-serif", fontSize: STEP, fontWeight: 700,
+          letterSpacing: "-0.025em", color: T.ink, margin: 0,
+        }}>
+          {title}
+        </h3>
+        {rule && (
+          <svg viewBox="0 0 260 8" height="8" aria-hidden="true" style={{
+            position: "absolute", left: 0, bottom: -6, width: "100%", overflow: "visible",
+          }}>
+            <path d="M 1 5 C 20 2, 45 8, 75 4 C 105 1, 135 7, 165 4 C 195 1, 220 7, 255 4"
+              stroke={ACCENT} strokeWidth="2" fill="none" strokeLinecap="round"/>
+          </svg>
+        )}
+      </span>
+    </div>
+  )
 }
 
 // Divisor fino entre sections
@@ -133,7 +169,7 @@ export function CaseHeader({ tags = [], year = "", title, summary, image, compan
 
   return (
     <section style={{ paddingTop: 100, background: T.white }}>
-      <div style={{ maxWidth: CASE_MAX, margin: "0 auto", padding: "0 80px" }}>
+      <div style={SHELL}>
         <motion.div
           initial={{ opacity: 0, x: -12 }} animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
