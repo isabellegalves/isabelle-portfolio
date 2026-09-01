@@ -3,6 +3,7 @@ import { Routes, Route, useLocation } from "react-router-dom"
 import { AnimatePresence, motion } from "framer-motion"
 import Nav from "./components/Nav"
 import Footer from "./components/Footer"
+import Illustration from "./pages/Illustration"
 import ContactModal from "./components/ContactModal"
 import Home from "./pages/Home"
 import CaseStudy from "./pages/CaseStudy"
@@ -62,7 +63,17 @@ export default function App() {
           border-radius: 4px;
         }
 
-        @media (max-width: 900px) {
+        /* Parede da galeria. Colunas preservam a proporcao de cada peca: cortar
+   desenho para caber numa grade uniforme seria a decisao errada. */
+.art-wall { column-count: 3; column-gap: 36px; }
+@media (max-width: 1080px) { .art-wall { column-count: 2; } }
+@media (max-width: 680px)  { .art-wall { column-count: 1; } }
+@media (max-width: 680px) {
+  .lb-prev { left: 8px !important; }
+  .lb-next { right: 8px !important; }
+}
+
+@media (max-width: 900px) {
           .hero-grid { grid-template-columns: 1fr !important; }
           .hero-phones { display: none !important; }
           .work-grid { grid-template-columns: 1fr !important; }
@@ -173,6 +184,11 @@ export default function App() {
             <Route path="/about" element={
               <AnimatedPage>
                 <About />
+              </AnimatedPage>
+            } />
+            <Route path="/illustration" element={
+              <AnimatedPage>
+                <Illustration />
               </AnimatedPage>
             } />
             <Route path="*" element={

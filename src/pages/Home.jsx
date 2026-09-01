@@ -349,7 +349,7 @@ function Tags({ tags }) {
 }
 
 // ─── OUTLINE BUTTON (vira roxo + seta handwritten no hover) ───────────────────
-function OutlineButton({ hovered }) {
+function OutlineButton({ hovered, label = "Read case study" }) {
   return (
     <span style={{
       display: "inline-flex", alignItems: "center", gap: 8,
@@ -360,7 +360,7 @@ function OutlineButton({ hovered }) {
       padding: "10px 20px", borderRadius: 24,
       transition: "color 0.3s, border-color 0.3s",
     }}>
-      Read case study
+      {label}
       <svg width="16" height="12" viewBox="0 0 16 12" aria-hidden="true"
         style={{ overflow: "visible", transition: "transform 0.25s cubic-bezier(0.34,1.56,0.64,1)", transform: hovered ? "translateX(4px)" : "translateX(0)" }}>
         <path d="M 2 6 C 4 5, 7 6, 11 6" stroke="currentColor" strokeWidth="1.4" fill="none" strokeLinecap="round"/>
@@ -395,7 +395,7 @@ function CaseCard({ c, index }) {
       }}
     >
       <Link
-        to={c.comingSoon ? "#" : `/work/${c.slug}`}
+        to={c.comingSoon ? "#" : (c.to || `/work/${c.slug}`)}
         onClick={c.comingSoon ? (e) => e.preventDefault() : undefined}
         style={{ textDecoration: "none", display: "block" }}
       >
@@ -410,7 +410,7 @@ function CaseCard({ c, index }) {
               transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
               style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center", display: "block" }}
             />
-            {/* Véu roxo + View case */}
+            {/* Véu roxo + rotulo de acao */}
             <div style={{
               position: "absolute", inset: 0,
               background: hovered ? "rgba(108,31,243,0.30)" : "rgba(108,31,243,0)",
@@ -425,7 +425,7 @@ function CaseCard({ c, index }) {
                 transform: hovered ? "scale(1)" : "scale(0.92)",
                 transition: "opacity 0.35s, transform 0.35s",
               }}>
-                View case
+                {c.overlayLabel || "View case"}
               </span>
             </div>
             {c.comingSoon && (
@@ -460,12 +460,28 @@ function CaseCard({ c, index }) {
           </h3>
 
           {!c.comingSoon
-            ? <OutlineButton hovered={hovered} />
+            ? <OutlineButton hovered={hovered} label={c.ctaLabel} />
             : <span style={{ fontFamily: "system-ui, sans-serif", fontSize: 13, fontWeight: 600, color: T.meta }}>Coming soon</span>}
         </div>
       </Link>
     </motion.article>
   )
+}
+
+// Nao mora em cases.js: nao e um case, e nao deve aparecer na navegacao de
+// proximo e anterior entre cases. Fica por ultimo na grade, depois do
+// trabalho de produto, que e o que precisa ser visto primeiro.
+const ILLUSTRATION_CARD = {
+  id: "art",
+  slug: "illustration",
+  to: "/illustration",
+  company: "Personal work",
+  title: "Before the products, the drawing.",
+  tags: ["Illustration", "Ink", "Watercolor", "Procreate"],
+  image: "/images/art/cover.webp",
+  bg: "#EAE9ED",
+  overlayLabel: "View gallery",
+  ctaLabel: "See the drawings",
 }
 
 // ─── WORK ─────────────────────────────────────────────────────────────────────
@@ -479,6 +495,7 @@ function Work() {
 
         <div className="work-grid" style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 20 }}>
           {visibleCases.map((c, i) => <CaseCard key={c.id} c={c} index={i} />)}
+          <CaseCard c={ILLUSTRATION_CARD} index={visibleCases.length} />
         </div>
       </div>
     </section>
@@ -749,6 +766,7 @@ function About() {
             <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
               <Btn variant="outline" as="a" href="https://www.linkedin.com/in/isabellegalves/" padding="14px 18px" borderRadius={20}>Linkedin</Btn>
               <Btn variant="outline" as="a" href="/about" padding="14px 18px" borderRadius={20}>About</Btn>
+              <Btn variant="outline" as="a" href="/illustration" padding="14px 18px" borderRadius={20}>Illustration</Btn>
             </div>
           </FadeUp>
         </div>
