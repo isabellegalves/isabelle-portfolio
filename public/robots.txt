@@ -1,0 +1,16 @@
+# https://www.isabellegalves.com
+
+User-agent: *
+Allow: /
+
+# Cases protegidos por senha: o crawler so veria a tela de senha, entao
+# nao vale gastar rastreio neles. Ao tornar um case publico, remova a
+# linha correspondente aqui e acrescente a URL no sitemap.xml.
+Disallow: /work/cambio
+Disallow: /work/interbancario
+Disallow: /work/conta-internacional
+Disallow: /work/allphome
+Disallow: /work/gym-app
+Disallow: /work/bradesco
+
+Sitemap: https://www.isabellegalves.com/sitemap.xml

@@ -10,6 +10,7 @@ import CaseStudy from "./pages/CaseStudy"
 import About from "./pages/About"
 import AllphomeCase from "./pages/AllphomeCase"
 import PiccadillyCase from "./pages/PiccadillyCase"
+import { useDocumentMeta } from "./lib/seo"
 
 const pageVariants = {
   initial: { opacity: 0, y: 16 },
@@ -47,6 +48,9 @@ function ScrollToTop() {
 export default function App() {
   const [modalOpen, setModalOpen] = useState(false)
   const location = useLocation()
+
+  // Titulo, descricao e canonical proprios em cada rota.
+  useDocumentMeta()
 
   return (
     <>
