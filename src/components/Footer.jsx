@@ -19,10 +19,16 @@ export default function Footer() {
         alignItems: "flex-end", flexWrap: "wrap", gap: 24,
       }}>
         <div>
+          {/* O SVG tinha folga transparente assada dentro da caixa: a tinta so
+              comecava na coluna 95 de 1476, o que a 32px de altura empurrava a
+              marca 14.8px para a direita do paragrafo abaixo dela. A caixa foi
+              apertada ate a tinta, e a altura caiu de 32 para 21 porque 32
+              incluia a folga de cima e de baixo: a marca em si sempre desenhou
+              21px. Mesmo tamanho de antes, agora comecando onde deveria. */}
           <img
             src="/images/logo-white.svg"
             alt="Isabelle Alves"
-            style={{ height: 32, width: "auto", display: "block", opacity: 0.9, marginBottom: 16 }}
+            style={{ height: 21, width: "auto", display: "block", opacity: 0.9, marginBottom: 20 }}
           />
           <p style={{
             fontFamily: "Georgia, serif", fontStyle: "italic",
