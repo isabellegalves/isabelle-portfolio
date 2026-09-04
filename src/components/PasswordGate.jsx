@@ -127,6 +127,50 @@ export default function PasswordGate({ caseTitle, passwordHash, onUnlock }) {
             Unlock
           </button>
         </form>
+
+        {/* Sem a senha, esta tela era um beco sem saida: quem chegava aqui
+            sem ter recebido a senha nao tinha o que fazer. Agora ela vira
+            um caminho de contato. */}
+        <div style={{ marginTop: 34, paddingTop: 28, borderTop: `0.5px solid ${T.rule}` }}>
+          <p style={{
+            fontFamily: "system-ui, sans-serif", fontSize: 14,
+            color: T.mid, lineHeight: 1.6, margin: "0 0 6px",
+          }}>
+            No password? Get in touch and I'll send it over.
+          </p>
+          <div style={{
+            display: "flex", justifyContent: "center", flexWrap: "wrap",
+            gap: 22, marginBottom: -10,
+          }}>
+            {[
+              { label: "WhatsApp", href: "https://wa.me/5521970958098", ext: true },
+              { label: "Email", href: "mailto:isabellegalves@gmail.com", ext: false },
+              { label: "LinkedIn", href: "https://www.linkedin.com/in/isabellegalves/", ext: true },
+            ].map(l => (
+              <a
+                key={l.label}
+                href={l.href}
+                {...(l.ext ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                style={{
+                  fontFamily: "system-ui, sans-serif", fontSize: 13, fontWeight: 500,
+                  color: T.ink, textDecoration: "none",
+                  // inline-flex com altura minima: como link de uma linha so,
+                  // o alvo de toque ficaria em 17px, bem abaixo dos 44. O
+                  // minWidth e por causa de "Email", que sozinho da 33px de
+                  // largura e tambem ficava abaixo do minimo.
+                  display: "inline-flex", alignItems: "center", justifyContent: "center",
+                  minHeight: 44, minWidth: 44,
+                  borderBottom: `1px solid ${T.rule}`,
+                  transition: "color 0.2s, border-color 0.2s",
+                }}
+                onMouseEnter={e => { e.currentTarget.style.color = PURPLE; e.currentTarget.style.borderColor = PURPLE }}
+                onMouseLeave={e => { e.currentTarget.style.color = T.ink; e.currentTarget.style.borderColor = T.rule }}
+              >
+                {l.label}
+              </a>
+            ))}
+          </div>
+        </div>
       </div>
     </main>
   )
