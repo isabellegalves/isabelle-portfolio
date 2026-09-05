@@ -70,10 +70,17 @@ export default function App() {
         /* Parede da galeria. Colunas preservam a proporcao de cada peca: cortar
    desenho para caber numa grade uniforme seria a decisao errada. */
 .art-wall { column-count: 3; column-gap: 36px; }
-/* Uma peca deitada numa coluna de 340px rende 340x255, enquanto as verticais
-   rendem 340x450: a grade e feita para vertical e achata quem nao e. O
-   destaque sai das colunas e atravessa a parede inteira. */
+/* Uma peca deitada numa coluna de 349px rende 309x232, enquanto as verticais
+   rendem 309x394: a grade e feita para vertical e achata quem nao e. O
+   destaque sai das colunas para crescer. */
 .art-wall > figure.art-feature { column-span: all; margin-bottom: 44px; }
+/* Mas nao a parede inteira, que era demais. Duas colunas mais um vao: a
+   borda direita cai exatamente onde a segunda coluna termina, entao ele
+   cresce sem quebrar a grade. Abaixo de 1081px a parede ja tem duas colunas
+   ou uma, e atravessar tudo e o mesmo que ocupar duas. */
+@media (min-width: 1081px) {
+  .art-wall > figure.art-feature { max-width: calc((100% - 72px) / 3 * 2 + 36px); }
+}
 @media (max-width: 1080px) { .art-wall { column-count: 2; } }
 @media (max-width: 680px)  { .art-wall { column-count: 1; } }
 @media (max-width: 680px) {
