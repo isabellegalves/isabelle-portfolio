@@ -36,7 +36,7 @@ function FadeUp({ children, delay = 0 }) {
 function Piece({ piece, index, onOpen }) {
   const [hovered, setHovered] = useState(false)
   return (
-    <figure className={piece.feature ? "art-feature" : undefined}
+    <figure className={piece.feature ? "art-feature" : piece.beside ? "art-beside" : undefined}
       style={{ margin: "0 0 36px", breakInside: "avoid" }}>
       <button
         onClick={() => onOpen(index)}
@@ -167,7 +167,6 @@ export default function Illustration() {
   const close = useCallback(() => setOpen(null), [])
 
 
-  let n = -1
   return (
     <div style={{ background: WALL }}>
       <section style={{ ...SHELL, paddingTop: 150, paddingBottom: 72 }}>
@@ -204,8 +203,19 @@ export default function Illustration() {
           {/* Colunas preservam a proporcao de cada peca. Cortar desenho para
               caber numa grade uniforme seria a decisao errada numa galeria. */}
           <div className="art-wall">
-            {room.items.map((p) => { n += 1; const i = n
-              return <Piece key={p.src} piece={p} index={i} onOpen={setOpen} /> })}
+            {/* Os dois primeiros saem das colunas para uma fileira propria.
+                column-span ocupa a faixa inteira sozinho, entao nada pode
+                ficar ao lado dele: quem atravessa e a fileira, nao a peca. */}
+            {room.items.some(p => p.feature) && (
+              <div className="art-feature-row">
+                {room.items.filter(p => p.feature || p.beside).map(p => (
+                  <Piece key={p.src} piece={p} index={PIECES.indexOf(p)} onOpen={setOpen} />
+                ))}
+              </div>
+            )}
+            {room.items.filter(p => !p.feature && !p.beside).map(p => (
+              <Piece key={p.src} piece={p} index={PIECES.indexOf(p)} onOpen={setOpen} />
+            ))}
           </div>
         </section>
       ))}

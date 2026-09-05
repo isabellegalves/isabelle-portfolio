@@ -1,7 +1,7 @@
 // Gerado a partir de ~/Desktop/desenhos. Ordem das salas, ordem das pecas,
 // titulos e tecnicas sao escolha dela. Sem ano, tambem escolha dela.
 // `video` e opcional: quando existe, e o timelapse do Procreate.
-// `feature` tira a peca das colunas e faz ela atravessar a parede.
+// `feature` + `beside` formam a fileira de destaque no topo da sala.
 export const ROOMS = [
   {
     "name": "Digital",
@@ -21,7 +21,8 @@ export const ROOMS = [
         "title": "Fabrício, my orange cat",
         "medium": "Procreate on iPad",
         "w": 984,
-        "h": 1054
+        "h": 1054,
+        "beside": true
       },
       {
         "src": "/images/art/meandfabris.webp",

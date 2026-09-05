@@ -74,15 +74,26 @@ export default function App() {
    rendem 309x394: a grade e feita para vertical e achata quem nao e. O
    destaque sai das colunas para crescer. */
 .art-wall > figure.art-feature { column-span: all; margin-bottom: 44px; }
-/* Mas so uma coluna e meia mais um vao, nao a parede inteira. A regra nao e
-   a largura, e a altura: as pecas em pe da parede ficam entre 309 e 394 de
-   altura, e com duas colunas o destaque ia a 521, 130px acima da mais alta.
-   Ele incomodava por furar a linha do horizonte, nao por ser largo. Nesta
-   medida ele fica com a altura da peca mais alta e o destaque vem so da
-   largura. Abaixo de 1081px a parede tem duas colunas ou uma, e ai ocupar
-   tudo ja e o comportamento certo. */
+/* Quem atravessa e a fileira, nao a peca: column-span ocupa a faixa sozinho
+   e nada pode ficar ao lado. */
+.art-wall > .art-feature-row {
+  column-span: all; display: flex; gap: 36px;
+  justify-content: space-between; align-items: flex-start; margin-bottom: 44px;
+}
+.art-wall > .art-feature-row > figure { margin-bottom: 0; }
+/* A largura do destaque nao e escolhida pela largura, e pela altura: as pecas
+   em pe ficam entre 309 e 394, e com duas colunas ele ia a 521, furando a
+   linha do horizonte. Em uma coluna e meia ele fica em 390. A companheira
+   ocupa exatamente uma coluna, entao a borda direita dela cai onde a terceira
+   coluna termina e o vao fica no meio, como numa parede de galeria. */
 @media (min-width: 1081px) {
-  .art-wall > figure.art-feature { max-width: calc((100% - 72px) / 3 * 1.5 + 36px); }
+  .art-feature-row > figure.art-feature { flex: 0 0 calc((100% - 72px) / 3 * 1.5 + 36px); }
+  .art-feature-row > figure.art-beside  { flex: 0 0 calc((100% - 72px) / 3); }
+}
+/* Com duas colunas ou uma nao ha espaco para a fileira: elas voltam a empilhar. */
+@media (max-width: 1080px) {
+  .art-wall > .art-feature-row { display: block; }
+  .art-wall > .art-feature-row > figure { margin-bottom: 36px; }
 }
 @media (max-width: 1080px) { .art-wall { column-count: 2; } }
 @media (max-width: 680px)  { .art-wall { column-count: 1; } }
