@@ -74,12 +74,15 @@ export default function App() {
    rendem 309x394: a grade e feita para vertical e achata quem nao e. O
    destaque sai das colunas para crescer. */
 .art-wall > figure.art-feature { column-span: all; margin-bottom: 44px; }
-/* Mas nao a parede inteira, que era demais. Duas colunas mais um vao: a
-   borda direita cai exatamente onde a segunda coluna termina, entao ele
-   cresce sem quebrar a grade. Abaixo de 1081px a parede ja tem duas colunas
-   ou uma, e atravessar tudo e o mesmo que ocupar duas. */
+/* Mas so uma coluna e meia mais um vao, nao a parede inteira. A regra nao e
+   a largura, e a altura: as pecas em pe da parede ficam entre 309 e 394 de
+   altura, e com duas colunas o destaque ia a 521, 130px acima da mais alta.
+   Ele incomodava por furar a linha do horizonte, nao por ser largo. Nesta
+   medida ele fica com a altura da peca mais alta e o destaque vem so da
+   largura. Abaixo de 1081px a parede tem duas colunas ou uma, e ai ocupar
+   tudo ja e o comportamento certo. */
 @media (min-width: 1081px) {
-  .art-wall > figure.art-feature { max-width: calc((100% - 72px) / 3 * 2 + 36px); }
+  .art-wall > figure.art-feature { max-width: calc((100% - 72px) / 3 * 1.5 + 36px); }
 }
 @media (max-width: 1080px) { .art-wall { column-count: 2; } }
 @media (max-width: 680px)  { .art-wall { column-count: 1; } }
