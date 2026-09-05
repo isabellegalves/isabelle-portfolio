@@ -83,11 +83,12 @@ export default function App() {
 .art-wall > .art-feature-row > figure { margin-bottom: 0; }
 /* A largura do destaque nao e escolhida pela largura, e pela altura: as pecas
    em pe ficam entre 309 e 394, e com duas colunas ele ia a 521, furando a
-   linha do horizonte. Em uma coluna e meia ele fica em 390. A companheira
+   linha do horizonte. Em uma coluna e um quarto ele fica em 324, no meio
+   da faixa das vizinhas em vez de encostando no teto dela. A companheira
    ocupa exatamente uma coluna, entao a borda direita dela cai onde a terceira
    coluna termina e o vao fica no meio, como numa parede de galeria. */
 @media (min-width: 1081px) {
-  .art-feature-row > figure.art-feature { flex: 0 0 calc((100% - 72px) / 3 * 1.5 + 36px); }
+  .art-feature-row > figure.art-feature { flex: 0 0 calc((100% - 72px) / 3 * 1.25 + 36px); }
   .art-feature-row > figure.art-beside  { flex: 0 0 calc((100% - 72px) / 3); }
 }
 /* Com duas colunas ou uma nao ha espaco para a fileira: elas voltam a empilhar. */
