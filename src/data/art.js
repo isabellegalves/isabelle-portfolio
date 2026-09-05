@@ -30,7 +30,8 @@ export const ROOMS = [
         "medium": "Procreate on iPad",
         "w": 906,
         "h": 1100,
-        "video": "/videos/meandfabris.mp4"
+        "video": "/videos/meandfabris.mp4",
+        "beside": true
       },
       {
         "src": "/images/art/me-coquinho-and-pepito.webp",

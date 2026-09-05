@@ -78,7 +78,7 @@ export default function App() {
    e nada pode ficar ao lado. */
 .art-wall > .art-feature-row {
   column-span: all; display: flex; gap: 36px;
-  justify-content: space-between; align-items: flex-start; margin-bottom: 44px;
+  align-items: flex-start; margin-bottom: 44px;
 }
 .art-wall > .art-feature-row > figure { margin-bottom: 0; }
 /* A largura do destaque nao e escolhida pela largura, e pela altura: as pecas
@@ -89,7 +89,10 @@ export default function App() {
    coluna termina e o vao fica no meio, como numa parede de galeria. */
 @media (min-width: 1081px) {
   .art-feature-row > figure.art-feature { flex: 0 0 calc((100% - 72px) / 3 * 1.25 + 36px); }
-  .art-feature-row > figure.art-beside  { flex: 0 0 calc((100% - 72px) / 3); }
+  /* As acompanhantes dividem em partes iguais o que sobra da fileira, entao
+     nao ha vao morto no meio: com tres pecas elas ficam em 288, um pouco
+     menores que a coluna normal de 349, que e o que faz o destaque aparecer. */
+  .art-feature-row > figure.art-beside  { flex: 1 1 0; min-width: 0; }
 }
 /* Com duas colunas ou uma nao ha espaco para a fileira: elas voltam a empilhar. */
 @media (max-width: 1080px) {
