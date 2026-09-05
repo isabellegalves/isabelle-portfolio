@@ -128,7 +128,7 @@ export const ROOMS = [
       {
         "src": "/images/art/akai-ito-japanese-legend.webp",
         "title": "Akai Ito (Japanese legend)",
-        "medium": "Ink pen on paper",
+        "medium": "Black ink pen and red pen on paper",
         "w": 829,
         "h": 1100
       }
