@@ -1,5 +1,6 @@
 // Gerado a partir de ~/Desktop/desenhos. As salas sao as pastas dela.
-// Titulos e tecnicas confirmados por ela; falta o ano de cada peca.
+// Titulos e tecnicas confirmados por ela. Sem ano, por escolha dela.
+// `video` e opcional: quando existe, e o timelapse do Procreate.
 export const ROOMS = [
   {
     "name": "Ink on paper",
@@ -114,6 +115,22 @@ export const ROOMS = [
         "medium": "Procreate on iPad",
         "w": 984,
         "h": 1054
+      },
+      {
+        "src": "/images/art/gordo.webp",
+        "title": "Gordo and Me",
+        "medium": "Procreate on iPad",
+        "w": 1100,
+        "h": 825,
+        "video": "/videos/gordo.mp4"
+      },
+      {
+        "src": "/images/art/meandfabris.webp",
+        "title": "Me and Fabrício",
+        "medium": "Procreate on iPad",
+        "w": 906,
+        "h": 1100,
+        "video": "/videos/meandfabris.mp4"
       }
     ]
   }

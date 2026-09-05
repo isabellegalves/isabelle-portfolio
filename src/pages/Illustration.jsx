@@ -52,11 +52,30 @@ function Piece({ piece, index, onOpen }) {
           transition: "box-shadow .22s ease, transform .22s ease",
         }}
       >
-        <img
-          src={piece.src} alt={`${piece.title}, ${piece.medium}`}
-          width={piece.w} height={piece.h} loading="lazy"
-          style={{ display: "block", width: "100%", height: "auto" }}
-        />
+        <span style={{ position: "relative", display: "block" }}>
+          <img
+            src={piece.src} alt={`${piece.title}, ${piece.medium}`}
+            width={piece.w} height={piece.h} loading="lazy"
+            style={{ display: "block", width: "100%", height: "auto" }}
+          />
+          {/* So as pecas que tem timelapse ganham a marca, senao ela nao
+              informa nada. */}
+          {piece.video && (
+            <span style={{
+              position: "absolute", left: 10, bottom: 10,
+              display: "inline-flex", alignItems: "center", gap: 6,
+              background: "rgba(10,10,10,.72)", color: "#FFFFFF",
+              fontFamily: "system-ui, sans-serif", fontSize: 10, fontWeight: 700,
+              letterSpacing: "0.08em", textTransform: "uppercase",
+              padding: "5px 9px", borderRadius: 3,
+            }}>
+              <svg width="8" height="9" viewBox="0 0 8 9" aria-hidden="true">
+                <path d="M0 0 L8 4.5 L0 9 Z" fill="currentColor" />
+              </svg>
+              Timelapse
+            </span>
+          )}
+        </span>
       </button>
       <figcaption style={{ padding: "14px 2px 0" }}>
         <p style={{ fontFamily: "system-ui, sans-serif", fontSize: 15, fontWeight: 500,
@@ -70,6 +89,11 @@ function Piece({ piece, index, onOpen }) {
 
 function Lightbox({ index, onClose, onMove }) {
   const p = PIECES[index]
+  // A obra vem primeiro. O timelapse e um segundo passo, pedido de forma
+  // explicita: nada toca sozinho, o que tambem resolve prefers-reduced-motion
+  // sem precisar de caso especial.
+  const [playing, setPlaying] = useState(false)
+  useEffect(() => { setPlaying(false) }, [index])
 
   useEffect(() => {
     const onKey = (e) => {
@@ -105,14 +129,32 @@ function Lightbox({ index, onClose, onMove }) {
         className="lb-prev" style={{ ...btn, left: 22, top: "50%", transform: "translateY(-50%)" }}>&#8249;</button>
       <button onClick={(e) => { e.stopPropagation(); onMove(1) }} aria-label="Next"
         className="lb-next" style={{ ...btn, right: 22, top: "50%", transform: "translateY(-50%)" }}>&#8250;</button>
-      <img src={p.src} alt={`${p.title}, ${p.medium}`}
-        style={{ maxWidth: "92vw", maxHeight: "82vh", width: "auto", height: "auto",
-          background: T.white, padding: 16, boxShadow: "0 30px 80px rgba(0,0,0,.5)" }} />
+      {playing ? (
+        // preload="none" ate aqui: o video so custa bytes depois do clique.
+        <video src={p.video} poster={p.src} controls autoPlay loop playsInline
+          style={{ maxWidth: "92vw", maxHeight: "82vh", width: "auto", height: "auto",
+            background: T.white, padding: 16, boxShadow: "0 30px 80px rgba(0,0,0,.5)" }} />
+      ) : (
+        <img src={p.src} alt={`${p.title}, ${p.medium}`}
+          style={{ maxWidth: "92vw", maxHeight: "82vh", width: "auto", height: "auto",
+            background: T.white, padding: 16, boxShadow: "0 30px 80px rgba(0,0,0,.5)" }} />
+      )}
       <div style={{ position: "absolute", bottom: 26, left: 0, right: 0, textAlign: "center",
         color: "#FFFFFF", fontFamily: "system-ui, sans-serif", fontSize: 13, letterSpacing: ".04em" }}>
         {p.title}
         <span style={{ display: "block", marginTop: 5, color: "#B9B6C4", fontSize: 11,
           letterSpacing: ".09em", textTransform: "uppercase" }}>{p.medium}</span>
+        {p.video && !playing && (
+          <button onClick={(e) => { e.stopPropagation(); setPlaying(true) }}
+            style={{
+              marginTop: 14, background: "none", border: "1px solid rgba(255,255,255,.45)",
+              color: "#FFFFFF", fontFamily: "system-ui, sans-serif", fontSize: 12,
+              fontWeight: 600, letterSpacing: ".04em", padding: "0 18px",
+              minHeight: 44, borderRadius: 22, cursor: "pointer",
+            }}>
+            Watch it being drawn
+          </button>
+        )}
       </div>
     </div>
   )
@@ -123,7 +165,6 @@ export default function Illustration() {
   const move = useCallback((d) => setOpen(i => (i + d + PIECES.length) % PIECES.length), [])
   const close = useCallback(() => setOpen(null), [])
 
-  useEffect(() => { document.title = "Illustration · Isabelle Alves" }, [])
 
   let n = -1
   return (
