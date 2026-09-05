@@ -7,12 +7,12 @@ export const ROOMS = [
     "line": "Flat color and line, all of it drawn in Procreate with an Apple Pencil.",
     "items": [
       {
-        "src": "/images/art/gordo.webp",
+        "src": "/images/art/us.webp",
         "title": "Us",
         "medium": "Procreate on iPad",
         "w": 1100,
         "h": 825,
-        "video": "/videos/gordo.mp4"
+        "video": "/videos/us.mp4"
       },
       {
         "src": "/images/art/fabricio.webp",
@@ -129,8 +129,8 @@ export const ROOMS = [
         "src": "/images/art/akai-ito-japanese-legend.webp",
         "title": "Akai Ito (Japanese legend)",
         "medium": "Black ink pen and red pen on paper",
-        "w": 829,
-        "h": 1100
+        "w": 1024,
+        "h": 1024
       }
     ]
   }
