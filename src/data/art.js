@@ -1,6 +1,7 @@
 // Gerado a partir de ~/Desktop/desenhos. Ordem das salas, ordem das pecas,
 // titulos e tecnicas sao escolha dela. Sem ano, tambem escolha dela.
 // `video` e opcional: quando existe, e o timelapse do Procreate.
+// `feature` tira a peca das colunas e faz ela atravessar a parede.
 export const ROOMS = [
   {
     "name": "Digital",
@@ -10,9 +11,10 @@ export const ROOMS = [
         "src": "/images/art/us.webp",
         "title": "Us",
         "medium": "Procreate on iPad",
-        "w": 1100,
-        "h": 825,
-        "video": "/videos/us.mp4"
+        "w": 1600,
+        "h": 1200,
+        "video": "/videos/us.mp4",
+        "feature": true
       },
       {
         "src": "/images/art/fabricio.webp",

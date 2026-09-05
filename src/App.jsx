@@ -70,6 +70,10 @@ export default function App() {
         /* Parede da galeria. Colunas preservam a proporcao de cada peca: cortar
    desenho para caber numa grade uniforme seria a decisao errada. */
 .art-wall { column-count: 3; column-gap: 36px; }
+/* Uma peca deitada numa coluna de 340px rende 340x255, enquanto as verticais
+   rendem 340x450: a grade e feita para vertical e achata quem nao e. O
+   destaque sai das colunas e atravessa a parede inteira. */
+.art-wall > figure.art-feature { column-span: all; margin-bottom: 44px; }
 @media (max-width: 1080px) { .art-wall { column-count: 2; } }
 @media (max-width: 680px)  { .art-wall { column-count: 1; } }
 @media (max-width: 680px) {

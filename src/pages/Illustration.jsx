@@ -36,7 +36,8 @@ function FadeUp({ children, delay = 0 }) {
 function Piece({ piece, index, onOpen }) {
   const [hovered, setHovered] = useState(false)
   return (
-    <figure style={{ margin: "0 0 36px", breakInside: "avoid" }}>
+    <figure className={piece.feature ? "art-feature" : undefined}
+      style={{ margin: "0 0 36px", breakInside: "avoid" }}>
       <button
         onClick={() => onOpen(index)}
         onMouseEnter={() => setHovered(true)}
