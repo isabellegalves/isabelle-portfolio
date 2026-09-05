@@ -49,19 +49,12 @@ export const ROOMS = [
         "medium": "Procreate on iPad",
         "w": 1009,
         "h": 1100
-      },
-      {
-        "src": "/images/art/akai-ito-japanese-legend.webp",
-        "title": "Akai Ito (Japanese legend)",
-        "medium": "Procreate on iPad",
-        "w": 829,
-        "h": 1100
       }
     ]
   },
   {
-    "name": "Paint and pencil",
-    "line": "Watercolor on cotton paper. Fabrício twice, and a fox.",
+    "name": "Watercolor",
+    "line": "Cotton paper and a wet brush. Fabrício twice, and a fox.",
     "items": [
       {
         "src": "/images/art/girl-and-cat.webp",
@@ -88,7 +81,7 @@ export const ROOMS = [
   },
   {
     "name": "On paper",
-    "line": "Ink, pencil and Posca. Three hearts, a Medusa and two studies.",
+    "line": "Ink, pencil and Posca. Three hearts, a Medusa, two studies and a red thread.",
     "items": [
       {
         "src": "/images/art/anatomical-heart.webp",
@@ -130,6 +123,13 @@ export const ROOMS = [
         "title": "Heart",
         "medium": "Ink pen on paper",
         "w": 733,
+        "h": 1100
+      },
+      {
+        "src": "/images/art/akai-ito-japanese-legend.webp",
+        "title": "Akai Ito (Japanese legend)",
+        "medium": "Ink pen on paper",
+        "w": 829,
         "h": 1100
       }
     ]
