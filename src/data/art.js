@@ -42,8 +42,15 @@ export const ROOMS = [
     "items": [
       {
         "src": "/images/art/girl-and-cat.webp",
-        "title": "Girl and Cat",
+        "title": "Kissing Fabrício",
         "medium": "Watercolor on paper",
+        "w": 733,
+        "h": 1100
+      },
+      {
+        "src": "/images/art/study-girl-and-cat.webp",
+        "title": "Kissing Fabrício, Study",
+        "medium": "Pencil on paper",
         "w": 733,
         "h": 1100
       },
@@ -58,13 +65,6 @@ export const ROOMS = [
         "src": "/images/art/fox.webp",
         "title": "Fox",
         "medium": "Watercolor on paper",
-        "w": 733,
-        "h": 1100
-      },
-      {
-        "src": "/images/art/study-girl-and-cat.webp",
-        "title": "Study, Girl and Cat",
-        "medium": "Pencil on paper",
         "w": 733,
         "h": 1100
       },
