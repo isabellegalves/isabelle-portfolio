@@ -25,13 +25,20 @@ export const ROOMS = [
         "beside": true
       },
       {
+        "src": "/images/art/me-in-my-twenties.webp",
+        "title": "Me in My Twenties",
+        "medium": "Procreate on iPad",
+        "w": 863,
+        "h": 1100,
+        "beside": true
+      },
+      {
         "src": "/images/art/meandfabris.webp",
         "title": "Me and Fabrício",
         "medium": "Procreate on iPad",
         "w": 906,
         "h": 1100,
-        "video": "/videos/meandfabris.mp4",
-        "beside": true
+        "video": "/videos/meandfabris.mp4"
       },
       {
         "src": "/images/art/me-coquinho-and-pepito.webp",
@@ -39,13 +46,6 @@ export const ROOMS = [
         "medium": "Procreate on iPad",
         "w": 640,
         "h": 640
-      },
-      {
-        "src": "/images/art/me-in-my-twenties.webp",
-        "title": "Me in My Twenties",
-        "medium": "Procreate on iPad",
-        "w": 863,
-        "h": 1100
       },
       {
         "src": "/images/art/red-hair.webp",
