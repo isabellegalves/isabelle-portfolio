@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react"
-import { Link } from "react-router-dom"
+import { Link, useLocation } from "react-router-dom"
 import { motion, useInView } from "framer-motion"
 import { T, TYPE, TEXT, ACCENT, SHELL } from "../tokens"
 import { PURPLE } from "../components/CaseParts"
@@ -829,6 +829,18 @@ function ContactSection({ onContactClick }) {
 // ─── HOME ────────────────────────────────────────────────────────────────────
 
 export default function Home({ onContactClick }) {
+  // Quem clica em Work dentro de um case chega aqui com o alvo no estado da
+  // navegacao. A rolagem mora aqui, e nao no Nav, porque so depois que esta
+  // pagina monta e que o #work existe: qualquer cronometro la fora e chute.
+  const location = useLocation()
+  useEffect(() => {
+    const alvo = location.state?.scrollTo
+    if (!alvo) return
+    document.getElementById(alvo)?.scrollIntoView({ behavior: "smooth" })
+    // limpa o estado para um refresh nao repetir a rolagem
+    window.history.replaceState({}, "")
+  }, [location.state])
+
   return (
     <main>
       <Hero onContactClick={onContactClick} />

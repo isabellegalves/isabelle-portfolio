@@ -89,10 +89,12 @@ export default function Nav({ onContactClick }) {
     if (isHome) {
       document.getElementById("work")?.scrollIntoView({ behavior: "smooth" })
     } else {
-      navigate("/")
-      setTimeout(() => {
-        document.getElementById("work")?.scrollIntoView({ behavior: "smooth" })
-      }, 300)
+      // Antes era navigate + setTimeout de 300ms. Dois problemas: a home so
+      // monta depois da animacao de saida da pagina anterior, entao aos 300ms
+      // o #work podia nao existir ainda; e o ScrollToTop do App dispara na
+      // troca de rota e puxava a pagina de volta para o topo. Agora o alvo vai
+      // como estado da navegacao e quem rola e a propria home, ja montada.
+      navigate("/", { state: { scrollTo: "work" } })
     }
   }
 
@@ -112,9 +114,18 @@ export default function Nav({ onContactClick }) {
         maxWidth: 1280, margin: "0 auto", padding: "0 80px",
         height: "100%", display: "flex", alignItems: "center", justifyContent: "space-between",
       }}>
+        {/* Ja estando na home, o Link para "/" nao faz nada: a rota nao muda e
+            a pessoa fica onde estava. Aqui ele passa a levar ao topo, que e o
+            que se espera de clicar na marca. */}
         <Link
           to="/"
           aria-label="Isabelle Alves, home"
+          onClick={(e) => {
+            if (isHome) {
+              e.preventDefault()
+              window.scrollTo({ top: 0, behavior: "smooth" })
+            }
+          }}
           style={{ display: "flex", alignItems: "center", textDecoration: "none" }}
         >
           <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
