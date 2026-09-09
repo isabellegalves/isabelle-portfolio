@@ -16,6 +16,7 @@ export const cases = [
     image: "/images/cambio.webp",
     overview: {
       company: "Bradesco Bank, international area",
+      companyNote: "One of Latin America's largest banks.",
       role: "Senior Product Designer",
       tools: "Figma, plus Figma Make and FigJam with AI assistance for references and early sketches",
       scope: "Product Design, Information Architecture, Interaction Design, Prototyping, Design Handoff",
@@ -71,6 +72,7 @@ export const cases = [
     image: "/images/interbancario.webp",
     overview: {
       company: "Bradesco Bank, international area",
+      companyNote: "One of Latin America's largest banks.",
       role: "Senior Product Designer",
       tools: "Figma, plus Figma Make and FigJam with AI assistance for references and early sketches",
       scope: "Product Design, Information Architecture, Interaction Design, Design System, Design Handoff",
@@ -129,6 +131,7 @@ export const cases = [
     image: "/images/conta-internacional.webp",
     overview: {
       company: "Bradesco Bank, international area",
+      companyNote: "One of Latin America's largest banks.",
       role: "Senior Product Designer",
       tools: "Figma, plus Figma Make and FigJam with AI assistance for references and early sketches",
       scope: "Product Design, Content Design, Information Architecture, Interaction Design",
@@ -284,11 +287,13 @@ export const cases = [
     title: "Turning drop-offs into subscribers. Redesigning trust in a digital news paywall.",
     summary: "How a competitor benchmark, user flow analysis and differentiated UX strategy reduced friction in O Globo and Valor's subscription journeys.",
     overview: {
+      company: "Editora Globo",
+      companyNote: "Part of Grupo Globo, the largest media group in Latin America.",
       role: "Senior Product Designer",
       scope: "Subscription UX, Conversion Optimization, Competitive Benchmark",
       team: "Cross-functional with product and editorial teams",
       delivered: "5 subscription flows benchmarked, 2 user states separated, redesigned journeys proposed for both",
-      context: "O Globo and Valor Economico are two of Brazil's most influential news brands, operating under Editora Globo. The subscription journey is the main way readers experience these products end to end, from first contact through registration to becoming a member. The product was losing potential subscribers at every step of the funnel, not because the content lacked value, but because the experience failed to communicate it.",
+      context: "O Globo is one of Brazil's three biggest newspapers, with around 378,000 paying digital subscribers, and Valor Economico is the country's leading business daily, with about 126,000. The subscription journey is the main way readers experience these products end to end, from first contact through registration to becoming a member. The product was losing potential subscribers at every step of the funnel, not because the content lacked value, but because the experience failed to communicate it.",
     },
     problem: {
       body: "O Globo and Valor Economico were experiencing high drop-off rates in their subscription journeys. The causes were layered: inconsistent design across landing pages, unclear pricing presentation, a payment experience that eroded trust rather than building it, weak mobile performance and no differentiated strategy for anonymous users versus logged-in non-subscribers.",
@@ -335,11 +340,13 @@ export const cases = [
     image: "/images/vogue.webp",
     beforeTakeaway: ["/images/vogue-01.webp", "/images/vogue-02.webp"],
     overview: {
+      company: "Editora Globo",
+      companyNote: "Part of Grupo Globo, the largest media group in Latin America, and holder of the Conde Nast license in Brazil.",
       role: "Senior Product Designer",
       scope: "Design System, UI Tokens, UX Audit, Interface Design",
       team: "Cross-functional, editorial, developers, product managers",
       delivered: "3 brands on one component library, 2 token layers separating brand identity from function",
-      context: "Conde Nast is one of the world's most recognized media companies, with titles including Vogue, GQ and Architectural Digest. In Brazil, the operation runs through Editora Globo. I joined as Senior Product Designer to lead UX strategy across the digital product portfolio, working with Vogue Brasil, Casa Vogue and GQ Brasil.",
+      context: "Conde Nast is one of the world's most recognized media companies, with titles including Vogue, GQ and Architectural Digest. I joined as Senior Product Designer to lead UX strategy across the digital product portfolio, working with Vogue Brasil, Casa Vogue and GQ Brasil.",
     },
     problem: {
       body: "Conde Nast Brazil operated multiple premium digital titles including Vogue Brasil, Casa Vogue and GQ Brasil, each with strong editorial identities but no shared design infrastructure. Teams made independent decisions on components, typography and spacing, creating fragmented experiences across touchpoints. Component delivery was slow, mobile and web experiences were misaligned, and newsletter sign-up flows had high drop-off rates.",
@@ -425,12 +432,13 @@ export const cases = [
     },
     overview: {
       company: "Bradesco Bank, international area",
+      companyNote: "One of Latin America's largest banks.",
       role: "Senior Product Designer",
       tools: "Figma, plus Figma Make and FigJam with AI assistance for references and early sketches",
       scope: "UX Research, Product Design, Information Architecture",
       team: "Cross-functional team with POs, developers and business stakeholders",
       delivered: "1 dedicated Cards area, 2 controls moved from a buried submenu to primary actions",
-      context: "Bradesco Bank is one of Latin America's largest banks, with operations across the US, Europe and Asia. My Account is one of its international products, built for Brazilians who live, invest or travel abroad, competing directly with players like Wise and Revolut.",
+      context: "My Account is one of the bank's international products, built for Brazilians who live, invest or travel abroad, competing directly with players like Wise and Revolut.",
     },
     problem: {
       body: "Support tickets and user interviews pointed to a recurring pattern. Most customers used the card almost exclusively when traveling, and kept it switched off in daily life for safety, either through a temporary lock or by disabling contactless. The trouble started before the trip. Many forgot to turn those functions back on, and only discovered it at the worst possible moment, standing at a checkout abroad with a card that would not work. The result was frustration, a sense that the product had failed them, and a steady stream of support calls. The controls that could have prevented this were buried in a hard to reach corner of the app.",
@@ -476,11 +484,13 @@ export const cases = [
     image: "/images/sodexo.webp",
     beforeTakeaway: "/images/sodexo-01.webp",
     overview: {
+      company: "Sodexo, now Pluxee",
+      companyNote: "A French multinational operating in over 43 countries.",
       role: "Senior Product Designer",
       scope: "B2B Dashboard, B2C Mobile App, Web Products",
       team: "Sodexo LATAM product team, Agile sprints",
       delivered: "2 user groups segmented, 1 B2B dashboard and 1 B2C app designed against opposite principles",
-      context: "Sodexo (now Pluxee) is one of the world's largest multinational companies in employee benefits, operating in more than 50 countries. I worked as UI/UX Product Designer on an indirect contract, embedded within the Sodexo LATAM product team, developing end-to-end digital products across dashboards, websites and mobile applications.",
+      context: "Sodexo (now Pluxee) is one of the world's largest multinational companies in employee benefits, operating in over 43 countries. I worked as UI/UX Product Designer on an indirect contract, embedded within the Sodexo LATAM product team, developing end-to-end digital products across dashboards, websites and mobile applications.",
     },
     problem: {
       body: "Sodexo LATAM operated a suite of digital products serving two fundamentally different user groups with opposing needs. HR managers required data-dense dashboards with filtering, drill-down capabilities and exportable reports. Employees needed fast, frictionless mobile experiences to check balances and use benefits in seconds. Both groups were being served by the same product logic, resulting in experiences that worked poorly for everyone and a backlog of 4 products waiting to launch with no clear design direction.",

@@ -251,7 +251,10 @@ export default function CaseStudy({ onContactClick }) {
             columnGap: 48, rowGap: 32, alignItems: "start", marginBottom: 40,
           }}>
             {[
-              { label: "Company", value: c.overview.company || c.company },
+              // Quem le pode nao ser do Brasil e nao saber o tamanho da
+              // empresa. A linha de contexto vai embaixo do nome dela, que e
+              // onde a pessoa olha para descobrir isso.
+              { label: "Company", value: c.overview.company || c.company, note: c.overview.companyNote },
               { label: "Role", value: c.overview.role },
               { label: "Year", value: c.year },
               { label: "Scope", value: c.overview.scope },
@@ -275,6 +278,14 @@ export default function CaseStudy({ onContactClick }) {
                 }}>
                   {item.value}
                 </div>
+                {item.note && (
+                  <div style={{
+                    fontFamily: "system-ui, sans-serif", fontSize: 13,
+                    fontWeight: 400, color: T.meta, lineHeight: 1.5, marginTop: 4,
+                  }}>
+                    {item.note}
+                  </div>
+                )}
               </div>
             ))}
           </div>
