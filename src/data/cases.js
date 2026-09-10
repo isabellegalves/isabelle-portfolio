@@ -375,14 +375,11 @@ export const cases = [
     takeaway: "Working in media taught me that design systems serve both users and content creators. A well-built system frees editorial teams to focus on storytelling instead of worrying about how things look, and that trust between design and editorial is what makes premium digital publishing work at scale.",
   },
 
-  // ── Rascunho ─────────────────────────────────────────────────────────
-  // Design System: fica arquivado ate ela aprovar. Some da home e do proximo
-  // case, mas abre em /work/design-system para revisao. A documentacao
-  // navegavel sai de src/data/tessera.js. O trecho de design review e real,
-  // do fluxo de compra de moeda do Bradesco, com o texto em ingles.
+  // Design System. A documentacao navegavel sai de src/data/tessera.js. O
+  // trecho de design review e real, do fluxo de compra de moeda do
+  // Bradesco, com o texto em ingles.
   {
     id: "08",
-    archived: true,
     slug: "design-system",
     company: "Design System",
     year: "2026",
@@ -392,7 +389,7 @@ export const cases = [
     metrics: [],
     outcome: "Tessera is a reference system, not a shipped product, so it has no adoption numbers, and none are invented here. What it shows is the method: tokens named by role, every state drawn, the brand color checked against the colors that carry meaning, documentation a team can build from, and a review that holds the build to the design.",
     bg: "#F2F2F2",
-    image: null,
+    image: "/images/design-system.webp",
     tessera: true,
     tesseraIntro: "This is the documentation, live. Open any page from the sidebar. Buttons and fields respond to hover, press and keyboard, and every value on the page comes from the same data the components read.",
     designReview: {
