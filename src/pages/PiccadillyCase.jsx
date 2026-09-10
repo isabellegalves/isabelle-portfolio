@@ -118,17 +118,17 @@ export default function PiccadillyCase() {
           <SectionLabel>The Problem</SectionLabel>
           <div style={{ maxWidth: 640 }}>
             <p style={{ ...TEXT.body, color: C.text, marginBottom: "1.25rem" }}>
-              Piccadilly is one of Brazil's largest women's footwear brands, with over 2 million followers and a loyal customer base built over decades. But in 2019, the brand sold online through a web store and an institutional site, and had no app at all.
+              Piccadilly is one of Brazil's largest women's footwear brands, with over 2 million followers. In 2019 it sold online through a web store and had no app.
             </p>
             <p style={{ ...TEXT.body, color: C.text, marginBottom: "1.75rem" }}>
-              Launched during the peak of the pandemic in Brazil, this was Piccadilly's first mobile product. The challenge was not just to design an app. It was to build a complete digital commerce experience from scratch for a customer base that skewed older and had little familiarity with mobile shopping.
+              Launched at the peak of the pandemic, this was its first mobile product: a complete digital store built from scratch, for customers who skewed older and had rarely shopped on a phone.
             </p>
           </div>
           <blockquote style={{ borderLeft: `2px solid ${C.accent}`, paddingLeft: "1.25rem", marginBottom: "1.5rem", ...QUOTE, color: C.mid, maxWidth: 640, lineHeight: 1.7 }}>
-            "The brand had strong offline presence. The digital product had to earn the same trust, for a customer who had never bought shoes without trying them on."
+            "The app had to earn the trust of a customer who had never bought shoes without trying them on."
           </blockquote>
           <p style={{ ...TEXT.body, color: C.mid, maxWidth: 640 }}>
-            The web store's catalog was organized around product taxonomy, the way a warehouse thinks about inventory. Not around how a woman actually shops for shoes.
+            The web store's catalog was organized the way a warehouse thinks about inventory, not the way a woman shops for shoes.
           </p>
         </div>
       </section>
@@ -140,20 +140,20 @@ export default function PiccadillyCase() {
 
           {/* FASE 1 */}
           <Phase n="01" title="Journey Mapping and Competitive Analysis">
-            I mapped the shopping journey identifying the main friction points: poor search and filter functionality, unclear size selection flow and a checkout process with too many steps. Competitive analysis included Arezzo, Dumond and Bottero, brands positioned like Piccadilly on modern design and comfort. Of the three, only Arezzo had shipped an app, so the study was as much about what the category was missing as about what to borrow.
+            I mapped the shopping journey and found three friction points: weak search and filters, an unclear size selection and too many checkout steps. Of Arezzo, Dumond and Bottero, the brands closest to Piccadilly, only Arezzo had an app, so the study was as much about what the category lacked as about what to borrow.
           </Phase>
           <HR />
 
           {/* FASE 2 */}
           <Annotation text="key step!" direction="down-left" />
           <Phase n="02" title="Information Architecture and UX">
-            I restructured the product navigation around how users actually browse: by occasion, category and style, not just by product type. I designed size selection as a focused sequence and brought the purchase down to 3 steps, against the 6 the web store required, validated through moderated usability testing before implementation.
+            I rebuilt navigation around how women browse: by occasion, category and style, not only product type. Size selection became a focused sequence, and checkout came down to 3 steps, validated in moderated usability tests before development.
           </Phase>
           <HR />
 
           {/* FASE 3 */}
           <Phase n="03" title="UI Design and Design System">
-            I created high-fidelity interfaces and UI components maintaining Piccadilly's visual identity across web and mobile. The choice of high-contrast black on white was deliberate, serving a mature audience that values legibility over decoration. All components were built for reuse and documented as part of a lightweight design system.
+            I designed the interfaces and components in Piccadilly's visual identity for web and mobile, and documented them as a lightweight design system built for reuse.
           </Phase>
 
           {/* Design system, componentes HTML reais */}
@@ -226,7 +226,7 @@ export default function PiccadillyCase() {
             <ImpactCard number="3" label="Checkout steps, against the 6 the web store required" />
           </div>
           <Callout label="BEYOND THE APP">
-            The app's success directly enabled the Embaixadoras Piccadilly program, a digital reseller initiative that gave women an additional source of income during the pandemic. What started as a product launch became a vehicle for financial inclusion.
+            The app made possible the Embaixadoras Piccadilly program, which let women resell the brand digitally for extra income during the pandemic.
           </Callout>
         </div>
       </section>
@@ -238,7 +238,7 @@ export default function PiccadillyCase() {
             <SectionLabel>Key takeaway</SectionLabel>
             <div style={{ background: C.surface, borderRadius: 14, padding: "1.75rem 2rem", flex: 1 }}>
               <blockquote style={{ ...QUOTE, lineHeight: 1.7, color: C.text, marginBottom: "1rem" }}>
-                "Information architecture is a business decision, not just a design decision. How you organize a product catalog determines which customer intent states you serve and which you leave unsupported. Restructuring around mental models instead of product taxonomy was what made the difference."
+                "How a catalog is organized decides which shoppers it serves and which it leaves behind. That makes information architecture a business decision, not only a design one."
               </blockquote>
               <div style={{ fontSize: 11, fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", color: C.mid, fontFamily: "system-ui, sans-serif" }}>PICCADILLY, 2019 to 2020</div>
             </div>

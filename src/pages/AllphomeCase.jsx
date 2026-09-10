@@ -199,14 +199,14 @@ export default function AllphomeCase() {
           <SectionLabel>The Problem</SectionLabel>
           <div style={{ maxWidth: 640 }}>
             <p style={{ ...TEXT.body, color: C.text, marginBottom: "1.25rem" }}>
-              Allphome was an established gym business in Brazil with a loyal in-person community. As digital fitness platforms gained ground, with competitors like <strong style={{ color: C.text, fontWeight: 500 }}>Queima Diaria</strong> capturing online audiences, the company decided to launch its first digital product.
+              Allphome was an established gym in Brazil with a loyal in-person community. With digital platforms like <strong style={{ color: C.text, fontWeight: 500 }}>Queima Diaria</strong> taking the online audience, it decided to launch its first digital product.
             </p>
             <p style={{ ...TEXT.body, color: C.text, marginBottom: "1.75rem" }}>
-              The challenge was not just to build an app. It was to help an established business <strong style={{ color: C.text, fontWeight: 500 }}>transition from a traditional gym model into a digital fitness experience</strong> without losing what made the brand valuable in the first place.
+              The job was to take a traditional gym <strong style={{ color: C.text, fontWeight: 500 }}>into digital fitness</strong> without losing what made the brand valuable.
             </p>
           </div>
           <blockquote style={{ borderLeft: `2px solid ${C.accent}`, paddingLeft: "1.25rem", marginBottom: "1.5rem", ...QUOTE, color: C.mid, maxWidth: 640, lineHeight: 1.7 }}>
-            "Most fitness platforms are built for operators, not members. Allphome wanted to flip that equation: the student's experience had to come first."
+            "Most fitness platforms are built for operators, not members. Allphome wanted the member first."
           </blockquote>
           <p style={{ ...TEXT.body, color: C.mid, maxWidth: 640 }}>
             Early assumptions placed the class booking flow at the center of the product. Research told a different story.
@@ -221,13 +221,13 @@ export default function AllphomeCase() {
 
           {/* FASE 1 */}
           <Phase n="01" title="Discovery and Stakeholder Alignment">
-            I joined from the pre-sale stage, participating in commercial meetings, co-authoring the proposal, and leading alignment workshops with client stakeholders. Design informed scope before a single screen was drawn.
+            I joined at pre-sale: commercial meetings, co-writing the proposal and running alignment sessions with the client. Design shaped the scope before any screen existed.
           </Phase>
           <hr style={hr} />
 
           {/* FASE 2 */}
           <Phase n="02" title="Competitive Analysis">
-            Analyzed 5 fitness and wellness platforms in the Brazilian market, focusing on what drove users back, not just sign-up rates.
+            Analyzed 5 fitness and wellness platforms in Brazil, looking at what brought users back rather than sign-ups.
           </Phase>
           <div className="a-bench" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(190px, 1fr))", gap: 12, marginBottom: "1.5rem" }}>
             <BenchCard highlight name="Allphome" rating="3.6"
@@ -264,7 +264,7 @@ export default function AllphomeCase() {
           {/* FASE 3 */}
           <Annotation text="key step!" direction="down-left" />
           <Phase n="03" title="User Research and Behavioral Mapping">
-            Surveyed approximately 200 active members from Allphome's existing gym community. The numbers described an audience nobody in the room had assumed, and two of the findings reshaped the entire product strategy.
+            Surveyed about 200 active members of the gym. The numbers described an audience nobody had assumed, and two findings reshaped the product strategy.
           </Phase>
           <div className="a-g4" style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 12, marginBottom: "1rem" }}>
             {[
@@ -280,13 +280,13 @@ export default function AllphomeCase() {
             ))}
           </div>
           <Caption>
-            The audience was beginners, not athletes, and their obstacle was motivation rather than access. That is what moved the design away from the booking flow and toward the loop that closes after a workout.
+            The audience was beginners, not athletes, and what they lacked was motivation, not access.
           </Caption>
           <Callout label="STRATEGIC PIVOT 1: THE KIDS AREA">
-            Stakeholders believed a dedicated Kids section would be a key differentiator. Research revealed that the majority of members did not have children, meaning the feature would add significant development effort while reaching a small fraction of the audience. The investment was redirected toward features that would benefit the entire member base.
+            Stakeholders expected a Kids section to set the product apart. Most members had no children, so it would cost a lot to build and reach few people. That budget went to features for everyone.
           </Callout>
           <Callout label="STRATEGIC PIVOT 2: THE REAL RETENTION DRIVER">
-            Members who actively tracked their workouts were significantly more likely to return the following week. The inflection point was not the booking experience. It was the post-workout feedback loop. This shifted the design strategy from task completion to motivation and habit formation.
+            Members who tracked their workouts were significantly more likely to return the following week. What brought them back was the feedback after a workout, not the booking, so the design moved from completing tasks to building a habit.
           </Callout>
           <div className="a-persona" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12, margin: "1.5rem 0" }}>
             <Persona name="Milena Silva" age={29} role="Sales Analyst" company="Small company"
@@ -312,7 +312,7 @@ export default function AllphomeCase() {
               highlight badge="led to Kids feature being cut" />
           </div>
           <Caption>
-            Bernardo was the persona behind the proposed Kids feature. Research showed he represented only a small fraction of actual users, redirecting investment toward features that served Milena, Daiane, and Julio instead.
+            Bernardo was the persona behind the Kids feature, and research showed how few members he stood for.
           </Caption>
           <div className="a-g3" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 12, marginBottom: "1rem" }}>
             {[
@@ -347,7 +347,7 @@ export default function AllphomeCase() {
               <Phone src="/images/allphome-1.webp" alt="UI: Home screen" />
             </div>
             <Caption>
-              Tab structure and content card hierarchy were defined at wireframe stage, visual decisions came only after the structure was validated.
+              Tabs and card hierarchy were set in wireframes first.
             </Caption>
           </div>
           <hr style={hr} />
@@ -418,7 +418,7 @@ export default function AllphomeCase() {
 
           {/* FASE 8, Backoffice */}
           <Phase n="08" title="Backoffice">
-            Designed in parallel with the member-facing app, the administrative panel gives gym operators full control over content, users, banners, and program structure, without depending on the development team for day-to-day updates.
+            Designed alongside the member app, the admin panel lets gym operators manage content, users, banners and programs without waiting on developers.
           </Phase>
           <div className="a-g2" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
             {[
@@ -437,7 +437,7 @@ export default function AllphomeCase() {
 
           {/* FASE 9, In-platform video editing */}
           <Phase n="09" title="In-platform video editing">
-            Trainers could record short workout demos for their classes, but onboarding revealed a barrier: many were experts in coaching, not in video editing. Having to edit footage in external tools before uploading pushed less technical trainers away from the feature entirely. I designed a built-in editor so trainers could trim clips, add captions and on-screen cues directly inside the upload flow, removing the technical barrier and letting any trainer publish a polished demo for their members without ever leaving the app.
+            Trainers could record short workout demos, but many were coaches, not video editors, and having to edit elsewhere before uploading pushed them away. I designed an editor inside the upload flow to trim clips and add captions and on-screen cues, so any trainer could publish a clean demo without leaving the app.
           </Phase>
 
           <ProcessGallery slug="allphome" />
