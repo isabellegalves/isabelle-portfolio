@@ -621,7 +621,7 @@ export default function About() {
           <div className="about-two" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 80, alignItems: "start" }}>
             {[
               { src: "/images/about-google.webp", alt: "Isabelle at a Google event", note: "at a Google event!" },
-              { src: "/images/about-facebook.webp", alt: "Isabelle visiting Facebook in London", note: "visiting Facebook in London!" },
+              { src: "/images/about-facebook.webp", alt: "Isabelle visiting Meta in London", note: "visiting Meta in London!" },
             ].map(f => (
               <figure key={f.src} style={{ margin: 0 }}>
                 <Annotation text={f.note} direction="left" color={ACCENT} />
