@@ -14,6 +14,7 @@ export const cases = [
     passwordHash: "aWdhbHZlcw==",
     bg: "#FCEEF0",
     image: "/images/cambio.webp",
+    processCards: true,
     overview: {
       company: "Bradesco Bank, international area",
       companyNote: "One of Latin America's largest banks.",

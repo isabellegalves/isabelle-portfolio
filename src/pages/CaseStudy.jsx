@@ -337,16 +337,19 @@ export default function CaseStudy({ onContactClick }) {
             Vale para o case que marca processCards: true em cases.js. */}
         {c.processCards && (
           <>
+            {/* Com quatro etapas, tres colunas deixavam a quarta sozinha numa
+                linha nova. Nesse caso a grade vira dois por dois. */}
             <style>{`.step-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:2px;border-radius:16px;overflow:hidden}
+.step-cards.two{grid-template-columns:repeat(2,minmax(0,1fr))}
 @media (max-width:1000px){.step-cards{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media (max-width:640px){.step-cards{grid-template-columns:minmax(0,1fr)}}`}</style>
-            <div className="step-cards">
+@media (max-width:640px){.step-cards,.step-cards.two{grid-template-columns:minmax(0,1fr)}}`}</style>
+            <div className={c.process.length === 4 ? "step-cards two" : "step-cards"}>
               {c.process.map((phase, i) => (
                 <FadeUp key={i} delay={i * 0.06}>
                   <div style={{ background: T.offwhite, padding: "40px 36px", height: "100%", boxSizing: "border-box" }}>
                     <div style={{ fontFamily: "'Caveat', cursive", fontSize: 32, fontWeight: 500, color: ACCENT, marginBottom: 20 }}>{phase.n}</div>
                     <h3 style={{ fontFamily: "system-ui, sans-serif", fontSize: 18, fontWeight: 700, letterSpacing: "-0.02em", lineHeight: 1.3, margin: "0 0 14px", color: T.ink }}>{phase.title}</h3>
-                    <p style={{ fontFamily: "system-ui, sans-serif", fontSize: 14, color: T.mid, lineHeight: 1.75, margin: 0 }}>{phase.body}</p>
+                    <p style={{ fontFamily: "system-ui, sans-serif", fontSize: 15, color: T.mid, lineHeight: 1.75, margin: 0 }}>{phase.body}</p>
                   </div>
                 </FadeUp>
               ))}
