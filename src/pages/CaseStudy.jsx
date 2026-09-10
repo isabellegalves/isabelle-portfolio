@@ -4,6 +4,8 @@ import { motion, useInView, animate } from "framer-motion"
 import { T, TYPE, TEXT, ACCENT, SHELL } from "../tokens"
 import { getCaseBySlug, getNextCase } from "../data/cases"
 import PasswordGate from "../components/PasswordGate"
+import TesseraDocs from "../components/tessera/TesseraDocs"
+import DesignReview from "../components/DesignReview"
 import { ProcessGallery, SectionLabel, PhaseHeading } from "../components/CaseParts"
 
 const spring = { duration: 0.8, ease: [0.16, 1, 0.3, 1] }
@@ -179,7 +181,9 @@ export default function CaseStudy({ onContactClick }) {
           </motion.p>
         </div>
 
-        {/* Hero image */}
+        {/* Hero image. Um case sem imagem, como o rascunho do Design
+            System, nao mostra uma caixa vazia no lugar dela. */}
+        {c.image && (
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
@@ -210,6 +214,7 @@ export default function CaseStudy({ onContactClick }) {
             />
           )}
         </motion.div>
+        )}
       </section>
 
       {/* OVERVIEW */}
@@ -328,7 +333,27 @@ export default function CaseStudy({ onContactClick }) {
       <div style={{ height: "0.5px", background: T.rule }} />
       <section style={P}>
         <FadeUp><SectionLabel>Process</SectionLabel></FadeUp>
-        {c.process.map((phase, i) => (
+        {/* Passos curtos em cards, no mesmo desenho do "How I work" da home.
+            Vale para o case que marca processCards: true em cases.js. */}
+        {c.processCards && (
+          <>
+            <style>{`.step-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:2px;border-radius:16px;overflow:hidden}
+@media (max-width:1000px){.step-cards{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:640px){.step-cards{grid-template-columns:minmax(0,1fr)}}`}</style>
+            <div className="step-cards">
+              {c.process.map((phase, i) => (
+                <FadeUp key={i} delay={i * 0.06}>
+                  <div style={{ background: T.offwhite, padding: "40px 36px", height: "100%", boxSizing: "border-box" }}>
+                    <div style={{ fontFamily: "'Caveat', cursive", fontSize: 32, fontWeight: 500, color: ACCENT, marginBottom: 20 }}>{phase.n}</div>
+                    <h3 style={{ fontFamily: "system-ui, sans-serif", fontSize: 18, fontWeight: 700, letterSpacing: "-0.02em", lineHeight: 1.3, margin: "0 0 14px", color: T.ink }}>{phase.title}</h3>
+                    <p style={{ fontFamily: "system-ui, sans-serif", fontSize: 14, color: T.mid, lineHeight: 1.75, margin: 0 }}>{phase.body}</p>
+                  </div>
+                </FadeUp>
+              ))}
+            </div>
+          </>
+        )}
+        {!c.processCards && c.process.map((phase, i) => (
           <FadeUp key={i} delay={i * 0.08}>
             <div style={{ marginBottom: 64, position: "relative" }}>
               {i === 1 && (
@@ -375,6 +400,39 @@ export default function CaseStudy({ onContactClick }) {
           <ProcessGallery slug={c.slug} />
         </FadeUp>
       </section>
+
+      {/* THE SYSTEM: a documentacao navegavel do Tessera. So aparece no case
+          do Design System, que marca tessera: true em cases.js. Fica fora do
+          FadeUp porque e grande e muda de altura a cada pagina. */}
+      {c.tessera && (
+        <>
+          <div style={{ height: "0.5px", background: T.rule }} />
+          <section style={P}>
+            <FadeUp>
+              <SectionLabel>The system</SectionLabel>
+              {c.tesseraIntro && (
+                <p style={{ ...TEXT.body, maxWidth: 640, marginBottom: 28 }}>{c.tesseraIntro}</p>
+              )}
+            </FadeUp>
+            <TesseraDocs />
+          </section>
+        </>
+      )}
+
+      {/* DESIGN REVIEW: um trecho de review real, com o build e o prototipo
+          lado a lado e os apontamentos numerados. */}
+      {c.designReview && (
+        <>
+          <div style={{ height: "0.5px", background: T.rule }} />
+          <section style={P}>
+            <FadeUp>
+              <SectionLabel>Design review</SectionLabel>
+              <p style={{ ...TEXT.body, maxWidth: 640, marginBottom: 32 }}>{c.designReview.intro}</p>
+            </FadeUp>
+            <DesignReview review={c.designReview} />
+          </section>
+        </>
+      )}
 
       {c.colorSystem && (
         <>

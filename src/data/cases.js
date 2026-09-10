@@ -375,6 +375,64 @@ export const cases = [
     takeaway: "Working in media taught me that design systems serve both users and content creators. A well-built system frees editorial teams to focus on storytelling instead of worrying about how things look, and that trust between design and editorial is what makes premium digital publishing work at scale.",
   },
 
+  // ── Rascunho ─────────────────────────────────────────────────────────
+  // Design System: fica arquivado ate ela aprovar. Some da home e do proximo
+  // case, mas abre em /work/design-system para revisao. A documentacao
+  // navegavel sai de src/data/tessera.js. O trecho de design review e real,
+  // do fluxo de compra de moeda do Bradesco, com o texto em ingles.
+  {
+    id: "08",
+    archived: true,
+    slug: "design-system",
+    company: "Design System",
+    year: "2026",
+    title: "Every state drawn, every rule written down.",
+    summary: "Tessera is a design system I built for this portfolio, with the method behind the systems I designed at Bradesco and Editora Globo. Every component has every state drawn, every rule is written down, and the documentation below is live.",
+    tags: ["Design System", "Design Tokens", "DesignOps", "Documentation"],
+    metrics: [],
+    outcome: "Tessera is a reference system, not a shipped product, so it has no adoption numbers, and none are invented here. What it shows is the method: tokens named by role, every state drawn, the brand color checked against the colors that carry meaning, documentation a team can build from, and a review that holds the build to the design.",
+    bg: "#F2F2F2",
+    image: null,
+    tessera: true,
+    tesseraIntro: "This is the documentation, live. Open any page from the sidebar. Buttons and fields respond to hover, press and keyboard, and every value on the page comes from the same data the components read.",
+    designReview: {
+      intro: "A piece of a real review, from the currency purchase flow in Bradesco's app. On one side, what reached the test device. On the other, the prototype. Each number on the build matches a line in the list, and blocking items are fixed before release.",
+      screen: "Simulation screen",
+      production: "/images/cases/design-system/review-production.webp",
+      prototype: "/images/cases/design-system/review-prototype.webp",
+      findings: [
+        { n: 1, pin: [47.2, 35.4], area: "Title", kind: "Typography", blocking: true, fixes: ["Fix the text size."] },
+        { n: 2, pin: [86.7, 40.0], area: "Subtitle", kind: "Color and typography", blocking: true, fixes: ["Fix the color.", "Fix the text size."] },
+        { n: 3, pin: [75.4, 57.3], area: "Illustration \u00d7 Title", kind: "Spacing", fixes: ["Fix the spacing between the elements."] },
+        { n: 4, pin: [73.0, 12.8], area: "Header \u00d7 Content", kind: "Spacing", fixes: ["Fix the spacing between the elements."] },
+      ],
+    },
+    overview: {
+      company: "Tessera",
+      companyNote: "A reference system built for this portfolio. Client systems belong to the clients.",
+      role: "Senior Product Designer",
+      tools: "Figma, zeroheight",
+      scope: "Design Tokens, Component Library, Documentation, Design Review",
+      team: "Solo, drawing on work with engineering and product teams",
+      delivered: "Color, typography, elevation and grid foundations, button and text field with every state drawn, and a design review",
+      context: "The design systems I built at Bradesco and Editora Globo belong to those companies, so this case rebuilds the method on a system of my own. Tessera has four foundations and a component library, documented the way I document real systems. The design review at the end is real, from Bradesco's currency purchase flow.",
+    },
+    problem: {
+      body: "In the teams where I built design systems, the same component already existed in several versions before we started. Each squad had drawn its own button, and the states nobody drew were decided in code, one developer at a time. Color drifted the same way: an action color picked by eye could sit a few steps from the red that means error, and a focused field started to look like a broken one.",
+      highlight: "A component with one state drawn is a component with five states guessed.",
+    },
+    processCards: true,
+    process: [
+      { n: "01", title: "Auditing what exists", body: "Before drawing anything, I list every version of every component already in production. The inventory turns a debate about taste into a count.", image: null },
+      { n: "02", title: "Naming tokens by role", body: "Components ask for a role, like base-500, never for a hex value. One change to a value reaches every button, field and icon that reads it.", image: null },
+      { n: "03", title: "Drawing every state", body: "Enabled, hovered, pressed, disabled, focused, filled, success and error, on white and on color. A state nobody draws is still designed, by whoever codes it.", image: null },
+      { n: "04", title: "Writing the rules down", body: "Each page answers what a team actually asks: when to use it, when not to, how it behaves and which tokens it reads.", image: null },
+      { n: "05", title: "Keeping brand apart from meaning", body: "The action color stays at least 30 Delta E from every feedback color, so a focused field never reads as an error. Tessera's first blue failed the check.", image: null },
+      { n: "06", title: "Reviewing what ships", body: "The build is checked against the prototype on a test device. Every difference gets a number and an exact fix. A real one closes this case.", image: null },
+    ],
+    takeaway: "A design system is finished when someone new can build a screen without asking anyone. Every state drawn, every rule written down, every color checked against the ones that carry meaning: that is what lets a team move fast without the product drifting apart.",
+  },
+
   // ── Arquivados ──────────────────────────────────────────────────────
   // Ficam aqui inteiros para nao se perderem, mas nao aparecem em lugar
   // nenhum do site: filtrados de visibleCases e da navegacao entre cases.
