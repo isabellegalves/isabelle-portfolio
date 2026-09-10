@@ -58,121 +58,6 @@ export const cases = [
   },
 
   {
-    id: "02",
-    slug: "interbancario",
-    company: "Interbank FX Desk",
-    year: "2026",
-    title: "Training was the workaround for a system that never explained itself.",
-    summary: "A ground-up redesign of the desktop system Bradesco's trading desk uses to run interbank foreign exchange. The legacy application only worked for people who had already memorised its codes, so I rebuilt it around language the desk actually uses.",
-    tags: ["Fintech", "Enterprise UX", "Desktop Application", "Information Architecture"],
-    metrics: [],
-    outcome: "The redesign shipped to production. Operators no longer memorise toolbar codes to navigate, and the operations manager opens on state, with live counts on every filter.",
-    passwordHash: "aWdhbHZlcw==",
-    bg: "#EEF2FC",
-    image: "/images/interbancario.webp",
-    overview: {
-      company: "Bradesco Bank, international area",
-      companyNote: "One of Latin America's largest banks.",
-      role: "Senior Product Designer",
-      tools: "Figma, plus Figma Make and FigJam with AI assistance for references and early sketches",
-      scope: "Product Design, Information Architecture, Interaction Design, Design System, Design Handoff",
-      team: "Sole product designer, working alongside product, engineering and the foreign exchange trading desk",
-      delivered: "6 modules unified, 15 toolbar codes named, 6 operation states surfaced",
-      context: "The interbank desk runs foreign exchange between banks: buying and selling currency with other institutions, exchanging messages with the central bank and over SWIFT, and settling operations that move hundreds of millions. Every value, client name and operator detail shown in this case is fictitious sample data.",
-    },
-    problem: {
-      body: "The legacy system was a native desktop application whose knowledge lived in the people who used it rather than in the product. Its toolbar was fifteen three-letter buttons. Its fields carried raw codes as values, so a counterparty read as 0000003025-STANDARD CHARTERED BA, truncated mid-name, and a delivery method read as 65-Teletransmissao. Windows opened inside windows, tables nested inside tables, and disabled fields gave no reason for being disabled. New people could not use it without training, it crashed often, and operations that should have been immediate took days and passed through steps that existed only because a person had to carry the work from one screen to the next.",
-      highlight: "Training was not onboarding. It was the workaround for a product that never explained itself.",
-    },
-    process: [
-      {
-        n: "01",
-        title: "Auditing a system nobody could read",
-        body: "I walked the legacy application module by module and separated what was genuinely complex from what was merely undocumented. Interbank foreign exchange is complex: the rates, the settlement dates, the messaging obligations. The fifteen unlabelled buttons and the codes shown as values were not complexity. They were knowledge the product had pushed onto the operator and then never explained.",
-        image: null,
-      },
-      {
-        n: "02",
-        title: "Naming things the way the desk says them",
-        body: "The desk does not talk in codes. It talks about buying and selling, counterparties, settlement and confirmation. I replaced the code-value pattern throughout, so the counterparty reads as its name, the product reads as Interbancário and the delivery method reads as SWIFT. The codes still exist underneath for the systems that need them. They stopped being the operator's problem.",
-        image: null,
-      },
-      {
-        n: "03",
-        title: "One workspace instead of fifteen buttons",
-        body: "I restructured the application around the six things the desk actually does: managing operations, central bank messaging, SWIFT messaging, client records, parameters and reports. Each one became a named destination with a description, reachable from a persistent sidebar, so a new operator can see the shape of the system before knowing any of its vocabulary.",
-        image: null,
-      },
-      {
-        n: "04",
-        title: "Making the state of an operation visible",
-        body: "In the legacy system, knowing where an operation stood meant knowing which screen to open and what the totals at the bottom meant. I designed the operations manager around state: contracted, settling, settled and pending reconciliation became filters with live counts, the table became sortable on every column that matters, and the period filter states its own limit instead of failing silently.",
-        image: null,
-      },
-    ],
-    takeaway: "When a product needs a training programme before anyone can use it, the training is covering for the design. This system served experts, and designing for experts is not about simplifying, because the work itself is genuinely hard. It is about refusing to make people carry what the product could carry for them. The redesign shipped to production, and the codes that operators used to memorise now live where they belong, underneath.",
-  },
-
-
-  {
-    id: "03",
-    slug: "conta-internacional",
-    company: "My Account",
-    year: "2026",
-    title: "Two international accounts. Only a third of customers could tell them apart.",
-    summary: "Bradesco sells two international accounts with different purposes and confusingly close names. A quantitative study found that only a third of customers could explain the difference. I replaced the side by side comparison with one question about what the person actually wants to do.",
-    tags: ["Fintech", "Product Design", "Content Design", "Information Architecture"],
-    metrics: [
-      { n: "10%", label: "Retention lift across the app's international area" },
-    ],
-    outcome: "The flow shipped to production.",
-    passwordHash: "aWdhbHZlcw==",
-    bg: "#FAF1F3",
-    image: "/images/conta-internacional.webp",
-    overview: {
-      company: "Bradesco Bank, international area",
-      companyNote: "One of Latin America's largest banks.",
-      role: "Senior Product Designer",
-      tools: "Figma, plus Figma Make and FigJam with AI assistance for references and early sketches",
-      scope: "Product Design, Content Design, Information Architecture, Interaction Design",
-      team: "Sole product designer, working from a quantitative study run by the bank's CX insights team, alongside product and the international accounts squad",
-      delivered: "7 intents replacing the side by side comparison",
-      context: "The bank sells two international accounts. Bradesco Bank is a full American checking account with investments, a US credit card and property financing. My Account holds foreign currency for travel, with a physical and virtual debit card, withdrawals in 180 currencies and acceptance in 195 countries. They serve different lives, and they sat next to each other in the app as two cards of equal weight. Every value shown in this case is sample data.",
-    },
-    problem: {
-      body: "An unmoderated study with eighty four clients, none of whom held an international account, ran over three weeks. Asked to describe the difference between the two products in their own words, only thirty four per cent could. Half said outright that they could not. The screen built to explain the difference scored fifty out of a hundred for usability and carried a fifty eight per cent misclick rate, the worst in the journey. The comparison carousel meant to resolve it was rarely reached at all.",
-      highlight: "The product was asking people to choose between two names before it had told them what either name was for.",
-    },
-    process: [
-      {
-        n: "01",
-        title: "Reading the study before redrawing anything",
-        body: "The research was already there and it was quantitative, so the first job was to find the sentence inside it. Misclicks and abandonment said the screen was hard to use, but the open question said something worse: people were not failing to operate the interface, they were failing to understand what they were choosing between. That distinction decided the whole redesign. A clearer layout of two equally weighted cards would have improved the score and left the actual problem untouched.",
-        image: null,
-      },
-      {
-        n: "02",
-        title: "Turning the choice into a question",
-        body: "I replaced the comparison with a single question, asked before any product is named: what are you looking for right now. Under it sit seven things people actually do, written as activities rather than as features. A debit card for travel. Living, working or studying in the US. An American credit card. Holding dollars in the app. Investing in US stocks and funds. Shopping on international sites. Withdrawing in foreign currency. More than one can be selected, because people rarely want only one thing, and a single choice would have forced a false answer.",
-        image: null,
-      },
-      {
-        n: "03",
-        title: "Recommending, and letting people decline",
-        body: "The answers resolve into one recommendation with one sentence of reasoning: ideal for those moving to the US, buying property or investing in the American market, or ideal for those focused on travel, international purchases and temporary use. The primary action opens that account. The secondary action is Not now, and it does not argue. A recommendation that cannot be refused is a sales funnel wearing the clothes of a guide.",
-        image: null,
-      },
-      {
-        n: "04",
-        title: "Rewriting the comparison itself",
-        body: "The two cards stayed, but they stopped leading with brand names. Each one now opens with what the account is for, an account for use while traveling or an account for use in the US, and carries the product name only in the link underneath. The recommended card moves to the top and says so. The other one is never hidden, because removing the alternative would be deciding for the customer rather than with them.",
-        image: null,
-      },
-    ],
-    takeaway: "The measurable problem was a usability score. The real problem was naming. Two products had been given names that described the bank's structure rather than the customer's situation, and every screen after that was paying interest on it. Renaming was not on the table, so the interface had to do the work instead: ask what the person wants, answer in their words, and let the names arrive last, once they finally mean something. The flow shipped to production.",
-  },
-
-  {
     id: "04",
     slug: "piccadilly",
     customPage: true,
@@ -272,6 +157,120 @@ export const cases = [
       },
     ],
     takeaway: "Health and fitness products live or die on behavioral design. Understanding the habit loop is what separates an app people use once from one they return to. The decisions that had the biggest impact were not the visual ones. They were the structural ones that made the right actions feel easy and the right outcomes feel visible.",
+  },
+
+  {
+    id: "02",
+    slug: "interbancario",
+    company: "Interbank FX Desk",
+    year: "2026",
+    title: "Training was the workaround for a system that never explained itself.",
+    summary: "A ground-up redesign of the desktop system Bradesco's trading desk uses to run interbank foreign exchange. The legacy application only worked for people who had already memorised its codes, so I rebuilt it around language the desk actually uses.",
+    tags: ["Fintech", "Enterprise UX", "Desktop Application", "Information Architecture"],
+    metrics: [],
+    outcome: "The redesign shipped to production. Operators no longer memorise toolbar codes to navigate, and the operations manager opens on state, with live counts on every filter.",
+    passwordHash: "aWdhbHZlcw==",
+    bg: "#EEF2FC",
+    image: "/images/interbancario.webp",
+    overview: {
+      company: "Bradesco Bank, international area",
+      companyNote: "One of Latin America's largest banks.",
+      role: "Senior Product Designer",
+      tools: "Figma, plus Figma Make and FigJam with AI assistance for references and early sketches",
+      scope: "Product Design, Information Architecture, Interaction Design, Design System, Design Handoff",
+      team: "Sole product designer, working alongside product, engineering and the foreign exchange trading desk",
+      delivered: "6 modules unified, 15 toolbar codes named, 6 operation states surfaced",
+      context: "The interbank desk runs foreign exchange between banks: buying and selling currency with other institutions, exchanging messages with the central bank and over SWIFT, and settling operations that move hundreds of millions. Every value, client name and operator detail shown in this case is fictitious sample data.",
+    },
+    problem: {
+      body: "The legacy system was a native desktop application whose knowledge lived in the people who used it rather than in the product. Its toolbar was fifteen three-letter buttons. Its fields carried raw codes as values, so a counterparty read as 0000003025-STANDARD CHARTERED BA, truncated mid-name, and a delivery method read as 65-Teletransmissao. Windows opened inside windows, tables nested inside tables, and disabled fields gave no reason for being disabled. New people could not use it without training, it crashed often, and operations that should have been immediate took days and passed through steps that existed only because a person had to carry the work from one screen to the next.",
+      highlight: "Training was not onboarding. It was the workaround for a product that never explained itself.",
+    },
+    process: [
+      {
+        n: "01",
+        title: "Auditing a system nobody could read",
+        body: "I walked the legacy application module by module and separated what was genuinely complex from what was merely undocumented. Interbank foreign exchange is complex: the rates, the settlement dates, the messaging obligations. The fifteen unlabelled buttons and the codes shown as values were not complexity. They were knowledge the product had pushed onto the operator and then never explained.",
+        image: null,
+      },
+      {
+        n: "02",
+        title: "Naming things the way the desk says them",
+        body: "The desk does not talk in codes. It talks about buying and selling, counterparties, settlement and confirmation. I replaced the code-value pattern throughout, so the counterparty reads as its name, the product reads as Interbancário and the delivery method reads as SWIFT. The codes still exist underneath for the systems that need them. They stopped being the operator's problem.",
+        image: null,
+      },
+      {
+        n: "03",
+        title: "One workspace instead of fifteen buttons",
+        body: "I restructured the application around the six things the desk actually does: managing operations, central bank messaging, SWIFT messaging, client records, parameters and reports. Each one became a named destination with a description, reachable from a persistent sidebar, so a new operator can see the shape of the system before knowing any of its vocabulary.",
+        image: null,
+      },
+      {
+        n: "04",
+        title: "Making the state of an operation visible",
+        body: "In the legacy system, knowing where an operation stood meant knowing which screen to open and what the totals at the bottom meant. I designed the operations manager around state: contracted, settling, settled and pending reconciliation became filters with live counts, the table became sortable on every column that matters, and the period filter states its own limit instead of failing silently.",
+        image: null,
+      },
+    ],
+    takeaway: "When a product needs a training programme before anyone can use it, the training is covering for the design. This system served experts, and designing for experts is not about simplifying, because the work itself is genuinely hard. It is about refusing to make people carry what the product could carry for them. The redesign shipped to production, and the codes that operators used to memorise now live where they belong, underneath.",
+  },
+
+  {
+    id: "03",
+    slug: "conta-internacional",
+    company: "International Accounts",
+    year: "2026",
+    title: "Two international accounts. Only a third of customers could tell them apart.",
+    summary: "Bradesco sells two international accounts with different purposes and confusingly close names. A quantitative study found that only a third of customers could explain the difference. I replaced the side by side comparison with one question about what the person actually wants to do.",
+    tags: ["Fintech", "Product Design", "Content Design", "Information Architecture"],
+    metrics: [
+      { n: "10%", label: "Retention lift across the app's international area" },
+    ],
+    outcome: "The flow shipped to production.",
+    passwordHash: "aWdhbHZlcw==",
+    bg: "#FAF1F3",
+    image: "/images/conta-internacional.webp",
+    overview: {
+      company: "Bradesco Bank, international area",
+      companyNote: "One of Latin America's largest banks.",
+      role: "Senior Product Designer",
+      tools: "Figma, plus Figma Make and FigJam with AI assistance for references and early sketches",
+      scope: "Product Design, Content Design, Information Architecture, Interaction Design",
+      team: "Sole product designer, working from a quantitative study run by the bank's CX insights team, alongside product and the international accounts squad",
+      delivered: "7 intents replacing the side by side comparison",
+      context: "The bank sells two international accounts. Bradesco Bank is a full American checking account with investments, a US credit card and property financing. My Account holds foreign currency for travel, with a physical and virtual debit card, withdrawals in 180 currencies and acceptance in 195 countries. They serve different lives, and they sat next to each other in the app as two cards of equal weight. Every value shown in this case is sample data.",
+    },
+    problem: {
+      body: "An unmoderated study with eighty four clients, none of whom held an international account, ran over three weeks. Asked to describe the difference between the two products in their own words, only thirty four per cent could. Half said outright that they could not. The screen built to explain the difference scored fifty out of a hundred for usability and carried a fifty eight per cent misclick rate, the worst in the journey. The comparison carousel meant to resolve it was rarely reached at all.",
+      highlight: "The product was asking people to choose between two names before it had told them what either name was for.",
+    },
+    process: [
+      {
+        n: "01",
+        title: "Reading the study before redrawing anything",
+        body: "The research was already there and it was quantitative, so the first job was to find the sentence inside it. Misclicks and abandonment said the screen was hard to use, but the open question said something worse: people were not failing to operate the interface, they were failing to understand what they were choosing between. That distinction decided the whole redesign. A clearer layout of two equally weighted cards would have improved the score and left the actual problem untouched.",
+        image: null,
+      },
+      {
+        n: "02",
+        title: "Turning the choice into a question",
+        body: "I replaced the comparison with a single question, asked before any product is named: what are you looking for right now. Under it sit seven things people actually do, written as activities rather than as features. A debit card for travel. Living, working or studying in the US. An American credit card. Holding dollars in the app. Investing in US stocks and funds. Shopping on international sites. Withdrawing in foreign currency. More than one can be selected, because people rarely want only one thing, and a single choice would have forced a false answer.",
+        image: null,
+      },
+      {
+        n: "03",
+        title: "Recommending, and letting people decline",
+        body: "The answers resolve into one recommendation with one sentence of reasoning: ideal for those moving to the US, buying property or investing in the American market, or ideal for those focused on travel, international purchases and temporary use. The primary action opens that account. The secondary action is Not now, and it does not argue. A recommendation that cannot be refused is a sales funnel wearing the clothes of a guide.",
+        image: null,
+      },
+      {
+        n: "04",
+        title: "Rewriting the comparison itself",
+        body: "The two cards stayed, but they stopped leading with brand names. Each one now opens with what the account is for, an account for use while traveling or an account for use in the US, and carries the product name only in the link underneath. The recommended card moves to the top and says so. The other one is never hidden, because removing the alternative would be deciding for the customer rather than with them.",
+        image: null,
+      },
+    ],
+    takeaway: "The measurable problem was a usability score. The real problem was naming. Two products had been given names that described the bank's structure rather than the customer's situation, and every screen after that was paying interest on it. Renaming was not on the table, so the interface had to do the work instead: ask what the person wants, answer in their words, and let the names arrive last, once they finally mean something. The flow shipped to production.",
   },
 
   {
@@ -375,68 +374,8 @@ export const cases = [
     takeaway: "Working in media taught me that design systems serve both users and content creators. A well-built system frees editorial teams to focus on storytelling instead of worrying about how things look, and that trust between design and editorial is what makes premium digital publishing work at scale.",
   },
 
-  // Design System. A documentacao navegavel sai de src/data/tessera.js. O
-  // trecho de design review e real, do fluxo de compra de moeda do
-  // Bradesco, com o texto em ingles.
-  {
-    id: "08",
-    slug: "design-system",
-    company: "Design System",
-    year: "2026",
-    title: "Every state drawn, every rule written down.",
-    summary: "Tessera is a design system I built for this portfolio, with the method behind the systems I designed at Bradesco and Editora Globo. Every component has every state drawn, every rule is written down, and the documentation below is live.",
-    tags: ["Design System", "Design Tokens", "DesignOps", "Documentation"],
-    metrics: [],
-    outcome: "Tessera is a reference system, not a shipped product, so it has no adoption numbers, and none are invented here. What it shows is the method: tokens named by role, every state drawn, the brand color checked against the colors that carry meaning, documentation a team can build from, and a review that holds the build to the design.",
-    bg: "#F2F2F2",
-    image: "/images/design-system.webp",
-    tessera: true,
-    tesseraIntro: "This is the documentation, live. Open any page from the sidebar. Buttons and fields respond to hover, press and keyboard, and every value on the page comes from the same data the components read.",
-    designReview: {
-      intro: "A piece of a real review, from the currency purchase flow in Bradesco's app. On one side, what reached the test device. On the other, the prototype. Each number on the build matches a line in the list, and blocking items are fixed before release.",
-      screen: "Simulation screen",
-      production: "/images/cases/design-system/review-production.webp",
-      prototype: "/images/cases/design-system/review-prototype.webp",
-      findings: [
-        { n: 1, pin: [47.2, 35.4], area: "Title", kind: "Typography", blocking: true, fixes: ["Fix the text size."] },
-        { n: 2, pin: [86.7, 40.0], area: "Subtitle", kind: "Color and typography", blocking: true, fixes: ["Fix the color.", "Fix the text size."] },
-        { n: 3, pin: [75.4, 57.3], area: "Illustration \u00d7 Title", kind: "Spacing", fixes: ["Fix the spacing between the elements."] },
-        { n: 4, pin: [73.0, 12.8], area: "Header \u00d7 Content", kind: "Spacing", fixes: ["Fix the spacing between the elements."] },
-      ],
-    },
-    overview: {
-      company: "Tessera",
-      companyNote: "A reference system built for this portfolio. Client systems belong to the clients.",
-      role: "Senior Product Designer",
-      tools: "Figma, zeroheight",
-      scope: "Design Tokens, Component Library, Documentation, Design Review",
-      team: "Solo, drawing on work with engineering and product teams",
-      delivered: "Color, typography, elevation and grid foundations, button and text field with every state drawn, and a design review",
-      context: "The design systems I built at Bradesco and Editora Globo belong to those companies, so this case rebuilds the method on a system of my own. Tessera has four foundations and a component library, documented the way I document real systems. The design review at the end is real, from Bradesco's currency purchase flow.",
-    },
-    problem: {
-      body: "In the teams where I built design systems, the same component already existed in several versions before we started. Each squad had drawn its own button, and the states nobody drew were decided in code, one developer at a time. Color drifted the same way: an action color picked by eye could sit a few steps from the red that means error, and a focused field started to look like a broken one.",
-      highlight: "A component with one state drawn is a component with five states guessed.",
-    },
-    processCards: true,
-    process: [
-      { n: "01", title: "Auditing what exists", body: "Before drawing anything, I list every version of every component already in production. The inventory turns a debate about taste into a count.", image: null },
-      { n: "02", title: "Naming tokens by role", body: "Components ask for a role, like base-500, never for a hex value. One change to a value reaches every button, field and icon that reads it.", image: null },
-      { n: "03", title: "Drawing every state", body: "Enabled, hovered, pressed, disabled, focused, filled, success and error, on white and on color. A state nobody draws is still designed, by whoever codes it.", image: null },
-      { n: "04", title: "Writing the rules down", body: "Each page answers what a team actually asks: when to use it, when not to, how it behaves and which tokens it reads.", image: null },
-      { n: "05", title: "Keeping brand apart from meaning", body: "The action color stays at least 30 Delta E from every feedback color, so a focused field never reads as an error. Tessera's first blue failed the check.", image: null },
-      { n: "06", title: "Reviewing what ships", body: "The build is checked against the prototype on a test device. Every difference gets a number and an exact fix. A real one closes this case.", image: null },
-    ],
-    takeaway: "A design system is finished when someone new can build a screen without asking anyone. Every state drawn, every rule written down, every color checked against the ones that carry meaning: that is what lets a team move fast without the product drifting apart.",
-  },
-
-  // ── Arquivados ──────────────────────────────────────────────────────
-  // Ficam aqui inteiros para nao se perderem, mas nao aparecem em lugar
-  // nenhum do site: filtrados de visibleCases e da navegacao entre cases.
-
   {
     id: "90",
-    archived: true,
     slug: "bradesco",
     company: "My Account",
     year: "2025 to present",
@@ -449,7 +388,7 @@ export const cases = [
     outcome: "The new onboarding and card setup brought activation to 70%, and the redesigned card area became the base for additional cards, the virtual card and digital wallets.",
     passwordHash: "aWdhbHZlcw==",
     bg: "#FCEEF0",
-    image: "/images/bradesco.webp",
+    image: "/images/my-account-cover.webp",
     beforeImpact: "/images/bradesco-01.webp",
     afterImpact: "/images/bradesco-02.webp",
     colorSystem: {
@@ -541,6 +480,65 @@ export const cases = [
     ],
     takeaway: "People already trusted the bank. What they could not do was read it as quickly as a fintech. All five journeys moved the same way: the balance, the cost and the state of the card appear at the moment the person needs them, not one screen later. The bank did not need to beat the fintechs on price. It needed to match them on clarity.",
   },
+
+  // Design System. A documentacao navegavel sai de src/data/tessera.js. O
+  // trecho de design review e real, do fluxo de compra de moeda do
+  // Bradesco, com o texto em ingles.
+  {
+    id: "08",
+    slug: "design-system",
+    company: "Design System",
+    year: "2026",
+    title: "Every state drawn, every rule written down.",
+    summary: "Tessera is a design system I built for this portfolio, with the method behind the systems I designed at Bradesco and Editora Globo. Every component has every state drawn, every rule is written down, and the documentation below is live.",
+    tags: ["Design System", "Design Tokens", "DesignOps", "Documentation"],
+    metrics: [],
+    outcome: "Tessera is a reference system, not a shipped product, so it has no adoption numbers, and none are invented here. What it shows is the method: tokens named by role, every state drawn, the brand color checked against the colors that carry meaning, documentation a team can build from, and a review that holds the build to the design.",
+    bg: "#F2F2F2",
+    image: "/images/design-system.webp",
+    tessera: true,
+    tesseraIntro: "This is the documentation, live. Open any page from the sidebar. Buttons and fields respond to hover, press and keyboard, and every value on the page comes from the same data the components read.",
+    designReview: {
+      intro: "A piece of a real review, from the currency purchase flow in Bradesco's app. On one side, what reached the test device. On the other, the prototype. Each number on the build matches a line in the list, and blocking items are fixed before release.",
+      screen: "Simulation screen",
+      production: "/images/cases/design-system/review-production.webp",
+      prototype: "/images/cases/design-system/review-prototype.webp",
+      findings: [
+        { n: 1, pin: [47.2, 35.4], area: "Title", kind: "Typography", blocking: true, fixes: ["Fix the text size."] },
+        { n: 2, pin: [86.7, 40.0], area: "Subtitle", kind: "Color and typography", blocking: true, fixes: ["Fix the color.", "Fix the text size."] },
+        { n: 3, pin: [75.4, 57.3], area: "Illustration \u00d7 Title", kind: "Spacing", fixes: ["Fix the spacing between the elements."] },
+        { n: 4, pin: [73.0, 12.8], area: "Header \u00d7 Content", kind: "Spacing", fixes: ["Fix the spacing between the elements."] },
+      ],
+    },
+    overview: {
+      company: "Tessera",
+      companyNote: "A reference system built for this portfolio. Client systems belong to the clients.",
+      role: "Senior Product Designer",
+      tools: "Figma, zeroheight",
+      scope: "Design Tokens, Component Library, Documentation, Design Review",
+      team: "Solo, drawing on work with engineering and product teams",
+      delivered: "Color, typography, elevation and grid foundations, button and text field with every state drawn, and a design review",
+      context: "The design systems I built at Bradesco and Editora Globo belong to those companies, so this case rebuilds the method on a system of my own. Tessera has four foundations and a component library, documented the way I document real systems. The design review at the end is real, from Bradesco's currency purchase flow.",
+    },
+    problem: {
+      body: "In the teams where I built design systems, the same component already existed in several versions before we started. Each squad had drawn its own button, and the states nobody drew were decided in code, one developer at a time. Color drifted the same way: an action color picked by eye could sit a few steps from the red that means error, and a focused field started to look like a broken one.",
+      highlight: "A component with one state drawn is a component with five states guessed.",
+    },
+    processCards: true,
+    process: [
+      { n: "01", title: "Auditing what exists", body: "Before drawing anything, I list every version of every component already in production. The inventory turns a debate about taste into a count.", image: null },
+      { n: "02", title: "Naming tokens by role", body: "Components ask for a role, like base-500, never for a hex value. One change to a value reaches every button, field and icon that reads it.", image: null },
+      { n: "03", title: "Drawing every state", body: "Enabled, hovered, pressed, disabled, focused, filled, success and error, on white and on color. A state nobody draws is still designed, by whoever codes it.", image: null },
+      { n: "04", title: "Writing the rules down", body: "Each page answers what a team actually asks: when to use it, when not to, how it behaves and which tokens it reads.", image: null },
+      { n: "05", title: "Keeping brand apart from meaning", body: "The action color stays at least 30 Delta E from every feedback color, so a focused field never reads as an error. Tessera's first blue failed the check.", image: null },
+      { n: "06", title: "Reviewing what ships", body: "The build is checked against the prototype on a test device. Every difference gets a number and an exact fix. A real one closes this case.", image: null },
+    ],
+    takeaway: "A design system is finished when someone new can build a screen without asking anyone. Every state drawn, every rule written down, every color checked against the ones that carry meaning: that is what lets a team move fast without the product drifting apart.",
+  },
+
+  // ── Arquivados ──────────────────────────────────────────────────────
+  // Ficam aqui inteiros para nao se perderem, mas nao aparecem em lugar
+  // nenhum do site: filtrados de visibleCases e da navegacao entre cases.
 
   {
     id: "91",
