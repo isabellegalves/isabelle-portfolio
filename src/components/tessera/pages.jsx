@@ -74,7 +74,7 @@ function ColorPage({ t }) {
 
       <H4>The distance rule</H4>
       <Body>
-        The action color is checked against every feedback color before it ships. The rule came from a real system, where the action red sat so close to the error red that a focused field read as a field with an error. Tessera's first blue failed it too, 15 away from the info blue, and became the petrol it is now.
+        The action color is checked against every feedback color before it ships. The rule came from a real system, where the action red sat so close to the error red that a focused field read as a field with an error. Tessera's first blue failed it too, 15 away from the info blue. The raspberry that replaced it passes at 37 from the error red.
       </Body>
       <Table head={["Check", "Result", "Target", "Status"]} mono={[1]} rows={checks} />
       <H5>What the rule rejects</H5>

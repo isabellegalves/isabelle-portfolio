@@ -20,11 +20,12 @@ export const ROLES = [
 
 // Uma marca so. O base-500 passou pela regra de distancia antes de entrar:
 // pelo menos 30 de Delta E de toda cor de feedback e 4.5:1 de contraste com
-// texto branco. Comecou azul, a 15 do azul de info, reprovou e virou
-// petroleo.
+// texto branco. Comecou azul, a 15 do azul de info, e reprovou. Ficou
+// framboesa, a 37 do vermelho de erro: a menor margem entre as opcoes
+// testadas, mas dentro da regra.
 export const BRAND = {
   id: "primary", name: "Tessera", sample: "Savings",
-  light100: "#DCEFEF", medium300: "#6FB1B6", base500: "#0F6470", dark800: "#073840",
+  light100: "#F5E3EA", medium300: "#D1809F", base500: "#B0245A", dark800: "#4F1028",
   display: "Georgia, 'Times New Roman', serif", displayName: "Georgia",
 }
 
