@@ -122,7 +122,7 @@ export const cases = [
     outcome: "The new onboarding and card setup brought activation to 70%, and the redesigned card area became the base for additional cards, the virtual card and digital wallets.",
     passwordHash: "aWdhbHZlcw==",
     bg: "#FCEEF0",
-    image: "/images/my-account-cover.webp",
+    image: "/images/my-account.webp",
     beforeImpact: "/images/bradesco-01.webp",
     afterImpact: "/images/bradesco-02.webp",
     colorSystem: {
@@ -495,7 +495,7 @@ export const cases = [
     metrics: [],
     outcome: "Tessera is a reference system, not a shipped product, so it has no adoption numbers, and none are invented here. What it shows is the method: tokens named by role, every state drawn, the brand color checked against the colors that carry meaning, documentation a team can build from, and a review that holds the build to the design.",
     bg: "#F2F2F2",
-    image: "/images/design-system.webp",
+    image: "/images/design-system-cover.webp",
     tessera: true,
     tesseraIntro: "This is the documentation, live. Open any page from the sidebar. Buttons and fields respond to hover, press and keyboard, and every value on the page comes from the same data the components read.",
     designReview: {
