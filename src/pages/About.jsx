@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react"
 import { motion, useInView } from "framer-motion"
 import { T, TYPE, TEXT, ACCENT, SHELL } from "../tokens"
-import { PURPLE } from "../components/CaseParts"
+import { PURPLE, Annotation } from "../components/CaseParts"
 
 const spring = { duration: 0.9, ease: [0.16, 1, 0.3, 1] }
 // PURPLE vem de CaseParts: um valor so para o site inteiro
@@ -606,6 +606,30 @@ export default function About() {
               >
                 <ToolIcon tool={tool} />
               </div>
+            ))}
+          </div>
+        </FadeUp>
+
+        <div style={RULE} />
+
+        {/* 7: ALONG THE WAY. Duas fotos fora da tela, cada uma com uma seta
+            manuscrita roxa, no mesmo traco do "This is me!" do topo. A seta
+            fica a esquerda e o texto a direita dela, entao a legenda nunca
+            encavala na seta, seja qual for o tamanho. */}
+        <FadeUp>
+          <h2 style={LABEL}>Along the way</h2>
+          <div className="about-two" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 80, alignItems: "start" }}>
+            {[
+              { src: "/images/about-google.webp", alt: "Isabelle at a Google event", note: "at a Google event!" },
+              { src: "/images/about-facebook.webp", alt: "Isabelle visiting Facebook in London", note: "visiting Facebook in London!" },
+            ].map(f => (
+              <figure key={f.src} style={{ margin: 0 }}>
+                <Annotation text={f.note} direction="left" color={ACCENT} />
+                <img
+                  src={f.src} alt={f.alt} loading="lazy" width={900} height={900}
+                  style={{ width: "100%", height: "auto", aspectRatio: "1 / 1", objectFit: "cover", borderRadius: 20, display: "block" }}
+                />
+              </figure>
             ))}
           </div>
         </FadeUp>
