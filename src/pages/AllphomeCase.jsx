@@ -166,7 +166,7 @@ export default function AllphomeCase() {
         year={allphome.year}
         title={allphome.title}
         summary={allphome.summary}
-        image={allphome.image}
+        image={allphome.heroImage ?? allphome.image}
         company={allphome.company}
       />
 

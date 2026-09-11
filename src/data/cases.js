@@ -14,6 +14,7 @@ export const cases = [
     passwordHash: "aWdhbHZlcw==",
     bg: "#FCEEF0",
     image: "/images/cambio.webp",
+    heroImage: "/images/heroes/cambio.webp",
     overview: {
       company: "Bradesco Bank, international area",
       companyNote: "One of Latin America's largest banks.",
@@ -74,6 +75,7 @@ export const cases = [
     ],
     bg: "#F0EEEE",
     image: "/images/allphome.webp",
+    heroImage: "/images/heroes/allphome.webp",
     comingSoon: false,
     overview: {
       role: "Product Designer, freelance",
@@ -123,6 +125,7 @@ export const cases = [
     passwordHash: "aWdhbHZlcw==",
     bg: "#FCEEF0",
     image: "/images/my-account-hero.webp",
+    heroImage: "/images/heroes/bradesco.webp",
     beforeImpact: "/images/bradesco-01.webp",
     afterImpact: "/images/bradesco-02.webp",
     colorSystem: {
@@ -228,6 +231,7 @@ export const cases = [
     passwordHash: "aWdhbHZlcw==",
     bg: "#EEF2FC",
     image: "/images/interbancario.webp",
+    heroImage: "/images/heroes/interbancario.webp",
     overview: {
       company: "Bradesco Bank, international area",
       companyNote: "One of Latin America's largest banks.",
@@ -279,6 +283,7 @@ export const cases = [
     year: "2022 to 2025",
     bg: "#EEF2F8",
     image: "/images/o-globo.webp",
+    heroImage: "/images/heroes/o-globo.webp",
     beforeImpact: "/images/oglobo-01.webp",
     comingSoon: false,
     title: "Turning drop-offs into subscribers. Redesigning trust in a digital news paywall.",
@@ -339,6 +344,7 @@ export const cases = [
     ],
     bg: "#F5F0EE",
     image: "/images/piccadilly.webp",
+    heroImage: "/images/heroes/piccadilly.webp",
     overview: {
       role: "Senior Product Designer",
       scope: "Mobile App, Web E-commerce, Information Architecture",
@@ -387,6 +393,7 @@ export const cases = [
     passwordHash: "aWdhbHZlcw==",
     bg: "#FAF1F3",
     image: "/images/conta-internacional.webp",
+    heroImage: "/images/heroes/conta-internacional.webp",
     overview: {
       company: "Bradesco Bank, international area",
       companyNote: "One of Latin America's largest banks.",
@@ -496,6 +503,7 @@ export const cases = [
     outcome: "Tessera is a reference system, not a shipped product, so it has no adoption numbers, and none are invented here. It shows the method: tokens named by role, the brand color checked against the colors that carry meaning, and a review that holds the build to the design.",
     bg: "#F2F2F2",
     image: "/images/design-system-cover.webp",
+    heroImage: null,
     tessera: true,
     tesseraIntro: "The documentation, live. Open any page from the sidebar: buttons and fields respond to hover, press and keyboard, and every value comes from the data the components read.",
     designReview: {

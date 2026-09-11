@@ -88,6 +88,9 @@ const BODY = { ...TEXT.body, marginBottom: 16 }
 export default function CaseStudy({ onContactClick }) {
   const { slug } = useParams()
   const c = getCaseBySlug(slug)
+  // A abertura da pagina e a capa do card da home sao imagens diferentes.
+  // heroImage null quer dizer sem abertura; sem o campo, cai na capa.
+  const hero = c && (c.heroImage !== undefined ? c.heroImage : c.image)
   const next = getNextCase(slug)
   const [nextHovered, setNextHovered] = useState(false)
   const [unlocked, setUnlocked] = useState(() => {
@@ -183,7 +186,7 @@ export default function CaseStudy({ onContactClick }) {
 
         {/* Hero image. Um case sem imagem, como o rascunho do Design
             System, nao mostra uma caixa vazia no lugar dela. */}
-        {c.image && (
+        {hero && (
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
@@ -197,15 +200,15 @@ export default function CaseStudy({ onContactClick }) {
             overflow: "hidden",
           }}
         >
-          {c.image?.endsWith(".mp4") ? (
+          {hero?.endsWith(".mp4") ? (
             <video
-              src={c.image}
+              src={hero}
               autoPlay muted loop playsInline
               style={{ maxWidth: "100%", maxHeight: "100%", width: "auto", height: "auto", objectFit: "contain", borderRadius: 16, display: "block" }}
             />
           ) : (
             <img
-              src={c.image}
+              src={hero}
               alt={`${c.company} project screenshot`}
               style={{
                 maxWidth: "100%", maxHeight: "100%", width: "auto", height: "auto",

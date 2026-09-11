@@ -88,7 +88,7 @@ export default function PiccadillyCase() {
         year={piccadilly.year}
         title={piccadilly.title}
         summary={piccadilly.summary}
-        image={piccadilly.image}
+        image={piccadilly.heroImage ?? piccadilly.image}
         company={piccadilly.company}
       />
 
