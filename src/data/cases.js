@@ -282,7 +282,7 @@ export const cases = [
     tags: ["Media", "Subscription UX", "Conversion Optimization"],
     year: "2022 to 2025",
     bg: "#EEF2F8",
-    image: "/images/o-globo.webp",
+    image: "/images/o-globo-cover.webp",
     heroImage: "/images/heroes/o-globo.webp",
     beforeImpact: "/images/oglobo-01.webp",
     comingSoon: false,
@@ -392,7 +392,7 @@ export const cases = [
     outcome: "The flow shipped to production.",
     passwordHash: "aWdhbHZlcw==",
     bg: "#FAF1F3",
-    image: "/images/conta-internacional.webp",
+    image: "/images/conta-internacional-cover.webp",
     heroImage: "/images/heroes/conta-internacional.webp",
     overview: {
       company: "Bradesco Bank, international area",
@@ -451,6 +451,7 @@ export const cases = [
     outcome: "One component library now serves three brands, so editorial teams ship without rebuilding components, and the redesigned newsletter flow lifted sign-ups at Vogue Brasil.",
     bg: "#F5F0EC",
     image: "/images/vogue.webp",
+    heroImage: "/images/heroes/vogue.webp",
     beforeTakeaway: ["/images/vogue-01.webp", "/images/vogue-02.webp"],
     overview: {
       company: "Editora Globo",
