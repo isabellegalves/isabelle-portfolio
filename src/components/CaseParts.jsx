@@ -353,11 +353,13 @@ function ProcessShot({ slug, name, index }) {
 
   return (
     <div
-      // Sem aspectRatio fixo: a imagem manda na altura. Antes o container
-      // era 4/3 com objectFit cover, entao qualquer proporcao diferente era
-      // recortada em cima e embaixo.
+      // A caixa so tem proporcao fixa enquanto a imagem carrega, para o
+      // numero de espera ter onde ficar. Depois quem manda na altura e a
+      // imagem. Com 16:10 fixo e objectFit cover, as imagens em 4:3 perdiam
+      // cerca de 8% em cima e 8% embaixo, e embaixo ficava a ultima linha
+      // do texto desenhado nelas.
       style={{
-        position: "relative", width: "100%", aspectRatio: "16 / 10",
+        position: "relative", width: "100%", aspectRatio: pronta ? "auto" : "16 / 10",
         background: T.offwhite, borderRadius: 14, overflow: "hidden",
       }}
     >
@@ -381,8 +383,8 @@ function ProcessShot({ slug, name, index }) {
         loading="lazy"
         onLoad={() => setPronta(true)}
         style={{
-          position: "relative", width: "100%", height: "100%",
-          objectFit: "cover", display: "block",
+          position: "relative", width: "100%", height: "auto",
+          display: "block",
           opacity: pronta ? 1 : 0,
           transition: "opacity 0.4s ease",
         }}
@@ -434,6 +436,78 @@ export function ProcessGallery({ slug, slots = PROCESS_SLOTS }) {
     >
       {existentes.map((name) => (
         <ProcessShot key={name} slug={slug} name={name} index={slots.indexOf(name)} />
+      ))}
+    </div>
+  )
+}
+
+
+// ─── OVERVIEW ──────────────────────────────────────────────────────────
+// A ficha de todos os cases. Ela so existia desenhada no template; Allphome
+// e Piccadilly, que tem pagina propria, montavam a mesma informacao como uma
+// lista de rotulo e valor, e os cases pareciam vir de sites diferentes.
+// Agora as tres paginas usam estes dois componentes.
+export function ChallengeNote() {
+  return (
+    <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 16 }}>
+      <motion.svg width="200" height="64" viewBox="0 0 200 64" overflow="visible" aria-hidden="true"
+        initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}
+        transition={{ duration: 0.3 }}>
+        <motion.text x="0" y="22"
+          style={{ fontFamily: "'Caveat', cursive", fontSize: "25px", fontWeight: 500, fill: ACCENT }}
+          initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}
+          transition={{ delay: 0.1, duration: 0.4 }}>
+          the challenge
+        </motion.text>
+        <motion.path d="M 140 28 C 132 38, 128 48, 134 58"
+          stroke={ACCENT} strokeWidth="1.5" fill="none" strokeLinecap="round"
+          initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} viewport={{ once: true }}
+          transition={{ delay: 0.5, duration: 0.6, ease: "easeOut" }}/>
+        <motion.path d="M 134 58 L 127 52"
+          stroke={ACCENT} strokeWidth="1.5" fill="none" strokeLinecap="round"
+          initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} viewport={{ once: true }}
+          transition={{ delay: 1.1, duration: 0.2, ease: "easeOut" }}/>
+        <motion.path d="M 134 58 L 140 54"
+          stroke={ACCENT} strokeWidth="1.5" fill="none" strokeLinecap="round"
+          initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} viewport={{ once: true }}
+          transition={{ delay: 1.3, duration: 0.2, ease: "easeOut" }}/>
+      </motion.svg>
+    </div>
+  )
+}
+
+// Tres colunas, rotulo em cima e valor embaixo. A classe overview-grid e a
+// que o App.jsx desce para duas colunas e depois para uma no celular.
+export function OverviewGrid({ items }) {
+  return (
+    <div className="overview-grid" style={{
+      display: "grid", gridTemplateColumns: "repeat(3, 1fr)",
+      columnGap: 48, rowGap: 32, alignItems: "start", marginBottom: 40,
+    }}>
+      {items.filter(item => item.value).map(item => (
+        <div key={item.label}>
+          <div style={{
+            fontFamily: "system-ui, sans-serif", fontSize: 10, fontWeight: 700,
+            letterSpacing: "0.08em", textTransform: "uppercase",
+            color: T.meta, marginBottom: 6,
+          }}>
+            {item.label}
+          </div>
+          <div style={{
+            fontFamily: "system-ui, sans-serif", fontSize: 15,
+            fontWeight: 500, color: T.ink, lineHeight: 1.5,
+          }}>
+            {item.value}
+          </div>
+          {item.note && (
+            <div style={{
+              fontFamily: "system-ui, sans-serif", fontSize: 13,
+              fontWeight: 400, color: T.meta, lineHeight: 1.5, marginTop: 4,
+            }}>
+              {item.note}
+            </div>
+          )}
+        </div>
       ))}
     </div>
   )

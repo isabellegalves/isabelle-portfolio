@@ -1,5 +1,5 @@
 import { useEffect } from "react"
-import { CaseHeader, CaseNext, Annotation, ProcessGallery, PURPLE, SectionLabel, PhaseHeading } from "../components/CaseParts"
+import { CaseHeader, CaseNext, Annotation, ProcessGallery, PURPLE, SectionLabel, PhaseHeading, ChallengeNote, OverviewGrid } from "../components/CaseParts"
 import { getCaseBySlug, getNextCase } from "../data/cases"
 import { T, TEXT, ACCENT_SOFT, SHELL, QUOTE } from "../tokens"
 
@@ -173,23 +173,19 @@ export default function AllphomeCase() {
       {/* ── OVERVIEW ── */}
       <section style={sec}>
         <div style={wrap}>
+          <ChallengeNote />
           <SectionLabel>Overview</SectionLabel>
-          {[
-            ["Company",   "Allphome"],
-            ["Role",      "Lead Product Designer, Individual Contributor"],
-            ["Duration",  "2 to 3 months"],
-            ["Year",      "2023"],
-            ["Scope",     "Pre-sale, Discovery, UX, UI, Design System, Handoff"],
-            ["Team",      "Product Manager, Developers, Client Stakeholders"],
-            ["Platforms", "Web + iOS and Android"],
-            ["Tools",     "Figma, FigJam, Google Analytics"],
-            ["Users",     "~200 active members from Allphome's physical gym"],
-          ].map(([label, value]) => (
-            <div key={label} style={{ display: "grid", gridTemplateColumns: "160px 1fr", gap: "1rem", padding: "0.6rem 0", borderBottom: `0.5px solid ${C.border}` }}>
-              <span style={{ fontSize: 11, fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", color: C.mid, fontFamily: "system-ui, sans-serif" }}>{label}</span>
-              <span style={{ fontSize: 15, color: C.text, fontFamily: "system-ui, sans-serif" }}>{value}</span>
-            </div>
-          ))}
+          <OverviewGrid items={[
+            { label: "Company", value: "Allphome" },
+            { label: "Role", value: "Lead Product Designer, Individual Contributor" },
+            { label: "Year", value: "2023" },
+            { label: "Scope", value: "Pre-sale, Discovery, UX, UI, Design System, Handoff" },
+            { label: "Team", value: "Product Manager, Developers, Client Stakeholders" },
+            { label: "Tools", value: "Figma, FigJam, Google Analytics" },
+            { label: "Duration", value: "2 to 3 months" },
+            { label: "Platforms", value: "Web + iOS and Android" },
+            { label: "Users", value: "~200 active members from Allphome's physical gym" },
+          ]} />
         </div>
       </section>
 

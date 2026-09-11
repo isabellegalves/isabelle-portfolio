@@ -6,7 +6,7 @@ import { getCaseBySlug, getNextCase } from "../data/cases"
 import PasswordGate from "../components/PasswordGate"
 import TesseraDocs from "../components/tessera/TesseraDocs"
 import DesignReview from "../components/DesignReview"
-import { ProcessGallery, SectionLabel, PhaseHeading } from "../components/CaseParts"
+import { ProcessGallery, SectionLabel, PhaseHeading, ChallengeNote, OverviewGrid } from "../components/CaseParts"
 
 const spring = { duration: 0.8, ease: [0.16, 1, 0.3, 1] }
 
@@ -220,42 +220,10 @@ export default function CaseStudy({ onContactClick }) {
       {/* OVERVIEW */}
       <div style={{ height: "0.5px", background: T.rule }} />
       <section style={P}>
-        <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 16 }}>
-          <motion.svg width="200" height="64" viewBox="0 0 200 64" overflow="visible" aria-hidden="true"
-            initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}
-            transition={{ duration: 0.3 }}>
-            <motion.text x="0" y="22"
-              style={{ fontFamily: "'Caveat', cursive", fontSize: "25px", fontWeight: 500, fill: ACCENT }}
-              initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}
-              transition={{ delay: 0.1, duration: 0.4 }}>
-              the challenge
-            </motion.text>
-            <motion.path d="M 140 28 C 132 38, 128 48, 134 58"
-              stroke={ACCENT} strokeWidth="1.5" fill="none" strokeLinecap="round"
-              initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} viewport={{ once: true }}
-              transition={{ delay: 0.5, duration: 0.6, ease: "easeOut" }}/>
-            <motion.path d="M 134 58 L 127 52"
-              stroke={ACCENT} strokeWidth="1.5" fill="none" strokeLinecap="round"
-              initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} viewport={{ once: true }}
-              transition={{ delay: 1.1, duration: 0.2, ease: "easeOut" }}/>
-            <motion.path d="M 134 58 L 140 54"
-              stroke={ACCENT} strokeWidth="1.5" fill="none" strokeLinecap="round"
-              initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} viewport={{ once: true }}
-              transition={{ delay: 1.3, duration: 0.2, ease: "easeOut" }}/>
-          </motion.svg>
-        </div>
+        <ChallengeNote />
         <FadeUp>
           <SectionLabel>Overview</SectionLabel>
-          {/* A ficha era uma coluna estreita de seis itens empilhados ao lado
-              do paragrafo. Os seis somavam uma coluna alta e apertada contra
-              um texto de tres linhas, sobrando meia pagina vazia a direita.
-              Agora a ficha e uma faixa de tres colunas e o texto vem abaixo,
-              na medida de leitura. */}
-          <div className="overview-grid" style={{
-            display: "grid", gridTemplateColumns: "repeat(3, 1fr)",
-            columnGap: 48, rowGap: 32, alignItems: "start", marginBottom: 40,
-          }}>
-            {[
+          <OverviewGrid items={[
               // Quem le pode nao ser do Brasil e nao saber o tamanho da
               // empresa. A linha de contexto vai embaixo do nome dela, que e
               // onde a pessoa olha para descobrir isso.
@@ -268,32 +236,7 @@ export default function CaseStudy({ onContactClick }) {
               // O que foi produzido mora aqui, na ficha, e nao em Impact.
               // Contagem de entrega nao e resultado.
               { label: "Delivered", value: c.overview.delivered },
-            ].filter(item => item.value).map(item => (
-              <div key={item.label}>
-                <div style={{
-                  fontFamily: "system-ui, sans-serif", fontSize: 10, fontWeight: 700,
-                  letterSpacing: "0.08em", textTransform: "uppercase",
-                  color: T.meta, marginBottom: 6,
-                }}>
-                  {item.label}
-                </div>
-                <div style={{
-                  fontFamily: "system-ui, sans-serif", fontSize: 15,
-                  fontWeight: 500, color: T.ink, lineHeight: 1.5,
-                }}>
-                  {item.value}
-                </div>
-                {item.note && (
-                  <div style={{
-                    fontFamily: "system-ui, sans-serif", fontSize: 13,
-                    fontWeight: 400, color: T.meta, lineHeight: 1.5, marginTop: 4,
-                  }}>
-                    {item.note}
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
+          ]} />
           <div style={{ height: "0.5px", background: T.rule, marginBottom: 32 }} />
           <p style={{ ...TEXT.body, maxWidth: 640, marginBottom: 0 }}>{c.overview.context}</p>
         </FadeUp>

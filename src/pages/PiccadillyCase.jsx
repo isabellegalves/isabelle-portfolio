@@ -1,5 +1,5 @@
 import { useEffect } from "react"
-import { CaseHeader, CaseNext, Annotation, ProcessGallery, PURPLE, SectionLabel, PhaseHeading } from "../components/CaseParts"
+import { CaseHeader, CaseNext, Annotation, ProcessGallery, PURPLE, SectionLabel, PhaseHeading, ChallengeNote, OverviewGrid } from "../components/CaseParts"
 import { getCaseBySlug, getNextCase } from "../data/cases"
 import { T, TEXT, ACCENT_SOFT, SHELL, QUOTE } from "../tokens"
 
@@ -95,20 +95,16 @@ export default function PiccadillyCase() {
       {/* ── OVERVIEW ── */}
       <section style={sec}>
         <div style={wrap}>
+          <ChallengeNote />
           <SectionLabel>Overview</SectionLabel>
-          {[
-            ["Company",  "Piccadilly"],
-            ["Role",     "UI Designer"],
-            ["Year",     "2019 to 2020"],
-            ["Scope",    "Mobile App, Web E-commerce, Information Architecture, Design System"],
-            ["Team",     "Product Manager, Developers, Product Team"],
-            ["Platform", "iOS and Android"],
-          ].map(([label, value]) => (
-            <div key={label} style={{ display: "grid", gridTemplateColumns: "160px 1fr", gap: "1rem", padding: "0.6rem 0", borderBottom: `0.5px solid ${C.border}` }}>
-              <span style={{ fontSize: 11, fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", color: C.mid, fontFamily: "system-ui, sans-serif" }}>{label}</span>
-              <span style={{ fontSize: 15, color: C.text, fontFamily: "system-ui, sans-serif" }}>{value}</span>
-            </div>
-          ))}
+          <OverviewGrid items={[
+            { label: "Company", value: "Piccadilly", note: "One of Brazil's largest women's footwear brands." },
+            { label: "Role", value: "UI Designer" },
+            { label: "Year", value: "2019 to 2020" },
+            { label: "Scope", value: "Mobile App, Web E-commerce, Information Architecture, Design System" },
+            { label: "Team", value: "Product Manager, Developers, Product Team" },
+            { label: "Platform", value: "iOS and Android" },
+          ]} />
         </div>
       </section>
 
@@ -118,7 +114,7 @@ export default function PiccadillyCase() {
           <SectionLabel>The Problem</SectionLabel>
           <div style={{ maxWidth: 640 }}>
             <p style={{ ...TEXT.body, color: C.text, marginBottom: "1.25rem" }}>
-              Piccadilly is one of Brazil's largest women's footwear brands, with over 2 million followers. In 2019 it sold online through a web store and had no app.
+              With over 2 million followers, Piccadilly still sold online through a web store in 2019, and had no app.
             </p>
             <p style={{ ...TEXT.body, color: C.text, marginBottom: "1.75rem" }}>
               Launched at the peak of the pandemic, this was its first mobile product: a complete digital store built from scratch, for customers who skewed older and had rarely shopped on a phone.

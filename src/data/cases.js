@@ -122,7 +122,7 @@ export const cases = [
     outcome: "The new onboarding and card setup brought activation to 70%, and the redesigned card area became the base for additional cards, the virtual card and digital wallets.",
     passwordHash: "aWdhbHZlcw==",
     bg: "#FCEEF0",
-    image: "/images/my-account.webp",
+    image: "/images/my-account-hero.webp",
     beforeImpact: "/images/bradesco-01.webp",
     afterImpact: "/images/bradesco-02.webp",
     colorSystem: {
