@@ -115,7 +115,7 @@ export const cases = [
     slug: "bradesco",
     company: "My Account",
     year: "2025 to present",
-    title: "The bank had the trust. The fintechs had the clarity.",
+    title: "The price before the decision. The card ready before the trip.",
     summary: "Five journeys I redesigned inside My Account, Bradesco's international account: the home, transfers, investments, cards and onboarding.",
     tags: ["Fintech", "UX Research", "Product Design", "Content Design"],
     metrics: [
